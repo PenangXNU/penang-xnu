@@ -45,7 +45,7 @@ A correção regenerou somente esse campo por meio da função W1 original. O re
 O clone recebeu os 127 arquivos versionados byte a byte, sem .build ou entradas do laboratório, e usou um target de build novo.
 Foram reutilizados apenas cache público Cargo e pacotes Python do host; isso não equivale a uma segunda máquina provisionada independentemente.
 Quatro objetos ARM64 próprios compilados; consumidor ABI C/C++ executado no host. Guarda EL1 não executada.
-Os negativos da fronteira cobrem token sintético, caminho privado, arquivo de imagem/arquivo compactado, symlink e segredo apagado no histórico Git.
+Os negativos da fronteira cobrem token sintético, caminho privado, arquivo compactado, symlink e segredo apagado no histórico Git.
 Comandos, casos, hashes de logs e procedência: [W4-PUBLICATION-GATES.json](W4-PUBLICATION-GATES.json).
 Evidência local ignorada: .build/w4/ e .build/review/; recibo final .build/review/final-receipt.json.
 
