@@ -3,7 +3,7 @@
   "purpose": "Fixed RC2 documentary projection and derivation; consistency only, not signature or runtime proof",
   "review_required_for_changes": true,
   "files": {
-    "evidence/current-status-sources.json": "667a8b88330cddcfbce220db1227aa6ce4fd0de08f2bc0d7899d075c45ceba5a",
+    "evidence/current-status-sources.json": "26a53b8060a86a72ffc9f93e56bdd12947f4cae2d76eacde4f56a9c612357e5e",
     "schemas/current-status.schema.json": "678b3a5047f491ae9613ce23eb1576df7503024debb2c6c976cf922978faf033",
     "scripts/current_status.py": "b0aff5a1293dbbaa4ef087b29a55c3f988cef6a0df9362ddcdf2d81a4a4b697e"
   }

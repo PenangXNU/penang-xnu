@@ -40,6 +40,15 @@
       "problem": "Confidential reporting channel has not been established",
       "evidence": "SECURITY.md; PUBLICATION-DECISIONS.md",
       "invented_contact": false
+    },
+    {
+      "id": "RC2-F05",
+      "status": "FIXED",
+      "problem": "First source clone stopped before tests: Windows CRLF projection had a different byte hash after Git LF normalization",
+      "fix": "Normalize only own source projection to LF; refresh its admission pin and regenerate current manifest with unchanged derivation",
+      "first_clone": "FAIL_BYTE_COMPARISON; tests NOT_TESTED",
+      "P010_document_hashes_unchanged": true,
+      "third_party_notices_unchanged": true
     }
   ],
   "compatibility_review": {
