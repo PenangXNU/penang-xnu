@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Apache-2.0
 #include "penang_platform.h"
 int main() {
     pv_snapshot s{1,1,4,0x410fd0b0,0x100022,0,0,62500000};

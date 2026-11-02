@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Synthetic publication negatives, including a deleted secret in local Git history."""
 from pathlib import Path
 import importlib.util

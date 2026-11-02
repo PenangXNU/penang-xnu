@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Public W2/W3 CLI tests: synthetic registers are never runtime evidence."""
 from pathlib import Path
 import copy

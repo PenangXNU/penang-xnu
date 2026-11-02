@@ -1,13 +1,16 @@
 # Component and license review
 
-This candidate proposes MIT for project-owned code and documentation. Existing MIT file declarations are preserved. The owner must adopt or revise the proposal before publication. The review establishes recorded source/notice provenance; Git labels are not proof of a contributor's legal identity or title.
+| Material | License | Basis |
+|---|---|---|
+| Project-owned code and documentation (including the two Penang BSP validation files) | Apache-2.0 | Owner decision, 2026-11-02 ([PUBLICATION-DECISIONS.md](../PUBLICATION-DECISIONS.md)) |
+| Modifications of Apple XNU sources (from v0.2) | APSL-2.0 | Required by the XNU license for Modifications; not part of v0.1 |
+| Third-party build/test dependencies (Rust crates, Python packages) | Their own terms | Not vendored; notices in `third-party/licenses/`, ledger in [audit/dependencies.json](../audit/dependencies.json) |
+| Apple, Qualcomm, Motorola software and firmware | Not included | Bring your own IPSW ([ADR-0007](adr/ADR-0007-original-experience.md)) |
 
-audit/selected-sources.json records every selected input, its original digest, revision/source group and any adaptation. audit/file-licenses.json classifies every proposed public file. AUTHORS.md records the historical BSP author-field limitation rather than inventing a contributor identity.
+audit/selected-sources.json records every selected input, its original digest, revision/source group and any adaptation. audit/file-licenses.json classifies every public file. AUTHORS.md records authorship and the historical author-field limitation.
 
-No third-party implementation is copied into this source preview. The selected W2/W3 C/Rust/Python code is project code; hardware descriptions are factual projections. The XNU patches and actual-XNU-source integration helpers are excluded rather than assigned the project's proposed license. Apple/Qualcomm images, SDKs and binaries are excluded.
+No third-party implementation is copied into this source release. The selected W2/W3 C/Rust/Python code is project code; hardware descriptions are factual projections. XNU patches and XNU-source integration helpers are excluded from v0.1 rather than assigned a license they cannot carry.
 
-The Cargo lock retains registry checksums. audit/dependencies.json records the exact locally inspected package versions, complete license expressions, repositories and original notice hashes. Original notices are copied selectively under third-party/licenses/ for review; no dependency sources are vendored. The unicode-ident license expression includes Unicode-3.0 in addition to MIT/Apache alternatives. pyrsistent includes a BSD-3-Clause toolz-derived portion; the installed distribution copyright record preserves that qualification.
+The Cargo lock retains registry checksums. The unicode-ident license expression includes Unicode-3.0 in addition to MIT/Apache alternatives. pyrsistent includes a BSD-3-Clause toolz-derived portion; the installed distribution copyright record preserves that qualification. Build tools and standard libraries are external prerequisites, not bundled artifacts; the pins do not assert that dependencies are current, secure or suitable for a binary release.
 
-Python requirements pin the tested runtime packages. Rust build/proc-macro dependencies are included in the ledger, including target-conditional packages. Build tools and standard libraries are external prerequisites, not bundled artifacts. The pins do not constitute an assertion that the dependencies are current, secure or suitable for a binary release.
-
-Public source selection is distinct from a future linked-binary release, Apple input distribution or operational firmware. Those would need their own license/notice and security review.
+A linked-binary release, any use of Apple inputs or operational firmware would need its own license, notice and security review.

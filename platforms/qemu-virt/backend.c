@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: MIT */
+/* SPDX-License-Identifier: Apache-2.0 */
 #include "penang_platform.h"
 pv_result pv_qemu_validate(const pv_snapshot *s, uint64_t tcr, const pv_request *q) {
  if (!s) { pv_result r={PV_FAIL,PV_NULL,0,0}; return r; }

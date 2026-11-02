@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
 """Bounded public tree + all local Git-object checks. No network and no writes."""
 import argparse
 import hashlib

@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: MIT */
+/* SPDX-License-Identifier: Apache-2.0 */
 /* v1: metadata validation, not an MMU/TLB or security provider. */
 #ifndef PENANG_PLATFORM_H
 #define PENANG_PLATFORM_H

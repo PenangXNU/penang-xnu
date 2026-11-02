@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: MIT */
+/* SPDX-License-Identifier: Apache-2.0 */
 #include "penang_platform.h"
 #include "penang_bsp_contract.h"
 /* Reuse the audited metadata decoder. Success is not XNU driver readiness. */

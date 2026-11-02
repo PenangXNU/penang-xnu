@@ -14,6 +14,8 @@ Upstream-first, interfaces versionadas, backends por plataforma, capacidades med
 Um hash identifica bytes; não autentica fabricante nem prova execução. Compilar não é executar. Um resultado host ou QEMU não prova dispositivo.
 
 Não são entregas atuais: ROM instalável, suporte universal Qualcomm, Apple ID/App Store/DRM, telefonia/VoLTE, equivalência Secure Boot/SEP/PPL/SPTM/TXM ou distribuição de firmware/OS.
-Não há autorização de hardware, CI ou publicação decorrente desta árvore. O próximo trabalho precisa de escopo próprio, sem repetir o histórico indiscriminadamente.
+Esta árvore não autoriza operações em hardware. A publicação segue as decisões registradas em PUBLICATION-DECISIONS.md; o CI público executa apenas a suíte sem entradas proprietárias. O próximo trabalho precisa de escopo próprio, sem repetir o histórico indiscriminadamente.
+
+Diretriz de experiência (ADR-0007, aceita em 2026-11-02): binários Apple do IPSW do próprio usuário executados sem modificação, toda adaptação abaixo do sistema operacional, no estilo do OpenCore, e nada original da Apple no repositório.
 
 Autoria: síntese documental W1 por Codex, sob ordem do responsável, a partir das fontes selecionadas em contracts/platform/foundation/evidence/source-register.json. As decisões originais preservam seus autores e datas.

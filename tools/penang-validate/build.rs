@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 use std::{env, path::PathBuf, process::Command};
 fn run(cmd: &mut Command) {
     let status = cmd

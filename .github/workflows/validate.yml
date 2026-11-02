@@ -1,0 +1,40 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  public-suite:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the publication scan inspects every reachable Git object
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install 1.99.1 --profile minimal --component clippy
+          rustup default 1.99.1
+      - name: Dependencies (explicit, pinned)
+        run: |
+          python3 -m pip install -r requirements.txt
+          cargo fetch --locked --manifest-path tools/penang-validate/Cargo.toml
+      - name: Public validation
+        env:
+          CC: clang-18
+          CXX: clang++-18
+        run: python3 -B scripts/validate_public.py
+      - name: Keep results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-validation
+          path: .build/w4/public-validation/

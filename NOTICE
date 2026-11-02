@@ -1,23 +1,28 @@
-Penang XNU Public Preview — release-candidate notice
+Penang XNU
+Copyright 2026 Salatiel Mangabeira and the Penang XNU contributors
 
-MIT is the proposed release license for project-owned code and documentation.
-This local preparation does not constitute owner adoption or publication.
-Existing per-file license declarations are preserved. The proposed blanket
-grant excludes external dependencies and their license/notice texts.
+This product includes software developed by the Penang XNU project, licensed
+under the Apache License, Version 2.0 (see LICENSE). The license was adopted by
+the project owner on 2026-11-02 for project-owned code and documentation,
+including the two Penang BSP validation files whose authorship the owner
+confirmed (see AUTHORS.md).
 
-No Apple, Qualcomm or emulator implementation is included or relicensed.
-Hardware register values and target identities are factual metadata, not
-a distribution of firmware. XNU-derived patches, runtime kernels, device dumps
-and the complete research repository history are excluded.
+Modifications of Apple's XNU sources are not part of this release. When they
+are published (planned for v0.2) they remain subject to the Apple Public Source
+License 2.0, as that license requires, and are marked accordingly.
+
+No Apple, Qualcomm, Motorola or emulator implementation, firmware or binary is
+included or relicensed. Hardware register values and target identities are
+factual metadata, not a distribution of firmware. Users bring their own iPadOS
+software (BYO IPSW); this repository contains nothing from it.
 
 External Rust and Python packages are resolved by the consumer and are not
-vendored. Their exact license expressions, original notice texts and hashes
-are listed in audit/dependencies.json and third-party/licenses/. In particular,
+vendored. Their exact license expressions, original notice texts and hashes are
+listed in audit/dependencies.json and third-party/licenses/. In particular,
 unicode-ident includes an additional Unicode-3.0 obligation; pyrsistent's
 toolz-derived portion carries BSD-3-Clause. A binary release would need a
-separate review of the licenses/notices of its linked dependencies.
+separate review of the licenses and notices of its linked dependencies.
 
-Original project authorship and its limitations are documented in AUTHORS.md.
-Names of products and vendors identify research targets; no endorsement is
-implied. No App Store, Apple ID, DRM, telephony or secure-platform equivalence
-is claimed or supplied.
+Product and vendor names identify research targets; no affiliation or
+endorsement is implied. No App Store, Apple ID, DRM, telephony or
+secure-platform equivalence is claimed or supplied.

@@ -1,599 +1,711 @@
 {
-  "review_scope": "RC2 focused review; own license adoption and BSP attribution/redistribution authority require human decisions; original notices retain their terms",
+  "review_scope": "v0.1.0: project-owned material under Apache-2.0 (owner decision 2026-11-02), including the two BSP files whose authorship the owner confirmed; third-party notices keep their terms",
   "files": [
     {
       "path": ".gitattributes",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": ".github/ISSUE_TEMPLATE/bug_report.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": ".github/ISSUE_TEMPLATE/evidence.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/work_order.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": ".gitignore",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": ".mailmap",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "AGENTS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": "ARCHITECTURE.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "AUTHORS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "CLAUDE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": "CONTRIBUTING.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "LICENSE",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "NOTICE",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "PROJECT-CHARTER.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:PROJECT-CHARTER.md"
     },
     {
       "path": "PUBLICATION-DECISIONS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "RELEASE-v0.1-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "RELEASE-v0.1-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": "ROADMAP.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "SECURITY.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "STATUS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "W4-HANDOFF.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "W4-PUBLICATION-GATES.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "W4-RC2-GATES.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "W4-RC2-HANDOFF.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "audit/dependencies.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "audit/exclusions.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "audit/file-licenses.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "audit/public-files.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "audit/rc2-focused-review.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "audit/selected-sources.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "contracts/platform/CONTRACT.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/CONTRACT.md"
     },
     {
       "path": "contracts/platform/evidence.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/evidence.json"
     },
     {
       "path": "contracts/platform/foundation.lock.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/foundation.lock.json"
     },
     {
       "path": "contracts/platform/foundation/README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "contracts/platform/foundation/docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md"
     },
     {
       "path": "contracts/platform/foundation/docs/adr/ADR-0006-delivery-scope-and-tracks.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:docs/adr/ADR-0006-delivery-scope-and-tracks.md"
     },
     {
       "path": "contracts/platform/foundation/evidence/source-register.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:evidence/source-register.json"
     },
     {
       "path": "contracts/platform/foundation/foundation.lock.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:foundation.lock.json"
     },
     {
       "path": "contracts/platform/foundation/manifests/derivation-rules.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:manifests/derivation-rules.json"
     },
     {
       "path": "contracts/platform/foundation/manifests/evidence-index.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:manifests/evidence-index.json"
     },
     {
       "path": "contracts/platform/foundation/manifests/project-status.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:manifests/project-status.json"
     },
     {
       "path": "contracts/platform/foundation/manifests/target-contract.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:manifests/target-contract.json"
     },
     {
       "path": "contracts/platform/foundation/references/adr/ADR-0001-target-and-boot-strategy.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:references/adr/ADR-0001-target-and-boot-strategy.md"
     },
     {
       "path": "contracts/platform/foundation/references/adr/ADR-0002-ios18-platform-scope.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:references/adr/ADR-0002-ios18-platform-scope.md"
     },
     {
       "path": "contracts/platform/foundation/references/adr/ADR-0003-security-compatibility.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:references/adr/ADR-0003-security-compatibility.md"
     },
     {
       "path": "contracts/platform/foundation/references/adr/ADR-0005-device-observability-and-debug.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:references/adr/ADR-0005-device-observability-and-debug.md"
     },
     {
       "path": "contracts/platform/foundation/schemas/evidence-index.schema.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:schemas/evidence-index.schema.json"
     },
     {
       "path": "contracts/platform/foundation/schemas/project-status.schema.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:schemas/project-status.schema.json"
     },
     {
       "path": "contracts/platform/foundation/schemas/target-contract.schema.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:schemas/target-contract.schema.json"
     },
     {
       "path": "contracts/platform/include/penang_platform.h",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/include/penang_platform.h"
     },
     {
       "path": "contracts/platform/include/penang_translation_v1.h",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/include/penang_translation_v1.h"
     },
     {
       "path": "contracts/platform/observation.schema.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/observation.schema.json"
     },
     {
       "path": "contracts/platform/platform.schema.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/platform.schema.json"
     },
     {
       "path": "contracts/platform/src/arm64.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/src/arm64.c"
     },
     {
       "path": "docs/APP-COMPATIBILITY-PLAN.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:docs/APP-COMPATIBILITY-PLAN.md"
+    },
+    {
+      "path": "docs/DEVICE-OBSERVABILITY.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": "docs/EVIDENCE-ADMISSION.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:docs/EVIDENCE-ADMISSION.md"
     },
     {
       "path": "docs/INITIAL-ISSUES.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "docs/LICENSING.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "docs/MONOCYPHER-REVIEW.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "docs/P0.10-STATUS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "docs/P0.11-STATUS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": "docs/PLATFORM-CONTRACTS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:docs/PLATFORM-CONTRACTS.md"
     },
     {
       "path": "docs/VALIDATION.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "docs/adr/ADR-0007-original-experience.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "docs/pt-BR/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "docs/work-orders/HANDOFF-TEMPLATE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "docs/work-orders/WORK-ORDER-TEMPLATE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
       "path": "drivers/penang/include/penang_bsp_contract.h",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:drivers/penang/include/penang_bsp_contract.h"
     },
     {
       "path": "drivers/penang/src/penang_bsp_validate.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:drivers/penang/src/penang_bsp_validate.c"
     },
     {
       "path": "evidence/current-status-sources.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "evidence/current-status.lock.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "evidence/p06-summary.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "evidence/platform-spec.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "evidence/research-status.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "examples/qemu-host-synthetic.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "manifests/current-status.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "manifests/penang-bsp-offline.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "manifests/penang-cpu-probe.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "platforms/qemu-virt/backend.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:platforms/qemu-virt/backend.c"
     },
     {
       "path": "platforms/qemu-virt/profile.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:platforms/qemu-virt/profile.json"
     },
     {
       "path": "platforms/qemu-virt/xnu/penang_pre_mmu.h",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:platforms/qemu-virt/xnu/penang_pre_mmu.h"
     },
     {
       "path": "platforms/qualcomm-holi/backend.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:platforms/qualcomm-holi/backend.c"
     },
     {
       "path": "platforms/qualcomm-holi/profile.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:platforms/qualcomm-holi/profile.json"
     },
     {
       "path": "platforms/qualcomm-trinket/backend.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:platforms/qualcomm-trinket/backend.c"
     },
     {
       "path": "platforms/qualcomm-trinket/profile.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:platforms/qualcomm-trinket/profile.json"
     },
     {
       "path": "requirements.txt",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "schemas/current-status.schema.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "scripts/current_status.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "scripts/publication_scan.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "scripts/validate_public.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "tests/platform/abi_consumer.cpp",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tests/platform/abi_consumer.cpp"
     },
     {
       "path": "tests/platform/test_platform.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tests/platform/test_platform.py"
     },
     {
       "path": "tests/public/test_current_status.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "tests/public/test_public_build.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "tests/public/test_publication_scan.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
@@ -875,57 +987,57 @@
     {
       "path": "tools/penang-validate/Cargo.lock",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/Cargo.lock"
     },
     {
       "path": "tools/penang-validate/Cargo.toml",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/Cargo.toml"
     },
     {
       "path": "tools/penang-validate/USAGE.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "tools/penang-validate/build.rs",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/build.rs"
     },
     {
       "path": "tools/penang-validate/foundation_v1.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "proposed project-owned release license; owner adoption pending",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/foundation_v1.py"
     },
     {
       "path": "tools/penang-validate/src/lib.rs",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/src/lib.rs"
     },
     {
       "path": "tools/penang-validate/src/main.rs",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/src/main.rs"
     },
     {
       "path": "tools/penang-validate/validate.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "existing per-file MIT SPDX retained",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/validate.py"
     }
   ]

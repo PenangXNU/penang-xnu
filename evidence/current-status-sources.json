@@ -1,51 +1,48 @@
 {
-  "schema_version": "1.0",
-  "release": "W4-RC2",
+  "schema_version": "2.0",
+  "release": "v0.1.0",
   "frozen_at": "2026-11-02",
-  "baseline_W4": "cfefdaa2a0b0201ee6f0df54910ffe220cfc99d4",
-  "snapshot_policy": "Pinned to the named P0.10 commit. Later B4 commits do not change this candidate automatically.",
-  "source_commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
-  "source_branch": "integration/p0-10-image4-security-20261102",
-  "evidence_kind": "DOCUMENTARY_REFERENCE_TO_QEMU_RESULTS",
-  "runtime_reproduced_by_RC2": false,
+  "previous_snapshot": {
+    "release": "W4-RC2",
+    "commit": "9dee1e57e0ae2a81f0e89a7cceeb283f6abbfad0",
+    "note": "Historical; preserved in Git history and the W4-RC2 records."
+  },
+  "snapshot_policy": "Pinned to the named research commits. Later research commits do not change this release automatically.",
+  "evidence_kind": "DOCUMENTARY_REFERENCE_TO_QEMU_AND_DEVICE_RESULTS",
+  "runtime_reproduced_by_release": false,
+  "commits": {
+    "p10": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+    "p11": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+    "device_obs_d1": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969"
+  },
   "sources": {
-    "reports/P0.10-HANDOFF.md": {
-      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
-      "sha256": "af5002117d4142358d20bf7f9b64874545a87068b7611f7f8dc1acabf9e0ac57",
-      "payload_included": false
-    },
-    "reports/P0.10-GATES.json": {
-      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
-      "sha256": "c0518917aef62ad52af60f7dc86b25dce58fe5f9617c6d6602f3a2dc720fb164",
-      "payload_included": false
-    },
-    "reports/P0.10-TEST-RESULTS.json": {
-      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
-      "sha256": "52d8f909881426b72c22925d30ac5f7f2b78ea73319e4c24eedc31bae26c5d3c",
-      "payload_included": false
-    },
-    "reports/p10/qemu-check-accept.json": {
-      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
-      "sha256": "6a597f203f2f3be02b55efb2c613b8442e3243cbac73e24df491bc4f5dee6acb",
-      "payload_included": false
-    },
-    "reports/p10/qemu-check-reject.json": {
-      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
-      "sha256": "9660abbb7501ad5067faba2df0409e3d2243b4240b0ad6e568f8a79e920da7ae",
-      "payload_included": false
-    }
+    "reports/P0.10-HANDOFF.md": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "af5002117d4142358d20bf7f9b64874545a87068b7611f7f8dc1acabf9e0ac57", "payload_included": false},
+    "reports/P0.10-GATES.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "c0518917aef62ad52af60f7dc86b25dce58fe5f9617c6d6602f3a2dc720fb164", "payload_included": false},
+    "reports/P0.10-TEST-RESULTS.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "52d8f909881426b72c22925d30ac5f7f2b78ea73319e4c24eedc31bae26c5d3c", "payload_included": false},
+    "reports/p10/qemu-check-accept.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "6a597f203f2f3be02b55efb2c613b8442e3243cbac73e24df491bc4f5dee6acb", "payload_included": false},
+    "reports/p10/qemu-check-reject.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "9660abbb7501ad5067faba2df0409e3d2243b4240b0ad6e568f8a79e920da7ae", "payload_included": false},
+    "reports/P0.11-HANDOFF.md": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "56925d5ed9df8850598be126417163c9fbfbd4fde0fbaad23f880c3406907d66", "payload_included": false},
+    "reports/P0.11-GATES.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "23a69baff9a0f1c053f129a69176eb5729703e2861651450cd3523f646779178", "payload_included": false},
+    "reports/P0.11-TEST-RESULTS.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "cbf8fb47f1a7bf1b4e28b22bb12650c9b60d743b550c6585932b0a6241dd28e3", "payload_included": false},
+    "reports/p11/qemu-check-positive.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "1743418791fe0d79ba03d7e45ecd10ea28efcb3b756d75ea9c62dc6481030449", "payload_included": false},
+    "reports/p11/qemu-check-unknown-platform.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "b338c288ba02602de0505625a5455d4944a54ec9579a74a158939ecaa2931acd", "payload_included": false},
+    "reports/p11/qemu-check-identity-refused.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "449303d5c3d9048d704eeb496a239bf5d0c56413945942d8fd26f408dca56af5", "payload_included": false},
+    "contracts/p11/matching-contract.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "f90df406f45c0cb2c99dccd385e5c2c14b1382e7eb2eafa7f86990ce9ef71191", "payload_included": false},
+    "reports/penang/D1-PENANG-FASTBOOT-BOOT-20261102.md": {"commit": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969", "sha256": "efd2719c1e53d87b9118e48932a2820bfee6d9de8ccbb1c3b5fe8f05dcddfd98", "payload_included": false},
+    "contracts/penang/hw-facts-20261102.json": {"commit": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969", "sha256": "6b104923b97fb9d63dbf11712cd193564c169e45556d107564a9c464cbe15f35", "payload_included": false}
   },
   "environment": {
-    "reported": "QEMU_VIRT DEV",
-    "kernel": "XNU 11417.140.69 RELEASE_ARM64_QEMU_VIRT",
+    "reported": "QEMU_VIRT DEV (TCG, cortex-a76, 1 CPU, 4 GiB)",
+    "kernel": "XNU 11417.140.69 RELEASE_ARM64_QEMU_VIRT, DEV build, non-PAC",
     "official_build": false,
-    "kernel_sha256": "ed9b9c5b0bb70871c64c2eb8896a59bc839d350bc2577338727aaf725d537da8"
+    "p10_kernel_sha256": "ed9b9c5b0bb70871c64c2eb8896a59bc839d350bc2577338727aaf725d537da8",
+    "p11_kernel_sha256": "8f1063388260a063367b19f20df0fabfc09705dcf56f943952a24dc83d715a13"
   },
   "p09": {
     "state": "UNIFIED_CRYPTO_IN_DEV_KERNEL",
     "qemu_regression": "CONFIRMED_IN_PINNED_RECORDS",
     "security_tests": "SCOPED_HOST_AND_KERNEL_RECORDS",
-    "reexecuted_in_RC2": false
+    "reexecuted_in_release": false
   },
   "p10": {
     "research_state": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED",
@@ -57,53 +54,76 @@
     "operations": "RESTRICTED_DEFINED_REFUSALS",
     "apple_entitlements": false,
     "sep_support": false,
-    "complete_userland_support": false
-  },
-  "positive": {
-    "status": "PASS",
-    "checks": {
-      "state_observed": true,
-      "trust_cache_placed_by_loader": true,
-      "p09_crypto_lines_unchanged": true,
-      "prng_registered": true,
-      "providers_registered_once": true,
-      "order_crypto_then_research_then_trustcache": true,
-      "b3_panic_absent": true,
-      "research_tc_loader_reached": true,
-      "static_trust_cache_loaded": true,
-      "no_trust_cache_failure": true,
-      "next_stop_recorded": true
+    "complete_userland_support": false,
+    "positive": {
+      "status": "PASS",
+      "checks": {"state_observed": true, "trust_cache_placed_by_loader": true, "p09_crypto_lines_unchanged": true, "prng_registered": true, "providers_registered_once": true, "order_crypto_then_research_then_trustcache": true, "b3_panic_absent": true, "research_tc_loader_reached": true, "static_trust_cache_loaded": true, "no_trust_cache_failure": true, "next_stop_recorded": true},
+      "result_sha256": "73b7822ba24ddef9cc6f24e090669f24cca331dc72131b6a096c0ed6bb77a58a",
+      "serial_sha256": "bcab96d6775323390fa733b7248924112f0fb1b701a3a6d4687627f04984844d",
+      "payloads_included": false
     },
-    "reported_environment": "QEMU_VERIFIED",
-    "result_sha256": "73b7822ba24ddef9cc6f24e090669f24cca331dc72131b6a096c0ed6bb77a58a",
-    "serial_sha256": "bcab96d6775323390fa733b7248924112f0fb1b701a3a6d4687627f04984844d",
-    "payloads_included": false
+    "negative": {
+      "status": "PASS",
+      "checks": {"state_observed": true, "trust_cache_placed_by_loader": true, "p09_crypto_lines_unchanged": true, "prng_registered": true, "providers_registered_once": true, "order_crypto_then_research_then_trustcache": true, "b3_panic_absent": true, "research_tc_loader_reached": true, "unauthorized_module_refused": true, "fail_closed_guard": true, "nothing_loaded": true},
+      "result_sha256": "8fc5572bd3e5b2a2a79a24101a7a18526622f56c142d213c894fdf3c1eed54fc",
+      "serial_sha256": "bffda419ab9fc310001c51ec9a4ef193a541975c597d88671740eda338138eb6",
+      "reason": "NON_PROVISIONED_SIGNER_REFUSED",
+      "payloads_included": false
+    }
   },
-  "negative": {
-    "status": "PASS",
-    "checks": {
-      "state_observed": true,
-      "trust_cache_placed_by_loader": true,
-      "p09_crypto_lines_unchanged": true,
-      "prng_registered": true,
-      "providers_registered_once": true,
-      "order_crypto_then_research_then_trustcache": true,
-      "b3_panic_absent": true,
-      "research_tc_loader_reached": true,
-      "unauthorized_module_refused": true,
-      "fail_closed_guard": true,
-      "nothing_loaded": true
+  "p11": {
+    "research_state": "B4_RESEARCH_PLATFORM_EXPERT_RUNTIME_VERIFIED",
+    "platform_expert": "PenangQemuVirtPlatformExpert (IODTPlatformExpert subclass, built into the DEV kernel)",
+    "matching": "BUILTIN_PERSONALITY_IONAMEMATCH_QEMU_VIRT_SCORE_1000",
+    "fallback_preserved": "IOPanicPlatform",
+    "apple_platform_identity_claimed": false,
+    "userland_executed": false,
+    "not_provided": ["NVRAM", "RTC", "interrupt controller", "CPU power manager", "restart hardware", "storage"],
+    "positive": {
+      "status": "PASS",
+      "checks": {"state_observed": true, "p09_crypto_lines_unchanged": true, "research_providers_registered_once": true, "research_trust_cache_loaded": true, "iokit_matching_started": true, "device_tree_unchanged": true, "probe_accepts": true, "start_runs_and_returns_true": true, "registered_for_matching": true, "iopanicplatform_not_started": true, "b4_panic_absent": true, "no_refusal_lines": true},
+      "result_sha256": "9823a035368944a9edbc1c6d33a6de42f503112695cd79492aedd2a03e6b1b10",
+      "serial_sha256": "da12ffd67a9049379e38d5c16d19c6d862697597fbb0f60ade754105abc36ffb",
+      "payloads_included": false
     },
-    "result_sha256": "8fc5572bd3e5b2a2a79a24101a7a18526622f56c142d213c894fdf3c1eed54fc",
-    "serial_sha256": "bffda419ab9fc310001c51ec9a4ef193a541975c597d88671740eda338138eb6",
-    "reason": "NON_PROVISIONED_SIGNER_REFUSED",
-    "payloads_included": false
+    "unknown_platform": {
+      "status": "PASS",
+      "checks": {"state_observed": true, "p09_crypto_lines_unchanged": true, "research_providers_registered_once": true, "research_trust_cache_loaded": true, "iokit_matching_started": true, "negative_control_declared": true, "fallback_panic": true, "iopanicplatform_started": true, "platform_expert_not_started": true, "personality_not_matched": true},
+      "result_sha256": "5bf63d646def36a607e9379318d140b3da869b0b0a94e023046ff89a0e899731",
+      "serial_sha256": "ecf064992a3c9b6c973ab4d63aa91428e468f98e6448db396bfeb465afcd99db",
+      "payloads_included": false
+    },
+    "identity_refused": {
+      "status": "PASS",
+      "checks": {"state_observed": true, "p09_crypto_lines_unchanged": true, "research_providers_registered_once": true, "research_trust_cache_loaded": true, "iokit_matching_started": true, "negative_control_declared": true, "fallback_panic": true, "iopanicplatform_started": true, "platform_expert_not_started": true, "probe_refused_with_defined_error": true, "refusal_before_fallback": true},
+      "result_sha256": "e20e6a99a46d72235aebc22d83ac81f72e0095e8adc07c2abee2be97596501e5",
+      "serial_sha256": "2ea5ff8d744220d6a199a16ba1adb310a27c4f590f52355f714218527a5cf331",
+      "payloads_included": false
+    }
   },
   "next_blocker": {
-    "id": "B4_IOKIT_PLATFORM_DRIVER",
-    "panic": "Unable to find driver for this platform: \"qemu,virt\".",
-    "stage": "IOKIT_MATCHING_REACHED",
-    "valid_platform_expert_initialized": false
+    "id": "B5_PLATFORM_INTERRUPT_CONTROLLER",
+    "stage": "QUIET_WAIT_BEFORE_BSD_INIT",
+    "panic": null,
+    "waits": [
+      "cpu_boot_thread in PassthruInterruptController::waitForChildController",
+      "kernel_bootstrap_thread in ml_wait_max_cpus (kperf_init_early)"
+    ],
+    "later_dependency": "IOPMGR"
+  },
+  "device_observability": {
+    "gate": "OBS-D1",
+    "gate_source": "ADR-0005 operational gate 'D1'; not the ADR-0006 delivery criterion D1",
+    "image": "BYTE_IDENTICAL_COPY_OF_THE_FLASHED_BOOT_A_WITH_THE_OWNER_ROOT_PATCH_NOT_FACTORY_IMAGE",
+    "fastboot_boot_accepted": true,
+    "android_booted": true,
+    "kernel_arguments_identical_to_flash_boot": true,
+    "partitions_and_slot_unchanged": true,
+    "android_pstore_records_preserved": true,
+    "xnu_on_device": "NOT_RUN",
+    "tgran16": "UNKNOWN",
+    "watchdog_at_handoff": "UNKNOWN",
+    "raw_data_included": false
   },
   "hardware": {
     "Moto_G53_XNU_boot": "NOT_DEMONSTRATED",
@@ -118,13 +138,13 @@
     "No Apple entitlement, SEP or complete userland support",
     "No PPL/SPTM/TXM monitor; arbitrary kernel write is outside the research protection claim",
     "Wycheproof acceptable small/mixed-order public-key vectors are accepted; anchors are fixed provisioned keys",
-    "Some Image4/nonce refusals and duplicate-registration guards were checked in the binary, not executed in dedicated runtime negative tests",
-    "No valid Platform Expert initialization established by reaching IOKit matching"
+    "The platform expert serves the QEMU_VIRT research device tree only; the published device-tree nubs have no drivers",
+    "OBS-D1 booted Android, not XNU, on the phone"
   ],
   "monocypher": {
     "used_in_p10": "4.0.2",
     "kernel_role": "VERIFICATION_NOT_SIGNING_AS_DOCUMENTED",
-    "code_imported_in_RC2": false,
+    "code_imported_in_release": false,
     "upgrade_performed": false,
     "upstream_release": "4.0.3",
     "upstream_release_date": "2026-06-15",

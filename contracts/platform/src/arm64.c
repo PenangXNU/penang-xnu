@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: MIT */
+/* SPDX-License-Identifier: Apache-2.0 */
 #include "penang_platform.h"
 static pv_result result(pv_status s, pv_code c, uint32_t pa, uint32_t granule) {
  pv_result r={(uint32_t)s,(uint32_t)c,pa,granule}; return r;

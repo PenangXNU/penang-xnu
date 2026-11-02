@@ -1,0 +1,26 @@
+{
+  "schema": "penang.release-gates/1.0",
+  "release": "v0.1.0",
+  "date": "2026-11-02",
+  "branch": "release/v0.1",
+  "previous_snapshot": {"name": "W4-RC2", "commit": "9dee1e57"},
+  "scope": "HOST_TESTS_AND_ARM64_COMPILATION_ONLY",
+  "runtime_on_device": "NOT_TESTED",
+  "gates": [
+    {"id": "G1_STATUS_DERIVED", "status": "PASS", "evidence": "scripts/current_status.py validates 14 pinned sources (P0.10, P0.11, OBS-D1) and rejects any promotion; STATUS.md, README block and manifests/current-status.json are generated, not hand-edited"},
+    {"id": "G2_DOCUMENTARY", "status": "PASS", "log_sha256": "42b922b066807831ad2d1137d3e6041b1cfb2f7e6c631c8e5728044469fe73e0"},
+    {"id": "G3_BUILD", "status": "PASS", "log_sha256": "9489f44a20008616cc15f27632fb39b5fe7792c37ff432551e93bc1a95eab550"},
+    {"id": "G4_RUST", "status": "PASS", "log_sha256": "4e500e2d2bfcb5e5aafd00d17cc7ae7275feb856badb3085343ccb9ea5999d7f"},
+    {"id": "G5_SYNTHETIC", "status": "PASS", "tests": 36, "log_sha256": "263a32a45a58f39823a3b2d1fb87f750a932181fe7d139b4a07c83554614ca8f"},
+    {"id": "G6_PUBLIC_BUILD_AND_BOUNDARY", "status": "PASS", "tests": 27, "log_sha256": "8a531ff5a169c62c36098de1ffb33ae9645a98cc2b0feabb197c19c1947d033f"},
+    {"id": "G7_CLIPPY", "status": "PASS", "log_sha256": "fc72b56c292aabf0165ba4d4ab1c305655232438ffda8e162bb98077f554c8de"},
+    {"id": "G8_PUBLICATION_SCAN", "status": "PASS", "evidence": "exact file inventory with content pins, private paths, tokens, keys, local links and every Git object", "log_sha256": "1f78ba3077d3350bdfc1da100addb8deada87e8f892f0a261c38eb0eaa4da194"},
+    {"id": "G9_LICENSING", "status": "PASS", "evidence": "Apache-2.0 LICENSE; SPDX headers; APSL-2.0 kept for XNU modifications; pinned W1 validator bytes untouched; audit/file-licenses.json refreshed"},
+    {"id": "G10_NO_APPLE_ORIGINALS", "status": "PASS", "evidence": "BYO IPSW (ADR-0007); publication scan inventory contains no firmware, IPSW, kernelcache or device image"},
+    {"id": "G11_CI_ON_GITHUB", "status": "NOT_TESTED", "reason": "workflow committed; first run happens after the push to the private repository"},
+    {"id": "G12_INDEPENDENT_REVIEW", "status": "PENDING", "reason": "required by the owner before public visibility"},
+    {"id": "G13_PUBLIC_VISIBILITY", "status": "BLOCKED", "reason": "owner decision after G12; PVR and branch rulesets are enabled at the same time"}
+  ],
+  "local_validation_results_sha256": "1cb1322f0e4897060ce00ff389e9e323f35aafc7335d288643fb94acb55f4005",
+  "overall": "READY_FOR_PRIVATE_PUSH"
+}

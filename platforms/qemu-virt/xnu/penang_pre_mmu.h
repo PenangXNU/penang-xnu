@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: MIT
+/* SPDX-License-Identifier: Apache-2.0
  * QEMU_VIRT pre-MMU contract v1. x1=desired XNU TCR, preserved.
  * Clobbers x9-x11 only. No stack, calls, MMIO, MSR, barriers or TLB changes.
  * Must run at privileged XNU entry; it does not detect a physical host CPU.

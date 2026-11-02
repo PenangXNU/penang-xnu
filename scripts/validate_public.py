@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
 """Public-only validation. Dependency acquisition is explicit and never performed here."""
 from pathlib import Path
 import argparse

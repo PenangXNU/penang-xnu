@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache-2.0
 """penang-validate v0.1: selected W1 core + schemas + native Rust/C platform checks."""
 import argparse
 import hashlib

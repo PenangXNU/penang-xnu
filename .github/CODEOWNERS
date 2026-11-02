@@ -1,0 +1,7 @@
+# Review is requested from the maintainer for every change; security-relevant paths are listed explicitly.
+*                          @SalatielBM22
+/contracts/                @SalatielBM22
+/scripts/publication_scan.py @SalatielBM22
+/audit/                    @SalatielBM22
+/docs/adr/                 @SalatielBM22
+/.github/                  @SalatielBM22

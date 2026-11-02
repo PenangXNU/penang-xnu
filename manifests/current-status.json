@@ -1,24 +1,33 @@
 {
   "$schema": "../schemas/current-status.schema.json",
-  "schema_version": "1.0",
-  "release": "W4-RC2",
+  "schema_version": "2.0",
+  "release": "v0.1.0",
   "as_of": "2026-11-02",
-  "source_commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+  "research_commits": {
+    "p10": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+    "p11": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+    "device_obs_d1": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969"
+  },
   "input_pins": {
-    "evidence/current-status-sources.json": "26a53b8060a86a72ffc9f93e56bdd12947f4cae2d76eacde4f56a9c612357e5e",
-    "schemas/current-status.schema.json": "678b3a5047f491ae9613ce23eb1576df7503024debb2c6c976cf922978faf033",
-    "scripts/current_status.py": "b0aff5a1293dbbaa4ef087b29a55c3f988cef6a0df9362ddcdf2d81a4a4b697e"
+    "evidence/current-status-sources.json": "f68eb5cf67cd3bee43693a19d41751ac03db8849b5d3fa370eb3d6b207eb403e",
+    "schemas/current-status.schema.json": "fd1544793f459e278729c5f1cc90e389869d569bcad863602f498d90e9ede205",
+    "scripts/current_status.py": "cd5239fc2947060bd2afd927d7ba5c6b56a02adf87a5490a4442d0323004d0e7"
   },
   "evidence_scope": "DOCUMENTARY_REFERENCE_NOT_REEXECUTED",
   "environment": "QEMU_VIRT_DEV",
   "p09": "UNIFIED_CRYPTO_REGRESSION_DOCUMENTED",
   "research_b3": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED",
+  "research_b4": "B4_RESEARCH_PLATFORM_EXPERT_RUNTIME_VERIFIED",
   "apple_ipados_security": "NOT_ESTABLISHED",
   "next_blocker": {
-    "id": "B4_IOKIT_PLATFORM_DRIVER",
-    "panic": "Unable to find driver for this platform: \"qemu,virt\".",
-    "stage": "IOKIT_MATCHING_REACHED",
-    "valid_platform_expert_initialized": false
+    "id": "B5_PLATFORM_INTERRUPT_CONTROLLER",
+    "stage": "QUIET_WAIT_BEFORE_BSD_INIT",
+    "panic": null,
+    "waits": [
+      "cpu_boot_thread in PassthruInterruptController::waitForChildController",
+      "kernel_bootstrap_thread in ml_wait_max_cpus (kperf_init_early)"
+    ],
+    "later_dependency": "IOPMGR"
   },
   "interface": {
     "declared_version": 7,
@@ -26,6 +35,20 @@
     "entitlements": false,
     "sep": false,
     "full_userland": false
+  },
+  "device_observability": {
+    "gate": "OBS-D1",
+    "gate_source": "ADR-0005 operational gate 'D1'; not the ADR-0006 delivery criterion D1",
+    "image": "BYTE_IDENTICAL_COPY_OF_THE_FLASHED_BOOT_A_WITH_THE_OWNER_ROOT_PATCH_NOT_FACTORY_IMAGE",
+    "fastboot_boot_accepted": true,
+    "android_booted": true,
+    "kernel_arguments_identical_to_flash_boot": true,
+    "partitions_and_slot_unchanged": true,
+    "android_pstore_records_preserved": true,
+    "xnu_on_device": "NOT_RUN",
+    "tgran16": "UNKNOWN",
+    "watchdog_at_handoff": "UNKNOWN",
+    "raw_data_included": false
   },
   "hardware": {
     "Moto_G53_XNU_boot": "NOT_DEMONSTRATED",
@@ -42,6 +65,6 @@
     "release_date": "2026-06-15",
     "impact": "INDEPENDENT_TECHNICAL_REVIEW_REQUIRED"
   },
-  "publication_status": "PUBLICATION_BLOCKED",
-  "decision_status": "HUMAN_DECISION_REQUIRED"
+  "publication_status": "OWNER_DECISIONS_RECORDED",
+  "decision_status": "PUBLIC_VISIBILITY_AFTER_INDEPENDENT_REVIEW"
 }

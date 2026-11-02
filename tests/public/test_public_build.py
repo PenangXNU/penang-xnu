@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Own-source host ABI and ARM64 compilation. No Apple SDK or privileged execution."""
 from pathlib import Path
 import os
