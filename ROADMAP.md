@@ -1,11 +1,11 @@
-# Roadmap
+# Roadmap — RC2 snapshot
 
-1. Review this source preview: file selection, authorship/license proposal, negative tests, claims and fresh-export reproduction.
-2. Improve public portability and reproducible dependency acquisition without bundling restricted inputs.
-3. Independently review ABI and pre-MMU guard; qualify full XNU build and EL1 behavior in a separate work order.
-4. Implement and qualify a complete independent Image4/AMFI/TrustCache policy/provider before moving beyond B3. Crypto integration alone does not solve it.
-5. Measure unresolved Penang entry privilege, granule and memory-map facts before proposing any explicitly authorized hardware operation.
-6. Qualify drivers, original userland and Adreno-backed graphics against ADR-0006 D1–D4.
-7. Qualify Sofiar independently as P1; a descriptor does not establish physical support.
+1. Decide the [remaining publication questions](PUBLICATION-DECISIONS.md) and review this fixed source candidate.
+2. Reproduce the public suite on independently provisioned public dependencies/hosts; preserve proof scope.
+3. Independently review ABI and the pre-MMU guard; qualify full XNU build and EL1 behavior in separately scoped work.
+4. Continue B4 platform-driver research separately. P0.10 already documents scoped B3 research-provider acceptance/rejection, but no valid Platform Expert initialized in its fixed snapshot.
+5. Review the research provider and Monocypher incorporated-code impact independently; pursue Apple/iPadOS security and userland compatibility as separate, unestablished objectives.
+6. Measure unresolved Penang privilege, granule and memory-map facts before proposing any specifically authorized hardware activity.
+7. Qualify drivers, original userland and measured Adreno graphics against D1–D4; independently qualify Sofiar P1.
 
-No date or delivery promise is attached. Publication of this host-tools preview does not depend on resolving B3. Each engineering/runtime step requires its own scope, review and evidence.
+No date, release or operational authorization is implied. This candidate remains fixed at the admitted P0.10 commit; later B4 development does not update it automatically.

@@ -23,6 +23,7 @@ def main():
     env = {**os.environ, "CARGO_TARGET_DIR": str(ROOT / ".build/w2w3/cargo"),
            "PYTHONDONTWRITEBYTECODE": "1", "GIT_OPTIONAL_LOCKS": "0"}
     commands = [
+        ("documentary", [sys.executable, "-B", "scripts/current_status.py"]),
         ("build", ["cargo", "build", "--offline", "--locked", "--manifest-path", "tools/penang-validate/Cargo.toml"]),
         ("rust", ["cargo", "test", "--offline", "--locked", "--manifest-path", "tools/penang-validate/Cargo.toml"]),
         ("synthetic", [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tests/platform", "-v"]),

@@ -1,0 +1,47 @@
+{
+  "$schema": "../schemas/current-status.schema.json",
+  "schema_version": "1.0",
+  "release": "W4-RC2",
+  "as_of": "2026-11-02",
+  "source_commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+  "input_pins": {
+    "evidence/current-status-sources.json": "667a8b88330cddcfbce220db1227aa6ce4fd0de08f2bc0d7899d075c45ceba5a",
+    "schemas/current-status.schema.json": "678b3a5047f491ae9613ce23eb1576df7503024debb2c6c976cf922978faf033",
+    "scripts/current_status.py": "b0aff5a1293dbbaa4ef087b29a55c3f988cef6a0df9362ddcdf2d81a4a4b697e"
+  },
+  "evidence_scope": "DOCUMENTARY_REFERENCE_NOT_REEXECUTED",
+  "environment": "QEMU_VIRT_DEV",
+  "p09": "UNIFIED_CRYPTO_REGRESSION_DOCUMENTED",
+  "research_b3": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED",
+  "apple_ipados_security": "NOT_ESTABLISHED",
+  "next_blocker": {
+    "id": "B4_IOKIT_PLATFORM_DRIVER",
+    "panic": "Unable to find driver for this platform: \"qemu,virt\".",
+    "stage": "IOKIT_MATCHING_REACHED",
+    "valid_platform_expert_initialized": false
+  },
+  "interface": {
+    "declared_version": 7,
+    "policy": "RESTRICTED_RESEARCH_OPERATIONS",
+    "entitlements": false,
+    "sep": false,
+    "full_userland": false
+  },
+  "hardware": {
+    "Moto_G53_XNU_boot": "NOT_DEMONSTRATED",
+    "D1_D4": "NOT_DEMONSTRATED",
+    "M9": "HOST_ONLY",
+    "Sofiar": "P1_UNKNOWN",
+    "physical_GPU_progress": false,
+    "SpringBoard_demonstrated": false
+  },
+  "monocypher": {
+    "research_version": "4.0.2",
+    "kernel_role": "VERIFICATION_NOT_SIGNING_AS_DOCUMENTED",
+    "upstream_release": "4.0.3",
+    "release_date": "2026-06-15",
+    "impact": "INDEPENDENT_TECHNICAL_REVIEW_REQUIRED"
+  },
+  "publication_status": "PUBLICATION_BLOCKED",
+  "decision_status": "HUMAN_DECISION_REQUIRED"
+}

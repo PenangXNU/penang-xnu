@@ -45,6 +45,10 @@ class PublicationScanTests(unittest.TestCase):
         self.put("payload.zip", "not even a real archive")
         self.assertIn("FORBIDDEN_FILE_TYPE", self.codes())
 
+    def test_private_seed_extension_is_rejected(self):
+        self.put("private.seed", "A" * 32)
+        self.assertIn("FORBIDDEN_FILE_TYPE", self.codes())
+
     def test_symlink_is_rejected(self):
         (self.root / "alias").symlink_to(self.root / "safe.txt")
         self.assertIn("SYMLINK", self.codes())

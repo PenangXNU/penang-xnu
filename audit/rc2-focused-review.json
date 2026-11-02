@@ -1,0 +1,92 @@
+{
+  "kind": "FOCUSED_SELF_REVIEW_NOT_INDEPENDENT_APPROVAL",
+  "baseline": "cfefdaa2a0b0201ee6f0df54910ffe220cfc99d4",
+  "date": "2026-11-02",
+  "scope": [
+    "Own C/Rust ABI and bounded memory/register validation",
+    "Host-only fallback and compile-only ARM64 guard limits",
+    "Existing synthetic tests and source admission boundaries",
+    "Current vs historical documentary state",
+    "Licenses, notices, privacy and Git publication boundary",
+    "Clean-clone reproduction"
+  ],
+  "material_findings": [
+    {
+      "id": "RC2-F01",
+      "status": "FIXED",
+      "problem": "Current README/status/roadmap stopped at research B3 despite pinned P0.10 authenticated acceptance and rejection evidence",
+      "fix": "Separate frozen status layer with five source hashes, explicit Apple-compatibility boundary, generated README/STATUS/current manifest; W1 and old phase snapshots untouched",
+      "evidence": "scripts/current_status.py; tests/public/test_current_status.py"
+    },
+    {
+      "id": "RC2-F02",
+      "status": "FIXED",
+      "problem": "Scanner did not reject an ASCII private-seed file solely by extension",
+      "fix": "Add seed/key/container extensions; original negative observed RED then GREEN",
+      "test": "test_private_seed_extension_is_rejected",
+      "red_sha256": "39ed3abecab4623da9132d419d3316eab90930f5d8c346c330a726373ca4419c",
+      "green_sha256": "54eddaaad17ce0972c5c0fa20f4aa1ec63b2cd311ba9326186b4ea4cc2ac53e7"
+    },
+    {
+      "id": "RC2-F03",
+      "status": "HUMAN_DECISION_REQUIRED",
+      "problem": "MIT proposal and BSP redistribution/title cannot be treated as an owner approval or inferred from placeholder Git identities",
+      "evidence": "AUTHORS.md; NOTICE; PUBLICATION-DECISIONS.md",
+      "automatic_resolution": false
+    },
+    {
+      "id": "RC2-F04",
+      "status": "HUMAN_DECISION_REQUIRED",
+      "problem": "Confidential reporting channel has not been established",
+      "evidence": "SECURITY.md; PUBLICATION-DECISIONS.md",
+      "invented_contact": false
+    }
+  ],
+  "compatibility_review": {
+    "classification": "SCOPED_SELF_REVIEW",
+    "C_and_Rust_runtime_algorithms_changed": false,
+    "checked": [
+      "repr(C) field order/width and borrowed pointer lifetimes",
+      "C count <=64 bounds before O(n^2) reservation comparisons",
+      "unsigned range/overflow/alignment/containment rejection",
+      "Rust canonical local paths confined to selected root",
+      "Host fallback does not fabricate privileged registers",
+      "Compiler flags and independent C/C++ caller remain exercised"
+    ],
+    "limits": "Host/compile evidence only; not EL1 execution, runtime security review or universal ABI qualification"
+  },
+  "licensing": {
+    "dependency_packages_unchanged": 24,
+    "notices_byte_identical": 46,
+    "Cargo_toml_lock_requirements_unchanged": true,
+    "own_license": "MIT_PROPOSED_NOT_APPROVED",
+    "BSP": "Existing MIT SPDX and original commit retained; human attribution/title confirmation still needed",
+    "new_dependency_or_third_party_code": false,
+    "Monocypher": "Documentary reference only; no code, notices or dependency added"
+  },
+  "test_review": {
+    "existing_50_cases_retained": true,
+    "new_status_cases": 10,
+    "new_seed_negative": 1,
+    "no_weakened_existing_assertions": true,
+    "not_executed": [
+      "P0.10 tests and QEMU",
+      "kernel security/refusal paths",
+      "physical device",
+      "independent second machine"
+    ]
+  },
+  "maturity_review": {
+    "P10_record_scope": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED",
+    "Apple_security": "NOT_ESTABLISHED",
+    "B4": "IOKIT_MATCHING_REACHED_ONLY",
+    "hardware_or_GPU_promoted": false
+  },
+  "cosmetic_findings": "Style-only changes to existing C/Rust algorithms intentionally not made; no correctness finding is inferred from formatting",
+  "residual_technical_items": [
+    "Independent review of incorporated Monocypher impact outside RC2",
+    "Independent source/ABI review is not supplied by this self-review",
+    "Pattern scans are bounded, not absolute absence proof"
+  ],
+  "verdict": "CORRECTABLE_MATERIAL_FINDINGS_FIXED; HUMAN_DECISION_REQUIRED_FOR_PUBLICATION"
+}

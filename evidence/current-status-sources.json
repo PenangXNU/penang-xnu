@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "release": "W4-RC2",
+  "frozen_at": "2026-11-02",
+  "baseline_W4": "cfefdaa2a0b0201ee6f0df54910ffe220cfc99d4",
+  "snapshot_policy": "Pinned to the named P0.10 commit. Later B4 commits do not change this candidate automatically.",
+  "source_commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+  "source_branch": "integration/p0-10-image4-security-20261102",
+  "evidence_kind": "DOCUMENTARY_REFERENCE_TO_QEMU_RESULTS",
+  "runtime_reproduced_by_RC2": false,
+  "sources": {
+    "reports/P0.10-HANDOFF.md": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "af5002117d4142358d20bf7f9b64874545a87068b7611f7f8dc1acabf9e0ac57",
+      "payload_included": false
+    },
+    "reports/P0.10-GATES.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "c0518917aef62ad52af60f7dc86b25dce58fe5f9617c6d6602f3a2dc720fb164",
+      "payload_included": false
+    },
+    "reports/P0.10-TEST-RESULTS.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "52d8f909881426b72c22925d30ac5f7f2b78ea73319e4c24eedc31bae26c5d3c",
+      "payload_included": false
+    },
+    "reports/p10/qemu-check-accept.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "6a597f203f2f3be02b55efb2c613b8442e3243cbac73e24df491bc4f5dee6acb",
+      "payload_included": false
+    },
+    "reports/p10/qemu-check-reject.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "9660abbb7501ad5067faba2df0409e3d2243b4240b0ad6e568f8a79e920da7ae",
+      "payload_included": false
+    }
+  },
+  "environment": {
+    "reported": "QEMU_VIRT DEV",
+    "kernel": "XNU 11417.140.69 RELEASE_ARM64_QEMU_VIRT",
+    "official_build": false,
+    "kernel_sha256": "ed9b9c5b0bb70871c64c2eb8896a59bc839d350bc2577338727aaf725d537da8"
+  },
+  "p09": {
+    "state": "UNIFIED_CRYPTO_IN_DEV_KERNEL",
+    "qemu_regression": "CONFIRMED_IN_PINNED_RECORDS",
+    "security_tests": "SCOPED_HOST_AND_KERNEL_RECORDS",
+    "reexecuted_in_RC2": false
+  },
+  "p10": {
+    "research_state": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED",
+    "provider": "INDEPENDENT_RESEARCH_PROVIDER",
+    "trust_cache": "PNRA-R1_AUTHENTICATED",
+    "trust_root": "PROJECT_RESEARCH_ROOT_SEPARATE_FROM_APPLE",
+    "apple_ipados_security_compatible": "NOT_ESTABLISHED",
+    "image4_research_interface_version": 7,
+    "operations": "RESTRICTED_DEFINED_REFUSALS",
+    "apple_entitlements": false,
+    "sep_support": false,
+    "complete_userland_support": false
+  },
+  "positive": {
+    "status": "PASS",
+    "checks": {
+      "state_observed": true,
+      "trust_cache_placed_by_loader": true,
+      "p09_crypto_lines_unchanged": true,
+      "prng_registered": true,
+      "providers_registered_once": true,
+      "order_crypto_then_research_then_trustcache": true,
+      "b3_panic_absent": true,
+      "research_tc_loader_reached": true,
+      "static_trust_cache_loaded": true,
+      "no_trust_cache_failure": true,
+      "next_stop_recorded": true
+    },
+    "reported_environment": "QEMU_VERIFIED",
+    "result_sha256": "73b7822ba24ddef9cc6f24e090669f24cca331dc72131b6a096c0ed6bb77a58a",
+    "serial_sha256": "bcab96d6775323390fa733b7248924112f0fb1b701a3a6d4687627f04984844d",
+    "payloads_included": false
+  },
+  "negative": {
+    "status": "PASS",
+    "checks": {
+      "state_observed": true,
+      "trust_cache_placed_by_loader": true,
+      "p09_crypto_lines_unchanged": true,
+      "prng_registered": true,
+      "providers_registered_once": true,
+      "order_crypto_then_research_then_trustcache": true,
+      "b3_panic_absent": true,
+      "research_tc_loader_reached": true,
+      "unauthorized_module_refused": true,
+      "fail_closed_guard": true,
+      "nothing_loaded": true
+    },
+    "result_sha256": "8fc5572bd3e5b2a2a79a24101a7a18526622f56c142d213c894fdf3c1eed54fc",
+    "serial_sha256": "bffda419ab9fc310001c51ec9a4ef193a541975c597d88671740eda338138eb6",
+    "reason": "NON_PROVISIONED_SIGNER_REFUSED",
+    "payloads_included": false
+  },
+  "next_blocker": {
+    "id": "B4_IOKIT_PLATFORM_DRIVER",
+    "panic": "Unable to find driver for this platform: \"qemu,virt\".",
+    "stage": "IOKIT_MATCHING_REACHED",
+    "valid_platform_expert_initialized": false
+  },
+  "hardware": {
+    "Moto_G53_XNU_boot": "NOT_DEMONSTRATED",
+    "D1_D4": "NOT_DEMONSTRATED",
+    "M9": "HOST_ONLY",
+    "Sofiar": "P1_UNKNOWN",
+    "physical_GPU_progress": false,
+    "SpringBoard_demonstrated": false
+  },
+  "limitations": [
+    "Research PNRA-R1 is not Apple Image4 format or authority",
+    "No Apple entitlement, SEP or complete userland support",
+    "No PPL/SPTM/TXM monitor; arbitrary kernel write is outside the research protection claim",
+    "Wycheproof acceptable small/mixed-order public-key vectors are accepted; anchors are fixed provisioned keys",
+    "Some Image4/nonce refusals and duplicate-registration guards were checked in the binary, not executed in dedicated runtime negative tests",
+    "No valid Platform Expert initialization established by reaching IOKit matching"
+  ],
+  "monocypher": {
+    "used_in_p10": "4.0.2",
+    "kernel_role": "VERIFICATION_NOT_SIGNING_AS_DOCUMENTED",
+    "code_imported_in_RC2": false,
+    "upgrade_performed": false,
+    "upstream_release": "4.0.3",
+    "upstream_release_date": "2026-06-15",
+    "advisory": "SIGNATURE_TIMING_EDDSA_ED25519",
+    "incorporated_code_impact": "INDEPENDENT_TECHNICAL_REVIEW_REQUIRED",
+    "vulnerable_implementation_claimed": false,
+    "audited_implementation_claimed": false,
+    "primary_sources": [
+      "https://monocypher.org/changelog",
+      "https://monocypher.org/quality-assurance/disclosures"
+    ],
+    "consulted_at": "2026-11-02"
+  }
+}

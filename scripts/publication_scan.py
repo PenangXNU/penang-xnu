@@ -11,7 +11,7 @@ import subprocess
 IGNORED = {".git", ".build", ".venv", "__pycache__", "target"}
 FORBIDDEN = {".agents", ".codex", ".sm", "device-logs", "firmware-images", "rom-work"}
 BINARY_SUFFIXES = {".zip", ".xz", ".gz", ".deb", ".dmg", ".ipsw", ".img", ".bin", ".dtb",
-                   ".dtbo", ".elf", ".o", ".a", ".so", ".dll", ".exe", ".p12", ".pfx", ".key"}
+                   ".dtbo", ".elf", ".o", ".a", ".so", ".dll", ".exe", ".p12", ".pfx", ".key", ".seed", ".pem", ".der", ".p8", ".pnra", ".segment"}
 PATTERNS = {
     "PRIVATE_PATH": re.compile(r"(?:/(?:home|Users)/|/mnt/[a-z]/Users/)[A-Za-z0-9_.-]+/|[A-Za-z]:[\\/]+Users[\\/]+[A-Za-z0-9_.-]+[\\/]"),
     "PRIVATE_KEY": re.compile(r"-----BEGIN (?:[A-Z0-9 ]+ )?PRIVATE KEY-----"),

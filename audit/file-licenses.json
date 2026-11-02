@@ -1,5 +1,5 @@
 {
-  "review_scope": "Source candidate; owner authorship/license adoption and independent review required before actual publication",
+  "review_scope": "RC2 focused review; own license adoption and BSP attribution/redistribution authority require human decisions; original notices retain their terms",
   "files": [
     {
       "path": ".gitattributes",
@@ -72,6 +72,13 @@
       "provenance": "W1:PROJECT-CHARTER.md"
     },
     {
+      "path": "PUBLICATION-DECISIONS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
       "path": "README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -114,6 +121,20 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "W4-RC2-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "W4-RC2-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
       "path": "audit/dependencies.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -140,6 +161,13 @@
       "license_expression": "MIT",
       "basis": "proposed project-owned release license; owner adoption pending",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "audit/rc2-focused-review.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "audit/selected-sources.json",
@@ -345,6 +373,20 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "docs/MONOCYPHER-REVIEW.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "docs/P0.10-STATUS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
       "path": "docs/PLATFORM-CONTRACTS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -373,6 +415,20 @@
       "provenance": "W2W3:drivers/penang/src/penang_bsp_validate.c"
     },
     {
+      "path": "evidence/current-status-sources.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "evidence/current-status.lock.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
       "path": "evidence/p06-summary.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -399,6 +455,13 @@
       "license_expression": "MIT",
       "basis": "proposed project-owned release license; owner adoption pending",
       "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "manifests/current-status.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "manifests/penang-bsp-offline.json",
@@ -471,6 +534,20 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "schemas/current-status.schema.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "scripts/current_status.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
       "path": "scripts/publication_scan.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -497,6 +574,13 @@
       "license_expression": "MIT",
       "basis": "proposed project-owned release license; owner adoption pending",
       "provenance": "W2W3:tests/platform/test_platform.py"
+    },
+    {
+      "path": "tests/public/test_current_status.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Proposed project-owned release license; HUMAN_DECISION_REQUIRED, no owner approval recorded",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
       "path": "tests/public/test_public_build.py",
