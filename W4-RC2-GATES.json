@@ -1,7 +1,698 @@
 {
-  "work_order": "W4-RC2",
-  "phase": "VALIDATION_PENDING",
-  "overall": "NOT_TESTED",
+  "work_order": "W4 RELEASE CANDIDATE 2",
+  "date": "2026-11-02",
+  "mode": "LOCAL_ONLY",
+  "baseline": "cfefdaa2a0b0201ee6f0df54910ffe220cfc99d4",
+  "validated_source_commit": "fc685d99940aea60e7a53baad5c125c47ea3bb5b",
+  "branch": "public-preview/w4-rc1",
+  "overall": "TECHNICALLY_READY_HUMAN_DECISION_REQUIRED",
   "publication_status": "PUBLICATION_BLOCKED",
-  "decision_status": "HUMAN_DECISION_REQUIRED"
+  "self_review_is_independent_approval": false,
+  "new_QEMU_runtime_qualification": false,
+  "gates": {
+    "G0": {
+      "status": "PASS",
+      "classification": "PROVEN",
+      "evidence": "Baseline W4 remains ancestor with all 127 original blob hashes; two historical W4 reports and 27 local receipts preserved; W1 91 files and five original Git states unchanged",
+      "baseline_commit": "cfefdaa2a0b0201ee6f0df54910ffe220cfc99d4",
+      "W4_GATE_original_sha256": "49543ea3b8e0da5875197cf5cef1d0756c1ca231a218d527f78ed4eb56798e2d",
+      "W4_HANDOFF_original_sha256": "f942d41d97d978397c32a5709a13ae65bd21efecd055255e64cd99a1c8809dc0"
+    },
+    "G1": {
+      "status": "PASS",
+      "classification": "PROVEN_DOCUMENTARY_IDENTITY; RUNTIME_REFERENCED_NOT_REEXECUTED",
+      "evidence": "evidence/current-status-sources.json; docs/P0.10-STATUS.md",
+      "P010_commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "research_b3": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED",
+      "APPLE_IPADOS_SECURITY_COMPATIBLE": "NOT_ESTABLISHED",
+      "next_blocker": "B4_IOKIT_PLATFORM_DRIVER",
+      "valid_Platform_Expert_initialized": false
+    },
+    "G2": {
+      "status": "PASS",
+      "classification": "PROVEN_CONSISTENCY_ONLY",
+      "evidence": "Current-status lock pins source/schema/derivation; generated manifest, STATUS and README matched in clean clone; 10 status/provenance negatives PASS",
+      "historical_W1_W2_W3_mutated": false,
+      "later_B4_auto_update": false,
+      "signature_or_evidence_authenticity_guarantee": false
+    },
+    "G3": {
+      "status": "HUMAN_DECISION_REQUIRED",
+      "review_completed": true,
+      "dependency_packages_unchanged": 24,
+      "notices_preserved": 46,
+      "license": "MIT_PROPOSED_NOT_APPROVED",
+      "BSP_title_and_attribution": "OWNER_CONFIRMATION_REQUIRED",
+      "evidence": "audit/file-licenses.json; audit/rc2-focused-review.json; AUTHORS.md; NOTICE; PUBLICATION-DECISIONS.md"
+    },
+    "G4": {
+      "status": "PASS",
+      "classification": "HOST_TESTED_AND_ARM64_COMPILED",
+      "cases": 61,
+      "synthetic_CLI": 36,
+      "public_ABI_compile_boundary_status": 19,
+      "Rust": 6,
+      "documentary": "PASS",
+      "Rust_C_build": "PASS",
+      "Clippy": "PASS",
+      "own_ARM64_objects_compiled": 4,
+      "clean_clone_files_byte_identical": 139,
+      "EL1": "NOT_TESTED",
+      "physical_device": "NOT_TESTED",
+      "P010_crypto_or_QEMU_tests_in_RC2": "NOT_TESTED_DOCUMENTARY_REFERENCE_ONLY"
+    },
+    "G5": {
+      "status": "PASS",
+      "classification": "KNOWN_PATTERNS_AND_REVIEWED_INVENTORY_ONLY",
+      "evidence": "New seed negative RED/GREEN; all 139 proposed files and all local Git content objects scanned; reachable HEAD object closure is contained in that scan",
+      "findings": [],
+      "preclosing_scan": {
+        "status": "PASS",
+        "files_checked": 139,
+        "history_status": "PASS",
+        "git_content_objects_checked": 140,
+        "commits_checked": 5,
+        "issues": [],
+        "limits": "Known patterns and text/file policy; not exhaustive secret detection, legal title or runtime-security proof."
+      },
+      "hypothetical_HEAD_push_objects_before_closing": 212,
+      "scope": "All versioned files and reachable commit paths; local Git blob/commit/tag content including a superset of hypothetical first-push objects. No actual push.",
+      "absolute_secret_absence_claimed": false
+    },
+    "G6": {
+      "status": "HUMAN_DECISION_REQUIRED",
+      "technical_candidate_ready": true,
+      "decision_document": "PUBLICATION-DECISIONS.md",
+      "independent_review": "NOT_PERFORMED_BY_ANOTHER_PERSON_OR_TOOL",
+      "confidential_contact": "NOT_ESTABLISHED",
+      "publication_authorized": false
+    }
+  },
+  "evidence_source_hashes": {
+    "reports/P0.10-HANDOFF.md": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "af5002117d4142358d20bf7f9b64874545a87068b7611f7f8dc1acabf9e0ac57",
+      "payload_included": false
+    },
+    "reports/P0.10-GATES.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "c0518917aef62ad52af60f7dc86b25dce58fe5f9617c6d6602f3a2dc720fb164",
+      "payload_included": false
+    },
+    "reports/P0.10-TEST-RESULTS.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "52d8f909881426b72c22925d30ac5f7f2b78ea73319e4c24eedc31bae26c5d3c",
+      "payload_included": false
+    },
+    "reports/p10/qemu-check-accept.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "6a597f203f2f3be02b55efb2c613b8442e3243cbac73e24df491bc4f5dee6acb",
+      "payload_included": false
+    },
+    "reports/p10/qemu-check-reject.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "9660abbb7501ad5067faba2df0409e3d2243b4240b0ad6e568f8a79e920da7ae",
+      "payload_included": false
+    }
+  },
+  "derivation": {
+    "projection": "evidence/current-status-sources.json",
+    "lock": "evidence/current-status.lock.json",
+    "schema": "schemas/current-status.schema.json",
+    "tool": "scripts/current_status.py",
+    "generated": [
+      "manifests/current-status.json",
+      "STATUS.md",
+      "README.md marked block"
+    ],
+    "status_layer": "Fixed RC2 overlay; W1 and earlier snapshots preserved"
+  },
+  "validation": {
+    "environment": "WSL Ubuntu-24.04 x86_64; Python 3.12.3",
+    "clean_clone": {
+      "status": "PASS",
+      "source_commit": "fc685d99940aea60e7a53baad5c125c47ea3bb5b",
+      "files_byte_identical": 139,
+      "test_cases": 61,
+      "clean_after_tests": true,
+      "environment": "WSL Ubuntu-24.04 x86_64; isolated public source clone, public package caches/system packages reused",
+      "not_independent_second_machine": true,
+      "private_research_inputs": false,
+      "network_dependency_download": false,
+      "new_QEMU_run": false,
+      "EL1_execution": false,
+      "device": false,
+      "result_path": ".build/rc2-review/clean-clone-lf/.build/rc2-validation/results.json"
+    },
+    "evidence_base": ".build/rc2-review/clean-clone-lf",
+    "result": {
+      "status": "PASS",
+      "scope": "HOST_TESTS_AND_ARM64_COMPILATION_ONLY",
+      "runtime": "NOT_TESTED",
+      "groups": [
+        {
+          "group": "documentary",
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "python3",
+            "-B",
+            "scripts/current_status.py"
+          ],
+          "log": ".build/rc2-validation/documentary.log",
+          "sha256": "a9ecd4a8aeae0eb4fcfbd2e04db7dc80d8c06bc685b65068952ff88c32fea8e3"
+        },
+        {
+          "group": "build",
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "cargo",
+            "build",
+            "--offline",
+            "--locked",
+            "--manifest-path",
+            "tools/penang-validate/Cargo.toml"
+          ],
+          "log": ".build/rc2-validation/build.log",
+          "sha256": "e62d3f551e69fb8f2752718f13b441694ae17ea9e454abfa3ff3d184f9c64e6c"
+        },
+        {
+          "group": "rust",
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "cargo",
+            "test",
+            "--offline",
+            "--locked",
+            "--manifest-path",
+            "tools/penang-validate/Cargo.toml"
+          ],
+          "log": ".build/rc2-validation/rust.log",
+          "sha256": "570cb793785d6d526f90520b9996791bb6db004735d0c392becdf3b69f82febe",
+          "cases": [
+            {
+              "case": "tests::host_has_no_fabricated_el1_register_probe",
+              "status": "PASS"
+            },
+            {
+              "case": "tests::region_end_is_exclusive_and_adjacent_is_valid",
+              "status": "PASS"
+            },
+            {
+              "case": "tests::sixteen_bit_asids_need_feature_support",
+              "status": "PASS"
+            },
+            {
+              "case": "tests::future_granule_encoding_is_unknown_not_supported",
+              "status": "PASS"
+            },
+            {
+              "case": "tests::tgran16_is_positive_one_not_zero",
+              "status": "PASS"
+            },
+            {
+              "case": "tests::zero_validity_never_qualifies_registers",
+              "status": "PASS"
+            }
+          ]
+        },
+        {
+          "group": "synthetic",
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests/platform",
+            "-v"
+          ],
+          "log": ".build/rc2-validation/synthetic.log",
+          "sha256": "53d2d28687d01f990453aacf5cc10412afd2fe4683bb6fe6714f6e7a576884c1",
+          "tests": 36,
+          "cases": [
+            {
+              "case": "test_absent_evidence (test_platform.PlatformTests.test_absent_evidence)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_boot_data_reservation_is_required (test_platform.PlatformTests.test_boot_data_reservation_is_required)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_changed_evidence_bytes (test_platform.PlatformTests.test_changed_evidence_bytes)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_cpu_model_is_not_falsified (test_platform.PlatformTests.test_cpu_model_is_not_falsified)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_descriptor_cannot_claim_current_xnu_operational (test_platform.PlatformTests.test_descriptor_cannot_claim_current_xnu_operational)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_empty_map_is_not_qualified (test_platform.PlatformTests.test_empty_map_is_not_qualified)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_granule_unsupported (test_platform.PlatformTests.test_granule_unsupported)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_holi_inventory_does_not_enable_xnu (test_platform.PlatformTests.test_holi_inventory_does_not_enable_xnu)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_identity_cannot_be_promoted_by_json (test_platform.PlatformTests.test_identity_cannot_be_promoted_by_json)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_insufficient_physical_address_range (test_platform.PlatformTests.test_insufficient_physical_address_range)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_json_cannot_promote_its_own_evidence_admission (test_platform.PlatformTests.test_json_cannot_promote_its_own_evidence_admission)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_json_is_reproducible (test_platform.PlatformTests.test_json_is_reproducible)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_kernel_reservation_is_required (test_platform.PlatformTests.test_kernel_reservation_is_required)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_lpa2_not_silently_enabled (test_platform.PlatformTests.test_lpa2_not_silently_enabled)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_missing_required_capability (test_platform.PlatformTests.test_missing_required_capability)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_mmu_already_enabled_rejected_for_pre_mmu_contract (test_platform.PlatformTests.test_mmu_already_enabled_rejected_for_pre_mmu_contract)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_offline_gic_addresses_match_audited_inventory (test_platform.PlatformTests.test_offline_gic_addresses_match_audited_inventory)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_platform_backend_mismatch (test_platform.PlatformTests.test_platform_backend_mismatch)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_qemu_without_current_registers_stays_blocked (test_platform.PlatformTests.test_qemu_without_current_registers_stays_blocked)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_ram_overflow (test_platform.PlatformTests.test_ram_overflow)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_reservation_is_page_aligned (test_platform.PlatformTests.test_reservation_is_page_aligned)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_reservations_overlap (test_platform.PlatformTests.test_reservations_overlap)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_reserved_feature_encoding_blocks (test_platform.PlatformTests.test_reserved_feature_encoding_blocks)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_reserved_region_outside_ram (test_platform.PlatformTests.test_reserved_region_outside_ram)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_static_specification_cannot_become_device_observation (test_platform.PlatformTests.test_static_specification_cannot_become_device_observation)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_synthetic_snapshot_cannot_be_called_qemu_observation (test_platform.PlatformTests.test_synthetic_snapshot_cannot_be_called_qemu_observation)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_tg0_incompatible (test_platform.PlatformTests.test_tg0_incompatible)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_tg1_incompatible (test_platform.PlatformTests.test_tg1_incompatible)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_trinket_unknown_identity_is_preserved (test_platform.PlatformTests.test_trinket_unknown_identity_is_preserved)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_unqualified_translation_flag_is_rejected (test_platform.PlatformTests.test_unqualified_translation_flag_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_unsupported_capability_cannot_be_enabled (test_platform.PlatformTests.test_unsupported_capability_cannot_be_enabled)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_va_configuration_mismatch (test_platform.PlatformTests.test_va_configuration_mismatch)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_valid_qemu_snapshot_checks_translation_and_reservations (test_platform.PlatformTests.test_valid_qemu_snapshot_checks_translation_and_reservations)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_virtual_snapshot_does_not_qualify_physical_platform (test_platform.PlatformTests.test_virtual_snapshot_does_not_qualify_physical_platform)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_w1_target_contract_is_reused (test_platform.PlatformTests.test_w1_target_contract_is_reused)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_wrong_exception_level (test_platform.PlatformTests.test_wrong_exception_level)",
+              "status": "PASS"
+            }
+          ]
+        },
+        {
+          "group": "public-build-and-boundary",
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests/public",
+            "-v"
+          ],
+          "log": ".build/rc2-validation/public-build-and-boundary.log",
+          "sha256": "2674ea316dc78b0b08a2bfbdd7e8c75b29131056c7224364636535a229b53112",
+          "tests": 19,
+          "cases": [
+            {
+              "case": "test_apple_equivalence_promotion_is_rejected (test_current_status.CurrentStatusTests.test_apple_equivalence_promotion_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_device_or_gpu_promotion_is_rejected (test_current_status.CurrentStatusTests.test_device_or_gpu_promotion_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_fixed_research_scope_and_hardware_limits (test_current_status.CurrentStatusTests.test_fixed_research_scope_and_hardware_limits)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_future_b4_commit_cannot_move_this_rc (test_current_status.CurrentStatusTests.test_future_b4_commit_cannot_move_this_rc)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_generated_documents_match (test_current_status.CurrentStatusTests.test_generated_documents_match)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_generated_drift_is_rejected (test_current_status.CurrentStatusTests.test_generated_drift_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_incorrect_source_hash_is_rejected (test_current_status.CurrentStatusTests.test_incorrect_source_hash_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_interface_expansion_is_rejected (test_current_status.CurrentStatusTests.test_interface_expansion_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_missing_negative_authentication_check_is_rejected (test_current_status.CurrentStatusTests.test_missing_negative_authentication_check_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_source_tamper_without_lock_is_rejected (test_current_status.CurrentStatusTests.test_source_tamper_without_lock_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_host_cpp_calls_real_c_abi (test_public_build.PublicBuildTests.test_host_cpp_calls_real_c_abi)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_own_sources_and_guard_cross_compile_arm64 (test_public_build.PublicBuildTests.test_own_sources_and_guard_cross_compile_arm64)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_archive_is_rejected (test_publication_scan.PublicationScanTests.test_archive_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_credential_pattern_is_rejected (test_publication_scan.PublicationScanTests.test_credential_pattern_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_deleted_secret_is_still_rejected_in_history (test_publication_scan.PublicationScanTests.test_deleted_secret_is_still_rejected_in_history)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_private_absolute_path_is_rejected (test_publication_scan.PublicationScanTests.test_private_absolute_path_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_private_seed_extension_is_rejected (test_publication_scan.PublicationScanTests.test_private_seed_extension_is_rejected)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_safe_fixture_passes (test_publication_scan.PublicationScanTests.test_safe_fixture_passes)",
+              "status": "PASS"
+            },
+            {
+              "case": "test_symlink_is_rejected (test_publication_scan.PublicationScanTests.test_symlink_is_rejected)",
+              "status": "PASS"
+            }
+          ]
+        },
+        {
+          "group": "clippy",
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "cargo",
+            "clippy",
+            "--offline",
+            "--locked",
+            "--manifest-path",
+            "tools/penang-validate/Cargo.toml",
+            "--all-targets",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          "log": ".build/rc2-validation/clippy.log",
+          "sha256": "d3fbc57399b445b38f8c0d25ec574d4ce33c2103c4126f49600b92a33ba40371"
+        },
+        {
+          "group": "scan",
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "python3",
+            "-B",
+            "scripts/publication_scan.py"
+          ],
+          "log": ".build/rc2-validation/scan.log",
+          "sha256": "92cd491ef04fb35d3fdec4c1caed0467ba9ad50e94c4b9cd0d723ea796eb7b07",
+          "scan": {
+            "status": "PASS",
+            "files_checked": 139,
+            "history_status": "PASS",
+            "git_content_objects_checked": 140,
+            "commits_checked": 5,
+            "issues": [],
+            "limits": "Known patterns and text/file policy; not exhaustive secret detection, legal title or runtime-security proof."
+          }
+        }
+      ],
+      "dependency_acquisition": false
+    },
+    "limits": "Public dependency cache/system packages reused on same host; not an independently provisioned second machine or reviewer"
+  },
+  "first_clone_attempt": {
+    "status": "FAIL_BYTE_COMPARISON",
+    "source_commit": "66ef63676bb7202e5e4cdfdf2539f9f81c37d322",
+    "file": "evidence/current-status-sources.json",
+    "old_working_copy_sha256": "667a8b88330cddcfbce220db1227aa6ce4fd0de08f2bc0d7899d075c45ceba5a",
+    "canonical_LF_sha256": "26a53b8060a86a72ffc9f93e56bdd12947f4cae2d76eacde4f56a9c612357e5e",
+    "tests": "NOT_TESTED",
+    "resolution": "Own JSON LF canonicalization, lock refresh and generated manifest; no source semantics or third-party notices changed"
+  },
+  "review": {
+    "record": "audit/rc2-focused-review.json",
+    "kind": "FOCUSED_SELF_REVIEW",
+    "fixes": [
+      "P0.10/B4 current-state drift",
+      "Missing private-seed/key/container extension policy",
+      "Own JSON newline consistency for clone integrity"
+    ],
+    "not_an_independent_runtime_security_audit": true
+  },
+  "licensing": {
+    "ledger": "audit/file-licenses.json",
+    "dependencies": "audit/dependencies.json",
+    "new_dependencies_or_P010_code": false,
+    "third_party_relicensed": false,
+    "owner_approval_recorded": false
+  },
+  "monocypher": {
+    "research_version": "4.0.2",
+    "upstream_release": "4.0.3",
+    "release_date": "2026-06-15",
+    "kernel_role": "VERIFICATION_NOT_SIGNING_AS_DOCUMENTED",
+    "impact": "INDEPENDENT_TECHNICAL_REVIEW_REQUIRED",
+    "vulnerable_or_audited_claimed": false,
+    "P010_updated": false,
+    "primary_sources": [
+      "https://monocypher.org/changelog",
+      "https://monocypher.org/quality-assurance/disclosures"
+    ]
+  },
+  "preservation": {
+    "W4_original_files_in_history": 127,
+    "local_W4_receipts": 27,
+    "W1_files": 91,
+    "original_git": {
+      "W2W3": {
+        "unchanged": true,
+        "before": {
+          "head": "2560ba6ed0e2037f118fb3c8ba87b398435d8e6f",
+          "branch": "feature/w2w3-platform-contracts-20261101",
+          "status": "",
+          "index_sha256": "fed7a2468521c9637b0dcb2a72b36a81dc75a0068b0c5ac0726e113a422dc046"
+        },
+        "after": {
+          "head": "2560ba6ed0e2037f118fb3c8ba87b398435d8e6f",
+          "branch": "feature/w2w3-platform-contracts-20261101",
+          "status": "",
+          "index_sha256": "fed7a2468521c9637b0dcb2a72b36a81dc75a0068b0c5ac0726e113a422dc046"
+        }
+      },
+      "P07": {
+        "unchanged": true,
+        "before": {
+          "head": "910080628bee9eb1716c6867f8595f485b6ffe50",
+          "branch": "integration/p0-7-image4-amfi-20261101",
+          "status": "",
+          "index_sha256": "db3e6237061c4b30a470a249939e705ebd72ccceea9a6d07dc5a67ccce5f61ba"
+        },
+        "after": {
+          "head": "910080628bee9eb1716c6867f8595f485b6ffe50",
+          "branch": "integration/p0-7-image4-amfi-20261101",
+          "status": "",
+          "index_sha256": "db3e6237061c4b30a470a249939e705ebd72ccceea9a6d07dc5a67ccce5f61ba"
+        }
+      },
+      "P08": {
+        "unchanged": true,
+        "before": {
+          "head": "58a7cde7665b3969205fe85e254a847d0c7bab68",
+          "branch": "integration/p0-8-security-deps-20261101",
+          "status": "",
+          "index_sha256": "5be2755f4cba954b10ed091b7be64dc9ac7d31cfea14a08e42dcb0078ddf05c8"
+        },
+        "after": {
+          "head": "58a7cde7665b3969205fe85e254a847d0c7bab68",
+          "branch": "integration/p0-8-security-deps-20261101",
+          "status": "",
+          "index_sha256": "5be2755f4cba954b10ed091b7be64dc9ac7d31cfea14a08e42dcb0078ddf05c8"
+        }
+      },
+      "P09": {
+        "unchanged": true,
+        "before": {
+          "head": "085735f429c795575be3f460256f3edd0367c798",
+          "branch": "integration/p0-9-unified-crypto-20261101",
+          "status": "",
+          "index_sha256": "b147d8dbdf3580cd93a9bce4ee252ac5b3adf6095d0a5efa463c9b5c0ba4f881"
+        },
+        "after": {
+          "head": "085735f429c795575be3f460256f3edd0367c798",
+          "branch": "integration/p0-9-unified-crypto-20261101",
+          "status": "",
+          "index_sha256": "b147d8dbdf3580cd93a9bce4ee252ac5b3adf6095d0a5efa463c9b5c0ba4f881"
+        }
+      },
+      "P010": {
+        "unchanged": true,
+        "before": {
+          "head": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+          "branch": "integration/p0-10-image4-security-20261102",
+          "status": "",
+          "index_sha256": "81232ba845cb89e5441e19be439adb00ebdb637a740e03d5ddec68d579015387"
+        },
+        "after": {
+          "head": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+          "branch": "integration/p0-10-image4-security-20261102",
+          "status": "",
+          "index_sha256": "81232ba845cb89e5441e19be439adb00ebdb637a740e03d5ddec68d579015387"
+        }
+      }
+    },
+    "main": "cd3f03c02731808d87e647eb3239c83a1ceb325b",
+    "B4_worktree": "No mutation or interruption; no later B4 state imported"
+  },
+  "changed_files_from_baseline": [
+    "ARCHITECTURE.md",
+    "PUBLICATION-DECISIONS.md",
+    "README.md",
+    "ROADMAP.md",
+    "SECURITY.md",
+    "STATUS.md",
+    "W4-RC2-GATES.json",
+    "W4-RC2-HANDOFF.md",
+    "audit/file-licenses.json",
+    "audit/public-files.json",
+    "audit/rc2-focused-review.json",
+    "docs/INITIAL-ISSUES.md",
+    "docs/MONOCYPHER-REVIEW.md",
+    "docs/P0.10-STATUS.md",
+    "docs/VALIDATION.md",
+    "evidence/current-status-sources.json",
+    "evidence/current-status.lock.json",
+    "manifests/current-status.json",
+    "schemas/current-status.schema.json",
+    "scripts/current_status.py",
+    "scripts/publication_scan.py",
+    "scripts/validate_public.py",
+    "tests/public/test_current_status.py",
+    "tests/public/test_publication_scan.py"
+  ],
+  "human_decisions": [
+    "Project MIT adoption or alternative",
+    "BSP redistribution authority and attribution",
+    "Actual confidential security channel",
+    "Release acceptance/independent-review requirement and explicit publication authorization"
+  ],
+  "residual_risks": [
+    "Monocypher incorporated-code impact not determined in this documentary-only work",
+    "Host/compile tests do not qualify EL1, physical XNU, GPU or userland",
+    "Bounded scanning cannot establish absolute absence of secrets",
+    "This self-review is not independent approval"
+  ],
+  "remote_actions": {
+    "push": false,
+    "remote_repository_creation": false,
+    "visibility_change": false,
+    "remote_CI": false,
+    "new_QEMU": false,
+    "phone": false,
+    "firmware_download_or_copy": false
+  },
+  "final_receipt_policy": "Exact final HEAD, record hashes and complete postclosing object scan retained in ignored .build/rc2-review/final-receipt.json to avoid commit/hash self-reference",
+  "recommendation": "GO_FOR_HUMAN_DECISION; NO_GO_FOR_PUBLICATION_WITHOUT_REQUIRED_DECISIONS"
 }
