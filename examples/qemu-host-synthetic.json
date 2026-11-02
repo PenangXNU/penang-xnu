@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "platform": "qemu-virt",
+  "subject": "VIRTUAL_CPU",
+  "environment": "HOST_SYNTHETIC",
+  "snapshot": {
+    "valid": 1,
+    "current_el": 4,
+    "midr_el1": 1091555504,
+    "id_aa64mmfr0_el1": 1048578,
+    "sctlr_el1": 0,
+    "observed_tcr_el1": 0,
+    "cntfrq_el0": 62500000
+  },
+  "desired_tcr_el1": 147724543249,
+  "memory": [
+    {
+      "base": 1073741824,
+      "size": 536870912,
+      "kind": 1
+    },
+    {
+      "base": 1140850688,
+      "size": 33554432,
+      "kind": 2
+    },
+    {
+      "base": 1174405120,
+      "size": 65536,
+      "kind": 3
+    }
+  ]
+}

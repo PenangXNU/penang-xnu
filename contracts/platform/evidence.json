@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "sources": {
+    "QEMU_PLATFORM": {
+      "path": "evidence/platform-spec.json",
+      "sha256": "a1ded73925b71a87aa626609d4d67cb5ef43fdcac4bca8e01c05e1bceec2faf7",
+      "origin": "STATIC_SPECIFICATION",
+      "platforms": [
+        "qemu-virt"
+      ],
+      "scope": "STATIC_CONTRACT",
+      "claims": {
+        "cpu_arm64": [
+          "SUPPORTED"
+        ],
+        "granule_16k": [
+          "UNKNOWN"
+        ],
+        "memory_map": [
+          "UNKNOWN"
+        ],
+        "interrupt_controller": [
+          "SUPPORTED"
+        ],
+        "arch_timer": [
+          "SUPPORTED"
+        ],
+        "psci": [
+          "UNKNOWN"
+        ],
+        "console": [
+          "SUPPORTED"
+        ]
+      }
+    },
+    "QEMU_HISTORY": {
+      "path": "evidence/p06-summary.json",
+      "sha256": "e56ca16b601641024b6ca2ad00e8e44374bbc15641360ca1cf76b9cff5e159f3",
+      "origin": "QEMU_OBSERVATION",
+      "platforms": [
+        "qemu-virt"
+      ],
+      "scope": "HISTORICAL_QEMU",
+      "claims": {
+        "initialization": [
+          "SUPPORTED"
+        ]
+      }
+    },
+    "HOLI_CPU": {
+      "path": "manifests/penang-cpu-probe.json",
+      "sha256": "b4c4d2fce8eb7cf6e5abe36023d1ae64ca813c900b42b1f1e612591b31eab1c5",
+      "origin": "DEVICE_OBSERVATION",
+      "platforms": [
+        "qualcomm-holi"
+      ],
+      "scope": "ANDROID_ONLY",
+      "claims": {
+        "cpu_arm64": [
+          "SUPPORTED"
+        ],
+        "granule_16k": [
+          "UNKNOWN"
+        ]
+      }
+    },
+    "HOLI_FDT": {
+      "path": "manifests/penang-bsp-offline.json",
+      "sha256": "25e7f99bb1663050a15f1c1263ac6fb3bcf9b57269945489ae220c93b424eca7",
+      "origin": "STATIC_SPECIFICATION",
+      "platforms": [
+        "qualcomm-holi"
+      ],
+      "scope": "OFFLINE_INVENTORY",
+      "claims": {
+        "memory_map": [
+          "UNKNOWN"
+        ],
+        "interrupt_controller": [
+          "SUPPORTED"
+        ],
+        "arch_timer": [
+          "UNKNOWN"
+        ],
+        "psci": [
+          "SUPPORTED"
+        ],
+        "console": [
+          "UNKNOWN"
+        ],
+        "initialization": [
+          "UNKNOWN"
+        ]
+      }
+    },
+    "SOFIAR_SCOPE": {
+      "path": "contracts/platform/foundation/manifests/target-contract.json",
+      "sha256": "fcab489cb79b7d527896a1235b358de38b08f99e700bc1fde75c156b282c1ea0",
+      "origin": "STATIC_SPECIFICATION",
+      "platforms": [
+        "qualcomm-trinket"
+      ],
+      "scope": "DECLARED_P1",
+      "claims": {
+        "cpu_arm64": [
+          "UNKNOWN"
+        ],
+        "granule_16k": [
+          "UNKNOWN"
+        ],
+        "memory_map": [
+          "UNKNOWN"
+        ],
+        "interrupt_controller": [
+          "UNKNOWN"
+        ],
+        "arch_timer": [
+          "UNKNOWN"
+        ],
+        "psci": [
+          "UNKNOWN"
+        ],
+        "console": [
+          "UNKNOWN"
+        ],
+        "initialization": [
+          "UNKNOWN"
+        ]
+      }
+    },
+    "W1_VALIDATOR": {
+      "path": "tools/penang-validate/foundation_v1.py",
+      "sha256": "14bc8b477ea2989fb7684d138b73e75382b57041b0e0f69b8b001ff98297f9e9",
+      "origin": "STATIC_SPECIFICATION",
+      "platforms": [
+        "qemu-virt",
+        "qualcomm-holi",
+        "qualcomm-trinket"
+      ],
+      "scope": "SELECTED_W1_CORE",
+      "claims": {}
+    }
+  }
+}

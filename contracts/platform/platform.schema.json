@@ -1,0 +1,528 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "platform",
+    "backend",
+    "identity_status",
+    "subject",
+    "xnu_source_commit",
+    "target_contract_ref",
+    "required",
+    "capabilities",
+    "resources"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "backend": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identity_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "xnu_source_commit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_contract_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "cpu_arm64",
+        "granule_16k",
+        "memory_map",
+        "interrupt_controller",
+        "arch_timer",
+        "psci",
+        "console",
+        "initialization"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "cpu_arm64": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "granule_16k": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "memory_map": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "interrupt_controller": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "arch_timer": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "psci": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "console": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "initialization": {
+          "type": "object",
+          "required": [
+            "state",
+            "origin",
+            "evidence_id",
+            "scope",
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "SUPPORTED",
+                "UNSUPPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "origin": {
+              "enum": [
+                "STATIC_SPECIFICATION",
+                "HOST_OBSERVATION",
+                "QEMU_OBSERVATION",
+                "DEVICE_OBSERVATION"
+              ]
+            },
+            "evidence_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "required": [
+        "cpu_identity",
+        "translation",
+        "memory",
+        "interrupts",
+        "timer",
+        "psci",
+        "console",
+        "initialization"
+      ],
+      "properties": {
+        "cpu_identity": {
+          "type": "string"
+        },
+        "translation": {
+          "type": "object",
+          "required": [
+            "granule_required",
+            "pa_bits_required",
+            "va_bits_required",
+            "measurement"
+          ],
+          "properties": {
+            "granule_required": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "pa_bits_required": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "va_bits_required": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "measurement": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "memory": {
+          "type": "object",
+          "required": [
+            "source",
+            "ranges"
+          ],
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "ranges": {
+              "type": "null"
+            }
+          },
+          "additionalProperties": false
+        },
+        "interrupts": {
+          "type": "object",
+          "required": [
+            "kind",
+            "xnu_operational"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string"
+            },
+            "xnu_operational": {
+              "type": "string"
+            },
+            "offline_descriptor": {
+              "type": "object"
+            }
+          },
+          "additionalProperties": false
+        },
+        "timer": {
+          "type": "object",
+          "required": [
+            "register",
+            "frequency_hz"
+          ],
+          "properties": {
+            "register": {
+              "type": "string"
+            },
+            "frequency_hz": {
+              "type": "null"
+            }
+          },
+          "additionalProperties": false
+        },
+        "psci": {
+          "type": "object",
+          "required": [
+            "method",
+            "runtime_verified"
+          ],
+          "properties": {
+            "method": {
+              "type": "string"
+            },
+            "runtime_verified": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "console": {
+          "type": "object",
+          "required": [
+            "kind",
+            "runtime_verified_in_this_work_order"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string"
+            },
+            "runtime_verified_in_this_work_order": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "initialization": {
+          "type": "object",
+          "required": [
+            "historical",
+            "current"
+          ],
+          "properties": {
+            "historical": {
+              "type": "string"
+            },
+            "current": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

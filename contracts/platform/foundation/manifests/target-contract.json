@@ -1,0 +1,168 @@
+{
+  "$schema": "../schemas/target-contract.schema.json",
+  "schema_version": "1.0",
+  "status": "CANDIDATE",
+  "classification": "SELECTED_REVIEW_CANDIDATE",
+  "publication_status": "PUBLICATION_BLOCKED",
+  "authority": {
+    "accepted_decision_ids": [
+      "ADR-0004",
+      "ADR-0006"
+    ],
+    "decision_source_ids": [
+      "S01",
+      "S11"
+    ],
+    "work_order_source_id": "C01",
+    "human_review": "PENDING_FOR_NEW_CANONICAL_TREE",
+    "adrs_modified": false,
+    "accepted_intake": "W1.0-R bytes accepted by current owner order"
+  },
+  "os_target": {
+    "os": "iPadOS",
+    "version": "18.7.8",
+    "build": "22H352",
+    "apple_reference": "iPad7,11",
+    "reference_soc": "Apple A10 Fusion",
+    "userland_abi": "arm64",
+    "kernel_cpu_subtype": "ARM64_ALL",
+    "xnu_public_source": "11417.140.69",
+    "xnu_source_commit": "43a90889846e00bfb5cf1d255cdc0a701a1e05a4",
+    "apple_kernelcache_revision": "11417.140.69.706.9",
+    "source_ids": [
+      "S01",
+      "S08",
+      "S09",
+      "S11"
+    ]
+  },
+  "primary_target": {
+    "model": "Motorola Moto G53 5G",
+    "codename": "penang",
+    "soc": "SM4350-AC",
+    "family": "holi",
+    "gpu": "Adreno 619",
+    "role": "D1_D4_DELIVERY_TARGET",
+    "xnu_device_qualification": "NOT_DEMONSTRATED"
+  },
+  "secondary_target": {
+    "declared_model": "Motorola Moto G8 Power",
+    "declared_codename": "sofiar",
+    "declared_soc": "SM6125",
+    "declared_family": "trinket",
+    "gpu_claim": "Adreno 610; external draft claim only",
+    "role": "P1_CROSS_PLATFORM_QUALIFICATION",
+    "scope_authority": "CURRENT_OWNER_W1_ORDER",
+    "hardware_identity_status": "UNKNOWN",
+    "xnu_device_qualification": "NOT_DEMONSTRATED",
+    "observability": "HEADLESS_RESEARCH; available channels UNKNOWN",
+    "display_condition": "OUT_OF_PUBLIC_PREVIEW_SCOPE",
+    "substitutes_penang_D1_D4": false,
+    "source_ids": [
+      "C01",
+      "U01"
+    ]
+  },
+  "delivery_criteria": [
+    {
+      "id": "D1",
+      "requirement": "Kernel xnu-11417.140.69 com config genérica ARMv8.2 (ADR-0004 Trilho B) inicia no penang via fastboot boot, sem gravação.",
+      "source_id": "S11",
+      "source_line": 12
+    },
+    {
+      "id": "D2",
+      "requirement": "launchd do iPadOS 18.7.8 ORIGINAL (binários Apple sem alteração de byte, classificação do ADR-0003) chega a SpringBoard.",
+      "source_id": "S11",
+      "source_line": 13
+    },
+    {
+      "id": "D3",
+      "requirement": "MTLCreateSystemDefaultDevice() retorna um dispositivo backed pelo Adreno 619 e o SpringBoard compõe via Metal/CoreAnimation acelerado; medido por contadores da GPU, não por inspeção visual.",
+      "source_id": "S11",
+      "source_line": 14
+    },
+    {
+      "id": "D4",
+      "requirement": "Toque funcional e retorno ao Android por reinício.",
+      "source_id": "S11",
+      "source_line": 15
+    }
+  ],
+  "invariants": {
+    "apple_originals_immutable": true,
+    "runtime_adaptations_disclosed": true,
+    "reopen_pac_only_with_specific_refuting_evidence": true,
+    "xnu8796_role": "INTERNAL_SCAFFOLD_ONLY",
+    "physical_uart_required": false,
+    "b3": "BLOCKED",
+    "security_provider_decision": "C",
+    "accept_all_authentication_prohibited": true,
+    "unauthenticated_trust_cache_prohibited": true,
+    "sep_aks_bypass_prohibited": true,
+    "lockdown_bypass_prohibited": true,
+    "cpu_capability_spoofing_prohibited": true,
+    "apple_security_equivalence": "NOT_CLAIMED",
+    "new_hardware_or_runtime_actions_authorized": false
+  },
+  "input_admission": {
+    "selected_revision": "0.1.1",
+    "zip_sha256": "aa2b587e6dc189a0ac03f5819e273ba7145d5972c996000d20607073dc0ac70e",
+    "manifest_sha256": "8ce9e7dfa1f1993c07357b9dfc3c1a366d72d398e844327ae51ca17e76c2ceed",
+    "integrity": "PASS",
+    "accepted_for": "INPUT_BYTES_ONLY",
+    "evidence_ids": [
+      "INTAKE"
+    ],
+    "historical": {
+      "version": "0.1",
+      "zip_sha256": "873e257d2e153c9e65e60e4edf48836484d3779d11922852d2b35eb836a83471",
+      "W1_G1": "FAIL"
+    },
+    "semantic_approval": "NOT_GRANTED_BY_REPAIR"
+  },
+  "adr_registry": [
+    {
+      "id": "ADR-0001",
+      "source_id": "S25",
+      "path": "references/adr/ADR-0001-target-and-boot-strategy.md",
+      "authority": "ACCEPTED_HOST_RESEARCH_ONLY",
+      "scope_note": "Historical 8796 host scaffold, not delivery"
+    },
+    {
+      "id": "ADR-0002",
+      "source_id": "S26",
+      "path": "references/adr/ADR-0002-ios18-platform-scope.md",
+      "authority": "PROPOSED_HISTORICAL",
+      "scope_note": "Historical program proposal refined by ADR-0004/0006"
+    },
+    {
+      "id": "ADR-0003",
+      "source_id": "S27",
+      "path": "references/adr/ADR-0003-security-compatibility.md",
+      "authority": "PROPOSED",
+      "scope_note": "Threat model proposal, no implemented assurance implied"
+    },
+    {
+      "id": "ADR-0004",
+      "source_id": "S01",
+      "path": "docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md",
+      "authority": "ACCEPTED",
+      "scope_note": "Accepted target and binary preservation"
+    },
+    {
+      "id": "ADR-0005",
+      "source_id": "S12",
+      "path": "references/adr/ADR-0005-device-observability-and-debug.md",
+      "authority": "PROPOSED",
+      "scope_note": "Observability proposal; its EL2 assertion is not qualified device evidence"
+    },
+    {
+      "id": "ADR-0006",
+      "source_id": "S11",
+      "path": "docs/adr/ADR-0006-delivery-scope-and-tracks.md",
+      "authority": "ACCEPTED",
+      "scope_note": "Accepted D1-D4, GPU and no physical UART"
+    }
+  ]
+}

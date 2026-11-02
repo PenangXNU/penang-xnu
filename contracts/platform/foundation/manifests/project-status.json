@@ -1,0 +1,872 @@
+{
+  "schema_version": "1.0",
+  "status": "CANDIDATE",
+  "publication_status": "PUBLICATION_BLOCKED",
+  "input_sha256": "bf32730767fb5ead7483854c236c198dd618202d4d23d0de253128852a916e0b",
+  "rules_version": "W1-minimum-1",
+  "current_blocker": "B3_IMAGE4_INTERFACE_UNAVAILABLE",
+  "runtime_reproduction": false,
+  "delivery": {
+    "D1": "NOT_DEMONSTRATED",
+    "D2": "NOT_DEMONSTRATED",
+    "D3": "NOT_DEMONSTRATED",
+    "D4": "NOT_DEMONSTRATED"
+  },
+  "bsp": {
+    "inventoried": 20,
+    "xnu_device_validated": 0
+  },
+  "subsystems": [
+    {
+      "id": "C04.3",
+      "gate_status": "PARTIAL",
+      "evidence_ids": [
+        "C043"
+      ],
+      "task_states": [
+        "COMPLETED"
+      ],
+      "environments": [
+        "HOST_ONLY"
+      ],
+      "epistemic_statuses": [
+        "PROVEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Existing DEV build provenance"
+      ]
+    },
+    {
+      "id": "P0.5",
+      "gate_status": "PASS",
+      "evidence_ids": [
+        "P05"
+      ],
+      "task_states": [
+        "COMPLETED"
+      ],
+      "environments": [
+        "QEMU_VERIFIED"
+      ],
+      "epistemic_statuses": [
+        "PROVEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Existing first-entry experiment"
+      ]
+    },
+    {
+      "id": "P0.6",
+      "gate_status": "PASS",
+      "evidence_ids": [
+        "P06"
+      ],
+      "task_states": [
+        "COMPLETED"
+      ],
+      "environments": [
+        "QEMU_VERIFIED"
+      ],
+      "epistemic_statuses": [
+        "PROVEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Existing accepted bounded experiment"
+      ]
+    },
+    {
+      "id": "P0.7",
+      "gate_status": "BLOCKED",
+      "evidence_ids": [
+        "P07",
+        "B3"
+      ],
+      "task_states": [
+        "BLOCKED",
+        "COMPLETED"
+      ],
+      "environments": [
+        "QEMU_VERIFIED",
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "PROVEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Documented provider decision and contracts",
+        "Existing P0.6 fail-stop, retained by P0.7"
+      ]
+    },
+    {
+      "id": "M7",
+      "gate_status": "PARTIAL",
+      "evidence_ids": [
+        "M7"
+      ],
+      "task_states": [
+        "COMPLETED"
+      ],
+      "environments": [
+        "HOST_ONLY"
+      ],
+      "epistemic_statuses": [
+        "PROVEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Existing backend-only component"
+      ]
+    },
+    {
+      "id": "M8",
+      "gate_status": "PASS",
+      "evidence_ids": [
+        "M8"
+      ],
+      "task_states": [
+        "COMPLETED"
+      ],
+      "environments": [
+        "HOST_ONLY"
+      ],
+      "epistemic_statuses": [
+        "PROVEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Historical organization consistency"
+      ]
+    },
+    {
+      "id": "M9",
+      "gate_status": "PARTIAL",
+      "evidence_ids": [
+        "M9_O1",
+        "M9_BUILD",
+        "M9_O2_O3"
+      ],
+      "task_states": [
+        "COMPLETED",
+        "REPORTED_ONLY"
+      ],
+      "environments": [
+        "HOST_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN",
+        "PROVEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Agent report only for these counts",
+        "Cross-build artifact identity",
+        "Structural oracle on existing private corpus"
+      ]
+    },
+    {
+      "id": "USERLAND",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "USERLAND"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_DEMONSTRATED"
+      ],
+      "proof_scope": [
+        "Accepted delivery criteria and current evidence boundary"
+      ]
+    },
+    {
+      "id": "SOFIAR_IDENTITY",
+      "gate_status": "UNKNOWN",
+      "evidence_ids": [
+        "SOFIAR_ID"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Owner description and external draft"
+      ]
+    },
+    {
+      "id": "SOFIAR_XNU",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "SOFIAR_XNU"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_DEMONSTRATED_ON_DEVICE"
+      ],
+      "proof_scope": [
+        "No admitted device-XNU proof"
+      ]
+    },
+    {
+      "id": "GRANULE16K",
+      "gate_status": "UNKNOWN",
+      "evidence_ids": [
+        "GRANULE16K"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Explicit unknown"
+      ]
+    },
+    {
+      "id": "EL2",
+      "gate_status": "UNKNOWN",
+      "evidence_ids": [
+        "EL2"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Explicit unknown"
+      ]
+    },
+    {
+      "id": "INTAKE",
+      "gate_status": "PASS",
+      "evidence_ids": [
+        "INTAKE"
+      ],
+      "task_states": [
+        "COMPLETED"
+      ],
+      "environments": [
+        "HOST_ONLY"
+      ],
+      "epistemic_statuses": [
+        "PROVEN"
+      ],
+      "functionality": [
+        "BYTE_INTEGRITY_ONLY"
+      ],
+      "proof_scope": [
+        "20 members, 19 identical contents; external digests"
+      ]
+    },
+    {
+      "id": "PUBLICATION",
+      "gate_status": "BLOCKED",
+      "evidence_ids": [
+        "PUBLICATION"
+      ],
+      "task_states": [
+        "BLOCKED"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "SCOPED_EXISTING_EVIDENCE"
+      ],
+      "proof_scope": [
+        "Publication boundary"
+      ]
+    },
+    {
+      "id": "BSP_PLATFORM",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_PLATFORM"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "HOST_CONTRACT_ONLY"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_DMA",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_DMA"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_INTEGRATED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_PMIC",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_PMIC"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_INTEGRATED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_USB",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_USB"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_INTEGRATED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_DISPLAY",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_DISPLAY"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_INTEGRATED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_TOUCH",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_TOUCH"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_GPU",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_GPU"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "RESEARCH_COMPONENT_UNQUALIFIED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_STORAGE",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_STORAGE"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_BATTERY",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_BATTERY"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_CHARGING",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_CHARGING"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_WIFI",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_WIFI"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_BLUETOOTH",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_BLUETOOTH"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_AUDIO",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_AUDIO"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_CAMERA",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_CAMERA"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_MOTION",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_MOTION"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_INVENTORIED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_THERMAL",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_THERMAL"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_INTEGRATED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_MODEM",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_MODEM"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_VOICE",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_VOICE"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "ADDITIONAL_USERLAND_REQUIRED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_GNSS",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_GNSS"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_INVENTORIED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "BSP_BIOMETRICS",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "BSP_BIOMETRICS"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_PORTED"
+      ],
+      "proof_scope": [
+        "Existing Android inventory and XNU readiness record"
+      ]
+    },
+    {
+      "id": "D1",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "D1"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_DEMONSTRATED_ON_DEVICE"
+      ],
+      "proof_scope": [
+        "No qualifying proof in accepted evidence set"
+      ]
+    },
+    {
+      "id": "D2",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "D2"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_DEMONSTRATED_ON_DEVICE"
+      ],
+      "proof_scope": [
+        "No qualifying proof in accepted evidence set"
+      ]
+    },
+    {
+      "id": "D3",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "D3"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_DEMONSTRATED_ON_DEVICE"
+      ],
+      "proof_scope": [
+        "No qualifying proof in accepted evidence set"
+      ]
+    },
+    {
+      "id": "D4",
+      "gate_status": "NOT_RUN",
+      "evidence_ids": [
+        "D4"
+      ],
+      "task_states": [
+        "NOT_RUN"
+      ],
+      "environments": [
+        "STATIC_ONLY"
+      ],
+      "epistemic_statuses": [
+        "OPEN"
+      ],
+      "functionality": [
+        "NOT_DEMONSTRATED_ON_DEVICE"
+      ],
+      "proof_scope": [
+        "No qualifying proof in accepted evidence set"
+      ]
+    }
+  ],
+  "claims": {
+    "xnu_on_device": false,
+    "userland_on_device": false,
+    "gpu_on_device": false
+  }
+}

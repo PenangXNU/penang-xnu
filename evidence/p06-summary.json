@@ -1,0 +1,13 @@
+{
+  "classification": "HISTORICAL_DOCUMENTARY_REFERENCE",
+  "phase": "P0.6",
+  "recorded_environment": "QEMU_VERIFIED",
+  "observation_reproduced_in_preview": false,
+  "milestone": "reached B3 fail-stop",
+  "source": {
+    "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+    "path": "reports/P0.6-GATES.json",
+    "sha256": "ceb218ad39dbf56a98265799c6ce65304c83bd42a1e0c7167bf885426bd3a735"
+  },
+  "original_included": false
+}

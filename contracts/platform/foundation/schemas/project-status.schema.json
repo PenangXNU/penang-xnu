@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "publication_status",
+    "input_sha256",
+    "rules_version",
+    "current_blocker",
+    "runtime_reproduction",
+    "delivery",
+    "bsp",
+    "subsystems",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publication_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_sha256": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rules_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "current_blocker": {
+      "type": "string",
+      "minLength": 1
+    },
+    "runtime_reproduction": {
+      "type": "boolean"
+    },
+    "delivery": {
+      "type": "object",
+      "required": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "properties": {
+        "D1": {
+          "type": "string",
+          "minLength": 1
+        },
+        "D2": {
+          "type": "string",
+          "minLength": 1
+        },
+        "D3": {
+          "type": "string",
+          "minLength": 1
+        },
+        "D4": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "bsp": {
+      "type": "object",
+      "required": [
+        "inventoried",
+        "xnu_device_validated"
+      ],
+      "properties": {
+        "inventoried": {
+          "type": "integer"
+        },
+        "xnu_device_validated": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "subsystems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "gate_status",
+          "evidence_ids",
+          "task_states",
+          "environments",
+          "epistemic_statuses",
+          "functionality",
+          "proof_scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gate_status": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "PASS",
+              "FAIL",
+              "BLOCKED",
+              "PARTIAL",
+              "UNKNOWN",
+              "NOT_RUN"
+            ]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "task_states": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "environments": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "epistemic_statuses": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "functionality": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "proof_scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "claims": {
+      "type": "object",
+      "required": [
+        "xnu_on_device",
+        "userland_on_device",
+        "gpu_on_device"
+      ],
+      "properties": {
+        "xnu_on_device": {
+          "type": "boolean"
+        },
+        "userland_on_device": {
+          "type": "boolean"
+        },
+        "gpu_on_device": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

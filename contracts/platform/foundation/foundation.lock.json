@@ -1,0 +1,18 @@
+{
+  "version": "W1-minimum-1",
+  "purpose": "Pinned reviewed source projection and byte-identical ADR copies; consistency lock, not a signature or new evidence",
+  "review_required_for_changes": true,
+  "files": {
+    "docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md": "789632c236942de40631d12c80d1fa676f148de99daf3a0587475e9f7004fabd",
+    "docs/adr/ADR-0006-delivery-scope-and-tracks.md": "b69fbbdbd95635ad74734f1180e5a22feee463b8cc2a531864e1a148c8428bfe",
+    "evidence/source-register.json": "ac436b733c8a5c7eea6330fb5479c76ddb5c39f3dac89b8e446f95ca6fb004df",
+    "manifests/derivation-rules.json": "dd9b5462b3a6e3b6b412bf0fb374851201c31fa62a0a36a96147e5058f9ae724",
+    "references/adr/ADR-0001-target-and-boot-strategy.md": "86f5a4cf210f99de3ee8a536ba182efd4cf0d56899e89e881751ec761feef3e9",
+    "references/adr/ADR-0002-ios18-platform-scope.md": "fea047cd91b528b962bad75eb12d5c2bec5601399a4969b1c14e774df0c2d753",
+    "references/adr/ADR-0003-security-compatibility.md": "6b25be2c197dc92987b2f958836c2111348ebe509354ab461b1674a877050c7f",
+    "references/adr/ADR-0005-device-observability-and-debug.md": "7d44867ccba6d5a302dee705db7e6f788dc064c563a6f0872ad76626850dc472",
+    "schemas/evidence-index.schema.json": "724c15b97b3e226a297049bc3a4d8733e4903fbbec310f56f90ff00f941728c6",
+    "schemas/project-status.schema.json": "da82b109f7932b16cafc3b957ccb20330255e60ed8678ff9eec06d9a819c5ece",
+    "schemas/target-contract.schema.json": "feb29d6db821edb0d0c95da50481a07a12bb66881c2fa6293646e1c133b30165"
+  }
+}

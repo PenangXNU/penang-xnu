@@ -1,0 +1,486 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "status",
+    "classification",
+    "publication_status",
+    "authority",
+    "os_target",
+    "primary_target",
+    "secondary_target",
+    "delivery_criteria",
+    "invariants",
+    "input_admission",
+    "adr_registry"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "CANDIDATE"
+      ]
+    },
+    "classification": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publication_status": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "PUBLICATION_BLOCKED"
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "accepted_decision_ids",
+        "decision_source_ids",
+        "work_order_source_id",
+        "human_review",
+        "adrs_modified",
+        "accepted_intake"
+      ],
+      "properties": {
+        "accepted_decision_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "decision_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "work_order_source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "human_review": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adrs_modified": {
+          "type": "boolean"
+        },
+        "accepted_intake": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "os_target": {
+      "type": "object",
+      "required": [
+        "os",
+        "version",
+        "build",
+        "apple_reference",
+        "reference_soc",
+        "userland_abi",
+        "kernel_cpu_subtype",
+        "xnu_public_source",
+        "xnu_source_commit",
+        "apple_kernelcache_revision",
+        "source_ids"
+      ],
+      "properties": {
+        "os": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "build": {
+          "type": "string",
+          "minLength": 1
+        },
+        "apple_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference_soc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "userland_abi": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kernel_cpu_subtype": {
+          "type": "string",
+          "minLength": 1
+        },
+        "xnu_public_source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "xnu_source_commit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "apple_kernelcache_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "primary_target": {
+      "type": "object",
+      "required": [
+        "model",
+        "codename",
+        "soc",
+        "family",
+        "gpu",
+        "role",
+        "xnu_device_qualification"
+      ],
+      "properties": {
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "soc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "family": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gpu": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "xnu_device_qualification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "secondary_target": {
+      "type": "object",
+      "required": [
+        "declared_model",
+        "declared_codename",
+        "declared_soc",
+        "declared_family",
+        "gpu_claim",
+        "role",
+        "scope_authority",
+        "hardware_identity_status",
+        "xnu_device_qualification",
+        "observability",
+        "display_condition",
+        "substitutes_penang_D1_D4",
+        "source_ids"
+      ],
+      "properties": {
+        "declared_model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "declared_codename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "declared_soc": {
+          "type": "string",
+          "minLength": 1
+        },
+        "declared_family": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gpu_claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope_authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hardware_identity_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "xnu_device_qualification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observability": {
+          "type": "string",
+          "minLength": 1
+        },
+        "display_condition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "substitutes_penang_D1_D4": {
+          "type": "boolean"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "delivery_criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "requirement",
+          "source_id",
+          "source_line"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_line": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "invariants": {
+      "type": "object",
+      "required": [
+        "apple_originals_immutable",
+        "runtime_adaptations_disclosed",
+        "reopen_pac_only_with_specific_refuting_evidence",
+        "xnu8796_role",
+        "physical_uart_required",
+        "b3",
+        "security_provider_decision",
+        "accept_all_authentication_prohibited",
+        "unauthenticated_trust_cache_prohibited",
+        "sep_aks_bypass_prohibited",
+        "lockdown_bypass_prohibited",
+        "cpu_capability_spoofing_prohibited",
+        "apple_security_equivalence",
+        "new_hardware_or_runtime_actions_authorized"
+      ],
+      "properties": {
+        "apple_originals_immutable": {
+          "type": "boolean"
+        },
+        "runtime_adaptations_disclosed": {
+          "type": "boolean"
+        },
+        "reopen_pac_only_with_specific_refuting_evidence": {
+          "type": "boolean"
+        },
+        "xnu8796_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "physical_uart_required": {
+          "type": "boolean"
+        },
+        "b3": {
+          "type": "string",
+          "minLength": 1
+        },
+        "security_provider_decision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accept_all_authentication_prohibited": {
+          "type": "boolean"
+        },
+        "unauthenticated_trust_cache_prohibited": {
+          "type": "boolean"
+        },
+        "sep_aks_bypass_prohibited": {
+          "type": "boolean"
+        },
+        "lockdown_bypass_prohibited": {
+          "type": "boolean"
+        },
+        "cpu_capability_spoofing_prohibited": {
+          "type": "boolean"
+        },
+        "apple_security_equivalence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "new_hardware_or_runtime_actions_authorized": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "input_admission": {
+      "type": "object",
+      "required": [
+        "selected_revision",
+        "zip_sha256",
+        "manifest_sha256",
+        "integrity",
+        "accepted_for",
+        "evidence_ids",
+        "historical",
+        "semantic_approval"
+      ],
+      "properties": {
+        "selected_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zip_sha256": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "minLength": 1
+        },
+        "integrity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accepted_for": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "historical": {
+          "type": "object",
+          "required": [
+            "version",
+            "zip_sha256",
+            "W1_G1"
+          ],
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "zip_sha256": {
+              "type": "string",
+              "minLength": 1
+            },
+            "W1_G1": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "semantic_approval": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "adr_registry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source_id",
+          "path",
+          "authority",
+          "scope_note"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope_note": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,410 @@
+{
+  "work_order": "W4 Public Preview Release Candidate",
+  "date": "2026-11-02",
+  "mode": "LOCAL_ONLY",
+  "phase": "SOURCE_SNAPSHOT_VALIDATED_BEFORE_CLEAN_CLONE",
+  "overall": "EXPORT_AND_HISTORY_VALIDATION_PENDING",
+  "publication_status": "PUBLICATION_BLOCKED",
+  "scope": "Host source/tooling preview only; no runtime/hardware qualification",
+  "gates": {
+    "G0": {
+      "status": "PASS",
+      "classification": "PROVEN",
+      "evidence": "All four original Git states preserved; W1 91 files and selected original hashes unchanged"
+    },
+    "G1": {
+      "status": "PASS",
+      "classification": "PROVEN_FOR_CANDIDATE_LICENSE_REVIEW",
+      "evidence": "audit/file-licenses.json; audit/dependencies.json; AUTHORS.md; NOTICE",
+      "owner_license_adoption": "PENDING",
+      "rights_basis": "Existing file MIT declarations plus owner-directed project license proposal; third-party notices preserved, no third-party implementation relicensed"
+    },
+    "G2": {
+      "status": "NOT_TESTED",
+      "tree_status": "PASS",
+      "history_status": "NOT_YET_CREATED",
+      "evidence": "initial tree scanner:127 files,0 findings; new history still to be checked"
+    },
+    "G3": {
+      "status": "PASS",
+      "classification": "HOST_TESTED_AND_ARM64_COMPILED",
+      "evidence": "Corrected standalone validation below; clean-clone validation pending"
+    },
+    "G4": {
+      "status": "PASS",
+      "classification": "PROVEN_DOCUMENTARY_SCOPE",
+      "evidence": "README.md; STATUS.md; evidence/research-status.json"
+    },
+    "G5": {
+      "status": "NOT_TESTED",
+      "evidence": "Clean-clone reproduction and complete new-history scan pending"
+    }
+  },
+  "validation": {
+    "status": "PASS",
+    "scope": "HOST_TESTS_AND_ARM64_COMPILATION_ONLY",
+    "runtime": "NOT_TESTED",
+    "groups": [
+      {
+        "group": "build",
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "cargo",
+          "build",
+          "--offline",
+          "--locked",
+          "--manifest-path",
+          "tools/penang-validate/Cargo.toml"
+        ],
+        "log": ".build/w4/corrected-validation/build.log",
+        "sha256": "c10a4724bbb16e166d9d5ece93c3d17a1adfc638bfbffbec2864fd2259dc9cfd"
+      },
+      {
+        "group": "rust",
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "--manifest-path",
+          "tools/penang-validate/Cargo.toml"
+        ],
+        "log": ".build/w4/corrected-validation/rust.log",
+        "sha256": "c9f43c3d338be41eba76971a5885598baf5ec20254c500ca8246886113799b24",
+        "cases": [
+          {
+            "case": "tests::host_has_no_fabricated_el1_register_probe",
+            "status": "PASS"
+          },
+          {
+            "case": "tests::region_end_is_exclusive_and_adjacent_is_valid",
+            "status": "PASS"
+          },
+          {
+            "case": "tests::future_granule_encoding_is_unknown_not_supported",
+            "status": "PASS"
+          },
+          {
+            "case": "tests::sixteen_bit_asids_need_feature_support",
+            "status": "PASS"
+          },
+          {
+            "case": "tests::tgran16_is_positive_one_not_zero",
+            "status": "PASS"
+          },
+          {
+            "case": "tests::zero_validity_never_qualifies_registers",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "group": "synthetic",
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests/platform",
+          "-v"
+        ],
+        "log": ".build/w4/corrected-validation/synthetic.log",
+        "sha256": "864136cb51c23ef1da780b06bc183017703ebb959a15b54310e61f40541130c0",
+        "tests": 36,
+        "cases": [
+          {
+            "case": "test_absent_evidence (test_platform.PlatformTests.test_absent_evidence)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_boot_data_reservation_is_required (test_platform.PlatformTests.test_boot_data_reservation_is_required)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_changed_evidence_bytes (test_platform.PlatformTests.test_changed_evidence_bytes)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_cpu_model_is_not_falsified (test_platform.PlatformTests.test_cpu_model_is_not_falsified)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_descriptor_cannot_claim_current_xnu_operational (test_platform.PlatformTests.test_descriptor_cannot_claim_current_xnu_operational)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_empty_map_is_not_qualified (test_platform.PlatformTests.test_empty_map_is_not_qualified)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_granule_unsupported (test_platform.PlatformTests.test_granule_unsupported)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_holi_inventory_does_not_enable_xnu (test_platform.PlatformTests.test_holi_inventory_does_not_enable_xnu)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_identity_cannot_be_promoted_by_json (test_platform.PlatformTests.test_identity_cannot_be_promoted_by_json)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_insufficient_physical_address_range (test_platform.PlatformTests.test_insufficient_physical_address_range)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_json_cannot_promote_its_own_evidence_admission (test_platform.PlatformTests.test_json_cannot_promote_its_own_evidence_admission)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_json_is_reproducible (test_platform.PlatformTests.test_json_is_reproducible)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_kernel_reservation_is_required (test_platform.PlatformTests.test_kernel_reservation_is_required)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_lpa2_not_silently_enabled (test_platform.PlatformTests.test_lpa2_not_silently_enabled)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_missing_required_capability (test_platform.PlatformTests.test_missing_required_capability)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_mmu_already_enabled_rejected_for_pre_mmu_contract (test_platform.PlatformTests.test_mmu_already_enabled_rejected_for_pre_mmu_contract)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_offline_gic_addresses_match_audited_inventory (test_platform.PlatformTests.test_offline_gic_addresses_match_audited_inventory)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_platform_backend_mismatch (test_platform.PlatformTests.test_platform_backend_mismatch)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_qemu_without_current_registers_stays_blocked (test_platform.PlatformTests.test_qemu_without_current_registers_stays_blocked)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_ram_overflow (test_platform.PlatformTests.test_ram_overflow)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_reservation_is_page_aligned (test_platform.PlatformTests.test_reservation_is_page_aligned)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_reservations_overlap (test_platform.PlatformTests.test_reservations_overlap)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_reserved_feature_encoding_blocks (test_platform.PlatformTests.test_reserved_feature_encoding_blocks)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_reserved_region_outside_ram (test_platform.PlatformTests.test_reserved_region_outside_ram)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_static_specification_cannot_become_device_observation (test_platform.PlatformTests.test_static_specification_cannot_become_device_observation)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_synthetic_snapshot_cannot_be_called_qemu_observation (test_platform.PlatformTests.test_synthetic_snapshot_cannot_be_called_qemu_observation)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_tg0_incompatible (test_platform.PlatformTests.test_tg0_incompatible)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_tg1_incompatible (test_platform.PlatformTests.test_tg1_incompatible)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_trinket_unknown_identity_is_preserved (test_platform.PlatformTests.test_trinket_unknown_identity_is_preserved)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_unqualified_translation_flag_is_rejected (test_platform.PlatformTests.test_unqualified_translation_flag_is_rejected)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_unsupported_capability_cannot_be_enabled (test_platform.PlatformTests.test_unsupported_capability_cannot_be_enabled)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_va_configuration_mismatch (test_platform.PlatformTests.test_va_configuration_mismatch)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_valid_qemu_snapshot_checks_translation_and_reservations (test_platform.PlatformTests.test_valid_qemu_snapshot_checks_translation_and_reservations)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_virtual_snapshot_does_not_qualify_physical_platform (test_platform.PlatformTests.test_virtual_snapshot_does_not_qualify_physical_platform)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_w1_target_contract_is_reused (test_platform.PlatformTests.test_w1_target_contract_is_reused)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_wrong_exception_level (test_platform.PlatformTests.test_wrong_exception_level)",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "group": "public-build-and-boundary",
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests/public",
+          "-v"
+        ],
+        "log": ".build/w4/corrected-validation/public-build-and-boundary.log",
+        "sha256": "3b4d788810d6d5fdd238f99b4ae77e2f95ee85b59f8aeb19947bef371fd2b42b",
+        "tests": 8,
+        "cases": [
+          {
+            "case": "test_host_cpp_calls_real_c_abi (test_public_build.PublicBuildTests.test_host_cpp_calls_real_c_abi)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_own_sources_and_guard_cross_compile_arm64 (test_public_build.PublicBuildTests.test_own_sources_and_guard_cross_compile_arm64)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_archive_is_rejected (test_publication_scan.PublicationScanTests.test_archive_is_rejected)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_credential_pattern_is_rejected (test_publication_scan.PublicationScanTests.test_credential_pattern_is_rejected)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_deleted_secret_is_still_rejected_in_history (test_publication_scan.PublicationScanTests.test_deleted_secret_is_still_rejected_in_history)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_private_absolute_path_is_rejected (test_publication_scan.PublicationScanTests.test_private_absolute_path_is_rejected)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_safe_fixture_passes (test_publication_scan.PublicationScanTests.test_safe_fixture_passes)",
+            "status": "PASS"
+          },
+          {
+            "case": "test_symlink_is_rejected (test_publication_scan.PublicationScanTests.test_symlink_is_rejected)",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "group": "clippy",
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "cargo",
+          "clippy",
+          "--offline",
+          "--locked",
+          "--manifest-path",
+          "tools/penang-validate/Cargo.toml",
+          "--all-targets",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "log": ".build/w4/corrected-validation/clippy.log",
+        "sha256": "d12f5bc55cdd15d57fb30ca37f56ba33b8bbc1369dd23060768f8104a6e51bb0"
+      },
+      {
+        "group": "scan",
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "python3",
+          "-B",
+          "scripts/publication_scan.py"
+        ],
+        "log": ".build/w4/corrected-validation/scan.log",
+        "sha256": "d1cb47815a700d1b8b2c913a2bc2b4b1d0a0b7d8676391a5fde3c9f9a71215c7",
+        "scan": {
+          "status": "PASS",
+          "files_checked": 127,
+          "history_status": "NOT_TESTED",
+          "git_content_objects_checked": 0,
+          "commits_checked": 0,
+          "issues": [],
+          "limits": "Known patterns and text/file policy; not exhaustive secret detection, legal title or runtime-security proof."
+        }
+      }
+    ],
+    "dependency_acquisition": false
+  },
+  "selection": {
+    "public_files": 127,
+    "selected_inputs": 45,
+    "external_packages": 24
+  },
+  "initial_packaging_failure": {
+    "status": "FAIL_HISTORICAL",
+    "synthetic_failures": 34,
+    "cause": "Target metadata redaction changed input hash; derived status not yet regenerated",
+    "resolution": "Unchanged W1 derive function regenerated only input_sha256; no assertions or decoder logic changed",
+    "log_sha256": "09b29e4eb7eb8760f7c1f15cddf6d99b2a0a4a2b65951b37d205da5ebad64628"
+  },
+  "preservation": {
+    "W1_files": 91,
+    "original_git": {
+      "P07": {
+        "status": [],
+        "unchanged": true,
+        "branch": "integration/p0-7-image4-amfi-20261101",
+        "index_sha256": "db3e6237061c4b30a470a249939e705ebd72ccceea9a6d07dc5a67ccce5f61ba",
+        "head": "910080628bee9eb1716c6867f8595f485b6ffe50"
+      },
+      "W2W3": {
+        "status": [],
+        "unchanged": true,
+        "branch": "feature/w2w3-platform-contracts-20261101",
+        "index_sha256": "fed7a2468521c9637b0dcb2a72b36a81dc75a0068b0c5ac0726e113a422dc046",
+        "head": "2560ba6ed0e2037f118fb3c8ba87b398435d8e6f"
+      },
+      "P08": {
+        "status": [],
+        "unchanged": true,
+        "branch": "integration/p0-8-security-deps-20261101",
+        "index_sha256": "5be2755f4cba954b10ed091b7be64dc9ac7d31cfea14a08e42dcb0078ddf05c8",
+        "head": "58a7cde7665b3969205fe85e254a847d0c7bab68"
+      },
+      "P09": {
+        "status": [],
+        "unchanged": true,
+        "branch": "integration/p0-9-unified-crypto-20261101",
+        "index_sha256": "b147d8dbdf3580cd93a9bce4ee252ac5b3adf6095d0a5efa463c9b5c0ba4f881",
+        "head": "085735f429c795575be3f460256f3edd0367c798"
+      }
+    }
+  },
+  "history_policy": "New repository only; no original objects or lineage imported",
+  "approval": "No publication authorized; source-license adoption and independent review pending"
+}

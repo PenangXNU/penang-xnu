@@ -1,0 +1,26 @@
+{
+  "classification": "PUBLIC_FACT_PROJECTION",
+  "original_source": {
+    "commit": "2560ba6ed0e2037f118fb3c8ba87b398435d8e6f",
+    "path": "manifests/penang-bsp-offline.json",
+    "sha256": "610a8a9d669395cd4a4bb985db129a2942ef30d96fd1c942ee672aa7c4cbeac1"
+  },
+  "no_raw_payload": true,
+  "reproduced_here": false,
+  "gic": {
+    "compatible": "arm,gic-v3",
+    "distributor": {
+      "base": "0x0f200000",
+      "size": "0x00010000"
+    },
+    "redistributor": {
+      "base": "0x0f240000",
+      "size": "0x00100000"
+    }
+  },
+  "psci": {
+    "method": "smc",
+    "runtime_method_verified": false
+  },
+  "usable_ram_map_verified": false
+}

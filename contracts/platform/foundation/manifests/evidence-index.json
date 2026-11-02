@@ -1,0 +1,1102 @@
+{
+  "schema_version": "1.0",
+  "status": "CANDIDATE",
+  "publication_status": "PUBLICATION_BLOCKED",
+  "as_of": "2026-11-01",
+  "records": [
+    {
+      "id": "ADR4",
+      "claim": "ADR-0004 aceita; alvo iPad7,11 arm64, F07 no escopo examinado.",
+      "source_ids": [
+        "S01",
+        "S08",
+        "S09"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Accepted decision and existing binary metadata",
+      "limitations": [
+        "Não reexecuta scan de 57 cabeçalhos nem prova execução do userland."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/ADR4"
+    },
+    {
+      "id": "ADR6",
+      "claim": "ADR-0006 aceita; D1-D4, Metal A619 e ausência de UART física preservados.",
+      "source_ids": [
+        "S11"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Accepted normative criteria",
+      "limitations": [
+        "Nenhuma ADR alterada; nenhum critério físico aprovado por esta cópia."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/ADR6"
+    },
+    {
+      "id": "SOFIAR_SCOPE",
+      "claim": "Inclusão documental Sofiar como P1 foi solicitada pelo responsável na W1.0.",
+      "source_ids": [
+        "U01"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Scope authority only",
+      "limitations": [
+        "Identidade e capacidades do aparelho continuam UNKNOWN; não é aceite de nova ADR."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/SOFIAR_SCOPE"
+    },
+    {
+      "id": "C043",
+      "claim": "Compilação/link DEV 11417 documentados; qualificação oficial e enforcement não demonstrados.",
+      "source_ids": [
+        "S05",
+        "S06",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A10"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PARTIAL",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing DEV build provenance",
+      "limitations": [
+        "Não recompilado na W1; pacote completo conferido na W0, apenas âncora reconferida aqui."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/C043"
+    },
+    {
+      "id": "P05",
+      "claim": "Primeira entrada real 11417 em QEMU_VIRT documentada e auditada na W0.",
+      "source_ids": [
+        "S23",
+        "S24",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A11"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "QEMU_VERIFIED",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing first-entry experiment",
+      "limitations": [
+        "Não é boot completo, iPadOS ou dispositivo; nenhum QEMU executado na W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/P05"
+    },
+    {
+      "id": "P06",
+      "claim": "Experimento limitado P0.6: provedor PRNG registra e B2 é resolvido no run aceito.",
+      "source_ids": [
+        "S02",
+        "S07",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "QEMU_VERIFIED",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing accepted bounded experiment",
+      "limitations": [
+        "Cold boot only; 1 CPU; crypto incompleto; host/QEMU/debugger confiáveis; sem nova execução."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/P06"
+    },
+    {
+      "id": "B3",
+      "claim": "Última falha runtime aceita é image4 interface not available em kern_trustcache.c:584.",
+      "source_ids": [
+        "S02",
+        "S03",
+        "S07"
+      ],
+      "anchor_ids": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "task_state": "BLOCKED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "QEMU_VERIFIED",
+      "epistemic_status": "PROVEN",
+      "gate_status": "BLOCKED",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing P0.6 fail-stop, retained by P0.7",
+      "limitations": [
+        "Nenhum novo blocker runtime confirmado; guard preservado."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/B3"
+    },
+    {
+      "id": "P07",
+      "claim": "P0.7 opção C; G5/G7 BLOCKED, G6/G8 NOT_RUN, sem implementação de provider.",
+      "source_ids": [
+        "S03",
+        "S04"
+      ],
+      "anchor_ids": [
+        "A04"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "BLOCKED",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Documented provider decision and contracts",
+      "limitations": [
+        "G0/G2/G4 PASS não resolvem B3; ABI, direitos e política executável pendentes."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/P07"
+    },
+    {
+      "id": "M7",
+      "claim": "Backend M7 possui evidência host; gpu_executed=false.",
+      "source_ids": [
+        "S21",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A07",
+        "A08"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PARTIAL",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing backend-only component",
+      "limitations": [
+        "Sem frontend Metal completo, driver físico ou execução GPU."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M7"
+    },
+    {
+      "id": "M8",
+      "claim": "Organização M8 registrada concluída; journal corresponde à âncora W0.",
+      "source_ids": [
+        "S22",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A09"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Historical organization consistency",
+      "limitations": [
+        "282 arquivos conferidos na W0; não repetidos na W1; hashes não concedem licença."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M8"
+    },
+    {
+      "id": "M9_O1",
+      "claim": "Relatório O1 host persistente encontrado e hash reconferido.",
+      "source_ids": [
+        "S20",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A05"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Structural oracle on existing private corpus",
+      "limitations": [
+        "Corpus não copiado; oráculo não executado nesta ordem; não GPU."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M9_O1"
+    },
+    {
+      "id": "M9_BUILD",
+      "claim": "Biblioteca frontend arm64 do M9 corresponde à âncora fixada.",
+      "source_ids": [
+        "S20",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A06"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Cross-build artifact identity",
+      "limitations": [
+        "Objeto arm64 não prova execução iPadOS; AIR/NIR/IR3 completo não é Metal físico."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M9_BUILD"
+    },
+    {
+      "id": "M9_O2_O3",
+      "claim": "Resultados O2/O3 relatados no handoff, sem recibos persistentes qualificados nesta intake.",
+      "source_ids": [
+        "S20",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "REPORTED_ONLY",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Agent report only for these counts",
+      "limitations": [
+        "Não promover 294 componentes, 33/33 ou 9/9 estágios a confirmação independente; não houve nova busca ampla nem rerun."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M9_O2_O3"
+    },
+    {
+      "id": "ANDROID_CPU",
+      "claim": "Inventário CPU histórico Android tem proveniência preservada; âncora de hashes reconferida.",
+      "source_ids": [
+        "S10",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A12"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "DEVICE_VERIFIED_ANDROID",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Historical Android read-only inventory",
+      "limitations": [
+        "Nenhum telefone acessado; não prova XNU, EL2 ou 16 KiB."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/ANDROID_CPU"
+    },
+    {
+      "id": "GRANULE16K",
+      "claim": "Suporte 16 KiB do aparelho não qualificado pela sondagem disponível.",
+      "source_ids": [
+        "S10",
+        "S14"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Explicit unknown",
+      "limitations": [
+        "Página Linux de 4 KiB não refuta suporte 16 KiB."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/GRANULE16K"
+    },
+    {
+      "id": "EL2",
+      "claim": "Acesso EL2 para o payload do porte continua desconhecido.",
+      "source_ids": [
+        "S10",
+        "S12",
+        "S19"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Explicit unknown",
+      "limitations": [
+        "Reserva hyp não comprova privilégio ou acessibilidade."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/EL2"
+    },
+    {
+      "id": "D1",
+      "claim": "Critério de entrega D1 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D1"
+    },
+    {
+      "id": "D2",
+      "claim": "Critério de entrega D2 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D2"
+    },
+    {
+      "id": "D3",
+      "claim": "Critério de entrega D3 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D3"
+    },
+    {
+      "id": "D4",
+      "claim": "Critério de entrega D4 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D4"
+    },
+    {
+      "id": "SOFIAR_ID",
+      "claim": "Identidade física e capacidades Sofiar ainda não inventariadas independentemente.",
+      "source_ids": [
+        "U01",
+        "F01"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Owner description and external draft",
+      "limitations": [
+        "SM6125/trinket/GPU são declarações de referência; sem leitura do aparelho."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/SOFIAR_ID"
+    },
+    {
+      "id": "SOFIAR_XNU",
+      "claim": "Bootstrap XNU em Sofiar não demonstrado.",
+      "source_ids": [
+        "U01",
+        "F01"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No admitted device-XNU proof",
+      "limitations": [
+        "Nenhum acesso ao telefone autorizado."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/SOFIAR_XNU"
+    },
+    {
+      "id": "PUBLICATION",
+      "claim": "Licenças, histórico alcançável, privacidade e revisão independente não encerrados.",
+      "source_ids": [
+        "S16",
+        "S17",
+        "W0",
+        "C01"
+      ],
+      "anchor_ids": [],
+      "task_state": "BLOCKED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "BLOCKED",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Publication boundary",
+      "limitations": [
+        "Licenses, reachable history and independent publication review remain open. Intake repair does not authorize publication."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/PUBLICATION"
+    },
+    {
+      "id": "BSP_PLATFORM",
+      "claim": "CPU, GIC, timer, PSCI e mapa de RAM — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "HOST_CONTRACT_ONLY",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_PLATFORM"
+    },
+    {
+      "id": "BSP_DMA",
+      "claim": "SMMU e DMA — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_DMA"
+    },
+    {
+      "id": "BSP_PMIC",
+      "claim": "PMIC, clocks e reguladores — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_PMIC"
+    },
+    {
+      "id": "BSP_USB",
+      "claim": "USB e observabilidade — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_USB"
+    },
+    {
+      "id": "BSP_DISPLAY",
+      "claim": "Tela e backlight — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_DISPLAY"
+    },
+    {
+      "id": "BSP_TOUCH",
+      "claim": "Toque — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_TOUCH"
+    },
+    {
+      "id": "BSP_GPU",
+      "claim": "GPU Adreno 619 e Metal — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "RESEARCH_COMPONENT_UNQUALIFIED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_GPU"
+    },
+    {
+      "id": "BSP_STORAGE",
+      "claim": "Armazenamento UFS — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_STORAGE"
+    },
+    {
+      "id": "BSP_BATTERY",
+      "claim": "Bateria / fuel gauge — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_BATTERY"
+    },
+    {
+      "id": "BSP_CHARGING",
+      "claim": "Carregamento e USB-C — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_CHARGING"
+    },
+    {
+      "id": "BSP_WIFI",
+      "claim": "Wi-Fi — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_WIFI"
+    },
+    {
+      "id": "BSP_BLUETOOTH",
+      "claim": "Bluetooth — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_BLUETOOTH"
+    },
+    {
+      "id": "BSP_AUDIO",
+      "claim": "Áudio, microfones e DSP — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_AUDIO"
+    },
+    {
+      "id": "BSP_CAMERA",
+      "claim": "Câmeras e ISP — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_CAMERA"
+    },
+    {
+      "id": "BSP_MOTION",
+      "claim": "Sensores de movimento/luz/proximidade — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INVENTORIED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_MOTION"
+    },
+    {
+      "id": "BSP_THERMAL",
+      "claim": "Temperatura, DVFS e suspensão — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_THERMAL"
+    },
+    {
+      "id": "BSP_MODEM",
+      "claim": "Chip/SIM e dados celulares — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_MODEM"
+    },
+    {
+      "id": "BSP_VOICE",
+      "claim": "Telefonia e VoLTE — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "ADDITIONAL_USERLAND_REQUIRED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_VOICE"
+    },
+    {
+      "id": "BSP_GNSS",
+      "claim": "GNSS/GPS — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INVENTORIED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_GNSS"
+    },
+    {
+      "id": "BSP_BIOMETRICS",
+      "claim": "Biometria — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_BIOMETRICS"
+    },
+    {
+      "id": "USERLAND",
+      "claim": "No original launchd/SpringBoard demonstrated",
+      "source_ids": [
+        "S11",
+        "S15",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "original iPadOS userland execution",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED",
+      "proof_scope": "Accepted delivery criteria and current evidence boundary",
+      "limitations": [
+        "ISA metadata does not demonstrate dyld, IPC, services or apps."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/USERLAND"
+    },
+    {
+      "id": "INTAKE",
+      "claim": "Foundation v0.1.1 passed byte-integrity repair; original v0.1 failure remains historical",
+      "source_ids": [
+        "R01",
+        "C01"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary input bytes",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "BYTE_INTEGRITY_ONLY",
+      "proof_scope": "20 members, 19 identical contents; external digests",
+      "limitations": [
+        "No semantic, runtime, license or publication qualification."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/INTAKE"
+    }
+  ],
+  "sources": {
+    "S01": {
+      "ref": "evidence/source-register.json#/sources/S01"
+    },
+    "S02": {
+      "ref": "evidence/source-register.json#/sources/S02"
+    },
+    "S03": {
+      "ref": "evidence/source-register.json#/sources/S03"
+    },
+    "S04": {
+      "ref": "evidence/source-register.json#/sources/S04"
+    },
+    "S05": {
+      "ref": "evidence/source-register.json#/sources/S05"
+    },
+    "S06": {
+      "ref": "evidence/source-register.json#/sources/S06"
+    },
+    "S07": {
+      "ref": "evidence/source-register.json#/sources/S07"
+    },
+    "S08": {
+      "ref": "evidence/source-register.json#/sources/S08"
+    },
+    "S09": {
+      "ref": "evidence/source-register.json#/sources/S09"
+    },
+    "S10": {
+      "ref": "evidence/source-register.json#/sources/S10"
+    },
+    "S11": {
+      "ref": "evidence/source-register.json#/sources/S11"
+    },
+    "S12": {
+      "ref": "evidence/source-register.json#/sources/S12"
+    },
+    "S13": {
+      "ref": "evidence/source-register.json#/sources/S13"
+    },
+    "S14": {
+      "ref": "evidence/source-register.json#/sources/S14"
+    },
+    "S15": {
+      "ref": "evidence/source-register.json#/sources/S15"
+    },
+    "S16": {
+      "ref": "evidence/source-register.json#/sources/S16"
+    },
+    "S17": {
+      "ref": "evidence/source-register.json#/sources/S17"
+    },
+    "S18": {
+      "ref": "evidence/source-register.json#/sources/S18"
+    },
+    "S19": {
+      "ref": "evidence/source-register.json#/sources/S19"
+    },
+    "S20": {
+      "ref": "evidence/source-register.json#/sources/S20"
+    },
+    "S21": {
+      "ref": "evidence/source-register.json#/sources/S21"
+    },
+    "S22": {
+      "ref": "evidence/source-register.json#/sources/S22"
+    },
+    "S23": {
+      "ref": "evidence/source-register.json#/sources/S23"
+    },
+    "S24": {
+      "ref": "evidence/source-register.json#/sources/S24"
+    },
+    "S25": {
+      "ref": "evidence/source-register.json#/sources/S25"
+    },
+    "S26": {
+      "ref": "evidence/source-register.json#/sources/S26"
+    },
+    "S27": {
+      "ref": "evidence/source-register.json#/sources/S27"
+    },
+    "W0": {
+      "ref": "evidence/source-register.json#/sources/W0"
+    },
+    "U01": {
+      "ref": "evidence/source-register.json#/sources/U01"
+    },
+    "F01": {
+      "ref": "evidence/source-register.json#/sources/F01"
+    },
+    "R01": {
+      "ref": "evidence/source-register.json#/sources/R01"
+    },
+    "C01": {
+      "ref": "evidence/source-register.json#/sources/C01"
+    }
+  },
+  "anchors": {
+    "A01": {
+      "sha256": "45ec905e076256a2f5c0c396285fec17c540349ab810e463cadfabfc280e75a4",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A02": {
+      "sha256": "187c62e810e41b0e8bd264bf7236681512903625b8eba6461f295aeb09cf35d1",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A03": {
+      "sha256": "bcb805df751c2621f4bb3e6340f3629f4d1af55eb3fb8b1f34d7ba544f802d16",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A04": {
+      "sha256": "fb60e064b40cc2c07e12e0d45669a44da299cc44f8185c542a9f6e6bc9130bd6",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A05": {
+      "sha256": "49c94f35ab060ccc3641a024343bb9a119f7fa67f420b9e428b34232f32c69e4",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A06": {
+      "sha256": "e397c7edfa65525b3f2b7164082f156b2fffbe7629af6a62f8bfdc10ad90656f",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A07": {
+      "sha256": "597b1235f9185de10d5ea0e3377af79e624c79947c2eaaa1c7e7608922ccc854",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A08": {
+      "sha256": "e46cda80d4b713ea477e7b8c0f4fe8ca65c1d01fcee72d71ee0d18646ecc601f",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A09": {
+      "sha256": "b45d684c752cf616bd0ae400dcf195c92d0ac9627daad6909d6d108b3e01677d",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A10": {
+      "sha256": "eae3753890f9174990556abf3f8c89b4169a790479d77dd8d7ec7211db3c440a",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A11": {
+      "sha256": "4c227335c15798f3821c3c823312d00ad486c57c728823e8e4454474b1152d69",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A12": {
+      "sha256": "4358452ee1545ca8329d57f4e745b186dc8ff4f167bbffc12be7cdbc68259c96",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    }
+  },
+  "private_artifact_payloads_copied": false,
+  "independent_runtime_reproduction": false
+}

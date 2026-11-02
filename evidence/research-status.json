@@ -1,0 +1,37 @@
+{
+  "as_of": "2026-11-02",
+  "W1": "ACCEPTED_DOCUMENTARY_FOUNDATION",
+  "W2W3": {
+    "head": "2560ba6ed0e2037f118fb3c8ba87b398435d8e6f",
+    "scope": "HOST_TESTED_AND_ARM64_COMPILED",
+    "runtime_execution": "NOT_RUN"
+  },
+  "P09": {
+    "classification": "DOCUMENTARY_REFERENCE_NOT_REPRODUCED_HERE",
+    "head": "085735f429c795575be3f460256f3edd0367c798",
+    "integration_commit": "5775d9013f6bc25d41b57fbd7e7ebd322c1117f0",
+    "state": "Crypto integrated in QEMU_VIRT DEV; one QEMU run reported, B3 fail-stop unchanged",
+    "sources": [
+      {
+        "path": "reports/P0.9-GATES.json",
+        "sha256": "9bf2c31422280122e9f920e410de3e6881f07878b56f8ffdadd02d8af09e1447",
+        "original_included": false
+      },
+      {
+        "path": "reports/P0.9-HANDOFF.md",
+        "sha256": "0f9dd9363bc9d902ff26c75c1aeebc8ade0285e4688dc8f0e48f39c83485b100",
+        "original_included": false
+      }
+    ],
+    "imports": {
+      "implementation": false,
+      "binary": false,
+      "raw_logs": false
+    },
+    "new_QEMU_runs": 0
+  },
+  "B3": "BLOCKED",
+  "D1_D4": "NOT_DEMONSTRATED",
+  "Sofiar": "P1/UNKNOWN",
+  "publication_status": "PUBLICATION_BLOCKED"
+}

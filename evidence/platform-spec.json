@@ -1,0 +1,13 @@
+{
+  "scope": "STATIC_CONTRACT",
+  "source": "Own W2/W3 platform ABI and descriptors, selected from 2560ba6",
+  "virtual_cpu": "Cortex-A76",
+  "granule_required": 16384,
+  "pa_bits": 40,
+  "va_bits": 47,
+  "tcr_contract": "0x226511a511",
+  "interrupts": "GICv3",
+  "timer_register": "CNTFRQ_EL0",
+  "console": "PL011",
+  "runtime_qualified": false
+}

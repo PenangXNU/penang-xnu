@@ -1,0 +1,15 @@
+{
+  "classification": "PUBLIC_FACT_PROJECTION",
+  "original_source": {
+    "commit": "2560ba6ed0e2037f118fb3c8ba87b398435d8e6f",
+    "path": "manifests/penang-cpu-probe.json",
+    "sha256": "164b945164a318e17b20f57bb40214c1d1dfd04fdb3de4d170b21388cf348662"
+  },
+  "no_raw_payload": true,
+  "reproduced_here": false,
+  "cpu_family": "Kryo 4xx Android inventory",
+  "cpu_architecture": "ARM64",
+  "tgran16": "UNKNOWN",
+  "el2": "UNKNOWN",
+  "xnu_device_execution": "NOT_DEMONSTRATED"
+}

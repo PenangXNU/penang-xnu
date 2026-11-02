@@ -1,0 +1,10 @@
+{
+  "version": "W1-minimum-1",
+  "purpose": "Platform source admissions/schemas using the W1 lock format; consistency only, not a signature or runtime proof",
+  "review_required_for_changes": true,
+  "files": {
+    "contracts/platform/evidence.json": "fbb95869614951084cb72470dad87d390f8a88669907cd0549262c6a1276ff41",
+    "contracts/platform/platform.schema.json": "d136cd7d875bd135a425e1009b1074beae8a9ba0f57be0141a7adc1ddfab9e42",
+    "contracts/platform/observation.schema.json": "b7e0b3cbf617e01e542b1883472db92aaaa2be0a71cdb3ad40291aafc77e8b86"
+  }
+}

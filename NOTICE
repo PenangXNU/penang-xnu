@@ -1,0 +1,23 @@
+Penang XNU Public Preview — release-candidate notice
+
+MIT is the proposed release license for project-owned code and documentation.
+This local preparation does not constitute owner adoption or publication.
+Existing per-file license declarations are preserved. The proposed blanket
+grant excludes external dependencies and their license/notice texts.
+
+No Apple, Qualcomm or emulator implementation is included or relicensed.
+Hardware register values and target identities are factual metadata, not
+a distribution of firmware. XNU-derived patches, runtime kernels, device dumps
+and the complete research repository history are excluded.
+
+External Rust and Python packages are resolved by the consumer and are not
+vendored. Their exact license expressions, original notice texts and hashes
+are listed in audit/dependencies.json and third-party/licenses/. In particular,
+unicode-ident includes an additional Unicode-3.0 obligation; pyrsistent's
+toolz-derived portion carries BSD-3-Clause. A binary release would need a
+separate review of the licenses/notices of its linked dependencies.
+
+Original project authorship and its limitations are documented in AUTHORS.md.
+Names of products and vendors identify research targets; no endorsement is
+implied. No App Store, Apple ID, DRM, telephony or secure-platform equivalence
+is claimed or supplied.

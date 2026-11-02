@@ -1,0 +1,24 @@
+{
+  "policy": "Explicit selection only; no original history imported",
+  "excluded_counts_by_source": {
+    "W1": 15,
+    "W2W3": 278
+  },
+  "excluded_counts_by_reason": {
+    "agent configuration/internal operations": 27,
+    "not selected for minimal public host contract scope": 111,
+    "outside standalone synthetic subset or external-input-dependent": 56,
+    "original engineering reports not copied; public scoped summaries used": 94,
+    "XNU-source-dependent delta/helper; excluded rather than relicensed": 5
+  },
+  "excluded_material": [
+    "all original Git object databases and 63-commit engineering lineage",
+    "ROM/IPSW/KDK/firmware and proprietary binaries",
+    "DTB/dumps/device identifiers and raw device logs",
+    "credentials, private checkpoints and agent configuration",
+    "unifdef source/binary and toolchain binaries",
+    "P0.9 implementation and runtime artifacts",
+    "legacy source/private-input tests; no omitted test counted as PASS"
+  ],
+  "local_review_inventory": "Full excluded source-file list is retained outside the proposed public tree in ignored .build/review/excluded-files.json"
+}

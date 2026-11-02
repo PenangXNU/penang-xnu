@@ -1,0 +1,252 @@
+{
+  "version": "W1-minimum-1",
+  "subsystems": [
+    {
+      "id": "C04.3",
+      "evidence_ids": [
+        "C043"
+      ]
+    },
+    {
+      "id": "P0.5",
+      "evidence_ids": [
+        "P05"
+      ]
+    },
+    {
+      "id": "P0.6",
+      "evidence_ids": [
+        "P06"
+      ]
+    },
+    {
+      "id": "P0.7",
+      "evidence_ids": [
+        "P07",
+        "B3"
+      ]
+    },
+    {
+      "id": "M7",
+      "evidence_ids": [
+        "M7"
+      ]
+    },
+    {
+      "id": "M8",
+      "evidence_ids": [
+        "M8"
+      ]
+    },
+    {
+      "id": "M9",
+      "evidence_ids": [
+        "M9_O1",
+        "M9_BUILD",
+        "M9_O2_O3"
+      ]
+    },
+    {
+      "id": "USERLAND",
+      "evidence_ids": [
+        "USERLAND"
+      ]
+    },
+    {
+      "id": "SOFIAR_IDENTITY",
+      "evidence_ids": [
+        "SOFIAR_ID"
+      ]
+    },
+    {
+      "id": "SOFIAR_XNU",
+      "evidence_ids": [
+        "SOFIAR_XNU"
+      ]
+    },
+    {
+      "id": "GRANULE16K",
+      "evidence_ids": [
+        "GRANULE16K"
+      ]
+    },
+    {
+      "id": "EL2",
+      "evidence_ids": [
+        "EL2"
+      ]
+    },
+    {
+      "id": "INTAKE",
+      "evidence_ids": [
+        "INTAKE"
+      ]
+    },
+    {
+      "id": "PUBLICATION",
+      "evidence_ids": [
+        "PUBLICATION"
+      ]
+    },
+    {
+      "id": "BSP_PLATFORM",
+      "evidence_ids": [
+        "BSP_PLATFORM"
+      ]
+    },
+    {
+      "id": "BSP_DMA",
+      "evidence_ids": [
+        "BSP_DMA"
+      ]
+    },
+    {
+      "id": "BSP_PMIC",
+      "evidence_ids": [
+        "BSP_PMIC"
+      ]
+    },
+    {
+      "id": "BSP_USB",
+      "evidence_ids": [
+        "BSP_USB"
+      ]
+    },
+    {
+      "id": "BSP_DISPLAY",
+      "evidence_ids": [
+        "BSP_DISPLAY"
+      ]
+    },
+    {
+      "id": "BSP_TOUCH",
+      "evidence_ids": [
+        "BSP_TOUCH"
+      ]
+    },
+    {
+      "id": "BSP_GPU",
+      "evidence_ids": [
+        "BSP_GPU"
+      ]
+    },
+    {
+      "id": "BSP_STORAGE",
+      "evidence_ids": [
+        "BSP_STORAGE"
+      ]
+    },
+    {
+      "id": "BSP_BATTERY",
+      "evidence_ids": [
+        "BSP_BATTERY"
+      ]
+    },
+    {
+      "id": "BSP_CHARGING",
+      "evidence_ids": [
+        "BSP_CHARGING"
+      ]
+    },
+    {
+      "id": "BSP_WIFI",
+      "evidence_ids": [
+        "BSP_WIFI"
+      ]
+    },
+    {
+      "id": "BSP_BLUETOOTH",
+      "evidence_ids": [
+        "BSP_BLUETOOTH"
+      ]
+    },
+    {
+      "id": "BSP_AUDIO",
+      "evidence_ids": [
+        "BSP_AUDIO"
+      ]
+    },
+    {
+      "id": "BSP_CAMERA",
+      "evidence_ids": [
+        "BSP_CAMERA"
+      ]
+    },
+    {
+      "id": "BSP_MOTION",
+      "evidence_ids": [
+        "BSP_MOTION"
+      ]
+    },
+    {
+      "id": "BSP_THERMAL",
+      "evidence_ids": [
+        "BSP_THERMAL"
+      ]
+    },
+    {
+      "id": "BSP_MODEM",
+      "evidence_ids": [
+        "BSP_MODEM"
+      ]
+    },
+    {
+      "id": "BSP_VOICE",
+      "evidence_ids": [
+        "BSP_VOICE"
+      ]
+    },
+    {
+      "id": "BSP_GNSS",
+      "evidence_ids": [
+        "BSP_GNSS"
+      ]
+    },
+    {
+      "id": "BSP_BIOMETRICS",
+      "evidence_ids": [
+        "BSP_BIOMETRICS"
+      ]
+    },
+    {
+      "id": "D1",
+      "evidence_ids": [
+        "D1"
+      ]
+    },
+    {
+      "id": "D2",
+      "evidence_ids": [
+        "D2"
+      ]
+    },
+    {
+      "id": "D3",
+      "evidence_ids": [
+        "D3"
+      ]
+    },
+    {
+      "id": "D4",
+      "evidence_ids": [
+        "D4"
+      ]
+    }
+  ],
+  "default_priority": [
+    "BLOCKED",
+    "FAIL",
+    "UNKNOWN",
+    "PARTIAL",
+    "NOT_RUN",
+    "PASS"
+  ],
+  "mixed_known_unknown": "PARTIAL",
+  "default_delivery": "NOT_DEMONSTRATED",
+  "required_blocker_evidence": [
+    "B3"
+  ],
+  "publication_evidence": [
+    "PUBLICATION"
+  ]
+}

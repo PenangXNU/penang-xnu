@@ -1,0 +1,1483 @@
+{
+  "schema_version": "1.0",
+  "sources": {
+    "S01": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "docs/ADR-0004-no-pac-userland-and-kernel-base.md",
+        "sha256": "789632c236942de40631d12c80d1fa676f148de99daf3a0587475e9f7004fabd"
+      },
+      "authority": "ACCEPTED_DECISION",
+      "local_excerpt": "evidence/source-register.json#/sources/S01",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test.",
+      "local_copy": "docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md",
+      "local_copy_sha256": "789632c236942de40631d12c80d1fa676f148de99daf3a0587475e9f7004fabd"
+    },
+    "S02": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/P0.6-GATES.json",
+        "sha256": "ceb218ad39dbf56a98265799c6ce65304c83bd42a1e0c7167bf885426bd3a735"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S02",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S03": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/P0.7-GATES.json",
+        "sha256": "62615c8fa679aa21302f99396a7514e2d4fba10e249cc2a60ae14e906f3f4caa"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S03",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S04": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/P0.7-HANDOFF.md",
+        "sha256": "7c26a2489294e6ec5e8a463003f2e75306d3d50e108561cd7895e62dded10027"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S04",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S05": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/C04.3-HANDOFF.md",
+        "sha256": "8c404cce3672536a8e87314fced9935fb7fd2651922dce3649996fe240322f8f"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S05",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S06": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/C04.3-COMPILE-AND-LINK-LEDGER.json",
+        "sha256": "909c83f9356c6e03ae74aab4f22f9ec7ec0786ed6c9894f5d8ba6e67c27af92f"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S06",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S07": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/P0.6-QEMU-RUNTIME-EVIDENCE.md",
+        "sha256": "b91d1f81e83db6cdd55613cd6fdde72c3e12efa4596ec6cfb29152a8a37d05ae"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S07",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S08": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "manifests/apple-kernelcache-identity.json",
+        "sha256": "580c9449c2ff1fd10c2698628da787793bd6627ce5e5e1bfa54a113d60a65878"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S08",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S09": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "manifests/ipados-18.7.8-ipad7-dyld-cache.json",
+        "sha256": "440d9cbf8b2ac23e5229f62d91fe34be958552e4e89132d7cdea271f6de72a61"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S09",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S10": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "manifests/penang-cpu-probe.json",
+        "sha256": "164b945164a318e17b20f57bb40214c1d1dfd04fdb3de4d170b21388cf348662"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S10",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S11": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "docs/ADR-0006-delivery-scope-and-tracks.md",
+        "sha256": "b69fbbdbd95635ad74734f1180e5a22feee463b8cc2a531864e1a148c8428bfe"
+      },
+      "authority": "ACCEPTED_DECISION",
+      "local_excerpt": "evidence/source-register.json#/sources/S11",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test.",
+      "local_copy": "docs/adr/ADR-0006-delivery-scope-and-tracks.md",
+      "local_copy_sha256": "b69fbbdbd95635ad74734f1180e5a22feee463b8cc2a531864e1a148c8428bfe"
+    },
+    "S12": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "docs/ADR-0005-device-observability-and-debug.md",
+        "sha256": "7d44867ccba6d5a302dee705db7e6f788dc064c563a6f0872ad76626850dc472"
+      },
+      "authority": "PROPOSED_ADR",
+      "local_excerpt": "evidence/source-register.json#/sources/S12",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test.",
+      "local_copy": "references/adr/ADR-0005-device-observability-and-debug.md",
+      "local_copy_sha256": "7d44867ccba6d5a302dee705db7e6f788dc064c563a6f0872ad76626850dc472"
+    },
+    "S13": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "docs/WORKSPACE-TOPOLOGY.md",
+        "sha256": "beeb962253fde15ec51dc97afcde059d69d434e7b82bf32b5711f1877fd6c4d1"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S13",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S14": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "docs/PLAN-DRIVERS-COMPATIBILITY.md",
+        "sha256": "2e29c1fa5147b3e49192eead9b305babfa04516560d5b6e9163ee5447aeb7ba1"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S14",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S15": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "docs/APP-COMPATIBILITY-PLAN.md",
+        "sha256": "508b4a0fc89a1039b34c2703a8549717d360c4a53d4f49d5775529d2e551fdce"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S15",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S16": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "docs/PUBLICATION-READINESS.md",
+        "sha256": "4a18bc446c342528733ed9bb6a476d52357ab6631a1f61d26f84dafc04f17497"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S16",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S17": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "LICENSING.md",
+        "sha256": "498083e247d0673b3103cde0f4192a2b683d04044276d0ba96900e5b86f576d3"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S17",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S18": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "manifests/penang-driver-readiness.json",
+        "sha256": "fae3e0e3b4e3c3c6e4d7b803a87590f84d9b6c6ee101b336715b04f624b4dbef"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S18",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S19": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "manifests/security-assurance.json",
+        "sha256": "5451d39c25b56a9620bf78e789238ae94281b9fc0512c8808c1e93a9cd99e6a4"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S19",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S20": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "2c21032a0f61867880dff055a884a2e492c7f130",
+        "path": "reports/M9-AIR2IR3-CHECKPOINTS-2026-10-29.md",
+        "sha256": "3db4c6f980c50758141eb96bf4b44a3d9668a9430e6d61be92832bad4d0fbe8e"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S20",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S21": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "manifests/m7-frontier-component-audit.json",
+        "sha256": "8b53e74c45d021f140bf5b525c353482674ee0f3bea56040fb25a4a74f76b280"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S21",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S22": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "247bf959017206d7df6d2652546c7a40517349ef",
+        "path": "manifests/rom-work-organization-result.json",
+        "sha256": "7f5e9c9524cc729e83065e8898717f18140e2ec73b8e0ac3f37f19cce07aecfb"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S22",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S23": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/P0.5-GATES.json",
+        "sha256": "e291d57ef77ab81a42f5143f935ce827a84c523a4fea334bfd7fc695dba78c4f"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S23",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S24": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "reports/P0.5-QEMU-VIRT-FIRST-ENTRY.md",
+        "sha256": "4970480b4eba73498e796fce6ce843b2b49cfcbb3ea991d583c354ed3329c127"
+      },
+      "authority": "SCOPED_RESEARCH_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/S24",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test."
+    },
+    "S25": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "docs/ADR-0001-target-and-boot-strategy.md",
+        "sha256": "86f5a4cf210f99de3ee8a536ba182efd4cf0d56899e89e881751ec761feef3e9"
+      },
+      "authority": "HISTORICAL_OR_PROPOSED_ADR",
+      "local_excerpt": "evidence/source-register.json#/sources/S25",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test.",
+      "local_copy": "references/adr/ADR-0001-target-and-boot-strategy.md",
+      "local_copy_sha256": "86f5a4cf210f99de3ee8a536ba182efd4cf0d56899e89e881751ec761feef3e9"
+    },
+    "S26": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "docs/ADR-0002-ios18-platform-scope.md",
+        "sha256": "fea047cd91b528b962bad75eb12d5c2bec5601399a4969b1c14e774df0c2d753"
+      },
+      "authority": "HISTORICAL_OR_PROPOSED_ADR",
+      "local_excerpt": "evidence/source-register.json#/sources/S26",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test.",
+      "local_copy": "references/adr/ADR-0002-ios18-platform-scope.md",
+      "local_copy_sha256": "fea047cd91b528b962bad75eb12d5c2bec5601399a4969b1c14e774df0c2d753"
+    },
+    "S27": {
+      "origin": {
+        "repository": "penang-xnu-lab",
+        "commit": "910080628bee9eb1716c6867f8595f485b6ffe50",
+        "path": "docs/ADR-0003-security-compatibility.md",
+        "sha256": "6b25be2c197dc92987b2f958836c2111348ebe509354ab461b1674a877050c7f"
+      },
+      "authority": "HISTORICAL_OR_PROPOSED_ADR",
+      "local_excerpt": "evidence/source-register.json#/sources/S27",
+      "notes": "Selected source; original bytes retained privately; public projection is not a runtime test.",
+      "local_copy": "references/adr/ADR-0003-security-compatibility.md",
+      "local_copy_sha256": "6b25be2c197dc92987b2f958836c2111348ebe509354ab461b1674a877050c7f"
+    },
+    "W0": {
+      "origin": {
+        "repository": null,
+        "commit": null,
+        "path": "preserved W0 final report",
+        "sha256": "2e191eead445e2d88d511cb12cc96705daf709b433e51523bc7614af0438023a"
+      },
+      "authority": "HISTORICAL_AUDIT",
+      "local_excerpt": "evidence/source-register.json#/sources/W0",
+      "notes": "Source locator is private; content is not imported into candidate."
+    },
+    "U01": {
+      "origin": {
+        "repository": null,
+        "commit": null,
+        "path": "adopted W1.0 order",
+        "sha256": "73b65ce945789023c0279115d422883819186d2535bca0151abecde02cdf2a0e"
+      },
+      "authority": "OWNER_SCOPE",
+      "local_excerpt": "evidence/source-register.json#/sources/U01",
+      "notes": "Source locator is private; content is not imported into candidate."
+    },
+    "F01": {
+      "origin": {
+        "repository": null,
+        "commit": null,
+        "path": "Foundation Pack v0.1.zip",
+        "sha256": "873e257d2e153c9e65e60e4edf48836484d3779d11922852d2b35eb836a83471"
+      },
+      "authority": "HISTORICAL_EXTERNAL_DRAFT",
+      "local_excerpt": "evidence/source-register.json#/sources/F01",
+      "notes": "Source locator is private; content is not imported into candidate."
+    },
+    "R01": {
+      "origin": {
+        "repository": null,
+        "commit": null,
+        "path": "Foundation v0.1.1 integrity record",
+        "sha256": "56a4c95471b42c68a2d6647fa9f2fde8305928549800a53967f92e4c6264c6ef"
+      },
+      "authority": "INTEGRITY_REPAIR_RECORD",
+      "local_excerpt": "evidence/source-register.json#/sources/R01",
+      "notes": "Source locator is private; content is not imported into candidate."
+    },
+    "C01": {
+      "origin": {
+        "repository": null,
+        "commit": null,
+        "path": "current W1 canonicalization order",
+        "sha256": "45db4a2d6a1f03b533d7ea9adaad8135715ee852add5c9fee67f6ca1bd593685"
+      },
+      "authority": "CURRENT_OWNER_ORDER",
+      "local_excerpt": "evidence/source-register.json#/sources/C01",
+      "notes": "Source locator is private; content is not imported into candidate."
+    }
+  },
+  "admitted_records": {
+    "ADR4": {
+      "id": "ADR4",
+      "claim": "ADR-0004 aceita; alvo iPad7,11 arm64, F07 no escopo examinado.",
+      "source_ids": [
+        "S01",
+        "S08",
+        "S09"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Accepted decision and existing binary metadata",
+      "limitations": [
+        "Não reexecuta scan de 57 cabeçalhos nem prova execução do userland."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/ADR4"
+    },
+    "ADR6": {
+      "id": "ADR6",
+      "claim": "ADR-0006 aceita; D1-D4, Metal A619 e ausência de UART física preservados.",
+      "source_ids": [
+        "S11"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Accepted normative criteria",
+      "limitations": [
+        "Nenhuma ADR alterada; nenhum critério físico aprovado por esta cópia."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/ADR6"
+    },
+    "SOFIAR_SCOPE": {
+      "id": "SOFIAR_SCOPE",
+      "claim": "Inclusão documental Sofiar como P1 foi solicitada pelo responsável na W1.0.",
+      "source_ids": [
+        "U01"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Scope authority only",
+      "limitations": [
+        "Identidade e capacidades do aparelho continuam UNKNOWN; não é aceite de nova ADR."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/SOFIAR_SCOPE"
+    },
+    "C043": {
+      "id": "C043",
+      "claim": "Compilação/link DEV 11417 documentados; qualificação oficial e enforcement não demonstrados.",
+      "source_ids": [
+        "S05",
+        "S06",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A10"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PARTIAL",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing DEV build provenance",
+      "limitations": [
+        "Não recompilado na W1; pacote completo conferido na W0, apenas âncora reconferida aqui."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/C043"
+    },
+    "P05": {
+      "id": "P05",
+      "claim": "Primeira entrada real 11417 em QEMU_VIRT documentada e auditada na W0.",
+      "source_ids": [
+        "S23",
+        "S24",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A11"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "QEMU_VERIFIED",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing first-entry experiment",
+      "limitations": [
+        "Não é boot completo, iPadOS ou dispositivo; nenhum QEMU executado na W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/P05"
+    },
+    "P06": {
+      "id": "P06",
+      "claim": "Experimento limitado P0.6: provedor PRNG registra e B2 é resolvido no run aceito.",
+      "source_ids": [
+        "S02",
+        "S07",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "QEMU_VERIFIED",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing accepted bounded experiment",
+      "limitations": [
+        "Cold boot only; 1 CPU; crypto incompleto; host/QEMU/debugger confiáveis; sem nova execução."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/P06"
+    },
+    "B3": {
+      "id": "B3",
+      "claim": "Última falha runtime aceita é image4 interface not available em kern_trustcache.c:584.",
+      "source_ids": [
+        "S02",
+        "S03",
+        "S07"
+      ],
+      "anchor_ids": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "task_state": "BLOCKED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "QEMU_VERIFIED",
+      "epistemic_status": "PROVEN",
+      "gate_status": "BLOCKED",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing P0.6 fail-stop, retained by P0.7",
+      "limitations": [
+        "Nenhum novo blocker runtime confirmado; guard preservado."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/B3"
+    },
+    "P07": {
+      "id": "P07",
+      "claim": "P0.7 opção C; G5/G7 BLOCKED, G6/G8 NOT_RUN, sem implementação de provider.",
+      "source_ids": [
+        "S03",
+        "S04"
+      ],
+      "anchor_ids": [
+        "A04"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "BLOCKED",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Documented provider decision and contracts",
+      "limitations": [
+        "G0/G2/G4 PASS não resolvem B3; ABI, direitos e política executável pendentes."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/P07"
+    },
+    "M7": {
+      "id": "M7",
+      "claim": "Backend M7 possui evidência host; gpu_executed=false.",
+      "source_ids": [
+        "S21",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A07",
+        "A08"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PARTIAL",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Existing backend-only component",
+      "limitations": [
+        "Sem frontend Metal completo, driver físico ou execução GPU."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M7"
+    },
+    "M8": {
+      "id": "M8",
+      "claim": "Organização M8 registrada concluída; journal corresponde à âncora W0.",
+      "source_ids": [
+        "S22",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A09"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Historical organization consistency",
+      "limitations": [
+        "282 arquivos conferidos na W0; não repetidos na W1; hashes não concedem licença."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M8"
+    },
+    "M9_O1": {
+      "id": "M9_O1",
+      "claim": "Relatório O1 host persistente encontrado e hash reconferido.",
+      "source_ids": [
+        "S20",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A05"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Structural oracle on existing private corpus",
+      "limitations": [
+        "Corpus não copiado; oráculo não executado nesta ordem; não GPU."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M9_O1"
+    },
+    "M9_BUILD": {
+      "id": "M9_BUILD",
+      "claim": "Biblioteca frontend arm64 do M9 corresponde à âncora fixada.",
+      "source_ids": [
+        "S20",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A06"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Cross-build artifact identity",
+      "limitations": [
+        "Objeto arm64 não prova execução iPadOS; AIR/NIR/IR3 completo não é Metal físico."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M9_BUILD"
+    },
+    "M9_O2_O3": {
+      "id": "M9_O2_O3",
+      "claim": "Resultados O2/O3 relatados no handoff, sem recibos persistentes qualificados nesta intake.",
+      "source_ids": [
+        "S20",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "REPORTED_ONLY",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Agent report only for these counts",
+      "limitations": [
+        "Não promover 294 componentes, 33/33 ou 9/9 estágios a confirmação independente; não houve nova busca ampla nem rerun."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/M9_O2_O3"
+    },
+    "ANDROID_CPU": {
+      "id": "ANDROID_CPU",
+      "claim": "Inventário CPU histórico Android tem proveniência preservada; âncora de hashes reconferida.",
+      "source_ids": [
+        "S10",
+        "W0"
+      ],
+      "anchor_ids": [
+        "A12"
+      ],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "DEVICE_VERIFIED_ANDROID",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Historical Android read-only inventory",
+      "limitations": [
+        "Nenhum telefone acessado; não prova XNU, EL2 ou 16 KiB."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/ANDROID_CPU"
+    },
+    "GRANULE16K": {
+      "id": "GRANULE16K",
+      "claim": "Suporte 16 KiB do aparelho não qualificado pela sondagem disponível.",
+      "source_ids": [
+        "S10",
+        "S14"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Explicit unknown",
+      "limitations": [
+        "Página Linux de 4 KiB não refuta suporte 16 KiB."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/GRANULE16K"
+    },
+    "EL2": {
+      "id": "EL2",
+      "claim": "Acesso EL2 para o payload do porte continua desconhecido.",
+      "source_ids": [
+        "S10",
+        "S12",
+        "S19"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Explicit unknown",
+      "limitations": [
+        "Reserva hyp não comprova privilégio ou acessibilidade."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/EL2"
+    },
+    "D1": {
+      "id": "D1",
+      "claim": "Critério de entrega D1 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D1"
+    },
+    "D2": {
+      "id": "D2",
+      "claim": "Critério de entrega D2 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D2"
+    },
+    "D3": {
+      "id": "D3",
+      "claim": "Critério de entrega D3 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D3"
+    },
+    "D4": {
+      "id": "D4",
+      "claim": "Critério de entrega D4 sem prova qualificada de satisfação.",
+      "source_ids": [
+        "S11",
+        "S18",
+        "S19",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No qualifying proof in accepted evidence set",
+      "limitations": [
+        "NOT_RUN indica ausência de ensaio qualificado no índice; não afirma impossibilidade nem ausência universal de tentativa."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/D4"
+    },
+    "SOFIAR_ID": {
+      "id": "SOFIAR_ID",
+      "claim": "Identidade física e capacidades Sofiar ainda não inventariadas independentemente.",
+      "source_ids": [
+        "U01",
+        "F01"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "UNKNOWN",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Owner description and external draft",
+      "limitations": [
+        "SM6125/trinket/GPU são declarações de referência; sem leitura do aparelho."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/SOFIAR_ID"
+    },
+    "SOFIAR_XNU": {
+      "id": "SOFIAR_XNU",
+      "claim": "Bootstrap XNU em Sofiar não demonstrado.",
+      "source_ids": [
+        "U01",
+        "F01"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED_ON_DEVICE",
+      "proof_scope": "No admitted device-XNU proof",
+      "limitations": [
+        "Nenhum acesso ao telefone autorizado."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/SOFIAR_XNU"
+    },
+    "PUBLICATION": {
+      "id": "PUBLICATION",
+      "claim": "Licenças, histórico alcançável, privacidade e revisão independente não encerrados.",
+      "source_ids": [
+        "S16",
+        "S17",
+        "W0",
+        "C01"
+      ],
+      "anchor_ids": [],
+      "task_state": "BLOCKED",
+      "task_scope": "documentary or named historical experiment; no new runtime in W1",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "BLOCKED",
+      "functionality": "SCOPED_EXISTING_EVIDENCE",
+      "proof_scope": "Publication boundary",
+      "limitations": [
+        "Licenses, reachable history and independent publication review remain open. Intake repair does not authorize publication."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/PUBLICATION"
+    },
+    "BSP_PLATFORM": {
+      "id": "BSP_PLATFORM",
+      "claim": "CPU, GIC, timer, PSCI e mapa de RAM — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "HOST_CONTRACT_ONLY",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_PLATFORM"
+    },
+    "BSP_DMA": {
+      "id": "BSP_DMA",
+      "claim": "SMMU e DMA — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_DMA"
+    },
+    "BSP_PMIC": {
+      "id": "BSP_PMIC",
+      "claim": "PMIC, clocks e reguladores — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_PMIC"
+    },
+    "BSP_USB": {
+      "id": "BSP_USB",
+      "claim": "USB e observabilidade — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_USB"
+    },
+    "BSP_DISPLAY": {
+      "id": "BSP_DISPLAY",
+      "claim": "Tela e backlight — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_DISPLAY"
+    },
+    "BSP_TOUCH": {
+      "id": "BSP_TOUCH",
+      "claim": "Toque — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_TOUCH"
+    },
+    "BSP_GPU": {
+      "id": "BSP_GPU",
+      "claim": "GPU Adreno 619 e Metal — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "RESEARCH_COMPONENT_UNQUALIFIED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_GPU"
+    },
+    "BSP_STORAGE": {
+      "id": "BSP_STORAGE",
+      "claim": "Armazenamento UFS — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_STORAGE"
+    },
+    "BSP_BATTERY": {
+      "id": "BSP_BATTERY",
+      "claim": "Bateria / fuel gauge — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_BATTERY"
+    },
+    "BSP_CHARGING": {
+      "id": "BSP_CHARGING",
+      "claim": "Carregamento e USB-C — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_CHARGING"
+    },
+    "BSP_WIFI": {
+      "id": "BSP_WIFI",
+      "claim": "Wi-Fi — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_WIFI"
+    },
+    "BSP_BLUETOOTH": {
+      "id": "BSP_BLUETOOTH",
+      "claim": "Bluetooth — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_BLUETOOTH"
+    },
+    "BSP_AUDIO": {
+      "id": "BSP_AUDIO",
+      "claim": "Áudio, microfones e DSP — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_AUDIO"
+    },
+    "BSP_CAMERA": {
+      "id": "BSP_CAMERA",
+      "claim": "Câmeras e ISP — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_CAMERA"
+    },
+    "BSP_MOTION": {
+      "id": "BSP_MOTION",
+      "claim": "Sensores de movimento/luz/proximidade — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INVENTORIED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_MOTION"
+    },
+    "BSP_THERMAL": {
+      "id": "BSP_THERMAL",
+      "claim": "Temperatura, DVFS e suspensão — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INTEGRATED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_THERMAL"
+    },
+    "BSP_MODEM": {
+      "id": "BSP_MODEM",
+      "claim": "Chip/SIM e dados celulares — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_MODEM"
+    },
+    "BSP_VOICE": {
+      "id": "BSP_VOICE",
+      "claim": "Telefonia e VoLTE — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "ADDITIONAL_USERLAND_REQUIRED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_VOICE"
+    },
+    "BSP_GNSS": {
+      "id": "BSP_GNSS",
+      "claim": "GNSS/GPS — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_INVENTORIED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_GNSS"
+    },
+    "BSP_BIOMETRICS": {
+      "id": "BSP_BIOMETRICS",
+      "claim": "Biometria — XNU on Penang not validated",
+      "source_ids": [
+        "S18"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "XNU device qualification",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_PORTED",
+      "proof_scope": "Existing Android inventory and XNU readiness record",
+      "limitations": [
+        "Android bindings are not XNU drivers. No device test in this W1."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/BSP_BIOMETRICS"
+    },
+    "USERLAND": {
+      "id": "USERLAND",
+      "claim": "No original launchd/SpringBoard demonstrated",
+      "source_ids": [
+        "S11",
+        "S15",
+        "W0"
+      ],
+      "anchor_ids": [],
+      "task_state": "NOT_RUN",
+      "task_scope": "original iPadOS userland execution",
+      "environment": "STATIC_ONLY",
+      "epistemic_status": "OPEN",
+      "gate_status": "NOT_RUN",
+      "functionality": "NOT_DEMONSTRATED",
+      "proof_scope": "Accepted delivery criteria and current evidence boundary",
+      "limitations": [
+        "ISA metadata does not demonstrate dyld, IPC, services or apps."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/USERLAND"
+    },
+    "INTAKE": {
+      "id": "INTAKE",
+      "claim": "Foundation v0.1.1 passed byte-integrity repair; original v0.1 failure remains historical",
+      "source_ids": [
+        "R01",
+        "C01"
+      ],
+      "anchor_ids": [],
+      "task_state": "COMPLETED",
+      "task_scope": "documentary input bytes",
+      "environment": "HOST_ONLY",
+      "epistemic_status": "PROVEN",
+      "gate_status": "PASS",
+      "functionality": "BYTE_INTEGRITY_ONLY",
+      "proof_scope": "20 members, 19 identical contents; external digests",
+      "limitations": [
+        "No semantic, runtime, license or publication qualification."
+      ],
+      "proof_ref": "evidence/source-register.json#/admitted_records/INTAKE"
+    }
+  },
+  "selected_facts": {
+    "P06": {
+      "status": "ACCEPTED_BOUNDED_EXPERIMENT",
+      "scope": {
+        "target": "XNU11417.140.69 / QEMU_VIRT / ARM64",
+        "execution": "LOCAL_ONLY",
+        "ci": "NONE",
+        "push": "NONE",
+        "physical_device": "NONE",
+        "host": "WSL Ubuntu24.04 / QEMU8.2.2 TCG / Cortex-A76 /1CPU /4GiB",
+        "trust": "Trusted host/QEMU/debugger; cold boot only",
+        "production_approved": false,
+        "apple_root_of_trust_proven": false,
+        "kernel_userspace_boot_proven": false,
+        "full_kernel_crypto_provider": false
+      },
+      "architecture": {
+        "choice": "A independent provider + C platform entropy boundary",
+        "new_primitive_provenance": "FreeBSD SHA2 BSD-2-Clause; independent spec HMAC_DRBG/glue; MIT provider",
+        "new_apple_implementation_files": [],
+        "algorithms": "SHA256/SHA512/HMAC-SHA256/SHA512; SP800-90A HMAC_DRBG-SHA256",
+        "table_limits": [
+          "MD5",
+          "SHA1",
+          "SHA384",
+          "AES",
+          "DES",
+          "ChaCha20Poly1305",
+          "RSA",
+          "ccrng_fn"
+        ]
+      },
+      "next_blocker": {
+        "id": "B3_IMAGE4_INTERFACE_UNAVAILABLE",
+        "classification": "INTENTIONAL_SECURITY_FAIL_STOP",
+        "function": "trust_cache_runtime_init",
+        "source": "bsd/kern/kern_trustcache.c:582-585",
+        "panic": "image4 interface not available",
+        "pc": "0xfffffe00079531d0",
+        "lr": "0xfffffe000773e34c",
+        "caller": "trust_cache_runtime_init+0xac",
+        "esr_observed": "0x0",
+        "esr_meaning": "Not a CPU abort; ELR is residual and not the blocker.",
+        "security_guard_preserved": true,
+        "future_requirement": "Audit real Image4/AMFI registration, ABI/provenance/license; do not stub authentication or bypass trust cache."
+      }
+    },
+    "P07": {
+      "status": "BLOCKED",
+      "decision": "C",
+      "current_blocker": "B3_IMAGE4_INTERFACE_UNAVAILABLE",
+      "gates": {
+        "G0": {
+          "name": "P06_CHECKPOINT_FROZEN",
+          "status": "PASS",
+          "reason": "Three separate local commits, critical hashes checked; older checkpoints not changed."
+        },
+        "G1": {
+          "name": "IMAGE4_AMFI_ABI_DISCOVERED",
+          "status": "PARTIAL",
+          "reason": "Public kernel contracts/call graph reconstructed. Private provider initialization internals and complete 11417 layout compatibility remain unqualified."
+        },
+        "G2": {
+          "name": "PROVIDER_AVAILABILITY_DETERMINED",
+          "status": "PASS",
+          "reason": "Availability classified for the inspected KDK and public references: no admissible original or independent candidate; not a universal nonexistence claim."
+        },
+        "G3": {
+          "name": "TRUSTCACHE_SECURITY_CONTRACT",
+          "status": "PARTIAL",
+          "reason": "External validation/authorization/lifetime boundaries and threat model defined; no compatible implementation or executable research-root policy validated."
+        },
+        "G4": {
+          "name": "ARCHITECTURE_DECISION",
+          "status": "PASS",
+          "reason": "Option C chosen; A/B preconditions and exact smallest unblocking actions recorded."
+        },
+        "G5": {
+          "name": "PROVIDER_CANDIDATE",
+          "status": "BLOCKED",
+          "reason": "No authorized, ABI-compatible complete candidate."
+        },
+        "G6": {
+          "name": "SECURITY_NEGATIVE_TESTS",
+          "status": "NOT_RUN",
+          "reason": "No candidate. Positive/negative acceptance cases designed only."
+        },
+        "G7": {
+          "name": "QEMU_RUNTIME_INTEGRATION",
+          "status": "BLOCKED",
+          "reason": "G5/G6 prerequisites unmet. Guards unchanged."
+        },
+        "G8": {
+          "name": "NEXT_BOOT_BLOCKER_IDENTIFIED",
+          "status": "NOT_RUN",
+          "reason": "No new run, no new observed blocker; static next AMFI guard is not runtime evidence."
+        }
+      }
+    },
+    "BSP": {
+      "subsystem_count": 20,
+      "xnu_device_validated": 0
+    },
+    "M9": {
+      "source_commit": "2c21032a0f61867880dff055a884a2e492c7f130",
+      "O2_O3_independent_receipts": "OPEN",
+      "gpu_executed": false
+    },
+    "intake": {
+      "version": "0.1.1",
+      "zip_sha256": "aa2b587e6dc189a0ac03f5819e273ba7145d5972c996000d20607073dc0ac70e",
+      "manifest_sha256": "8ce9e7dfa1f1993c07357b9dfc3c1a366d72d398e844327ae51ca17e76c2ceed",
+      "historical_W1_G1": "FAIL",
+      "repair_G1": "PASS",
+      "accepted_scope": "USER_ACCEPTED_BYTES_ONLY"
+    }
+  },
+  "provenance_note": "Selected documentary observations from preserved W0/W1.0/W1.0-R; no raw logs or private payloads imported. Independent runtime reproduction is not performed by this validator.",
+  "artifact_anchors": {
+    "A01": {
+      "sha256": "45ec905e076256a2f5c0c396285fec17c540349ab810e463cadfabfc280e75a4",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A02": {
+      "sha256": "187c62e810e41b0e8bd264bf7236681512903625b8eba6461f295aeb09cf35d1",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A03": {
+      "sha256": "bcb805df751c2621f4bb3e6340f3629f4d1af55eb3fb8b1f34d7ba544f802d16",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A04": {
+      "sha256": "fb60e064b40cc2c07e12e0d45669a44da299cc44f8185c542a9f6e6bc9130bd6",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A05": {
+      "sha256": "49c94f35ab060ccc3641a024343bb9a119f7fa67f420b9e428b34232f32c69e4",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A06": {
+      "sha256": "e397c7edfa65525b3f2b7164082f156b2fffbe7629af6a62f8bfdc10ad90656f",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A07": {
+      "sha256": "597b1235f9185de10d5ea0e3377af79e624c79947c2eaaa1c7e7608922ccc854",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A08": {
+      "sha256": "e46cda80d4b713ea477e7b8c0f4fe8ca65c1d01fcee72d71ee0d18646ecc601f",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A09": {
+      "sha256": "b45d684c752cf616bd0ae400dcf195c92d0ac9627daad6909d6d108b3e01677d",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A10": {
+      "sha256": "eae3753890f9174990556abf3f8c89b4169a790479d77dd8d7ec7211db3c440a",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A11": {
+      "sha256": "4c227335c15798f3821c3c823312d00ad486c57c728823e8e4454474b1152d69",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    },
+    "A12": {
+      "sha256": "4358452ee1545ca8329d57f4e745b186dc8ff4f167bbffc12be7cdbc68259c96",
+      "visibility": "PRIVATE",
+      "verification": "KNOWN_ANCHOR_FROM_W1",
+      "proof_scope": "identity only; no new runtime"
+    }
+  }
+}

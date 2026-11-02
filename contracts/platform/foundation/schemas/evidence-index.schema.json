@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "publication_status",
+    "as_of",
+    "records",
+    "sources",
+    "anchors",
+    "private_artifact_payloads_copied",
+    "independent_runtime_reproduction"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publication_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": "string",
+      "minLength": 1
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "claim",
+          "source_ids",
+          "anchor_ids",
+          "task_state",
+          "task_scope",
+          "environment",
+          "epistemic_status",
+          "gate_status",
+          "functionality",
+          "proof_scope",
+          "limitations",
+          "proof_ref"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "anchor_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "task_state": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "COMPLETED",
+              "BLOCKED",
+              "NOT_RUN",
+              "REPORTED_ONLY",
+              "IN_PROGRESS"
+            ]
+          },
+          "task_scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "environment": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "STATIC_ONLY",
+              "HOST_ONLY",
+              "QEMU_VERIFIED",
+              "DEVICE_VERIFIED_ANDROID",
+              "DEVICE_VERIFIED_XNU",
+              "DEVICE_VERIFIED_USERLAND",
+              "DEVICE_VERIFIED_GPU"
+            ]
+          },
+          "epistemic_status": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "PROVEN",
+              "INFERRED",
+              "OPEN"
+            ]
+          },
+          "gate_status": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "PASS",
+              "FAIL",
+              "BLOCKED",
+              "PARTIAL",
+              "UNKNOWN",
+              "NOT_RUN"
+            ]
+          },
+          "functionality": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proof_scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "proof_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "ref"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "minProperties": 1
+    },
+    "anchors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "sha256",
+          "visibility",
+          "verification",
+          "proof_scope"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "minLength": 1
+          },
+          "visibility": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proof_scope": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "private_artifact_payloads_copied": {
+      "type": "boolean"
+    },
+    "independent_runtime_reproduction": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}
