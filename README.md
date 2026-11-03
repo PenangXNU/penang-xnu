@@ -11,14 +11,14 @@ The design follows the OpenCore idea ([ADR-0007](docs/adr/ADR-0007-original-expe
 
 | Track | Evidence and limit |
 |---|---|
-| Kernel (QEMU_VIRT, research) | XNU 11417.140.69 DEV build boots in QEMU through IOKit matching. Research security provider (B3) and research Platform Expert (B4) verified with positive and negative controls. |
-| Next blocker | B5_PLATFORM_INTERRUPT_CONTROLLER: quiet wait before bsd_init; an interrupt-controller driver, then IOPMGR, are needed. |
+| Kernel (QEMU_VIRT, research) | XNU 11417.140.69 DEV: B3 research trust, B4 IOKit Platform Expert and P0.12 GICv3/SGI1 path verified in QEMU TCG with one CPU. The kernel entered bsd_init but did not finish. |
+| Next blockers | B6_IOPMGR (CPU bootstrap) and B7_PTHREAD_PROVIDER (pthread_init guard), independent; no userland. |
 | Apple compatibility | Not APPLE_IPADOS_SECURITY_COMPATIBLE: own research trust root, no Apple entitlements, SEP or userland yet. |
 | Moto G53 (penang) | Bootloader accepts RAM boot (OBS-D1, Android image). XNU on the device: NOT_RUN. |
 | D1–D4 (ADR-0006) | NOT_DEMONSTRATED. M9 graphics compiler is host only; Sofiar remains P1/UNKNOWN. |
 
-Details: [STATUS.md](STATUS.md), [P0.11](docs/P0.11-STATUS.md), [device observability](docs/DEVICE-OBSERVABILITY.md), [P0.10](docs/P0.10-STATUS.md).
-These are documentary references to pinned research records (P0.11 bed47e6, OBS-D1 6838eaa), not runtime observations made by this release.
+Details: [STATUS.md](STATUS.md), [P0.12](docs/P0.12-STATUS.md), [P0.11](docs/P0.11-STATUS.md), [device observability](docs/DEVICE-OBSERVABILITY.md), [P0.10](docs/P0.10-STATUS.md).
+These are documentary references to pinned research records (P0.12 f889c03, P0.11 bed47e6, OBS-D1 6838eaa), not runtime observations made by this release.
 
 Target: iPadOS 18.7.8 / 22H352 / iPad7,11 / ARM64_ALL (bring your own IPSW); XNU 11417.140.69 at 43a90889846e00bfb5cf1d255cdc0a701a1e05a4.
 Penang: SM4350-AC/holi, Adreno 619. Accepted [ADR-0004](contracts/platform/foundation/docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md), [ADR-0006](contracts/platform/foundation/docs/adr/ADR-0006-delivery-scope-and-tracks.md) and [ADR-0007](docs/adr/ADR-0007-original-experience.md).

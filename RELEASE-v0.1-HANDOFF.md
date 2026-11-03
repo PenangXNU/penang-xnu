@@ -30,13 +30,16 @@ on a device.
 
 ## Open items
 
-1. First CI run on GitHub (after the private push).
-2. Independent review of the private repository.
+1. Existing private GitHub Actions run was reported successful on cb71f98; the changed release candidate still requires its own CI validation.
+2. Independent local review completed; corrected release candidate requires final follow-up and remote verification.
 3. Owner decision on public visibility; enable Private Vulnerability
    Reporting and branch rulesets at the same time.
 4. v0.2: runtime code (P0.11 platform expert and later work orders).
 
 ## Next concrete operation
 
-Push `release/v0.1` as `main` to the private repository
-`PenangXNU/penang-xnu` and let the workflow run.
+Continue the isolated release candidate locally, validate, then request explicit authorization for any remote push or public visibility. No public release tag until all relevant gates pass.
+
+## Finalization candidate (not yet published)
+
+P0.12 GICv3/SGI1 and bsd_init-entry research evidence added as a pinned documentary reference only. B6 IOPMGR and B7 pthread provider are separate blockers. GitHub Actions dependencies are SHA-pinned; SECURITY.md correctly states the PVR channel is not operational until enabled and verified. No kernel, raw trace or device image was imported. Current public visibility requires a separate explicit owner OK.

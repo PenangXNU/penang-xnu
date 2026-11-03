@@ -39,8 +39,9 @@ class CurrentStatusTests(unittest.TestCase):
         self.assertEqual(result["research_b3"], "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED")
         self.assertEqual(result["research_b4"], "B4_RESEARCH_PLATFORM_EXPERT_RUNTIME_VERIFIED")
         self.assertEqual(result["apple_ipados_security"], "NOT_ESTABLISHED")
-        self.assertEqual(result["next_blocker"]["id"], "B5_PLATFORM_INTERRUPT_CONTROLLER")
-        self.assertIsNone(result["next_blocker"]["panic"])
+        self.assertEqual(result["research_gic"]["scope"], "QEMU_VIRT_TCG_SINGLE_CPU")
+        self.assertEqual(result["next_blocker"]["id"], "B6_IOPMGR")
+        self.assertEqual(result["next_blocker"]["independent_blocker"], "B7_PTHREAD_PROVIDER")
         self.assertEqual(result["device_observability"]["xnu_on_device"], "NOT_RUN")
         self.assertEqual(result["hardware"], status.HARDWARE)
 
@@ -107,6 +108,22 @@ class CurrentStatusTests(unittest.TestCase):
 
     def test_failed_p11_check_is_rejected(self):
         self.data["p11"]["positive"]["checks"]["iopanicplatform_not_started"] = False
+        self.rejected()
+
+    def test_p12_scope_cannot_claim_smp(self):
+        self.data["p12"]["smp"] = "QUALIFIED"
+        self.rejected()
+
+    def test_p12_sgi_count_cannot_be_promoted(self):
+        self.data["p12"]["sgi1"]["handler_calls"] = 99
+        self.rejected()
+
+    def test_p12_missing_evidence_rejected(self):
+        self.data["sources"].pop("reports/P0.12-GATES.json")
+        self.rejected()
+
+    def test_p12_bsd_cannot_claim_userland(self):
+        self.data["p12"]["userland"] = "RUNNING"
         self.rejected()
 
     def test_hidden_next_blocker_is_rejected(self):

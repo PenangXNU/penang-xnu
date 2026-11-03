@@ -8,8 +8,8 @@ Inspirado no OpenCore: os binários da Apple ficam idênticos ao original e toda
 
 ## Estado (v0.1.0)
 
-- Kernel XNU 11417.140.69 (build DEV) no QEMU até o matching do IOKit, com provider de segurança de pesquisa (B3) e Platform Expert de pesquisa (B4) verificados, incluindo controles negativos.
-- Próximo bloqueio: **B5**, driver de controlador de interrupções e depois `IOPMGR`.
+- Kernel XNU 11417.140.69 (build DEV) no QEMU com B3/B4 verificados e GICv3/SGI1 da P0.12 verificados em uma CPU; o kernel entrou em bsd_init, sem concluí-lo.
+- Próximos bloqueios independentes: **B6 IOPMGR** e **B7 provider pthread**. Não há userland funcional.
 - Moto G53: o bootloader aceita `fastboot boot` (imagem Android do próprio aparelho). O XNU ainda **não** rodou no aparelho.
 - Nada disso é compatibilidade de segurança Apple; os critérios D1–D4 (SpringBoard, Metal, toque) ainda não foram atingidos.
 

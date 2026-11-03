@@ -13,30 +13,108 @@
   "commits": {
     "p10": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
     "p11": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
-    "device_obs_d1": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969"
+    "device_obs_d1": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969",
+    "p12": "f889c037314581d0df9baefef87a4061be594b7a"
   },
   "sources": {
-    "reports/P0.10-HANDOFF.md": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "af5002117d4142358d20bf7f9b64874545a87068b7611f7f8dc1acabf9e0ac57", "payload_included": false},
-    "reports/P0.10-GATES.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "c0518917aef62ad52af60f7dc86b25dce58fe5f9617c6d6602f3a2dc720fb164", "payload_included": false},
-    "reports/P0.10-TEST-RESULTS.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "52d8f909881426b72c22925d30ac5f7f2b78ea73319e4c24eedc31bae26c5d3c", "payload_included": false},
-    "reports/p10/qemu-check-accept.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "6a597f203f2f3be02b55efb2c613b8442e3243cbac73e24df491bc4f5dee6acb", "payload_included": false},
-    "reports/p10/qemu-check-reject.json": {"commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0", "sha256": "9660abbb7501ad5067faba2df0409e3d2243b4240b0ad6e568f8a79e920da7ae", "payload_included": false},
-    "reports/P0.11-HANDOFF.md": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "56925d5ed9df8850598be126417163c9fbfbd4fde0fbaad23f880c3406907d66", "payload_included": false},
-    "reports/P0.11-GATES.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "23a69baff9a0f1c053f129a69176eb5729703e2861651450cd3523f646779178", "payload_included": false},
-    "reports/P0.11-TEST-RESULTS.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "cbf8fb47f1a7bf1b4e28b22bb12650c9b60d743b550c6585932b0a6241dd28e3", "payload_included": false},
-    "reports/p11/qemu-check-positive.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "1743418791fe0d79ba03d7e45ecd10ea28efcb3b756d75ea9c62dc6481030449", "payload_included": false},
-    "reports/p11/qemu-check-unknown-platform.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "b338c288ba02602de0505625a5455d4944a54ec9579a74a158939ecaa2931acd", "payload_included": false},
-    "reports/p11/qemu-check-identity-refused.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "449303d5c3d9048d704eeb496a239bf5d0c56413945942d8fd26f408dca56af5", "payload_included": false},
-    "contracts/p11/matching-contract.json": {"commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f", "sha256": "f90df406f45c0cb2c99dccd385e5c2c14b1382e7eb2eafa7f86990ce9ef71191", "payload_included": false},
-    "reports/penang/D1-PENANG-FASTBOOT-BOOT-20261102.md": {"commit": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969", "sha256": "efd2719c1e53d87b9118e48932a2820bfee6d9de8ccbb1c3b5fe8f05dcddfd98", "payload_included": false},
-    "contracts/penang/hw-facts-20261102.json": {"commit": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969", "sha256": "6b104923b97fb9d63dbf11712cd193564c169e45556d107564a9c464cbe15f35", "payload_included": false}
+    "reports/P0.10-HANDOFF.md": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "af5002117d4142358d20bf7f9b64874545a87068b7611f7f8dc1acabf9e0ac57",
+      "payload_included": false
+    },
+    "reports/P0.10-GATES.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "c0518917aef62ad52af60f7dc86b25dce58fe5f9617c6d6602f3a2dc720fb164",
+      "payload_included": false
+    },
+    "reports/P0.10-TEST-RESULTS.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "52d8f909881426b72c22925d30ac5f7f2b78ea73319e4c24eedc31bae26c5d3c",
+      "payload_included": false
+    },
+    "reports/p10/qemu-check-accept.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "6a597f203f2f3be02b55efb2c613b8442e3243cbac73e24df491bc4f5dee6acb",
+      "payload_included": false
+    },
+    "reports/p10/qemu-check-reject.json": {
+      "commit": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+      "sha256": "9660abbb7501ad5067faba2df0409e3d2243b4240b0ad6e568f8a79e920da7ae",
+      "payload_included": false
+    },
+    "reports/P0.11-HANDOFF.md": {
+      "commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+      "sha256": "56925d5ed9df8850598be126417163c9fbfbd4fde0fbaad23f880c3406907d66",
+      "payload_included": false
+    },
+    "reports/P0.11-GATES.json": {
+      "commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+      "sha256": "23a69baff9a0f1c053f129a69176eb5729703e2861651450cd3523f646779178",
+      "payload_included": false
+    },
+    "reports/P0.11-TEST-RESULTS.json": {
+      "commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+      "sha256": "cbf8fb47f1a7bf1b4e28b22bb12650c9b60d743b550c6585932b0a6241dd28e3",
+      "payload_included": false
+    },
+    "reports/p11/qemu-check-positive.json": {
+      "commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+      "sha256": "1743418791fe0d79ba03d7e45ecd10ea28efcb3b756d75ea9c62dc6481030449",
+      "payload_included": false
+    },
+    "reports/p11/qemu-check-unknown-platform.json": {
+      "commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+      "sha256": "b338c288ba02602de0505625a5455d4944a54ec9579a74a158939ecaa2931acd",
+      "payload_included": false
+    },
+    "reports/p11/qemu-check-identity-refused.json": {
+      "commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+      "sha256": "449303d5c3d9048d704eeb496a239bf5d0c56413945942d8fd26f408dca56af5",
+      "payload_included": false
+    },
+    "contracts/p11/matching-contract.json": {
+      "commit": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+      "sha256": "f90df406f45c0cb2c99dccd385e5c2c14b1382e7eb2eafa7f86990ce9ef71191",
+      "payload_included": false
+    },
+    "reports/penang/D1-PENANG-FASTBOOT-BOOT-20261102.md": {
+      "commit": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969",
+      "sha256": "efd2719c1e53d87b9118e48932a2820bfee6d9de8ccbb1c3b5fe8f05dcddfd98",
+      "payload_included": false
+    },
+    "contracts/penang/hw-facts-20261102.json": {
+      "commit": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969",
+      "sha256": "6b104923b97fb9d63dbf11712cd193564c169e45556d107564a9c464cbe15f35",
+      "payload_included": false
+    },
+    "reports/P0.12-HANDOFF.md": {
+      "commit": "f889c037314581d0df9baefef87a4061be594b7a",
+      "sha256": "eec1856c1ef84a13cd7da288db566d3de42512704274bedc9e583840c12a8a97",
+      "payload_included": false
+    },
+    "reports/P0.12-GATES.json": {
+      "commit": "f889c037314581d0df9baefef87a4061be594b7a",
+      "sha256": "e5f2833a6736b4aa196ea99b81577726149ee055b6b12f9ac9ffa62093fa5268",
+      "payload_included": false
+    },
+    "reports/P0.12-TEST-RESULTS.json": {
+      "commit": "f889c037314581d0df9baefef87a4061be594b7a",
+      "sha256": "73b08c25bbe2629183c50a9df5753c025e98c0db65956f7ba22bc4674edb85b8",
+      "payload_included": false
+    },
+    "reports/p12/qemu-v3-positive-1.final-qualified.json": {
+      "commit": "f889c037314581d0df9baefef87a4061be594b7a",
+      "sha256": "1aa493a23cf42b5ad0aee2e5001e731a65a75643a24478d7ceef91083f379170",
+      "payload_included": false
+    }
   },
   "environment": {
     "reported": "QEMU_VIRT DEV (TCG, cortex-a76, 1 CPU, 4 GiB)",
     "kernel": "XNU 11417.140.69 RELEASE_ARM64_QEMU_VIRT, DEV build, non-PAC",
     "official_build": false,
     "p10_kernel_sha256": "ed9b9c5b0bb70871c64c2eb8896a59bc839d350bc2577338727aaf725d537da8",
-    "p11_kernel_sha256": "8f1063388260a063367b19f20df0fabfc09705dcf56f943952a24dc83d715a13"
+    "p11_kernel_sha256": "8f1063388260a063367b19f20df0fabfc09705dcf56f943952a24dc83d715a13",
+    "p12_kernel_sha256": "ed8b1f7c39d55fca05277c82dc4e3b9c6ded081668ae1fc331d5621a0a252054"
   },
   "p09": {
     "state": "UNIFIED_CRYPTO_IN_DEV_KERNEL",
@@ -57,14 +135,38 @@
     "complete_userland_support": false,
     "positive": {
       "status": "PASS",
-      "checks": {"state_observed": true, "trust_cache_placed_by_loader": true, "p09_crypto_lines_unchanged": true, "prng_registered": true, "providers_registered_once": true, "order_crypto_then_research_then_trustcache": true, "b3_panic_absent": true, "research_tc_loader_reached": true, "static_trust_cache_loaded": true, "no_trust_cache_failure": true, "next_stop_recorded": true},
+      "checks": {
+        "state_observed": true,
+        "trust_cache_placed_by_loader": true,
+        "p09_crypto_lines_unchanged": true,
+        "prng_registered": true,
+        "providers_registered_once": true,
+        "order_crypto_then_research_then_trustcache": true,
+        "b3_panic_absent": true,
+        "research_tc_loader_reached": true,
+        "static_trust_cache_loaded": true,
+        "no_trust_cache_failure": true,
+        "next_stop_recorded": true
+      },
       "result_sha256": "73b7822ba24ddef9cc6f24e090669f24cca331dc72131b6a096c0ed6bb77a58a",
       "serial_sha256": "bcab96d6775323390fa733b7248924112f0fb1b701a3a6d4687627f04984844d",
       "payloads_included": false
     },
     "negative": {
       "status": "PASS",
-      "checks": {"state_observed": true, "trust_cache_placed_by_loader": true, "p09_crypto_lines_unchanged": true, "prng_registered": true, "providers_registered_once": true, "order_crypto_then_research_then_trustcache": true, "b3_panic_absent": true, "research_tc_loader_reached": true, "unauthorized_module_refused": true, "fail_closed_guard": true, "nothing_loaded": true},
+      "checks": {
+        "state_observed": true,
+        "trust_cache_placed_by_loader": true,
+        "p09_crypto_lines_unchanged": true,
+        "prng_registered": true,
+        "providers_registered_once": true,
+        "order_crypto_then_research_then_trustcache": true,
+        "b3_panic_absent": true,
+        "research_tc_loader_reached": true,
+        "unauthorized_module_refused": true,
+        "fail_closed_guard": true,
+        "nothing_loaded": true
+      },
       "result_sha256": "8fc5572bd3e5b2a2a79a24101a7a18526622f56c142d213c894fdf3c1eed54fc",
       "serial_sha256": "bffda419ab9fc310001c51ec9a4ef193a541975c597d88671740eda338138eb6",
       "reason": "NON_PROVISIONED_SIGNER_REFUSED",
@@ -78,38 +180,79 @@
     "fallback_preserved": "IOPanicPlatform",
     "apple_platform_identity_claimed": false,
     "userland_executed": false,
-    "not_provided": ["NVRAM", "RTC", "interrupt controller", "CPU power manager", "restart hardware", "storage"],
+    "not_provided": [
+      "NVRAM",
+      "RTC",
+      "interrupt controller",
+      "CPU power manager",
+      "restart hardware",
+      "storage"
+    ],
     "positive": {
       "status": "PASS",
-      "checks": {"state_observed": true, "p09_crypto_lines_unchanged": true, "research_providers_registered_once": true, "research_trust_cache_loaded": true, "iokit_matching_started": true, "device_tree_unchanged": true, "probe_accepts": true, "start_runs_and_returns_true": true, "registered_for_matching": true, "iopanicplatform_not_started": true, "b4_panic_absent": true, "no_refusal_lines": true},
+      "checks": {
+        "state_observed": true,
+        "p09_crypto_lines_unchanged": true,
+        "research_providers_registered_once": true,
+        "research_trust_cache_loaded": true,
+        "iokit_matching_started": true,
+        "device_tree_unchanged": true,
+        "probe_accepts": true,
+        "start_runs_and_returns_true": true,
+        "registered_for_matching": true,
+        "iopanicplatform_not_started": true,
+        "b4_panic_absent": true,
+        "no_refusal_lines": true
+      },
       "result_sha256": "9823a035368944a9edbc1c6d33a6de42f503112695cd79492aedd2a03e6b1b10",
       "serial_sha256": "da12ffd67a9049379e38d5c16d19c6d862697597fbb0f60ade754105abc36ffb",
       "payloads_included": false
     },
     "unknown_platform": {
       "status": "PASS",
-      "checks": {"state_observed": true, "p09_crypto_lines_unchanged": true, "research_providers_registered_once": true, "research_trust_cache_loaded": true, "iokit_matching_started": true, "negative_control_declared": true, "fallback_panic": true, "iopanicplatform_started": true, "platform_expert_not_started": true, "personality_not_matched": true},
+      "checks": {
+        "state_observed": true,
+        "p09_crypto_lines_unchanged": true,
+        "research_providers_registered_once": true,
+        "research_trust_cache_loaded": true,
+        "iokit_matching_started": true,
+        "negative_control_declared": true,
+        "fallback_panic": true,
+        "iopanicplatform_started": true,
+        "platform_expert_not_started": true,
+        "personality_not_matched": true
+      },
       "result_sha256": "5bf63d646def36a607e9379318d140b3da869b0b0a94e023046ff89a0e899731",
       "serial_sha256": "ecf064992a3c9b6c973ab4d63aa91428e468f98e6448db396bfeb465afcd99db",
       "payloads_included": false
     },
     "identity_refused": {
       "status": "PASS",
-      "checks": {"state_observed": true, "p09_crypto_lines_unchanged": true, "research_providers_registered_once": true, "research_trust_cache_loaded": true, "iokit_matching_started": true, "negative_control_declared": true, "fallback_panic": true, "iopanicplatform_started": true, "platform_expert_not_started": true, "probe_refused_with_defined_error": true, "refusal_before_fallback": true},
+      "checks": {
+        "state_observed": true,
+        "p09_crypto_lines_unchanged": true,
+        "research_providers_registered_once": true,
+        "research_trust_cache_loaded": true,
+        "iokit_matching_started": true,
+        "negative_control_declared": true,
+        "fallback_panic": true,
+        "iopanicplatform_started": true,
+        "platform_expert_not_started": true,
+        "probe_refused_with_defined_error": true,
+        "refusal_before_fallback": true
+      },
       "result_sha256": "e20e6a99a46d72235aebc22d83ac81f72e0095e8adc07c2abee2be97596501e5",
       "serial_sha256": "2ea5ff8d744220d6a199a16ba1adb310a27c4f590f52355f714218527a5cf331",
       "payloads_included": false
     }
   },
   "next_blocker": {
-    "id": "B5_PLATFORM_INTERRUPT_CONTROLLER",
-    "stage": "QUIET_WAIT_BEFORE_BSD_INIT",
-    "panic": null,
-    "waits": [
-      "cpu_boot_thread in PassthruInterruptController::waitForChildController",
-      "kernel_bootstrap_thread in ml_wait_max_cpus (kperf_init_early)"
-    ],
-    "later_dependency": "IOPMGR"
+    "id": "B6_IOPMGR",
+    "independent_blocker": "B7_PTHREAD_PROVIDER",
+    "stage": "BSD_INIT_ENTERED_NOT_COMPLETED",
+    "cpu_thread": "WAITING_FOR_IOPMGR",
+    "bsd_thread": "PTHREAD_INIT_PROVIDER_GUARD",
+    "userland": "NOT_RUN"
   },
   "device_observability": {
     "gate": "OBS-D1",
@@ -139,7 +282,9 @@
     "No PPL/SPTM/TXM monitor; arbitrary kernel write is outside the research protection claim",
     "Wycheproof acceptable small/mixed-order public-key vectors are accepted; anchors are fixed provisioned keys",
     "The platform expert serves the QEMU_VIRT research device tree only; the published device-tree nubs have no drivers",
-    "OBS-D1 booted Android, not XNU, on the phone"
+    "OBS-D1 booted Android, not XNU, on the phone",
+    "P0.12 GICv3/SGI1 verified only in QEMU TCG with one CPU; no SMP, scheduler IPIs or real device",
+    "P0.12 entered bsd_init but did not complete it; B6 IOPMGR and B7 pthread provider remain separate"
   ],
   "monocypher": {
     "used_in_p10": "4.0.2",
@@ -157,5 +302,22 @@
       "https://monocypher.org/quality-assurance/disclosures"
     ],
     "consulted_at": "2026-11-02"
+  },
+  "p12": {
+    "research_state": "GIC_RUNTIME_VERIFIED",
+    "scope": "QEMU_VIRT_TCG_SINGLE_CPU",
+    "gicv3_controller": "IMPLEMENTED_AND_RUNTIME_TESTED",
+    "sgi1": {
+      "handler_calls": 1,
+      "eoi_calls": 1,
+      "observation_window_seconds": 30.218707758
+    },
+    "ml_set_max_cpus": 1,
+    "bsd_init": "ENTERED_NOT_COMPLETED",
+    "smp": "NOT_QUALIFIED",
+    "spi": "IMPLEMENTED_NOT_DELIVERY_TESTED",
+    "ipi_scheduler": "NOT_IMPLEMENTED",
+    "device_xnu": "NOT_RUN",
+    "userland": "NOT_RUN"
   }
 }

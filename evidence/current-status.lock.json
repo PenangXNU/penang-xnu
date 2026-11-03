@@ -3,8 +3,8 @@
   "purpose": "v0.1.0 documentary projection and derivation; consistency only, not signature or runtime proof",
   "review_required_for_changes": true,
   "files": {
-    "evidence/current-status-sources.json": "f68eb5cf67cd3bee43693a19d41751ac03db8849b5d3fa370eb3d6b207eb403e",
-    "schemas/current-status.schema.json": "fd1544793f459e278729c5f1cc90e389869d569bcad863602f498d90e9ede205",
-    "scripts/current_status.py": "cd5239fc2947060bd2afd927d7ba5c6b56a02adf87a5490a4442d0323004d0e7"
+    "evidence/current-status-sources.json": "499a963de023055fc10870a710608955ef9d5690fe97e4d1f7f5d878ab066de2",
+    "schemas/current-status.schema.json": "b4378131d18b9eabdf1baa92e9015aefbb38493e72bc3ad13e6df2fccd7a5076",
+    "scripts/current_status.py": "27a5720612f505fc7508793b100c97a4c8fde370eab4b850b163512eab445639"
   }
 }
