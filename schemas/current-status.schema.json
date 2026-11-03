@@ -1,55 +1,155 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["$schema", "schema_version", "release", "as_of", "research_commits", "input_pins", "evidence_scope",
-               "environment", "p09", "research_b3", "research_b4", "apple_ipados_security", "next_blocker",
-               "interface", "device_observability", "hardware", "monocypher", "publication_status", "decision_status"],
+  "required": [
+    "$schema",
+    "schema_version",
+    "release",
+    "as_of",
+    "research_commits",
+    "input_pins",
+    "evidence_scope",
+    "environment",
+    "p09",
+    "research_b3",
+    "research_b4",
+    "research_gic",
+    "apple_ipados_security",
+    "next_blocker",
+    "interface",
+    "device_observability",
+    "hardware",
+    "monocypher",
+    "publication_status",
+    "decision_status"
+  ],
   "properties": {
-    "$schema": {"const": "../schemas/current-status.schema.json"},
-    "schema_version": {"const": "2.0"},
-    "release": {"const": "v0.1.0"},
-    "as_of": {"const": "2026-11-02"},
-    "research_commits": {"const": {
-      "p10": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
-      "p11": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
-      "device_obs_d1": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969"}},
-    "input_pins": {"type": "object", "minProperties": 3, "maxProperties": 3,
-                   "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
-    "evidence_scope": {"const": "DOCUMENTARY_REFERENCE_NOT_REEXECUTED"},
-    "environment": {"const": "QEMU_VIRT_DEV"},
-    "p09": {"const": "UNIFIED_CRYPTO_REGRESSION_DOCUMENTED"},
-    "research_b3": {"const": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED"},
-    "research_b4": {"const": "B4_RESEARCH_PLATFORM_EXPERT_RUNTIME_VERIFIED"},
-    "apple_ipados_security": {"const": "NOT_ESTABLISHED"},
-    "next_blocker": {"const": {
-      "id": "B5_PLATFORM_INTERRUPT_CONTROLLER",
-      "stage": "QUIET_WAIT_BEFORE_BSD_INIT",
-      "panic": null,
-      "waits": ["cpu_boot_thread in PassthruInterruptController::waitForChildController",
-                "kernel_bootstrap_thread in ml_wait_max_cpus (kperf_init_early)"],
-      "later_dependency": "IOPMGR"}},
-    "interface": {"const": {"declared_version": 7, "policy": "RESTRICTED_RESEARCH_OPERATIONS",
-                            "entitlements": false, "sep": false, "full_userland": false}},
-    "device_observability": {"const": {
-      "gate": "OBS-D1",
-      "gate_source": "ADR-0005 operational gate 'D1'; not the ADR-0006 delivery criterion D1",
-      "image": "BYTE_IDENTICAL_COPY_OF_THE_FLASHED_BOOT_A_WITH_THE_OWNER_ROOT_PATCH_NOT_FACTORY_IMAGE",
-      "fastboot_boot_accepted": true,
-      "android_booted": true,
-      "kernel_arguments_identical_to_flash_boot": true,
-      "partitions_and_slot_unchanged": true,
-      "android_pstore_records_preserved": true,
-      "xnu_on_device": "NOT_RUN",
-      "tgran16": "UNKNOWN",
-      "watchdog_at_handoff": "UNKNOWN",
-      "raw_data_included": false}},
-    "hardware": {"const": {"Moto_G53_XNU_boot": "NOT_DEMONSTRATED", "D1_D4": "NOT_DEMONSTRATED", "M9": "HOST_ONLY",
-                           "Sofiar": "P1_UNKNOWN", "physical_GPU_progress": false, "SpringBoard_demonstrated": false}},
-    "monocypher": {"const": {"research_version": "4.0.2", "kernel_role": "VERIFICATION_NOT_SIGNING_AS_DOCUMENTED",
-                             "upstream_release": "4.0.3", "release_date": "2026-06-15",
-                             "impact": "INDEPENDENT_TECHNICAL_REVIEW_REQUIRED"}},
-    "publication_status": {"const": "OWNER_DECISIONS_RECORDED"},
-    "decision_status": {"const": "PUBLIC_VISIBILITY_AFTER_INDEPENDENT_REVIEW"}
+    "$schema": {
+      "const": "../schemas/current-status.schema.json"
+    },
+    "schema_version": {
+      "const": "2.0"
+    },
+    "release": {
+      "const": "v0.1.0"
+    },
+    "as_of": {
+      "const": "2026-11-02"
+    },
+    "research_commits": {
+      "const": {
+        "p10": "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0",
+        "p11": "bed47e61df1edbda3cb26d868770b0df27ecb94f",
+        "device_obs_d1": "6838eaab4fd5ceefa9b9fd3f372500f2d393f969",
+        "p12": "f889c037314581d0df9baefef87a4061be594b7a"
+      }
+    },
+    "input_pins": {
+      "type": "object",
+      "minProperties": 3,
+      "maxProperties": 3,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "evidence_scope": {
+      "const": "DOCUMENTARY_REFERENCE_NOT_REEXECUTED"
+    },
+    "environment": {
+      "const": "QEMU_VIRT_DEV"
+    },
+    "p09": {
+      "const": "UNIFIED_CRYPTO_REGRESSION_DOCUMENTED"
+    },
+    "research_b3": {
+      "const": "B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED"
+    },
+    "research_b4": {
+      "const": "B4_RESEARCH_PLATFORM_EXPERT_RUNTIME_VERIFIED"
+    },
+    "apple_ipados_security": {
+      "const": "NOT_ESTABLISHED"
+    },
+    "next_blocker": {
+      "const": {
+        "id": "B6_IOPMGR",
+        "independent_blocker": "B7_PTHREAD_PROVIDER",
+        "stage": "BSD_INIT_ENTERED_NOT_COMPLETED",
+        "cpu_thread": "WAITING_FOR_IOPMGR",
+        "bsd_thread": "PTHREAD_INIT_PROVIDER_GUARD",
+        "userland": "NOT_RUN"
+      }
+    },
+    "interface": {
+      "const": {
+        "declared_version": 7,
+        "policy": "RESTRICTED_RESEARCH_OPERATIONS",
+        "entitlements": false,
+        "sep": false,
+        "full_userland": false
+      }
+    },
+    "device_observability": {
+      "const": {
+        "gate": "OBS-D1",
+        "gate_source": "ADR-0005 operational gate 'D1'; not the ADR-0006 delivery criterion D1",
+        "image": "BYTE_IDENTICAL_COPY_OF_THE_FLASHED_BOOT_A_WITH_THE_OWNER_ROOT_PATCH_NOT_FACTORY_IMAGE",
+        "fastboot_boot_accepted": true,
+        "android_booted": true,
+        "kernel_arguments_identical_to_flash_boot": true,
+        "partitions_and_slot_unchanged": true,
+        "android_pstore_records_preserved": true,
+        "xnu_on_device": "NOT_RUN",
+        "tgran16": "UNKNOWN",
+        "watchdog_at_handoff": "UNKNOWN",
+        "raw_data_included": false
+      }
+    },
+    "hardware": {
+      "const": {
+        "Moto_G53_XNU_boot": "NOT_DEMONSTRATED",
+        "D1_D4": "NOT_DEMONSTRATED",
+        "M9": "HOST_ONLY",
+        "Sofiar": "P1_UNKNOWN",
+        "physical_GPU_progress": false,
+        "SpringBoard_demonstrated": false
+      }
+    },
+    "monocypher": {
+      "const": {
+        "research_version": "4.0.2",
+        "kernel_role": "VERIFICATION_NOT_SIGNING_AS_DOCUMENTED",
+        "upstream_release": "4.0.3",
+        "release_date": "2026-06-15",
+        "impact": "INDEPENDENT_TECHNICAL_REVIEW_REQUIRED"
+      }
+    },
+    "publication_status": {
+      "const": "OWNER_DECISIONS_RECORDED"
+    },
+    "decision_status": {
+      "const": "PUBLIC_VISIBILITY_AFTER_INDEPENDENT_REVIEW"
+    },
+    "research_gic": {
+      "const": {
+        "research_state": "GIC_RUNTIME_VERIFIED",
+        "scope": "QEMU_VIRT_TCG_SINGLE_CPU",
+        "gicv3_controller": "IMPLEMENTED_AND_RUNTIME_TESTED",
+        "sgi1": {
+          "handler_calls": 1,
+          "eoi_calls": 1,
+          "observation_window_seconds": 30.218707758
+        },
+        "ml_set_max_cpus": 1,
+        "bsd_init": "ENTERED_NOT_COMPLETED",
+        "smp": "NOT_QUALIFIED",
+        "spi": "IMPLEMENTED_NOT_DELIVERY_TESTED",
+        "ipi_scheduler": "NOT_IMPLEMENTED",
+        "device_xnu": "NOT_RUN",
+        "userland": "NOT_RUN"
+      }
+    }
   },
   "additionalProperties": false
 }

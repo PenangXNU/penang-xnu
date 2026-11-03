@@ -20,6 +20,7 @@ RELEASE = "v0.1.0"
 AS_OF = "2026-11-02"
 P10_PIN = "afa7ef6acfb89bf5ae2f3d0c67e7a775096f39b0"
 P11_PIN = "bed47e61df1edbda3cb26d868770b0df27ecb94f"
+P12_PIN = "f889c037314581d0df9baefef87a4061be594b7a"
 D1_PIN = "6838eaab4fd5ceefa9b9fd3f372500f2d393f969"
 RC2_COMMIT = "9dee1e57e0ae2a81f0e89a7cceeb283f6abbfad0"
 SOURCE = "evidence/current-status-sources.json"
@@ -40,6 +41,10 @@ EXPECTED = {
  "reports/p11/qemu-check-unknown-platform.json": (P11_PIN, "b338c288ba02602de0505625a5455d4944a54ec9579a74a158939ecaa2931acd"),
  "reports/p11/qemu-check-identity-refused.json": (P11_PIN, "449303d5c3d9048d704eeb496a239bf5d0c56413945942d8fd26f408dca56af5"),
  "contracts/p11/matching-contract.json": (P11_PIN, "f90df406f45c0cb2c99dccd385e5c2c14b1382e7eb2eafa7f86990ce9ef71191"),
+ "reports/P0.12-HANDOFF.md": (P12_PIN, "eec1856c1ef84a13cd7da288db566d3de42512704274bedc9e583840c12a8a97"),
+ "reports/P0.12-GATES.json": (P12_PIN, "e5f2833a6736b4aa196ea99b81577726149ee055b6b12f9ac9ffa62093fa5268"),
+ "reports/P0.12-TEST-RESULTS.json": (P12_PIN, "73b08c25bbe2629183c50a9df5753c025e98c0db65956f7ba22bc4674edb85b8"),
+ "reports/p12/qemu-v3-positive-1.final-qualified.json": (P12_PIN, "1aa493a23cf42b5ad0aee2e5001e731a65a75643a24478d7ceef91083f379170"),
  "reports/penang/D1-PENANG-FASTBOOT-BOOT-20261102.md": (D1_PIN, "efd2719c1e53d87b9118e48932a2820bfee6d9de8ccbb1c3b5fe8f05dcddfd98"),
  "contracts/penang/hw-facts-20261102.json": (D1_PIN, "6b104923b97fb9d63dbf11712cd193564c169e45556d107564a9c464cbe15f35"),
 }
@@ -65,10 +70,8 @@ CHECKS = {
     "iopanicplatform_started", "platform_expert_not_started", "probe_refused_with_defined_error",
     "refusal_before_fallback"},
 }
-NEXT_BLOCKER = {"id": "B5_PLATFORM_INTERRUPT_CONTROLLER", "stage": "QUIET_WAIT_BEFORE_BSD_INIT", "panic": None,
-                "waits": ["cpu_boot_thread in PassthruInterruptController::waitForChildController",
-                          "kernel_bootstrap_thread in ml_wait_max_cpus (kperf_init_early)"],
-                "later_dependency": "IOPMGR"}
+P12_STATE = {'research_state': 'GIC_RUNTIME_VERIFIED', 'scope': 'QEMU_VIRT_TCG_SINGLE_CPU', 'gicv3_controller': 'IMPLEMENTED_AND_RUNTIME_TESTED', 'sgi1': {'handler_calls': 1, 'eoi_calls': 1, 'observation_window_seconds': 30.218707758}, 'ml_set_max_cpus': 1, 'bsd_init': 'ENTERED_NOT_COMPLETED', 'smp': 'NOT_QUALIFIED', 'spi': 'IMPLEMENTED_NOT_DELIVERY_TESTED', 'ipi_scheduler': 'NOT_IMPLEMENTED', 'device_xnu': 'NOT_RUN', 'userland': 'NOT_RUN'}
+NEXT_BLOCKER = {'id': 'B6_IOPMGR', 'independent_blocker': 'B7_PTHREAD_PROVIDER', 'stage': 'BSD_INIT_ENTERED_NOT_COMPLETED', 'cpu_thread': 'WAITING_FOR_IOPMGR', 'bsd_thread': 'PTHREAD_INIT_PROVIDER_GUARD', 'userland': 'NOT_RUN'}
 DEVICE = {"gate": "OBS-D1", "gate_source": "ADR-0005 operational gate 'D1'; not the ADR-0006 delivery criterion D1",
           "image": "BYTE_IDENTICAL_COPY_OF_THE_FLASHED_BOOT_A_WITH_THE_OWNER_ROOT_PATCH_NOT_FACTORY_IMAGE",
           "fastboot_boot_accepted": True, "android_booted": True, "kernel_arguments_identical_to_flash_boot": True,
@@ -110,7 +113,7 @@ def validate_projection(d):
     require(d["schema_version"] == "2.0" and d["release"] == RELEASE and d["frozen_at"] == AS_OF, "release is frozen")
     require(d["previous_snapshot"]["release"] == "W4-RC2" and d["previous_snapshot"]["commit"] == RC2_COMMIT,
             "RC2 history reference changed")
-    require(d["commits"] == {"p10": P10_PIN, "p11": P11_PIN, "device_obs_d1": D1_PIN}, "research pins are frozen")
+    require(d["commits"] == {"p10": P10_PIN, "p11": P11_PIN, "p12": P12_PIN, "device_obs_d1": D1_PIN}, "research pins are frozen")
     require(d["runtime_reproduced_by_release"] is False, "documentary reference is not a new runtime test")
     require(d["evidence_kind"] == "DOCUMENTARY_REFERENCE_TO_QEMU_AND_DEVICE_RESULTS", "evidence scope changed")
     require(set(d["sources"]) == set(EXPECTED), "exact pinned documents required")
@@ -135,6 +138,7 @@ def validate_projection(d):
                                        "restart hardware", "storage"}, "provided-service scope changed")
     for (group, name), fields in CHECKS.items():
         check_result(group + "." + name, d[group][name], fields)
+    require(d["p12"] == P12_STATE, "P0.12 scope or metrics changed")
     require(d["next_blocker"] == NEXT_BLOCKER, "next blocker changed")
     require(d["device_observability"] == DEVICE, "device observability scope changed")
     require(d["hardware"] == HARDWARE, "hardware maturity changed")
@@ -170,6 +174,7 @@ def derive(d, pins):
         "evidence_scope": "DOCUMENTARY_REFERENCE_NOT_REEXECUTED", "environment": "QEMU_VIRT_DEV",
         "p09": "UNIFIED_CRYPTO_REGRESSION_DOCUMENTED",
         "research_b3": d["p10"]["research_state"], "research_b4": d["p11"]["research_state"],
+        "research_gic": d["p12"],
         "apple_ipados_security": "NOT_ESTABLISHED", "next_blocker": d["next_blocker"],
         "interface": {"declared_version": 7, "policy": "RESTRICTED_RESEARCH_OPERATIONS",
                       "entitlements": False, "sep": False, "full_userland": False},
@@ -186,19 +191,17 @@ def status_text(d):
     return f"""# Current status — v0.1.0 (2026-11-02)
 
 Generated by scripts/current_status.py from pinned public documentary projections. Do not edit this file manually.
-Research pins: P0.10 {P10_PIN}, P0.11 {P11_PIN}, OBS-D1 {D1_PIN}. Later research commits do not update this release automatically.
+Research pins: P0.10 {P10_PIN}, P0.11 {P11_PIN}, P0.12 {P12_PIN}, OBS-D1 {D1_PIN}. Later research commits do not update this release automatically.
 The earlier W4-RC2 snapshot ({RC2_COMMIT}) remains in Git history and in the W4-RC2 records.
 
 ## QEMU_VIRT research kernel (XNU 11417.140.69, DEV, non-PAC)
 
 - P0.9: unified cryptography in the DEV kernel; QEMU regression and scoped security tests documented.
 - P0.10: B3_RESEARCH_PROVIDER_RUNTIME_VERIFIED. Independent research provider, authenticated PNRA-R1 trust cache, project research root separate from Apple. Authorized-module acceptance and unauthorized-signer rejection PASS.
-- P0.11: B4_RESEARCH_PLATFORM_EXPERT_RUNTIME_VERIFIED. A built-in research Platform Expert for "qemu,virt" is selected by normal IOKit matching, starts and registers; IOPanicPlatform remains the fallback. Positive run and two negative controls (unknown platform, identity mismatch) PASS. No userland was executed.
+- P0.11: B4_RESEARCH_PLATFORM_EXPERT_RUNTIME_VERIFIED. IOKit selected the research Platform Expert for qemu,virt with positive and negative controls.
+- P0.12: GIC_RUNTIME_VERIFIED in QEMU_VIRT TCG with one CPU. SGI1 delivery, one registered handler and EOI were observed; the original Passthru wait returned and ml_set_max_cpus(1) ran. No storm in the measured 30.22-second window. The kernel entered bsd_init but did not complete it.
 
-Next blocker: B5_PLATFORM_INTERRUPT_CONTROLLER (no panic; quiet wait before bsd_init).
-- cpu_boot_thread waits in PassthruInterruptController::waitForChildController for a platform interrupt-controller driver.
-- kernel_bootstrap_thread waits in ml_wait_max_cpus (kperf_init_early).
-- Later dependency: IOPMGR.
+Next independent blockers: B6_IOPMGR (CPU bootstrap thread waits for a real power manager) and B7_PTHREAD_PROVIDER (bsd_init reached pthread_init and refused an absent function table). No userland, SMP, device IRQ or Android/XNU equivalence is demonstrated.
 
 This is not APPLE_IPADOS_SECURITY_COMPATIBLE. The research Image4 interface declares version 7 with restricted operations/refusals.
 No Apple entitlements, SEP or complete userland support. No Apple authority, platform identity or security equivalence is established.
@@ -227,14 +230,14 @@ def readme_block(d):
 
 | Track | Evidence and limit |
 |---|---|
-| Kernel (QEMU_VIRT, research) | XNU 11417.140.69 DEV build boots in QEMU through IOKit matching. Research security provider (B3) and research Platform Expert (B4) verified with positive and negative controls. |
-| Next blocker | B5_PLATFORM_INTERRUPT_CONTROLLER: quiet wait before bsd_init; an interrupt-controller driver, then IOPMGR, are needed. |
+| Kernel (QEMU_VIRT, research) | XNU 11417.140.69 DEV: B3 research trust, B4 IOKit Platform Expert and P0.12 GICv3/SGI1 path verified in QEMU TCG with one CPU. The kernel entered bsd_init but did not finish. |
+| Next blockers | B6_IOPMGR (CPU bootstrap) and B7_PTHREAD_PROVIDER (pthread_init guard), independent; no userland. |
 | Apple compatibility | Not APPLE_IPADOS_SECURITY_COMPATIBLE: own research trust root, no Apple entitlements, SEP or userland yet. |
 | Moto G53 (penang) | Bootloader accepts RAM boot (OBS-D1, Android image). XNU on the device: NOT_RUN. |
 | D1–D4 (ADR-0006) | NOT_DEMONSTRATED. M9 graphics compiler is host only; Sofiar remains P1/UNKNOWN. |
 
-Details: [STATUS.md](STATUS.md), [P0.11](docs/P0.11-STATUS.md), [device observability](docs/DEVICE-OBSERVABILITY.md), [P0.10](docs/P0.10-STATUS.md).
-These are documentary references to pinned research records (P0.11 {P11_PIN[:7]}, OBS-D1 {D1_PIN[:7]}), not runtime observations made by this release.
+Details: [STATUS.md](STATUS.md), [P0.12](docs/P0.12-STATUS.md), [P0.11](docs/P0.11-STATUS.md), [device observability](docs/DEVICE-OBSERVABILITY.md), [P0.10](docs/P0.10-STATUS.md).
+These are documentary references to pinned research records (P0.12 {P12_PIN[:7]}, P0.11 {P11_PIN[:7]}, OBS-D1 {D1_PIN[:7]}), not runtime observations made by this release.
 
 Target: iPadOS 18.7.8 / 22H352 / iPad7,11 / ARM64_ALL (bring your own IPSW); XNU 11417.140.69 at 43a90889846e00bfb5cf1d255cdc0a701a1e05a4.
 Penang: SM4350-AC/holi, Adreno 619. Accepted [ADR-0004](contracts/platform/foundation/docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md), [ADR-0006](contracts/platform/foundation/docs/adr/ADR-0006-delivery-scope-and-tracks.md) and [ADR-0007](docs/adr/ADR-0007-original-experience.md).
@@ -268,7 +271,7 @@ def check(root, write=False):
                 p.write_text(text, encoding="utf-8")
     require(write or not changed, "generated status drift: " + ", ".join(changed))
     return {"status": "PASS", "generated_files": list(outputs), "updated": changed if write else [],
-            "release": RELEASE, "research_commits": {"p10": P10_PIN, "p11": P11_PIN, "device_obs_d1": D1_PIN},
+            "release": RELEASE, "research_commits": {"p10": P10_PIN, "p11": P11_PIN, "p12": P12_PIN, "device_obs_d1": D1_PIN},
             "runtime_reexecuted": False}
 
 

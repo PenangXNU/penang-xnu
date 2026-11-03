@@ -19,3 +19,13 @@ Decisions taken by the project owner, Salatiel Mangabeira, on 2026-11-02. None o
 - **Independent review** of this release in the private repository (prepared, not yet performed). An assistant's self-review is not independent approval.
 - **Public visibility**: owner's explicit authorization after the review.
 - **Legal review** before any tooling automates the use of Apple software on non-Apple hardware (out of scope for v0.1).
+
+## Finalization choices (owner, 2026-11-02)
+
+- Include the documentary P0.12 result in v0.1.0; keep the kernel worktree private.
+- Accept independent local review conditionally on fixing identified issues.
+- Authorize corrections, tests and local commits; no blanket remote push permission.
+- Pin GitHub Actions to verified commit SHAs.
+- Require pull requests, passing CI and an independent review on main, subject to actual GitHub plan capabilities.
+- Require PVR to be enabled and verified at public opening; do not represent it active in the private repository.
+- Permit the v0.1.0 tag only when gates are satisfied; ask for explicit final approval before making the repo public.

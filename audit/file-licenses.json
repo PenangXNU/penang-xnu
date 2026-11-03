@@ -471,6 +471,13 @@
       "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
+      "path": "docs/P0.12-STATUS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by owner",
+      "provenance": "own sanitized P0.12 documentary status projection only"
+    },
+    {
       "path": "docs/PLATFORM-CONTRACTS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
