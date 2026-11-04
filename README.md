@@ -24,6 +24,23 @@ Target: iPadOS 18.7.8 / 22H352 / iPad7,11 / ARM64_ALL (bring your own IPSW); XNU
 Penang: SM4350-AC/holi, Adreno 619. Accepted [ADR-0004](contracts/platform/foundation/docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md), [ADR-0006](contracts/platform/foundation/docs/adr/ADR-0006-delivery-scope-and-tracks.md) and [ADR-0007](docs/adr/ADR-0007-original-experience.md).
 <!-- CURRENT_STATUS:END -->
 
+## Research progress since v0.1.0 (2026-11-04)
+
+This is a **post-release documentary update**, not a modification of the frozen v0.1.0 evidence projection above. The following results are reported by isolated, locally committed research worktrees; their private code, raw traces and proprietary inputs are not distributed here.
+
+| Research milestone | Scoped result |
+|---|---|
+| P0.13 — pthread provider (`90a3f09`) | Research pthread admission and original BSD bootstrap path progressed in single-CPU QEMU. |
+| P0.14 — AES-CBC (`f72dcfc`) | Real AES-CBC provider exercised in host/QEMU; original `tcp_init` returned. |
+| P0.15 — CCRNG (`8a75e40`) | `CCRNG_RUNTIME_VERIFIED`: existing HMAC_DRBG serviced two original NECP requests of 32 bytes; `necp_init` returned in QEMU ARM64/TCG. G0–G12 passed within this research scope. |
+| M10.2 — hardware preflight (`743a977`) | Host suite passed twice; 21/21 M10 tests and 23/23 QEMU Stage-0 scenarios passed; **physical execution remains on HOLD**. |
+
+**Next blocker (QEMU):** `B10_BSD_ROOT_MEDIA_WAIT`. `IOFindBSDRoot` was observed waiting for `IOMedia / Apple_HFS` in a 120.1-second run. A 56.93-second observation interval does **not** prove a permanent deadlock. The original P0.10 panic-oriented checker remains FAIL on its expected-panic criterion; a separate P0.15 progression checker passed. `B6_IOPMGR` remains preserved but unimplemented.
+
+**Device boundary:** the Motorola Moto G53 has not run our Stage-0 or XNU. The framebuffer ownership/scanout, independent recovery after a hang, and Motorola ABL acceptance of the minimal v3 image are unqualified. There is no demonstrated root filesystem, userland, SMP, Apple-equivalent security, SpringBoard or Metal on the target.
+
+These observations are **not v0.1.0 release gates** and do not authorize physical boot, flashing, or any proprietary redistribution. The complete P0.15 and M10.2 evidence stays local pending separate v0.2 content, licensing and security review.
+
 ## What this repository contains (v0.1)
 
 - Platform contracts: C ABI v1 for CPU/MMU/granule and RAM/reservation checks, with QEMU_VIRT, Qualcomm holi (Penang) and trinket (Sofiar) descriptors.

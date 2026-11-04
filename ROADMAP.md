@@ -29,6 +29,15 @@ Own payload through `fastboot boot` measuring TGRAN16, watchdog and ramoops (OBS
 
 Metal on Adreno 619 (driver, command submission, composition); then SpringBoard (D2), Metal with measured GPU evidence (D3) and touch with safe return to Android (D4). This is the longest stage.
 
+## Research update — 2026-11-04 (after frozen v0.1.0)
+
+- QEMU ARM64/TCG progressed beyond the original B5/B7 barriers through P0.13 pthread, P0.14 AES-CBC and P0.15 CCRNG. The original NECP initialized after two HMAC_DRBG-backed 32-byte requests.
+- Immediate QEMU investigation: `B10_BSD_ROOT_MEDIA_WAIT` — identify and qualify a real root-medium driver, IOKit matching and filesystem before claiming `mountroot`. Preserve `B6_IOPMGR` as independently unimplemented; no synthetic root-media service.
+- Motorola physical-track M10.2: reproducible two-mode Stage-0 offline with QEMU negatives and C0 visual decoder; **M11 physical experiment remains blocked** pending framebuffer ownership/scanout and independent recovery review.
+- v0.2 kernel research code is **not published** by this status update. License/content/security review, public-only CI and independent review are required before integration.
+
+This update does not rewrite the pinned v0.1.0 release status or imply Android/iPadOS boot on hardware.
+
 ## Organization
 
 - Independent review of v0.1, then public visibility.
