@@ -14,3 +14,7 @@ No third-party implementation is copied into this source release. The selected W
 The Cargo lock retains registry checksums. The unicode-ident license expression includes Unicode-3.0 in addition to MIT/Apache alternatives. pyrsistent includes a BSD-3-Clause toolz-derived portion; the installed distribution copyright record preserves that qualification. Build tools and standard libraries are external prerequisites, not bundled artifacts; the pins do not assert that dependencies are current, secure or suitable for a binary release.
 
 A linked-binary release, any use of Apple inputs or operational firmware would need its own license, notice and security review.
+
+## Post-v0.1 AIR2IR3 research exception
+
+The recovered M9 source files under [tools/air2ir3](../tools/air2ir3/README.md) retain their original MIT SPDX declarations and the [MIT license text](../tools/air2ir3/LICENSE-MIT). They are explicitly outside the v0.1.0 Apache-2.0-only selected source set. No proprietary Apple/Mesa/Qualcomm/Motorola binary is vendored. Other newly authored research summaries in this reconciliation branch follow Apache-2.0. A future licensing change to that historical source requires a separate owner review; this publication preserves original source hashes.

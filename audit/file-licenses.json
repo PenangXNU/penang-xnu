@@ -401,6 +401,55 @@
       "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
+      "path": "docs/pt-BR/RECONCILIACAO-2026-11-11.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/2026-11-11-reconciliation.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/drivers-and-userland.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/m12-kernel-and-handoff.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/m9-air2ir3.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/qualcomm-memory-security.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
       "path": "docs/VALIDATION.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -990,6 +1039,20 @@
       "license_expression": "MIT",
       "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
       "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/LICENSE-MIT",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved MIT license for M9 source",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "tools/air2ir3/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
     },
     {
       "path": "tools/air2ir3/src/a2i_air.c",
