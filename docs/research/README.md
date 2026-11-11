@@ -3,6 +3,7 @@
 This directory contains curated, public-safe progress records. They are not a replacement for original local evidence, and their status labels do not grant device or production readiness.
 
 - [Consolidation ledger, 2026-11-11](2026-11-11-reconciliation.md): source branches, what was imported, what remains private, and anti-rework rules.
+- [Windows/WSL source inventory](local-worktree-inventory.md): original worktrees, rom-work classification, reuse points, and exclusions.
 - [M9 AIR2IR3](m9-air2ir3.md): implementation and verified limits, with [source code](../../tools/air2ir3/README.md).
 - [P0.16 and M11–M12 bring-up](m12-kernel-and-handoff.md): physical Stage-0 versus QEMU XNU and kernel blockers.
 - [Qualcomm memory security](qualcomm-memory-security.md): B4.2, QHEE/SCM, Stage-2 and DMA boundaries.

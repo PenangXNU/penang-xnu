@@ -10,6 +10,7 @@ These are scoped conclusions from pinned local reports and canonical state valid
 | M12-T1 | Nine diagnostic ARM64 Mach-O relocatable objects compiled, with PMAP/VM guards retained | HOST_ONLY, no native full link |
 | M12-T2 | Eight pinned DTB dynamic reservation requests placed deterministically in host model; isolated one-vCPU 16-KiB Stage-1 transitions exercised in QEMU | HOST_ONLY / QEMU_VERIFIED |
 | M12-T3 | Probe counted three RAM banks, 21 static and eight dynamic reservations; eight host sanitized scenarios and six QEMU scenarios passed | QEMU_VERIFIED, physical candidate HOLD |
+| M12-T4 (bf169b4) | Validated bounded FDT reads and native bootstrap inventory; 20 host ASan/UBSan checks and 10 QEMU cases; no Android candidate generated | HOST_ONLY / QEMU_VERIFIED, `T4_PHYSICAL_PREFLIGHT_HOLD` |
 
 The T3 geometry hash is a5a59e923097fb998887e848474475118b0072f7a7c5a5062a220782b23cf8cd. Local canonical validation at the T3 checkpoint passed 23 gate descriptions, 18 evidence sources and nine rejected mutations. This verifies ledger integrity, not passage of every gate.
 

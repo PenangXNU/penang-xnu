@@ -86,6 +86,125 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "AUTHORS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "CLAUDE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "LICENSE",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "NOTICE",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "PROJECT-CHARTER.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W1:PROJECT-CHARTER.md"
+    },
+    {
+      "path": "PUBLICATION-DECISIONS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "RELEASE-v0.1-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "RELEASE-v0.1-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "ROADMAP.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "SECURITY.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "STATUS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "W4-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "W4-PUBLICATION-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "W4-RC2-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "W4-RC2-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
       "path": "audit/dependencies.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -128,20 +247,6 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
-      "path": "AUTHORS.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "CLAUDE.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
       "path": "contracts/platform/CONTRACT.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -161,6 +266,13 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/foundation.lock.json"
+    },
+    {
+      "path": "contracts/platform/foundation/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "contracts/platform/foundation/docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md",
@@ -217,13 +329,6 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:manifests/target-contract.json"
-    },
-    {
-      "path": "contracts/platform/foundation/README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "contracts/platform/foundation/references/adr/ADR-0001-target-and-boot-strategy.md",
@@ -310,20 +415,6 @@
       "provenance": "W2W3:contracts/platform/src/arm64.c"
     },
     {
-      "path": "CONTRIBUTING.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "docs/adr/ADR-0007-original-experience.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
       "path": "docs/APP-COMPATIBILITY-PLAN.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -394,6 +485,20 @@
       "provenance": "W1:docs/PLATFORM-CONTRACTS.md"
     },
     {
+      "path": "docs/VALIDATION.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "docs/adr/ADR-0007-original-experience.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
       "path": "docs/pt-BR/README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -415,11 +520,25 @@
       "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
     },
     {
+      "path": "docs/research/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
       "path": "docs/research/drivers-and-userland.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "Owner-adopted project documentation license",
       "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/local-worktree-inventory.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned source inventory documentation",
+      "provenance": "2026-11-11 Windows/WSL source inventory and scoped T4 update"
     },
     {
       "path": "docs/research/m12-kernel-and-handoff.md",
@@ -441,20 +560,6 @@
       "license_expression": "Apache-2.0",
       "basis": "Owner-adopted project documentation license",
       "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
-    },
-    {
-      "path": "docs/research/README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "Owner-adopted project documentation license",
-      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
-    },
-    {
-      "path": "docs/VALIDATION.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "docs/work-orders/HANDOFF-TEMPLATE.md",
@@ -527,13 +632,6 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
-      "path": "LICENSE",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
       "path": "manifests/current-status.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -549,13 +647,6 @@
     },
     {
       "path": "manifests/penang-cpu-probe.json",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "NOTICE",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
@@ -611,49 +702,7 @@
       "provenance": "W2W3:platforms/qualcomm-trinket/profile.json"
     },
     {
-      "path": "PROJECT-CHARTER.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W1:PROJECT-CHARTER.md"
-    },
-    {
-      "path": "PUBLICATION-DECISIONS.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
-    },
-    {
-      "path": "README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "RELEASE-v0.1-GATES.json",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
-      "path": "RELEASE-v0.1-HANDOFF.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
       "path": "requirements.txt",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "ROADMAP.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
@@ -682,20 +731,6 @@
     },
     {
       "path": "scripts/validate_public.py",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "SECURITY.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "STATUS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
@@ -887,6 +922,18 @@
       "basis": "original upstream/distribution notice preserved; no relicensing"
     },
     {
+      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-APACHE",
+      "classification": "THIRD_PARTY_NOTICE_ONLY",
+      "license_expression": "MIT OR Apache-2.0",
+      "basis": "original upstream/distribution notice preserved; no relicensing"
+    },
+    {
+      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-MIT",
+      "classification": "THIRD_PARTY_NOTICE_ONLY",
+      "license_expression": "MIT OR Apache-2.0",
+      "basis": "original upstream/distribution notice preserved; no relicensing"
+    },
+    {
       "path": "third-party/licenses/rust/serde_core-1.0.229/LICENSE-APACHE",
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT OR Apache-2.0",
@@ -918,18 +965,6 @@
     },
     {
       "path": "third-party/licenses/rust/serde_json-1.0.154/LICENSE-MIT",
-      "classification": "THIRD_PARTY_NOTICE_ONLY",
-      "license_expression": "MIT OR Apache-2.0",
-      "basis": "original upstream/distribution notice preserved; no relicensing"
-    },
-    {
-      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-APACHE",
-      "classification": "THIRD_PARTY_NOTICE_ONLY",
-      "license_expression": "MIT OR Apache-2.0",
-      "basis": "original upstream/distribution notice preserved; no relicensing"
-    },
-    {
-      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-MIT",
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT OR Apache-2.0",
       "basis": "original upstream/distribution notice preserved; no relicensing"
@@ -1013,6 +1048,20 @@
       "basis": "original upstream/distribution notice preserved; no relicensing"
     },
     {
+      "path": "tools/air2ir3/LICENSE-MIT",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved MIT license for M9 source",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "tools/air2ir3/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
       "path": "tools/air2ir3/build_arm64.sh",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -1039,20 +1088,6 @@
       "license_expression": "MIT",
       "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
       "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
-    },
-    {
-      "path": "tools/air2ir3/LICENSE-MIT",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "MIT",
-      "basis": "Preserved MIT license for M9 source",
-      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
-    },
-    {
-      "path": "tools/air2ir3/README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "Owner-adopted project documentation license",
-      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
     },
     {
       "path": "tools/air2ir3/src/a2i_air.c",
@@ -1314,6 +1349,13 @@
       "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
     },
     {
+      "path": "tools/m12-boot-bridge/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned research documentation",
+      "provenance": "2026-11-11 public-safe M12 source subset explanation"
+    },
+    {
       "path": "tools/m12-boot-bridge/bridge_contract.h",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -1328,18 +1370,18 @@
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
     },
     {
-      "path": "tools/m12-boot-bridge/README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "Project-owned research documentation",
-      "provenance": "2026-11-11 public-safe M12 source subset explanation"
-    },
-    {
       "path": "tools/m12-boot-bridge/test_t2_memory.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
       "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned research documentation",
+      "provenance": "2026-11-11 public-safe M12 source subset explanation"
     },
     {
       "path": "tools/m12-penang-physical/host_test_pmap_lockdown_contract.c",
@@ -1363,13 +1405,6 @@
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
     },
     {
-      "path": "tools/m12-penang-physical/README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "Project-owned research documentation",
-      "provenance": "2026-11-11 public-safe M12 source subset explanation"
-    },
-    {
       "path": "tools/m12-penang-physical/t2_stage1.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -1391,13 +1426,6 @@
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
     },
     {
-      "path": "tools/penang-validate/build.rs",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W2W3:tools/penang-validate/build.rs"
-    },
-    {
       "path": "tools/penang-validate/Cargo.lock",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1410,6 +1438,20 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/Cargo.toml"
+    },
+    {
+      "path": "tools/penang-validate/USAGE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "tools/penang-validate/build.rs",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W2W3:tools/penang-validate/build.rs"
     },
     {
       "path": "tools/penang-validate/foundation_v1.py",
@@ -1433,46 +1475,11 @@
       "provenance": "W2W3:tools/penang-validate/src/main.rs"
     },
     {
-      "path": "tools/penang-validate/USAGE.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
       "path": "tools/penang-validate/validate.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/validate.py"
-    },
-    {
-      "path": "W4-HANDOFF.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "W4-PUBLICATION-GATES.json",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "W4-RC2-GATES.json",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
-    },
-    {
-      "path": "W4-RC2-HANDOFF.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     }
   ]
 }

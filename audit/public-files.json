@@ -76,6 +76,7 @@
     "docs/research/2026-11-11-reconciliation.md",
     "docs/research/README.md",
     "docs/research/drivers-and-userland.md",
+    "docs/research/local-worktree-inventory.md",
     "docs/research/m12-kernel-and-handoff.md",
     "docs/research/m9-air2ir3.md",
     "docs/research/qualcomm-memory-security.md",
@@ -248,7 +249,7 @@
     "W4-RC2-HANDOFF.md": "41fe7b8742e127d0d445f02f382cbcedc3ee1a45e663b0df052696f7054ef8d6",
     "audit/dependencies.json": "7c232f110c715345241c999e0fa4ead1a9f909c5392a4536358f7e8fa1370d65",
     "audit/exclusions.json": "1cffe398272698495d247bdec5edace7a03cd700e76c7580af195835d8d862d8",
-    "audit/file-licenses.json": "70933de4970a0cf29c111e42d0198a78d32781525d264210ca42a43526f403d5",
+    "audit/file-licenses.json": "5b02a753aa117e411ae6dbc1758dfa789dd06c4a2f2e8458200552f849ec0a0a",
     "audit/rc2-focused-review.json": "a26534f363c98d7b7fea570c229692e21d428cc518b8f1637fcd98c4463413fc",
     "audit/selected-sources.json": "a7fb665f72003d71ef032b9b12a85b40a9e854bf3b8994af4b1a6319cba1346b",
     "contracts/platform/CONTRACT.md": "3a1edd2d83a0ae06a4b4ae839e92e162f7f17af85757d0644d808d386e7e2a79",
@@ -415,10 +416,10 @@
     "tools/air2ir3/tests/fixtures/synthetic/neg_kernel.ll": "f6585ce3385ef6df55b752d68024c67ec27dab4ffa7529e6eb12b969dab1b62e",
     "tools/air2ir3/README.md": "5880eec46d216a59a83660434469c5ea286ce4983b4bc77d16b13dae594fafab",
     "tools/air2ir3/LICENSE-MIT": "560c57df586267b7e8f4518eeec85ebcea79ea75778b4fd6660da9b3e59bdc30",
-    "docs/research/README.md": "5db92e5ba051c443c65484c6a06bdc2352d18d52bb263fdad381263813046558",
-    "docs/research/2026-11-11-reconciliation.md": "43b506e802f3db71f4b83a05c3eab4db976a6626a516c6f4823c06af80444261",
+    "docs/research/README.md": "e26592e7af55333d0b3d1040f01925b4f5b6bc3f9e12345ede0508bb023a9edf",
+    "docs/research/2026-11-11-reconciliation.md": "adadec496f9e06e5debd450ee1e60966e9a4afffc5d922fe629d05098ebd71d8",
     "docs/research/m9-air2ir3.md": "a9bdaff26e6a95519ad0ab7989ab0d5c56009ad65fa1983e88e43ea41a7bbc13",
-    "docs/research/m12-kernel-and-handoff.md": "40ad2ed3b3ecb0dd1bd162188aada3d8ff8b4d8cad22fbcaafe891c13811ae33",
+    "docs/research/m12-kernel-and-handoff.md": "d889ed4312de17b21180d9613aaf4c48c302ba85949d55f59dd3a52fa559e8c8",
     "docs/research/qualcomm-memory-security.md": "51657c6271179a92ff787d572e3bddd2b0bdf48531c13d48d63e03237d22d92d",
     "docs/research/drivers-and-userland.md": "11e8dfe3dea05558fce3c1838290074db3926264a62a56eb2e11d47efb5fe44a",
     "docs/pt-BR/RECONCILIACAO-2026-11-11.md": "9023d4798dc5e4d6923d2655133557725ff49f3fbb35b01302905837d9179e9e",
@@ -432,7 +433,8 @@
     "tools/m12-penang-physical/penang_pmap_lockdown_contract.h": "ee6e79cad8b3ae087483f310e8df81f11683a1b1514767b0cffca8c8406df77e",
     "tools/m12-penang-physical/host_test_pmap_lockdown_contract.c": "b60e90c3ca9d9469b485ca9f4db8af8e1b604677243b735db77296ea817883bc",
     "tools/m12-boot-bridge/README.md": "23565d116859544b985174ca05384983393a0fd8021dd21f0755e0ca15306e61",
-    "tools/m12-penang-physical/README.md": "697d3d920b2f3db5a3ce97d004e7eb169d03ac5580c5b2eb6dd0296cacc36076"
+    "tools/m12-penang-physical/README.md": "697d3d920b2f3db5a3ce97d004e7eb169d03ac5580c5b2eb6dd0296cacc36076",
+    "docs/research/local-worktree-inventory.md": "38969ac135ddefa65962b280ac67b27d76f81ab20b39b2f1933218f3a99c01af"
   },
   "hash_scope": "All public files including historical W4/RC2 records, except this manifest and the v0.1 release handoff/gates (written after validation, to avoid circular receipts)"
 }

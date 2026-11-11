@@ -51,4 +51,6 @@ These are candidates, NOT items declared absent or tasks to implement from scrat
 - Physical flash, boot, reboot, SMC/HVC or MMIO work requires a separately scoped authorization and exact-image preflight.
 - The public main branch continues on its v0.1 release status until an independent review and explicit merge decision; this branch records research, not a release.
 
-See [M12 status](m12-kernel-and-handoff.md), [M9](m9-air2ir3.md) and [driver/userland gates](drivers-and-userland.md).
+See [M12 status](m12-kernel-and-handoff.md), [M9](m9-air2ir3.md), [Windows/WSL source inventory](local-worktree-inventory.md) and [driver/userland gates](drivers-and-userland.md).
+
+**Post-T3 update:** the local M12-T4 branch advanced to `bf169b42` with `T4_PHYSICAL_PREFLIGHT_HOLD`; it recorded 20 host and 10 QEMU cases, but no physically approved read envelope and no Android boot image. The historical T3 import and the T4 source state are deliberately kept separate.
