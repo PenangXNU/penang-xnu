@@ -1,5 +1,5 @@
 {
-  "review_scope": "v0.1.0: project-owned material under Apache-2.0 (owner decision 2026-11-02), including the two BSP files whose authorship the owner confirmed; third-party notices keep their terms",
+  "review_scope": "v0.1.0: project-owned material under Apache-2.0 (owner decision 2026-11-02), including the two BSP files whose authorship the owner confirmed; third-party notices keep their terms; M9 AIR2IR3 source import retains its MIT SPDX and awaits independent public review",
   "files": [
     {
       "path": ".gitattributes",
@@ -86,125 +86,6 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
-      "path": "AUTHORS.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "CLAUDE.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
-      "path": "CONTRIBUTING.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "LICENSE",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "NOTICE",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "PROJECT-CHARTER.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W1:PROJECT-CHARTER.md"
-    },
-    {
-      "path": "PUBLICATION-DECISIONS.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
-    },
-    {
-      "path": "README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "RELEASE-v0.1-GATES.json",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
-      "path": "RELEASE-v0.1-HANDOFF.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
-      "path": "ROADMAP.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "SECURITY.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "STATUS.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "W4-HANDOFF.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "W4-PUBLICATION-GATES.json",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "W4-RC2-GATES.json",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
-    },
-    {
-      "path": "W4-RC2-HANDOFF.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
-    },
-    {
       "path": "audit/dependencies.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -247,6 +128,20 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "AUTHORS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "CLAUDE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
       "path": "contracts/platform/CONTRACT.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -266,13 +161,6 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:contracts/platform/foundation.lock.json"
-    },
-    {
-      "path": "contracts/platform/foundation/README.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "contracts/platform/foundation/docs/adr/ADR-0004-no-pac-userland-and-kernel-base.md",
@@ -329,6 +217,13 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W1:manifests/target-contract.json"
+    },
+    {
+      "path": "contracts/platform/foundation/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "contracts/platform/foundation/references/adr/ADR-0001-target-and-boot-strategy.md",
@@ -415,6 +310,20 @@
       "provenance": "W2W3:contracts/platform/src/arm64.c"
     },
     {
+      "path": "CONTRIBUTING.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "docs/adr/ADR-0007-original-experience.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
       "path": "docs/APP-COMPATIBILITY-PLAN.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -485,25 +394,18 @@
       "provenance": "W1:docs/PLATFORM-CONTRACTS.md"
     },
     {
-      "path": "docs/VALIDATION.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "docs/adr/ADR-0007-original-experience.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
-    },
-    {
       "path": "docs/pt-BR/README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
       "path": "docs/work-orders/HANDOFF-TEMPLATE.md",
@@ -576,6 +478,13 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "LICENSE",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
       "path": "manifests/current-status.json",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -591,6 +500,13 @@
     },
     {
       "path": "manifests/penang-cpu-probe.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "NOTICE",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
@@ -646,7 +562,49 @@
       "provenance": "W2W3:platforms/qualcomm-trinket/profile.json"
     },
     {
+      "path": "PROJECT-CHARTER.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W1:PROJECT-CHARTER.md"
+    },
+    {
+      "path": "PUBLICATION-DECISIONS.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "RELEASE-v0.1-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "RELEASE-v0.1-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
       "path": "requirements.txt",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "ROADMAP.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
@@ -675,6 +633,20 @@
     },
     {
       "path": "scripts/validate_public.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "SECURITY.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "STATUS.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
@@ -866,18 +838,6 @@
       "basis": "original upstream/distribution notice preserved; no relicensing"
     },
     {
-      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-APACHE",
-      "classification": "THIRD_PARTY_NOTICE_ONLY",
-      "license_expression": "MIT OR Apache-2.0",
-      "basis": "original upstream/distribution notice preserved; no relicensing"
-    },
-    {
-      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-MIT",
-      "classification": "THIRD_PARTY_NOTICE_ONLY",
-      "license_expression": "MIT OR Apache-2.0",
-      "basis": "original upstream/distribution notice preserved; no relicensing"
-    },
-    {
       "path": "third-party/licenses/rust/serde_core-1.0.229/LICENSE-APACHE",
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT OR Apache-2.0",
@@ -909,6 +869,18 @@
     },
     {
       "path": "third-party/licenses/rust/serde_json-1.0.154/LICENSE-MIT",
+      "classification": "THIRD_PARTY_NOTICE_ONLY",
+      "license_expression": "MIT OR Apache-2.0",
+      "basis": "original upstream/distribution notice preserved; no relicensing"
+    },
+    {
+      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-APACHE",
+      "classification": "THIRD_PARTY_NOTICE_ONLY",
+      "license_expression": "MIT OR Apache-2.0",
+      "basis": "original upstream/distribution notice preserved; no relicensing"
+    },
+    {
+      "path": "third-party/licenses/rust/serde-1.0.229/LICENSE-MIT",
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT OR Apache-2.0",
       "basis": "original upstream/distribution notice preserved; no relicensing"
@@ -992,6 +964,300 @@
       "basis": "original upstream/distribution notice preserved; no relicensing"
     },
     {
+      "path": "tools/air2ir3/build_arm64.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/build_compile.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/build_host.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/build_mesa.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_air.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_air.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_bitstream.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_bitstream.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_cli.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_compile.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_core.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_core.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_module.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_module.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_mtlb.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_mtlb.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/air_to_nir.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/air_to_nir.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/host_io.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/host_io.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/ir3_emit.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/ir3_emit.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/fs_tint.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_branch.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_fdiv.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_kernel.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_select_global.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_texture.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/o2_ops.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/o2_zero_member.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/vs_scale.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/gen_metallib.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/json_check.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o1_structural.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o2_nir_eval.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o2_semantics.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o3_asm_roundtrip.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o3_backend.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/run_all.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/run_cli_tests.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/run_compile_tests.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/penang-validate/build.rs",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W2W3:tools/penang-validate/build.rs"
+    },
+    {
       "path": "tools/penang-validate/Cargo.lock",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1004,20 +1270,6 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/Cargo.toml"
-    },
-    {
-      "path": "tools/penang-validate/USAGE.md",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W4 project-authored packaging or public fact projection"
-    },
-    {
-      "path": "tools/penang-validate/build.rs",
-      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
-      "license_expression": "Apache-2.0",
-      "basis": "project license adopted by the owner on 2026-11-02",
-      "provenance": "W2W3:tools/penang-validate/build.rs"
     },
     {
       "path": "tools/penang-validate/foundation_v1.py",
@@ -1041,11 +1293,46 @@
       "provenance": "W2W3:tools/penang-validate/src/main.rs"
     },
     {
+      "path": "tools/penang-validate/USAGE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
       "path": "tools/penang-validate/validate.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/validate.py"
+    },
+    {
+      "path": "W4-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "W4-PUBLICATION-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4 project-authored packaging or public fact projection"
+    },
+    {
+      "path": "W4-RC2-GATES.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
+    },
+    {
+      "path": "W4-RC2-HANDOFF.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     }
   ]
 }
