@@ -21,6 +21,7 @@ Other preserved Windows research trees cover M10 hardware preflight, B1 memory, 
 1. Forty-one Git-tracked source, build and synthetic-test files from the original M9 AIR2IR3 implementation. Every imported Git blob ID was compared to the local M9 Git object; the source files were not rewritten.
 2. A per-file SHA-256 and license register in audit/public-files.json and audit/file-licenses.json.
 3. Public-safe descriptions of P0.16, M11-D3A1 and M12-T0–T3, including the reasons physical XNU is not ready.
+4. Nine byte-identical MIT source/header/test files from the M12 geometry bridge, isolated Stage-1 model and fail-closed PMAP contract, with public scope READMEs. They are **not** the complete physical loader, PMAP backend or T3 device candidate.
 
 The original M9 history was intentionally not imported because it was interleaved with local research operations and private artifacts. The current public files are copies of the pinned originals, not claims of a clean-room reproduction of Apple's implementation.
 
@@ -34,8 +35,7 @@ The original M9 history was intentionally not imported because it was interleave
 
 ## Source candidates requiring separate publication admission
 
-- Independent bridge and FDT/ADT conversion modules from M12-T0/T2/T3.
-- Host-only Stage-1 translation tests and B4.2 fail-closed contract.
+- Remaining bridge entry/loader/ADT and T3 instrumentation modules (a selected M12 memory/Stage-1/PMAP source subset is now published and should not be rebuilt).
 - The P0.16 research ROMFS, loader integration and XNU modifications (APSL/third-party license review required).
 - M4–M8 graphics research tools, separating original code from Mesa/LLVM/vendor inputs.
 
