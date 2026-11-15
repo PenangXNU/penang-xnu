@@ -772,6 +772,13 @@
       "provenance": "research/m12-t6-integration-20261112, byte-identical local original; sha256 verified"
     },
     {
+      "path": "tests/public/test_t74_scm_mp_candidate.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned public Clang/AArch64 compilation/guard tests",
+      "provenance": "2026-11-15 GPT-6 original implementation; qualified source facts: M12-C2-P0 pin and public qcom_scm_assign_mem wire ABI; source-code copying from Linux not performed"
+    },
+    {
       "path": "third-party/licenses/python/attrs-23.2.0/copyright",
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT",
@@ -1405,6 +1412,13 @@
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
     },
     {
+      "path": "tools/m12-penang-physical/host_test_scm_mp_candidate.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Project-owned adversarial host test for descriptor layout, bounds, no physical admission",
+      "provenance": "2026-11-15 GPT-6 original implementation; qualified source facts: M12-C2-P0 pin and public qcom_scm_assign_mem wire ABI; source-code copying from Linux not performed"
+    },
+    {
       "path": "tools/m12-penang-physical/penang_physical_contract.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -1431,6 +1445,20 @@
       "license_expression": "MIT",
       "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/penang_scm_mp_candidate.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Independent implementation of candidate MP_ASSIGN memory ownership descriptor; no dispatcher",
+      "provenance": "2026-11-15 GPT-6 original implementation; qualified source facts: M12-C2-P0 pin and public qcom_scm_assign_mem wire ABI; source-code copying from Linux not performed"
+    },
+    {
+      "path": "tools/m12-penang-physical/penang_scm_mp_candidate.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Freestanding C11 source-authorized HOST_ONLY SCM MP_ASSIGN format",
+      "provenance": "2026-11-15 GPT-6 original implementation; qualified source facts: M12-C2-P0 pin and public qcom_scm_assign_mem wire ABI; source-code copying from Linux not performed"
     },
     {
       "path": "tools/m12-penang-physical/t2_stage1.c",
