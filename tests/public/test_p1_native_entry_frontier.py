@@ -27,6 +27,8 @@ class NativeEntryFrontier(unittest.TestCase):
         self.original = self.root / "original"
         self.guarded = self.root / "guarded"
         start = """/* XNU source fixture */
+LEXT(_start)
+    b EXT(start_first_cpu)
 LEXT(start_first_cpu)
     mov x0, x20
     adrp lr, EXT(arm_init)@page
@@ -65,6 +67,23 @@ LEXT(start_first_cpu)
         self.assertTrue(all(outcome["checks"].values()))
         self.assertEqual(len(outcome["sources"]), 4)
         self.assertTrue(all(len(x["sha256"]) == 64 for x in outcome["sources"].values()))
+
+    def test_reset_trampoline_is_not_optional(self):
+        path = self.original / MOD.FILES["start"]
+        source = path.read_text(encoding="utf-8")
+        self.assertTrue(self.inspect()["checks"]["reset_trampoline_to_first_cpu"])
+        for tampered in (
+            source.replace("LEXT(_start)", "LEXT(fake_start)"),
+            source.replace("b EXT(start_first_cpu)", "b EXT(fake_entry)"),
+        ):
+            with self.subTest(tampered=tampered[-28:]):
+                try:
+                    path.write_text(tampered, encoding="utf-8")
+                    outcome = self.inspect()
+                    self.assertEqual(outcome["status"], "REJECTED")
+                    self.assertFalse(outcome["checks"]["reset_trampoline_to_first_cpu"])
+                finally:
+                    path.write_text(source, encoding="utf-8")
 
     def test_silent_removal_of_either_b42_guard_is_rejected(self):
         for name in ("arm_vm_init", "pmap"):

@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 
 FILES = {
@@ -20,6 +21,8 @@ FILES = {
     "pmap": "osfmk/arm/pmap/pmap.c",
 }
 # Anchor to actual XNU 11417 instructions/entry path; reject mere docs.
+RESET_ENTRY = "LEXT(_start)"
+RESET_TO_FIRST_CPU = "EXT(start_first_cpu)"
 START_ENTRY = "LEXT(start_first_cpu)"
 START_TO_INIT = "EXT(arm_init)@page"
 INIT_BODY = "arm_init("
@@ -69,7 +72,15 @@ def inspect(original: Path, guarded: Path) -> dict:
     result["checks"]["required_sources_present"] = True
     start = texts["start"]
     arm = texts["arm_init"]
-    # Require the entry label followed by its actual ARM64 branch target.
+    # XNU's global Mach-O kernel entry label uses EXT(_start) / LEXT(_start).
+    # Verify its unconditional branch into start_first_cpu, not just a comment.
+    reset_pos = start.find(RESET_ENTRY)
+    reset_tail = start[reset_pos:reset_pos + 240] if reset_pos >= 0 else ""
+    result["checks"]["reset_trampoline_to_first_cpu"] = (
+        reset_pos >= 0 and
+        bool(re.search(r"(?m)^\s*b\s+EXT\(start_first_cpu\)\s*$", reset_tail))
+    )
+    # Require the cold-CPU entry label followed by its original arm_init target.
     entry_pos = start.find(START_ENTRY)
     init_pos = start.find(START_TO_INIT, entry_pos + len(START_ENTRY))
     result["checks"]["start_first_cpu_to_arm_init"] = (
