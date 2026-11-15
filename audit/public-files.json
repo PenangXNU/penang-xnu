@@ -117,6 +117,7 @@
     "tests/public/test_public_build.py",
     "tests/public/test_publication_branch_history.py",
     "tests/public/test_publication_scan.py",
+    "tests/public/test_t73_bsd_getpid_fixture.py",
     "third-party/licenses/python/attrs-23.2.0/copyright",
     "third-party/licenses/python/jsonschema-4.10.3/copyright",
     "third-party/licenses/python/pyrsistent-0.20.0/copyright",
@@ -227,7 +228,9 @@
     "tools/penang-validate/foundation_v1.py",
     "tools/penang-validate/src/lib.rs",
     "tools/penang-validate/src/main.rs",
-    "tools/penang-validate/validate.py"
+    "tools/penang-validate/validate.py",
+    "tools/t73-bsd-userland/fixture_getpid.S",
+    "tools/t73-bsd-userland/fixture_getpid.lds"
   ],
   "content_pins": {
     ".gitattributes": "c223d42e1595c889c53f8c58435dc973ccfe6513ad08090733df52c646cb975d",
@@ -259,7 +262,7 @@
     "W4-RC2-HANDOFF.md": "41fe7b8742e127d0d445f02f382cbcedc3ee1a45e663b0df052696f7054ef8d6",
     "audit/dependencies.json": "7c232f110c715345241c999e0fa4ead1a9f909c5392a4536358f7e8fa1370d65",
     "audit/exclusions.json": "1cffe398272698495d247bdec5edace7a03cd700e76c7580af195835d8d862d8",
-    "audit/file-licenses.json": "ed7052c6ee664b00a5d5e2158c40977d2ff4a7fa1e1329ab153ae40df3fd913e",
+    "audit/file-licenses.json": "09ef2b8081f9b099036227719c75e7649e4998185eac19e06f7e412ae0942b40",
     "audit/rc2-focused-review.json": "a26534f363c98d7b7fea570c229692e21d428cc518b8f1637fcd98c4463413fc",
     "audit/selected-sources.json": "a7fb665f72003d71ef032b9b12a85b40a9e854bf3b8994af4b1a6319cba1346b",
     "contracts/platform/CONTRACT.md": "3a1edd2d83a0ae06a4b4ae839e92e162f7f17af85757d0644d808d386e7e2a79",
@@ -344,6 +347,7 @@
     "tests/public/test_public_build.py": "9a6aa3aab78389755a63d6da6c259b25ea32e96329778486c5847688afe36bdf",
     "tests/public/test_publication_branch_history.py": "c8d3278ced39071c9c53dc8348a284a55106ec869528d0a094de8c2b87faa878",
     "tests/public/test_publication_scan.py": "d602e5a5cd70a9501a0f11ea59c7c1b2f98c99d59e13a9507573749a5ed9e3ad",
+    "tests/public/test_t73_bsd_getpid_fixture.py": "18fa850baeea8b340910b56f09bb636a0de1c1ff337458ba38c0bc34d3e041c4",
     "third-party/licenses/python/attrs-23.2.0/copyright": "e1f2c4df71c4deedd7c3ea2ab8a56db5113b2265ea5ae34e4ae7b0c92d70ce29",
     "third-party/licenses/python/jsonschema-4.10.3/copyright": "ed96ded1a8606482cc4e2d64c03dd68f11ff264bcec84c0f71a912a4c46ec5ec",
     "third-party/licenses/python/pyrsistent-0.20.0/copyright": "ff94f4e517b2a1ff2fac445f441a978b7b79faf91b057825f2f84a6120514eb1",
@@ -454,7 +458,9 @@
     "tools/penang-validate/foundation_v1.py": "14bc8b477ea2989fb7684d138b73e75382b57041b0e0f69b8b001ff98297f9e9",
     "tools/penang-validate/src/lib.rs": "7c6331d3c4a45dc45a6da130026764b7810d2c0ad1a05bf826e084b1fa022659",
     "tools/penang-validate/src/main.rs": "7b5b60ace9c0867a341165ce730b44d979eea32330d67394145f70ae13a332f3",
-    "tools/penang-validate/validate.py": "4be28fef6f736fdf5cb2570c6723f8ef91c0ce82cbe27dd55b199777fec3ee88"
+    "tools/penang-validate/validate.py": "4be28fef6f736fdf5cb2570c6723f8ef91c0ce82cbe27dd55b199777fec3ee88",
+    "tools/t73-bsd-userland/fixture_getpid.S": "c149936e4a41121a870e367669f6d1e882d174c02b6f1afad0316b8b1555b186",
+    "tools/t73-bsd-userland/fixture_getpid.lds": "34b248d1bc817246fb0d0d054a6b931e2dd0776e78cd9485d9c1f75fb3e304d8"
   },
   "hash_scope": "All public files including historical W4/RC2 records, except this manifest and the v0.1 release handoff/gates (written after validation, to avoid circular receipts)"
 }

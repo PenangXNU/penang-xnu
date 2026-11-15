@@ -821,6 +821,13 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "tests/public/test_t73_bsd_getpid_fixture.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned T73 host-only research source and focused AArch64 tests",
+      "provenance": "2026-11-15 SM-OMP-Harness CV1 (two Terra High source-backed reviews); XNU 11417 original ABI inspected locally; no proprietary source copied"
+    },
+    {
       "path": "third-party/licenses/python/attrs-23.2.0/copyright",
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT",
@@ -1550,6 +1557,20 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "W2W3:tools/penang-validate/validate.py"
+    },
+    {
+      "path": "tools/t73-bsd-userland/fixture_getpid.S",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Project-owned T73 host-only research source and focused AArch64 tests",
+      "provenance": "2026-11-15 SM-OMP-Harness CV1 (two Terra High source-backed reviews); XNU 11417 original ABI inspected locally; no proprietary source copied"
+    },
+    {
+      "path": "tools/t73-bsd-userland/fixture_getpid.lds",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Project-owned T73 host-only research source and focused AArch64 tests",
+      "provenance": "2026-11-15 SM-OMP-Harness CV1 (two Terra High source-backed reviews); XNU 11417 original ABI inspected locally; no proprietary source copied"
     }
   ]
 }
