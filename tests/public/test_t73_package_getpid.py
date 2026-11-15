@@ -120,7 +120,9 @@ class T73HostPackaging(unittest.TestCase):
 
     def test_dyld_identity_and_signature_are_not_assumed(self):
         dyld = synthetic_dyld_for_romfs_test_only()
-        PKG.verify_q5_dyld(dyld)
+        receipt = PKG.verify_q5_dyld(dyld)
+        self.assertEqual(receipt["identity_verification"], "STRUCTURAL_PROFILE_ONLY")
+        self.assertEqual(receipt["guest_execution"], "NOT_RUN")
         broken = bytearray(dyld)
         broken[0x1000] ^= 1
         with self.assertRaises(PKG.Invalid):
@@ -129,6 +131,47 @@ class T73HostPackaging(unittest.TestCase):
         broken[0x4100 + 20 + 88] ^= 1
         with self.assertRaises(PKG.Invalid):
             PKG.verify_q5_dyld(bytes(broken))
+
+    def test_resigned_dyld_load_command_mutations_are_rejected(self):
+        dyld = synthetic_dyld_for_romfs_test_only()
+        identity = 32 + 72 * 2
+        thread = identity + 32
+        build = thread + 288
+        signature = build + 24
+        # Re-sign every malformed input: these negatives must exercise the
+        # load-command checks, independently of CodeDirectory integrity.
+        mutations = [
+            ("identity command", "<I", identity, 0xdeadbeef),
+            ("identity name offset", "<I", identity + 8, 16),
+            ("identity path", "<B", identity + 12, ord("!")),
+            ("identity padding", "<B", identity + 31, 1),
+            ("thread command", "<I", thread, 0xdeadbeef),
+            ("thread flavor", "<I", thread + 8, 1),
+            ("thread count", "<I", thread + 12, 67),
+            ("thread PC before payload", "<Q", thread + 16 + 32 * 8, 0x218),
+            ("thread PC unaligned", "<Q", thread + 16 + 32 * 8, 0x1001),
+            ("thread PC in LINKEDIT", "<Q", thread + 16 + 32 * 8, 0x4000),
+            ("thread PC overflow", "<Q", thread + 16 + 32 * 8, 0xffffffffffffffff),
+            ("thread EL1h", "<I", thread + 16 + 33 * 8, 5),
+            ("thread AArch32", "<I", thread + 16 + 33 * 8, 0x10),
+            ("thread reserved flags", "<I", thread + 16 + 33 * 8 + 4, 1),
+            ("build command", "<I", build, 0xdeadbeef),
+            ("build platform", "<I", build + 8, 2),
+            ("build minimum OS", "<I", build + 12, 0),
+            ("build SDK", "<I", build + 16, 0),
+            ("build tool count", "<I", build + 20, 1),
+            ("signature command", "<I", signature, 0xdeadbeef),
+        ]
+        for label, fmt, offset, value in mutations:
+            with self.subTest(label=label):
+                malformed = bytearray(dyld[:0x4100])
+                struct.pack_into(fmt, malformed, offset, value)
+                malformed = bytes(malformed)
+                signed = malformed + PKG.code_signature(
+                    malformed, PKG.DYLD_IDENT, "dyld")
+                PKG.verify_signature(signed, 0x4100, PKG.DYLD_IDENT, "dyld")
+                with self.assertRaises(PKG.Invalid):
+                    PKG.verify_q5_dyld(signed)
 
 
 if __name__ == "__main__":

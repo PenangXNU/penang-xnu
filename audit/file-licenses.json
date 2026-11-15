@@ -783,7 +783,7 @@
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "New host-only ARM64 Mach-O/ROMFS signature and negative tests",
-      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile"
+      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile; 2026-11-15 cloud AI-assisted structural load-command checks and re-signed mutation negatives"
     },
     {
       "path": "tests/public/test_t74_physical_contracts.py",
@@ -1598,7 +1598,7 @@
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
       "basis": "Self-authored T73 packaging port from retained project-built Q5 C1 Mach-O/ROMFS source",
-      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile"
+      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile; 2026-11-15 cloud AI-assisted structural load-command checks and re-signed mutation negatives"
     }
   ]
 }

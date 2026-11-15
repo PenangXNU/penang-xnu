@@ -347,7 +347,7 @@
     "tests/public/test_publication_retired_files.py": "a050e613581acbadab781d006d3120e6a6f2b2eac73b11adf24de94c0a301f1a",
     "tests/public/test_publication_scan.py": "d602e5a5cd70a9501a0f11ea59c7c1b2f98c99d59e13a9507573749a5ed9e3ad",
     "tests/public/test_t73_bsd_getpid_fixture.py": "18fa850baeea8b340910b56f09bb636a0de1c1ff337458ba38c0bc34d3e041c4",
-    "tests/public/test_t73_package_getpid.py": "ae934ecd64536ff5285c29e9f3d3833b8a3e7fb4568dcdde30f1705e8fb566ab",
+    "tests/public/test_t73_package_getpid.py": "d7de6133799aaa756a40c047c81f4f76606accaeb9c8de61b80ba931877536dc",
     "tests/public/test_t74_physical_contracts.py": "4dc10712390848acba8d4974485ef990efa6a1acf7580f643cdb636da03682e2",
     "tests/public/test_t74_scm_mp_candidate.py": "c5a6a516a4f0ad3b38aace79dfb104d084fe0e39bbcb43d6e7752ffdf8a2f3b6",
     "third-party/licenses/python/attrs-23.2.0/copyright": "e1f2c4df71c4deedd7c3ea2ab8a56db5113b2265ea5ae34e4ae7b0c92d70ce29",
@@ -470,7 +470,7 @@
     "tools/penang-validate/validate.py": "4be28fef6f736fdf5cb2570c6723f8ef91c0ce82cbe27dd55b199777fec3ee88",
     "tools/t73-bsd-userland/fixture_getpid.S": "c149936e4a41121a870e367669f6d1e882d174c02b6f1afad0316b8b1555b186",
     "tools/t73-bsd-userland/fixture_getpid.lds": "34b248d1bc817246fb0d0d054a6b931e2dd0776e78cd9485d9c1f75fb3e304d8",
-    "tools/t73-bsd-userland/package_getpid.py": "55b477f57f2427005f0a4e5c3201f66eeba51d51259ad00af06c00123ea2256a"
+    "tools/t73-bsd-userland/package_getpid.py": "221f507db875491c7d3de7aac6f692ab596b8e5c8cc9e5d2834c9d595518e002"
   },
   "hash_scope": "Current public tree pins and historical retired-file SHA-256 evidence; versioned originals remain in ordinary Git history.",
   "retired_files": {
