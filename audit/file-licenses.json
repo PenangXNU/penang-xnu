@@ -737,6 +737,20 @@
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
+      "path": "tests/public/test_p1_cache_geometry.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native source-delta/probe tooling and synthetic compiler regressions; generated XNU modifications retain upstream notices and license",
+      "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
+    },
+    {
+      "path": "tests/public/test_p1_compile_probe.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native source-delta/probe tooling and synthetic compiler regressions; generated XNU modifications retain upstream notices and license",
+      "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
+    },
+    {
       "path": "tests/public/test_p1_native_entry_frontier.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1445,6 +1459,20 @@
       "license_expression": "MIT",
       "basis": "Project-owned adversarial host test for descriptor layout, bounds, no physical admission",
       "provenance": "2026-11-15 GPT-6 original implementation; qualified source facts: M12-C2-P0 pin and public qcom_scm_assign_mem wire ABI; source-code copying from Linux not performed"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_cache_geometry.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native source-delta/probe tooling and synthetic compiler regressions; generated XNU modifications retain upstream notices and license",
+      "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_compile_probe.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native source-delta/probe tooling and synthetic compiler regressions; generated XNU modifications retain upstream notices and license",
+      "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
     },
     {
       "path": "tools/m12-penang-physical/p1_native_entry_frontier.py",
