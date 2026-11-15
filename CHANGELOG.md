@@ -12,7 +12,7 @@ This file tracks reviewed **public source and technical-context changes**. It is
 ### Existing reviewed lineage (not introduced by this documentation change)
 
 - [PR #11](https://github.com/PenangXNU/penang-xnu/pull/11) merged: fail-closed, host-only Qualcomm SCM memory-ownership **candidate** descriptor and adversarial tests. It does not make a physical SCM provider or pass the B4.2 PMAP lockdown gate.
-- [PR #12](https://github.com/PenangXNU/penang-xnu/pull/12) was open when this documentation was authored: a source-only check of `_start` → `start_first_cpu` → `arm_init` → `arm_vm_init`, with the original B4.2 guards required. The check does not compile or link a complete physical kernel.
+- [PR #12](https://github.com/PenangXNU/penang-xnu/pull/12) introduced a source-only check of `_start` → `start_first_cpu` → `arm_init` → `arm_vm_init`, with original B4.2 guards required. It later merged into the prior feature base, **not** directly into `main@65078ff`; [PR #13](https://github.com/PenangXNU/penang-xnu/pull/13) proposes this P1 code and the continuity documentation together for main. No complete physical kernel was compiled or linked.
 - The historical M11-D3A1 Stage-0 proof on the Moto G53 remains **DEVICE_VERIFIED for owner-written Stage-0 only**; T72-Q5 is **QEMU_VERIFIED for the project's dynamic EL0 fixture**. Neither demonstrates physical XNU or `/sbin/penang-init` on the phone.
 
 ## v0.1.0 — frozen public research projection (2026-11-02)
