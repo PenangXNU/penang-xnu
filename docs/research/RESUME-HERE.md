@@ -18,7 +18,8 @@
 1. [2026-11-15 evidence ledger](2026-11-15-physical-evidence-ledger.md): *which physical hardware work is already done*, original source branches, corrections to old reports, and scope.
 2. [T72-Q5 result](2026-11-15-q5-el0.md): latest QEMU userland functional state, with signature/admission limits.
 3. [Physical boundary](qualcomm-memory-security.md), [driver dependencies](drivers-and-userland.md) and the previous [2026-11-11 reconciliation](2026-11-11-reconciliation.md): original recovered source and known architecture.
-4. [Physical integration issue](https://github.com/PenangXNU/penang-xnu/issues/4): qualify the smallest missing native provider/link delta; do not repeat hardware reverse engineering.
+4. [Native XNU bootstrap continuity](2026-11-15-native-bootstrap-cloud-continuity.md): current physical entry source chain, B4.2 compiler boundary and the precise meaning of `/sbin/penang-init`; PR #11 merged; PR #12 later merged into its feature base but not into `main@65078ff`; PR #13 proposes the P1 verifier and this continuity documentation together.
+5. [Physical integration issue](https://github.com/PenangXNU/penang-xnu/issues/4): qualify the smallest missing native provider/link delta; do not repeat hardware reverse engineering.
 
 ## Unresolved physical gates (all OPEN for XNU-on-device)
 
@@ -36,3 +37,14 @@ FDT_PHYSICAL_HANDOFF; SCM_XNU_ABI; STAGE2_GRANTS; DMA_ENFORCEMENT; PMAP_PHYSICAL
 - After each reviewed technical milestone, update provenance and this entrypoint, not a new internal work-order file. Do not overwrite old reports or retroactively recategorize experiments.
 
 **Next implementation:** native-provider qualification via [issue #4](https://github.com/PenangXNU/penang-xnu/issues/4), and a separate QEMU test of the existing HOST_ONLY BSD `getpid` fixture. **Portuguese summary:** [Retomada Penang XNU](../pt-BR/RETOMADA-PENANG-XNU.md).
+
+**Cloud host increment (2026-11-15):** the [P1 native input inventory](../../tools/m12-penang-physical/README.md#native-input-inventory-p1-host-only)
+now reports missing retained build inputs, filesystem/source-reference failures
+and explicit B4.2 refusal checks without executing Makefiles or compiling XNU.
+The original public XNU source is available; native generated recipes and the
+guarded research tree remain unavailable in cloud. The T73 packager also checks
+previously omitted dyld identity/thread/build load commands against the public
+structural fixture profile, including re-signed malformed inputs. Historical Q5
+byte identity and runtime remain untested by these host checks; no physical gate
+or native link has advanced. Recover the existing recipes/tree before attempting
+the first configured native compile; do not manufacture substitutes.

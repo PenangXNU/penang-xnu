@@ -86,6 +86,13 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "CHANGELOG.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored English public research changelog, distinct from the frozen generated release status",
+      "provenance": "2026-11-15 user-authorized GPT-6 public technical context based on verified GitHub PR states and previously admitted research; no private source bytes"
+    },
+    {
       "path": "CLAUDE.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -471,6 +478,13 @@
       "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
     },
     {
+      "path": "docs/research/2026-11-15-native-bootstrap-cloud-continuity.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored public source/evidence continuity; no private operational handoff, protected binary or device action",
+      "provenance": "2026-11-15 user-authorized GPT-6 public technical context based on verified GitHub PR states and previously admitted research; no private source bytes"
+    },
+    {
       "path": "docs/research/2026-11-15-physical-evidence-ledger.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -723,6 +737,20 @@
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
+      "path": "tests/public/test_p1_native_entry_frontier.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Synthetic source/guard regression tests, no firmware or device evidence",
+      "provenance": "2026-11-15 P1 actual XNU source chain independently inspected after three Terra High ECC reviewers; original XNU/firmware never imported"
+    },
+    {
+      "path": "tests/public/test_p1_native_inputs.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native input inventory and synthetic host regressions; no vendor source or private evidence",
+      "provenance": "2026-11-15 cloud AI-assisted implementation; retained MIT B4.2 assessor and P1 entry checker reused without source changes"
+    },
+    {
       "path": "tests/public/test_public_build.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -762,7 +790,7 @@
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "New host-only ARM64 Mach-O/ROMFS signature and negative tests",
-      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile"
+      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile; 2026-11-15 cloud AI-assisted structural load-command checks and re-signed mutation negatives"
     },
     {
       "path": "tests/public/test_t74_physical_contracts.py",
@@ -1419,6 +1447,20 @@
       "provenance": "2026-11-15 GPT-6 original implementation; qualified source facts: M12-C2-P0 pin and public qcom_scm_assign_mem wire ABI; source-code copying from Linux not performed"
     },
     {
+      "path": "tools/m12-penang-physical/p1_native_entry_frontier.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Self-authored host-only XNU source entry path preflight; no source mutation",
+      "provenance": "2026-11-15 P1 actual XNU source chain independently inspected after three Terra High ECC reviewers; original XNU/firmware never imported"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_native_inputs.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native input inventory and synthetic host regressions; no vendor source or private evidence",
+      "provenance": "2026-11-15 cloud AI-assisted implementation; retained MIT B4.2 assessor and P1 entry checker reused without source changes"
+    },
+    {
       "path": "tools/m12-penang-physical/penang_physical_contract.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -1570,7 +1612,7 @@
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
       "basis": "Self-authored T73 packaging port from retained project-built Q5 C1 Mach-O/ROMFS source",
-      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile"
+      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile; 2026-11-15 cloud AI-assisted structural load-command checks and re-signed mutation negatives"
     }
   ]
 }
