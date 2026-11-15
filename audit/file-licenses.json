@@ -1,5 +1,5 @@
 {
-  "review_scope": "v0.1.0: project-owned material under Apache-2.0 (owner decision 2026-11-02), including the two BSP files whose authorship the owner confirmed; third-party notices keep their terms",
+  "review_scope": "v0.1.0: project-owned material under Apache-2.0 (owner decision 2026-11-02), including the two BSP files whose authorship the owner confirmed; third-party notices keep their terms; M9 AIR2IR3 source import retains its MIT SPDX and awaits independent public review",
   "files": [
     {
       "path": ".gitattributes",
@@ -506,11 +506,102 @@
       "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
     },
     {
+      "path": "docs/pt-BR/RECONCILIACAO-2026-11-11.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/pt-BR/RETOMADA-PENANG-XNU.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned public-safe 2026-11-15 research reconciliation",
+      "provenance": "Cited original local handoffs/commits; no private material imported"
+    },
+    {
+      "path": "docs/research/2026-11-11-reconciliation.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/2026-11-15-physical-evidence-ledger.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned public-safe 2026-11-15 research reconciliation",
+      "provenance": "Cited original local handoffs/commits; no private material imported"
+    },
+    {
+      "path": "docs/research/2026-11-15-q5-el0.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned public-safe 2026-11-15 research reconciliation",
+      "provenance": "Cited original local handoffs/commits; no private material imported"
+    },
+    {
+      "path": "docs/research/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/RESUME-HERE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned public-safe 2026-11-15 research reconciliation",
+      "provenance": "Cited original local handoffs/commits; no private material imported"
+    },
+    {
+      "path": "docs/research/drivers-and-userland.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/local-worktree-inventory.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned source inventory documentation",
+      "provenance": "2026-11-11 Windows/WSL source inventory and scoped T4 update"
+    },
+    {
+      "path": "docs/research/m12-kernel-and-handoff.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/m9-air2ir3.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/qualcomm-memory-security.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
       "path": "docs/work-orders/HANDOFF-TEMPLATE.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "v0.1.0 release preparation (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "docs/work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned public-safe 2026-11-15 research reconciliation",
+      "provenance": "Cited original local handoffs/commits; no private material imported"
     },
     {
       "path": "docs/work-orders/WORK-ORDER-TEMPLATE.md",
@@ -990,6 +1081,384 @@
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT",
       "basis": "original upstream/distribution notice preserved; no relicensing"
+    },
+    {
+      "path": "tools/air2ir3/LICENSE-MIT",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved MIT license for M9 source",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "tools/air2ir3/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Owner-adopted project documentation license",
+      "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "tools/air2ir3/build_arm64.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/build_compile.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/build_host.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/build_mesa.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_air.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_air.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_bitstream.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_bitstream.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_cli.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_compile.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_core.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_core.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_module.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_module.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_mtlb.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/a2i_mtlb.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/air_to_nir.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/air_to_nir.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/host_io.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/host_io.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/ir3_emit.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/src/ir3_emit.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/fs_tint.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_branch.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_fdiv.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_kernel.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_select_global.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/neg_texture.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/o2_ops.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/o2_zero_member.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/fixtures/synthetic/vs_scale.ll",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/gen_metallib.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/json_check.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o1_structural.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o2_nir_eval.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o2_semantics.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o3_asm_roundtrip.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/oracles/o3_backend.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/run_all.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/run_cli_tests.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/air2ir3/tests/run_compile_tests.sh",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Original M9 source file bears MIT SPDX; research-only import, no third-party binary",
+      "provenance": "M9 AIR2IR3 WSL Git commit 2c21032a0f61867880dff055a884a2e492c7f130; identical Git blob validated during publication"
+    },
+    {
+      "path": "tools/m12-boot-bridge/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned research documentation",
+      "provenance": "2026-11-11 public-safe M12 source subset explanation"
+    },
+    {
+      "path": "tools/m12-boot-bridge/bridge_contract.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-boot-bridge/bridge_core.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-boot-bridge/test_t2_memory.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned research documentation",
+      "provenance": "2026-11-11 public-safe M12 source subset explanation"
+    },
+    {
+      "path": "tools/m12-penang-physical/host_test_pmap_lockdown_contract.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/penang_pmap_lockdown_contract.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/penang_pmap_lockdown_contract.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/t2_stage1.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/t2_stage1.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/test_t2_stage1.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
     },
     {
       "path": "tools/penang-validate/Cargo.lock",

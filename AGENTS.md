@@ -24,6 +24,10 @@ Every result is classified, and never promoted beyond what was observed:
 - `IMPLEMENTED` code exists · `BUILDS` it compiles · `TESTED` a test ran and its result is recorded · `VERIFIED` confirmed by independent evidence · `BLOCKED` an obstacle is identified · `NOT_TESTED` not validated yet.
 - Scope matters: HOST ≠ QEMU ≠ DEVICE. Android running on the phone is not XNU running on the phone. See [docs/EVIDENCE-ADMISSION.md](docs/EVIDENCE-ADMISSION.md).
 
+## Mandatory research continuity
+
+Before doing any new device, ABI, memory, kernel or QEMU investigation, read [the dated research entrypoint](docs/research/RESUME-HERE.md), [the physical evidence ledger](docs/research/2026-11-15-physical-evidence-ledger.md), [the Q5 result](docs/research/2026-11-15-q5-el0.md) and the [existing-source reconciliation](docs/research/2026-11-11-reconciliation.md). The v0.1.0 generated STATUS.md is a frozen release snapshot, **not** the latest research. Check Git branches/worktrees, original test receipts, source hashes, errata and previous imports before assigning new work. An OPEN physical gate does not mean the underlying firmware/ABI has not already been researched. Any new proposal must name the smallest missing implementation/evidence and cite prior results it will reuse. The current focused plan is [WO-M12-CV1](docs/work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md).
+
 ## How to work
 
 1. Read the issue or work order. If it is ambiguous, ask the human before large or irreversible work.
