@@ -744,6 +744,13 @@
       "provenance": "2026-11-15 P1 actual XNU source chain independently inspected after three Terra High ECC reviewers; original XNU/firmware never imported"
     },
     {
+      "path": "tests/public/test_p1_native_inputs.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native input inventory and synthetic host regressions; no vendor source or private evidence",
+      "provenance": "2026-11-15 cloud AI-assisted implementation; retained MIT B4.2 assessor and P1 entry checker reused without source changes"
+    },
+    {
       "path": "tests/public/test_public_build.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1445,6 +1452,13 @@
       "license_expression": "MIT",
       "basis": "Self-authored host-only XNU source entry path preflight; no source mutation",
       "provenance": "2026-11-15 P1 actual XNU source chain independently inspected after three Terra High ECC reviewers; original XNU/firmware never imported"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_native_inputs.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New project-authored native input inventory and synthetic host regressions; no vendor source or private evidence",
+      "provenance": "2026-11-15 cloud AI-assisted implementation; retained MIT B4.2 assessor and P1 entry checker reused without source changes"
     },
     {
       "path": "tools/m12-penang-physical/penang_physical_contract.c",
