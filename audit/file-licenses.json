@@ -723,6 +723,13 @@
       "provenance": "W4-RC2 own status/validation packaging or documentary projection; no P0.10 code imported"
     },
     {
+      "path": "tests/public/test_p1_native_entry_frontier.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Synthetic source/guard regression tests, no firmware or device evidence",
+      "provenance": "2026-11-15 P1 actual XNU source chain independently inspected after three Terra High ECC reviewers; original XNU/firmware never imported"
+    },
+    {
       "path": "tests/public/test_public_build.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1417,6 +1424,13 @@
       "license_expression": "MIT",
       "basis": "Project-owned adversarial host test for descriptor layout, bounds, no physical admission",
       "provenance": "2026-11-15 GPT-6 original implementation; qualified source facts: M12-C2-P0 pin and public qcom_scm_assign_mem wire ABI; source-code copying from Linux not performed"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_native_entry_frontier.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Self-authored host-only XNU source entry path preflight; no source mutation",
+      "provenance": "2026-11-15 P1 actual XNU source chain independently inspected after three Terra High ECC reviewers; original XNU/firmware never imported"
     },
     {
       "path": "tools/m12-penang-physical/penang_physical_contract.c",
