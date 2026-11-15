@@ -163,7 +163,8 @@ def verify_main(data):
 
 
 def verify_q5_dyld(data):
-    # Historical project-built dyld, never Apple's dyld. No trust admission claim.
+    # Structural Q5 profile only: a matching ad-hoc signature does not establish
+    # historical byte identity, working dyld code or trust admission.
     require(len(data) == 0x4230, "Q5 dyld size")
     require(struct.unpack_from("<8I", data, 0) ==
             (0xfeedfacf, 0x100000c, 0, 7, 6, 0x1f8, 1, 0),
@@ -186,12 +187,33 @@ def verify_q5_dyld(data):
         require(struct.unpack_from("<16sQQQQIIII", data, at + 8) ==
                 (name.encode().ljust(16, b"\0"), addr, size, fileoff,
                  length, perm, perm, 0, 0), "Q5 dyld W^X")
-    require(codes[5][0] == 0x1d and
+    code, at, size = codes[2]
+    require((code, size) == (0xf, 32) and
+            struct.unpack_from("<I20s", data, at + 8) ==
+            (12, b"/usr/lib/dyld\0".ljust(20, b"\0")),
+            "Q5 dyld LC_ID_DYLINKER")
+    code, at, size = codes[3]
+    require((code, size) == (5, 288) and
+            struct.unpack_from("<II", data, at + 8) == (6, 68),
+            "Q5 dyld LC_UNIXTHREAD ARM_THREAD_STATE64")
+    state = struct.unpack_from("<33Q2I", data, at + 16)
+    # The entry must identify a complete A64 instruction in the executable
+    # payload, not a Mach-O header/load command or the read-only LINKEDIT.
+    require(0x1000 <= state[32] <= PAGE - 4 and state[32] % 4 == 0,
+            "Q5 dyld thread PC outside executable payload")
+    require(state[33] & 0x1f == 0 and state[34] == 0,
+            "Q5 dyld thread must enter EL0t with reserved flags clear")
+    code, at, size = codes[4]
+    require((code, size) == (0x32, 24) and
+            struct.unpack_from("<4I", data, at + 8) ==
+            (1, 0xf0500, 0xf0500, 0), "Q5 dyld LC_BUILD_VERSION")
+    require((codes[5][0], codes[5][2]) == (0x1d, 16) and
             struct.unpack_from("<II", data, codes[5][1] + 8) ==
             (0x4100, 0x130), "Q5 dyld LC_CODE_SIGNATURE")
     verify_signature(data, 0x4100, DYLD_IDENT, "dyld")
     return {"sha256": sha(data), "identity": "Q5 project-built dyld",
-            "trust_admission": "OPEN"}
+            "identity_verification": "STRUCTURAL_PROFILE_ONLY",
+            "guest_execution": "NOT_RUN", "trust_admission": "OPEN"}
 
 
 def checksum(blob):

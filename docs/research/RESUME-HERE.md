@@ -37,3 +37,14 @@ FDT_PHYSICAL_HANDOFF; SCM_XNU_ABI; STAGE2_GRANTS; DMA_ENFORCEMENT; PMAP_PHYSICAL
 - After each reviewed technical milestone, update provenance and this entrypoint, not a new internal work-order file. Do not overwrite old reports or retroactively recategorize experiments.
 
 **Next implementation:** native-provider qualification via [issue #4](https://github.com/PenangXNU/penang-xnu/issues/4), and a separate QEMU test of the existing HOST_ONLY BSD `getpid` fixture. **Portuguese summary:** [Retomada Penang XNU](../pt-BR/RETOMADA-PENANG-XNU.md).
+
+**Cloud host increment (2026-11-15):** the [P1 native input inventory](../../tools/m12-penang-physical/README.md#native-input-inventory-p1-host-only)
+now reports missing retained build inputs, filesystem/source-reference failures
+and explicit B4.2 refusal checks without executing Makefiles or compiling XNU.
+The original public XNU source is available; native generated recipes and the
+guarded research tree remain unavailable in cloud. The T73 packager also checks
+previously omitted dyld identity/thread/build load commands against the public
+structural fixture profile, including re-signed malformed inputs. Historical Q5
+byte identity and runtime remain untested by these host checks; no physical gate
+or native link has advanced. Recover the existing recipes/tree before attempting
+the first configured native compile; do not manufacture substitutes.
