@@ -758,6 +758,20 @@
       "provenance": "2026-11-15 SM-OMP-Harness CV1 (two Terra High source-backed reviews); XNU 11417 original ABI inspected locally; no proprietary source copied"
     },
     {
+      "path": "tests/public/test_t73_package_getpid.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New host-only ARM64 Mach-O/ROMFS signature and negative tests",
+      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile"
+    },
+    {
+      "path": "tests/public/test_t74_physical_contracts.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New host-only C contracts, fail-closed and AArch64 negative tests",
+      "provenance": "research/m12-t6-integration-20261112, byte-identical local original; sha256 verified"
+    },
+    {
       "path": "third-party/licenses/python/attrs-23.2.0/copyright",
       "classification": "THIRD_PARTY_NOTICE_ONLY",
       "license_expression": "MIT",
@@ -1377,11 +1391,32 @@
       "provenance": "2026-11-11 public-safe M12 source subset explanation"
     },
     {
+      "path": "tools/m12-penang-physical/host_test_penang_physical.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Byte-identical original M12-T6 host negative and baseline tests",
+      "provenance": "research/m12-t6-integration-20261112, byte-identical local original; sha256 verified"
+    },
+    {
       "path": "tools/m12-penang-physical/host_test_pmap_lockdown_contract.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
       "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/penang_physical_contract.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Byte-identical original M12-T6 platform validation implementation, no MMIO",
+      "provenance": "research/m12-t6-integration-20261112, byte-identical local original; sha256 verified"
+    },
+    {
+      "path": "tools/m12-penang-physical/penang_physical_contract.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Byte-identical original M12-T6 physical platform snapshot ABI, no MMIO",
+      "provenance": "research/m12-t6-integration-20261112, byte-identical local original; sha256 verified"
     },
     {
       "path": "tools/m12-penang-physical/penang_pmap_lockdown_contract.c",
@@ -1501,6 +1536,13 @@
       "license_expression": "MIT",
       "basis": "Project-owned T73 host-only research source and focused AArch64 tests",
       "provenance": "2026-11-15 SM-OMP-Harness CV1 (two Terra High source-backed reviews); XNU 11417 original ABI inspected locally; no proprietary source copied"
+    },
+    {
+      "path": "tools/t73-bsd-userland/package_getpid.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Self-authored T73 packaging port from retained project-built Q5 C1 Mach-O/ROMFS source",
+      "provenance": "2026-11-15 T73/T74 GPT-6 independent source review, Q5 self-authored profile"
     }
   ]
 }

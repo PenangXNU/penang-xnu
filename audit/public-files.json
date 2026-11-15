@@ -108,6 +108,8 @@
     "tests/public/test_publication_retired_files.py",
     "tests/public/test_publication_scan.py",
     "tests/public/test_t73_bsd_getpid_fixture.py",
+    "tests/public/test_t73_package_getpid.py",
+    "tests/public/test_t74_physical_contracts.py",
     "third-party/licenses/python/attrs-23.2.0/copyright",
     "third-party/licenses/python/jsonschema-4.10.3/copyright",
     "third-party/licenses/python/pyrsistent-0.20.0/copyright",
@@ -203,7 +205,10 @@
     "tools/m12-boot-bridge/test_t2_memory.c",
     "tools/m12-penang-physical/PENANG_PHYSICAL.h",
     "tools/m12-penang-physical/README.md",
+    "tools/m12-penang-physical/host_test_penang_physical.c",
     "tools/m12-penang-physical/host_test_pmap_lockdown_contract.c",
+    "tools/m12-penang-physical/penang_physical_contract.c",
+    "tools/m12-penang-physical/penang_physical_contract.h",
     "tools/m12-penang-physical/penang_pmap_lockdown_contract.c",
     "tools/m12-penang-physical/penang_pmap_lockdown_contract.h",
     "tools/m12-penang-physical/t2_stage1.c",
@@ -220,7 +225,8 @@
     "tools/penang-validate/src/main.rs",
     "tools/penang-validate/validate.py",
     "tools/t73-bsd-userland/fixture_getpid.S",
-    "tools/t73-bsd-userland/fixture_getpid.lds"
+    "tools/t73-bsd-userland/fixture_getpid.lds",
+    "tools/t73-bsd-userland/package_getpid.py"
   ],
   "content_pins": {
     ".gitattributes": "c223d42e1595c889c53f8c58435dc973ccfe6513ad08090733df52c646cb975d",
@@ -247,7 +253,7 @@
     "STATUS.md": "40bc5c27d86a760d8abdd06d1f857ab867ac2fe03fdd803bd279e5096b462d98",
     "audit/dependencies.json": "7c232f110c715345241c999e0fa4ead1a9f909c5392a4536358f7e8fa1370d65",
     "audit/exclusions.json": "1cffe398272698495d247bdec5edace7a03cd700e76c7580af195835d8d862d8",
-    "audit/file-licenses.json": "6f758526951b95474e1110b163797319ea207d65297366ea51c455aba514cea1",
+    "audit/file-licenses.json": "bb211720924a66015b92797c1a1b1a0c4ff37f1c49febe04f6ed6016feb1dd71",
     "audit/rc2-focused-review.json": "a26534f363c98d7b7fea570c229692e21d428cc518b8f1637fcd98c4463413fc",
     "audit/selected-sources.json": "a7fb665f72003d71ef032b9b12a85b40a9e854bf3b8994af4b1a6319cba1346b",
     "contracts/platform/CONTRACT.md": "3a1edd2d83a0ae06a4b4ae839e92e162f7f17af85757d0644d808d386e7e2a79",
@@ -330,6 +336,8 @@
     "tests/public/test_publication_retired_files.py": "a050e613581acbadab781d006d3120e6a6f2b2eac73b11adf24de94c0a301f1a",
     "tests/public/test_publication_scan.py": "d602e5a5cd70a9501a0f11ea59c7c1b2f98c99d59e13a9507573749a5ed9e3ad",
     "tests/public/test_t73_bsd_getpid_fixture.py": "18fa850baeea8b340910b56f09bb636a0de1c1ff337458ba38c0bc34d3e041c4",
+    "tests/public/test_t73_package_getpid.py": "ae934ecd64536ff5285c29e9f3d3833b8a3e7fb4568dcdde30f1705e8fb566ab",
+    "tests/public/test_t74_physical_contracts.py": "4dc10712390848acba8d4974485ef990efa6a1acf7580f643cdb636da03682e2",
     "third-party/licenses/python/attrs-23.2.0/copyright": "e1f2c4df71c4deedd7c3ea2ab8a56db5113b2265ea5ae34e4ae7b0c92d70ce29",
     "third-party/licenses/python/jsonschema-4.10.3/copyright": "ed96ded1a8606482cc4e2d64c03dd68f11ff264bcec84c0f71a912a4c46ec5ec",
     "third-party/licenses/python/pyrsistent-0.20.0/copyright": "ff94f4e517b2a1ff2fac445f441a978b7b79faf91b057825f2f84a6120514eb1",
@@ -425,7 +433,10 @@
     "tools/m12-boot-bridge/test_t2_memory.c": "17b4167df61b5bdfa005a8e0f88d74e1751edaed240a2980913840ec7b5c8545",
     "tools/m12-penang-physical/PENANG_PHYSICAL.h": "7c1a0a8d1dc4af50c0d02f57eea754763fce0cf646c76402d8ea08551ed8c116",
     "tools/m12-penang-physical/README.md": "697d3d920b2f3db5a3ce97d004e7eb169d03ac5580c5b2eb6dd0296cacc36076",
+    "tools/m12-penang-physical/host_test_penang_physical.c": "02c0a3246245503b07a5597535e4fbac2120905df7515a22a4594939d1c5a94e",
     "tools/m12-penang-physical/host_test_pmap_lockdown_contract.c": "6f7e4f9a358b4de796fdbf07c482c9898db228ef5ad9551bfb6f80778c33cf30",
+    "tools/m12-penang-physical/penang_physical_contract.c": "e0cd27d3ec6d6e184c815ce5c35a09fec036790510fb13188fee1a9a290c2edf",
+    "tools/m12-penang-physical/penang_physical_contract.h": "49f7ce19e84160aded315ecbb22714c62fe295d5199da4af2db64a9c6a6c963e",
     "tools/m12-penang-physical/penang_pmap_lockdown_contract.c": "aa6d6e28645be9f66e2b9211ac3c9a69f55dfac7ffa26b38ca19127986273557",
     "tools/m12-penang-physical/penang_pmap_lockdown_contract.h": "ee6e79cad8b3ae087483f310e8df81f11683a1b1514767b0cffca8c8406df77e",
     "tools/m12-penang-physical/t2_stage1.c": "872e779c556e5d38972555d68e64c6d03a0eca4f4545ef7f6f8dc7e3db4bef74",
@@ -442,7 +453,8 @@
     "tools/penang-validate/src/main.rs": "7b5b60ace9c0867a341165ce730b44d979eea32330d67394145f70ae13a332f3",
     "tools/penang-validate/validate.py": "4be28fef6f736fdf5cb2570c6723f8ef91c0ce82cbe27dd55b199777fec3ee88",
     "tools/t73-bsd-userland/fixture_getpid.S": "c149936e4a41121a870e367669f6d1e882d174c02b6f1afad0316b8b1555b186",
-    "tools/t73-bsd-userland/fixture_getpid.lds": "34b248d1bc817246fb0d0d054a6b931e2dd0776e78cd9485d9c1f75fb3e304d8"
+    "tools/t73-bsd-userland/fixture_getpid.lds": "34b248d1bc817246fb0d0d054a6b931e2dd0776e78cd9485d9c1f75fb3e304d8",
+    "tools/t73-bsd-userland/package_getpid.py": "55b477f57f2427005f0a4e5c3201f66eeba51d51259ad00af06c00123ea2256a"
   },
   "hash_scope": "Current public tree pins and historical retired-file SHA-256 evidence; versioned originals remain in ordinary Git history.",
   "retired_files": {
