@@ -105,6 +105,66 @@ class NativeInputs(unittest.TestCase):
                 self.reject("UNSUPPORTED_SOURCE_REFERENCES")
         self.write(path, old)
 
+    def test_known_recipe_templates_are_classified_separately_from_sources(self):
+        path = self.params["osfmk_make"]
+        with path.open("a") as out:
+            out.write("\t${C_RULE_1A} $(SOURCE_DIR)/osfmk/arm64/${C_RULE_1B}\n"
+                      "\t${S_RULE_1A} $(SOURCE_DIR)/osfmk/arm64/${S_RULE_1B}\n"
+                      "genassym.o: $(SOURCE_DIR)/$(COMPONENT)/$(GENASSYM_LOCATION)/genassym.c\n")
+        path = self.params["iokit_make"]
+        with path.open("a") as out:
+            out.write("\t${P_RULE_1A} $(SOURCE_DIR)/iokit/Kernel/${P_RULE_1B}\n")
+        result = self.inspect()
+        self.assertEqual(result["status"], "INPUT_AUDIT_COMPLETE_B42_COMPILE_HOLD", result)
+        self.assertEqual(result["reference_count"], 7)
+        self.assertEqual(len(result["references"]["osfmk"]["recipe_templates"]), 2)
+        self.assertEqual(result["references"]["osfmk"]["generated_dependencies"],
+                         ["$(COMPONENT)/$(GENASSYM_LOCATION)/genassym.c"])
+        self.assertEqual(result["references"]["iokit"]["recipe_templates"],
+                         ["iokit/Kernel/${P_RULE_1B}"])
+
+    def test_unknown_or_malformed_macro_templates_fail_closed(self):
+        path = self.params["osfmk_make"]
+        old = path.read_text()
+        for token in ("", "osfmk/${UNKNOWN}", "osfmk/$(C_RULE_1B)",
+                      "../osfmk/${C_RULE_1B}", "osfmk//${C_RULE_1B}",
+                      "osfmk/${C_RULE_1B}/suffix.c", "osfmk/${C_RULE_1B};bad",
+                      "$(COMPONENT)/../$(GENASSYM_LOCATION)/genassym.c",
+                      "$(COMPONENT)/$(UNKNOWN)/genassym.c",
+                      "osfmk/start.s\\#hidden", "osfmk/start.s\\ hidden",
+                      "osfmk/start.s\\;bad", "osfmk/start.s\\other"):
+            with self.subTest(token=token):
+                self.write(path, old + self.refs([token]))
+                self.reject("UNSUPPORTED_SOURCE_REFERENCES")
+        self.write(path, old)
+
+    def test_recipe_context_and_family_must_match_exactly(self):
+        path = self.params["osfmk_make"]
+        old = path.read_text()
+        for line in ("\t${C_RULE_1A} $(SOURCE_DIR)/osfmk/${S_RULE_1B}",
+                     "RULE=$(SOURCE_DIR)/osfmk/${C_RULE_1B}",
+                     "\t${C_RULE_1A} $(SOURCE_DIR)/osfmk/${C_RULE_1B} ; extra",
+                     "else.o: $(SOURCE_DIR)/$(COMPONENT)/$(GENASSYM_LOCATION)/genassym.c"):
+            with self.subTest(line=line):
+                self.write(path, old + line + "\n")
+                self.reject("UNSUPPORTED_SOURCE_REFERENCES")
+        self.write(path, old)
+
+    def test_multiline_guard_message_preserves_the_physical_refusal(self):
+        for source in (self.core[0], self.core[2]):
+            path = self.guarded / source
+            self.write(path, path.read_text().replace('#endif', '       "additional refusal detail"\n#endif'))
+        self.assertEqual(self.inspect()["status"], "INPUT_AUDIT_COMPLETE_B42_COMPILE_HOLD")
+        source = self.guarded / self.core[0]
+        self.write(source, "#if 0\n" + source.read_text() + "#endif\n")
+        self.reject("TOP_LEVEL_B42_REFUSAL_MISSING")
+
+    def test_spliced_inactive_parent_guard_is_not_admitted(self):
+        source = self.guarded / self.core[0]
+        old = source.read_text()
+        self.write(source, "#\\\nif 0\n" + old + "#endif\n")
+        self.reject("TOP_LEVEL_B42_REFUSAL_MISSING")
+
     def test_symlink_escape_and_nonregular_input(self):
         path = self.guarded / self.core[0]
         path.unlink()

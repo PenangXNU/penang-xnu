@@ -16,7 +16,7 @@ import re
 import stat
 
 from p1_native_entry_frontier import inspect as inspect_entry, PHYSICAL_GUARD, BLOCKER
-from verify_b42_pmap_lockdown import assess_b42, extract_makefile_sources
+from verify_b42_pmap_lockdown import assess_b42
 
 MAX_INPUT = 12_000_000
 INPUTS = ("osfmk_make", "iokit_make", "osfmk_config", "board_header")
@@ -35,25 +35,55 @@ def read_text(path):
 def make_text(text):
     # Generated doconf references have no quoted/escaped hashes. Unsupported
     # source references are rejected below rather than partially admitted.
+    text = re.sub(r"\\\r?\n", " ", text)
     return "\n".join(line.split("#", 1)[0] for line in text.splitlines())
 
 
 def c_text(text):
+    text = re.sub(r"\\\r?\n", "", text)
     return re.sub(r"/\*.*?\*/|//[^\n]*", "", text, flags=re.S)
 
 
-def references(text):
-    tokens = re.findall(r"\$\(SOURCE_DIR\)/([^\s\\]+)", text)
-    paths = extract_makefile_sources(text)
-    for token in tokens:
-        parts = PurePosixPath(token).parts
-        if (not re.fullmatch(r"[A-Za-z0-9_./+-]+\.(?:cpp|c|s|S)", token)
-                or token.startswith("/") or any(p in (".", "..") for p in token.split("/"))
-                or not parts or str(PurePosixPath(token)) != token):
+def canonical_path(token):
+    return (bool(re.fullmatch(r"[A-Za-z0-9_./+-]+", token))
+            and not token.startswith("/")
+            and all(p not in ("", ".", "..") for p in token.split("/"))
+            and str(PurePosixPath(token)) == token)
+
+
+def classify_references(text):
+    """Distinguish literal sources from the exact doconf recipe templates.
+
+    No macro expansion, Make evaluation or arbitrary dollar-expression skip.
+    A rule-template directory must itself be canonical; a template must end
+    the token. The genassym dependency remains explicitly unresolved here.
+    """
+    paths, templates, generated = set(), set(), set()
+    # Keep empty references visible, so a bare SOURCE_DIR slash cannot vanish.
+    text = re.sub(r"\\\r?\n", " ", text)
+    for line in text.splitlines():
+        for token in re.findall(r"\$\(SOURCE_DIR\)/([^\s]*)", line):
+            if canonical_path(token) and re.fullmatch(r".+\.(?:cpp|c|s|S)", token):
+                paths.add(token)
+                continue
+            if (token == "$(COMPONENT)/$(GENASSYM_LOCATION)/genassym.c"
+                    and line == "genassym.o: $(SOURCE_DIR)/" + token):
+                generated.add(token)
+                continue
+            match = re.fullmatch(r"(.+)/\$\{([CSP])_RULE_1B\}", token)
+            if (match and canonical_path(match[1])
+                    and line == "\t${" + match[2] + "_RULE_1A} $(SOURCE_DIR)/" + token):
+                templates.add(token)
+                continue
             raise ValueError("unsupported source reference")
-    if set(tokens) != set(paths) or not paths:
-        raise ValueError("empty or partially parsed source references")
-    return paths
+    if not paths:
+        raise ValueError("empty source references")
+    return {"sources": sorted(paths), "recipe_templates": sorted(templates),
+            "generated_dependencies": sorted(generated)}
+
+
+def references(text):
+    return classify_references(text)["sources"]
 
 
 def top_level_guard(source):
@@ -64,7 +94,7 @@ def top_level_guard(source):
     """
     source = c_text(source)
     pattern = (re.escape(PHYSICAL_GUARD) + r'\s*\n\s*#error\s+"[^"\n]*'
-               + re.escape(BLOCKER) + r'[^"\n]*"\s*\n\s*#endif\b')
+               + re.escape(BLOCKER) + r'[^"\n]*"\s*\n(?:[ \t]*"[^"\n]*"[ \t]*\n)*\s*#endif\b')
     depth = 0
     for line in source.splitlines(keepends=True):
         if depth == 0 and re.match(pattern, source):
@@ -119,7 +149,10 @@ def inspect(original, guarded=None, *, osfmk_make=None, iokit_make=None,
         iokit = make_text(texts["iokit_make"])
         config = make_text(texts["osfmk_config"])
         board = c_text(texts["board_header"])
-        paths = sorted(set(references(osfmk) + references(iokit)))
+        result["references"] = {"osfmk": classify_references(osfmk),
+                                "iokit": classify_references(iokit)}
+        paths = sorted(set(result["references"]["osfmk"]["sources"]
+                           + result["references"]["iokit"]["sources"]))
     except ValueError:
         result["status"] = "REJECTED"
         result["blockers"].append({"code": "UNSUPPORTED_SOURCE_REFERENCES"})
