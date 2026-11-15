@@ -786,6 +786,13 @@
       "provenance": "W2W3:tests/platform/test_platform.py"
     },
     {
+      "path": "tests/public/test_b42_source_selection.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "New public CI bridge for original B4.2 negatives and AArch64 compile-time guards",
+      "provenance": "research/m12-b42-pmap-lockdown-argon-20261107 @ 29e6aca (original test/board; pure assessor source node extraction) or 2026-11-15 public regression wrapper"
+    },
+    {
       "path": "tests/public/test_current_status.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1412,6 +1419,13 @@
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
     },
     {
+      "path": "tools/m12-penang-physical/PENANG_PHYSICAL.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Byte-identical B4.2 board configuration and fail-closed CPU feature restrictions",
+      "provenance": "research/m12-b42-pmap-lockdown-argon-20261107 @ 29e6aca (original test/board; pure assessor source node extraction) or 2026-11-15 public regression wrapper"
+    },
+    {
       "path": "tools/m12-penang-physical/README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1459,6 +1473,20 @@
       "license_expression": "MIT",
       "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
       "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+    },
+    {
+      "path": "tools/m12-penang-physical/test_verify_b42_pmap_lockdown.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Byte-identical B4.2 synthetic and adversarial source-selection tests",
+      "provenance": "research/m12-b42-pmap-lockdown-argon-20261107 @ 29e6aca (original test/board; pure assessor source node extraction) or 2026-11-15 public regression wrapper"
+    },
+    {
+      "path": "tools/m12-penang-physical/verify_b42_pmap_lockdown.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "AST-extracted pure B4.2 source-selection assessor, no private inputs",
+      "provenance": "research/m12-b42-pmap-lockdown-argon-20261107 @ 29e6aca (original test/board; pure assessor source node extraction) or 2026-11-15 public regression wrapper"
     },
     {
       "path": "tools/penang-validate/Cargo.lock",
