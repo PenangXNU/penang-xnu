@@ -807,6 +807,13 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "tests/public/test_publication_branch_history.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned synthetic Git ref test",
+      "provenance": "PR7 GitHub CI run 43702530086: unrelated PR8 branch contents not in PR7 current manifest; verified exact fail log"
+    },
+    {
       "path": "tests/public/test_publication_scan.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",

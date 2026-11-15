@@ -112,6 +112,11 @@ def scan(root, history=True):
                     issues += check_content("git-object:" + oid, git(root, "cat-file", kind, oid))
                     objects += 1
             commit_ids = git(root, "rev-list", "--all").decode().splitlines()
+            # All refs are still checked for forbidden paths, symlinks and
+            # private content. Only HEAD ancestry is checked against the
+            # *current branch's* public-files inventory. Parallel PR branches
+            # have independent manifests and must not invalidate each other.
+            head_ids = set(git(root, "rev-list", "HEAD").decode().splitlines())
             commits = len(commit_ids)
             for oid in commit_ids:
                 for entry in git(root, "ls-tree", "-rz", "--full-tree", oid).split(b"\x00"):
@@ -120,7 +125,7 @@ def scan(root, history=True):
                     metadata, raw_name = entry.split(b"\t", 1)
                     name = raw_name.decode("utf-8")
                     issues += check_path(name)
-                    if name not in allowed:
+                    if oid in head_ids and name not in allowed:
                         issues.append({"code": "HISTORICAL_UNLISTED_FILE", "path": name, "commit": oid})
                     if metadata.startswith(b"120000"):
                         issues.append({"code": "HISTORICAL_SYMLINK", "path": name, "commit": oid})
