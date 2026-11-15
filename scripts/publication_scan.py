@@ -60,9 +60,24 @@ def public_files(root):
             p = Path(base) / n
             if p.is_symlink():
                 links.append(p.relative_to(root).as_posix())
+            elif n == ".git" and p.parent == root and linked_git_metadata(root, p):
+                continue
             else:
                 files.append(p)
     return files, links
+
+def linked_git_metadata(root, path):
+    """Exclude only a valid root Git administrative file, not arbitrary text."""
+    try:
+        if path.stat().st_size > 4096:
+            return False
+        text = path.read_text(encoding="utf-8")
+        if not re.fullmatch(r"gitdir: [^\r\n]+\n?", text):
+            return False
+        git(root, "rev-parse", "--resolve-git-dir", str(path))
+        return Path(os.fsdecode(git(root, "rev-parse", "--show-toplevel")).strip()).resolve() == root
+    except (OSError, UnicodeError, subprocess.CalledProcessError):
+        return False
 
 def git(root, *args):
     return subprocess.check_output(["git", "--no-optional-locks", "-C", str(root), *args],
