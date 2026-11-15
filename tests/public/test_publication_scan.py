@@ -69,3 +69,25 @@ class PublicationScanTests(unittest.TestCase):
         git("add", "-u")
         git("-c", "commit.gpgsign=false", "commit", "-m", "delete fixture")
         self.assertIn("GITHUB_TOKEN", self.codes())
+
+    def test_valid_linked_worktree_metadata_is_not_a_public_source_file(self):
+        def git(*args):
+            return subprocess.run(["git", "-C", str(self.root), *args], check=True, capture_output=True)
+        git("init", "-b", "fixture")
+        git("add", "safe.txt", "audit/public-files.json")
+        git("-c", "user.name=Synthetic fixture", "-c", "user.email=fixture@localhost",
+            "-c", "commit.gpgsign=false", "commit", "-m", "fixture")
+        linked = self.root.parent / (self.root.name + "-linked")
+        git("worktree", "add", "--detach", str(linked))
+        self.addCleanup(lambda: git("worktree", "remove", str(linked)))
+        self.assertTrue((linked / ".git").is_file())
+        self.assertEqual(scanner.scan(linked)["status"], "PASS")
+        self.assertEqual(scanner.scan(linked)["history_status"], "PASS")
+
+    def test_fake_or_nested_git_file_is_still_scanned(self):
+        (self.root / ".git").write_text("gitdir: nowhere\n" + "gh" + "p_" + "B" * 36)
+        self.assertIn("GITHUB_TOKEN", self.codes())
+        (self.root / ".git").unlink()
+        (self.root / "nested").mkdir()
+        (self.root / "nested/.git").write_text("gh" + "p_" + "C" * 36)
+        self.assertIn("GITHUB_TOKEN", self.codes())

@@ -48,3 +48,17 @@ structural fixture profile, including re-signed malformed inputs. Historical Q5
 byte identity and runtime remain untested by these host checks; no physical gate
 or native link has advanced. Recover the existing recipes/tree before attempting
 the first configured native compile; do not manufacture substitutes.
+
+**Subsequent native-build increment (2026-11-15):** owner-provided private
+recipes/overlay now replay through the corrected lexical classifier (303 OSFMK,
+83 IOKit sources) with B4.2 compile HOLD intact. A pinned public-source
+cache-geometry delta and [fresh native compile probe](../../tools/m12-penang-physical/README.md#fresh-native-object-compilation)
+produced 22 nonempty ARM64 Mach-O objects, including original `arm_init.c`,
+`machine_cpuid.c` and `locore.s`. Upstream configuration/assym generators were
+used; guards were not edited. Three empty objects were not counted as providers,
+and five TUs failed compilation. VM intentionally reaches the B4.2 refusal;
+`start.s` still lacks its tunables include, PMAP/Platform Expert require generated
+MIG headers, and SHA assembly has a compiler-dialect error. This is a fresh
+diagnostic subset, not the retained T6 replay, full kernel link or physical boot.
+The next source-recovery target is the omitted T1 dependency/toolchain recipe;
+do not invent tunables, MIG ABI, monitor or successful lockdown providers.
