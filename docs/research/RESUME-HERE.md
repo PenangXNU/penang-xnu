@@ -18,7 +18,7 @@
 1. [2026-11-15 evidence ledger](2026-11-15-physical-evidence-ledger.md): *which physical hardware work is already done*, original source branches, corrections to old reports, and scope.
 2. [T72-Q5 result](2026-11-15-q5-el0.md): latest QEMU userland functional state, with signature/admission limits.
 3. [Physical boundary](qualcomm-memory-security.md), [driver dependencies](drivers-and-userland.md) and the previous [2026-11-11 reconciliation](2026-11-11-reconciliation.md): original recovered source and known architecture.
-4. [WO-M12-CV1](../work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md): next integration task, deliberately **not** a new broad reverse-engineering survey.
+4. [Physical integration issue](https://github.com/PenangXNU/penang-xnu/issues/4): qualify the smallest missing native provider/link delta; do not repeat hardware reverse engineering.
 
 ## Unresolved physical gates (all OPEN for XNU-on-device)
 
@@ -33,6 +33,6 @@ FDT_PHYSICAL_HANDOFF; SCM_XNU_ABI; STAGE2_GRANTS; DMA_ENFORCEMENT; PMAP_PHYSICAL
 - Separate `HOST_ONLY`, `QEMU_VERIFIED`, `DEVICE_VERIFIED`, `INFERRED` and `OPEN` claims. A Git commit or document is traceability, not runtime evidence.
 - Never publish firmware, ROM partitions, Apple KDK/IPSW/shared caches, proprietary material, device identifiers, raw physical logs, photos, keys, local absolute paths or private evidence. Public research records name source branch/commit and abstracted artifact/check hashes; originals stay outside this repository.
 - Keep original worktrees, uncommitted files and historical results. No reset/clean/force-push/whole-branch merge. New work must state its **smallest missing implementation or evidence**, existing owner, tests, negative cases and rollback.
-- After each work order, update a dated research snapshot, provenance and this entrypoint through review. Do not overwrite old reports or retroactively recategorize experiments.
+- After each reviewed technical milestone, update provenance and this entrypoint, not a new internal work-order file. Do not overwrite old reports or retroactively recategorize experiments.
 
-**Current work order:** [WO-M12-CV1 — converge evidence and providers](../work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md). **Portuguese summary:** [Retomada Penang XNU](../pt-BR/RETOMADA-PENANG-XNU.md).
+**Next implementation:** native-provider qualification via [issue #4](https://github.com/PenangXNU/penang-xnu/issues/4), and a separate QEMU test of the existing HOST_ONLY BSD `getpid` fixture. **Portuguese summary:** [Retomada Penang XNU](../pt-BR/RETOMADA-PENANG-XNU.md).

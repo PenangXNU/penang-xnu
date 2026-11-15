@@ -53,4 +53,4 @@ Original **local** SHA256SUMS were rehashed without changing source artifacts: B
 | ENTROPY_PHYSICAL | Firmware candidates + 512-byte Stage-0 metadata | Qualified fresh physical seed to the XNU consumer |
 | XNU_DEVICE_ENTRY | Stage-0 one-shot + U2 Android identity | Native target, recovery, observability and independently authorized physical trial |
 
-**No claim of a bootable XNU image, Apple security equivalence or authorized experiment follows from this ledger.** Prefer the minimal [CV1 convergence work order](../work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md) to further general hardware scouting.
+**No claim of a bootable XNU image, Apple security equivalence or authorized experiment follows from this ledger.** Follow [physical integration issue #4](https://github.com/PenangXNU/penang-xnu/issues/4) rather than another general hardware survey.

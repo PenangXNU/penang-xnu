@@ -74,9 +74,24 @@ def scan(root, history=True):
     files, links = public_files(root)
     issues.extend({"code": "SYMLINK", "path": n} for n in links)
     names = {p.relative_to(root).as_posix() for p in files}
+    retired = {}
     try:
         inventory = json.loads((root / "audit/public-files.json").read_text(encoding="utf-8"))
         allowed = set(inventory["files"])
+        # Files intentionally retired from the current public tree can remain
+        # in immutable Git history, but every historical blob must be pinned.
+        old = inventory.get("retired_files", {})
+        if not isinstance(old, dict):
+            raise ValueError("invalid retired_files")
+        for name, versions in old.items():
+            if (name in allowed or not isinstance(versions, list) or not versions
+                    or len(set(versions)) != len(versions)
+                    or not all(isinstance(v, str) and re.fullmatch(r"[0-9a-f]{64}", v)
+                               for v in versions)):
+                issues.append({"code": "RETIRED_MANIFEST_INVALID", "path": name})
+                continue
+            issues += check_path(name)
+            retired[name] = set(versions)
         for n in sorted(names - allowed):
             issues.append({"code": "UNEXPECTED_FILE", "path": n})
         for n in sorted(allowed - names):
@@ -118,6 +133,8 @@ def scan(root, history=True):
             # have independent manifests and must not invalidate each other.
             head_ids = set(git(root, "rev-list", "HEAD").decode().splitlines())
             commits = len(commit_ids)
+            observed_retired = {name: set() for name in retired}
+            blob_cache = {}
             for oid in commit_ids:
                 for entry in git(root, "ls-tree", "-rz", "--full-tree", oid).split(b"\x00"):
                     if not entry:
@@ -126,9 +143,25 @@ def scan(root, history=True):
                     name = raw_name.decode("utf-8")
                     issues += check_path(name)
                     if oid in head_ids and name not in allowed:
-                        issues.append({"code": "HISTORICAL_UNLISTED_FILE", "path": name, "commit": oid})
+                        if name not in retired:
+                            issues.append({"code": "HISTORICAL_UNLISTED_FILE", "path": name, "commit": oid})
+                        else:
+                            # Verify the exact blob identity of every retired
+                            # version reachable from HEAD, not just its path.
+                            blob_oid = metadata.split()[-1].decode("ascii")
+                            if blob_oid not in blob_cache:
+                                blob_cache[blob_oid] = digest(git(root, "cat-file", "blob", blob_oid))
+                            blob_sha = blob_cache[blob_oid]
+                            if blob_sha not in retired[name]:
+                                issues.append({"code": "RETIRED_BLOB_UNPINNED",
+                                               "path": name, "commit": oid})
+                            else:
+                                observed_retired[name].add(blob_sha)
                     if metadata.startswith(b"120000"):
                         issues.append({"code": "HISTORICAL_SYMLINK", "path": name, "commit": oid})
+            for name, versions in retired.items():
+                for version in sorted(versions - observed_retired[name]):
+                    issues.append({"code": "RETIRED_PIN_UNVERIFIED", "path": name, "sha256": version})
             history_state = "PASS" if not issues else "FAIL"
         except (subprocess.CalledProcessError, ValueError, UnicodeError):
             issues.append({"code": "HISTORY_SCAN_FAILED", "path": ".git"})

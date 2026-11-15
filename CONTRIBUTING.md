@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping. Most useful work needs neither a phone nor any Apple file: contracts, validators, tests, QEMU tooling, documentation and reviews. Start with [the initial issues](docs/INITIAL-ISSUES.md) or the [roadmap](ROADMAP.md).
+Thanks for helping. Most useful work needs neither a phone nor any Apple file: contracts, validators, tests, QEMU tooling, documentation and reviews. Start with [current GitHub issues](https://github.com/PenangXNU/penang-xnu/issues), the [research entrypoint](docs/research/RESUME-HERE.md) or the [roadmap](ROADMAP.md).
 
 ## Ground rules
 
@@ -13,7 +13,7 @@ Thanks for helping. Most useful work needs neither a phone nor any Apple file: c
 
 ## Workflow
 
-- One issue per change; larger work uses the [work-order template](docs/work-orders/WORK-ORDER-TEMPLATE.md) and ends with a [handoff](docs/work-orders/HANDOFF-TEMPLATE.md).
+- One GitHub issue per scoped change. Record source commits, test results, failed checks and follow-up work in the PR or issue. Keep temporary agent handoffs and gates in the authorized local vault, not in this public source tree.
 - Keep changes small. Cite source commits, toolchain, commands and the proof scope of every technical claim, including negative cases.
 - Run `python3 -B scripts/validate_public.py` before opening a pull request; CI runs the same suite. The suite is public-only: never add a private input to make it pass.
 - New files must be added to `audit/public-files.json` and `audit/file-licenses.json` (the publication scan rejects unlisted files).
