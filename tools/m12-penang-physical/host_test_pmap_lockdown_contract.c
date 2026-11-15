@@ -179,6 +179,19 @@ int main(void)
     b1.reserved_count = 5u;
     fail |= check_case("ml_static_mfree_prefix_collision", &b1, &req, B42_ERR_B1_WINDOW_RESERVED_COLLISION, 1);
 
+    /* Even when DMA writes are possible, the reserved-range collision is
+     * rejected first; the old duplicate DMA-overlap branch was unreachable. */
+    b1 = valid_b1();
+    b1.reserved[4].base = 0xa0100000ULL;
+    b1.reserved[4].size = 0x00100000ULL;
+    b1.reserved[4].owner = B42_OWNER_PIL_PERIPHERAL;
+    b1.reserved[4].s2_grant = B42_GRANT_NO_HLOS;
+    b1.reserved[4].coalesced_16k = 1u;
+    b1.reserved[4].dma_writable = 1u;
+    b1.reserved_count = 5u;
+    fail |= check_case("dma_writable_reservation_collision_precedence", &b1, &req,
+                       B42_ERR_B1_WINDOW_RESERVED_COLLISION, 1);
+
     /* 8. Unverified ownership & SMMU bypass DMA hazards */
     b1 = valid_b1(); b1.kernel_window_grant = B42_GRANT_UNVERIFIED;
     fail |= check_case("unverified_window_grant", &b1, &req, B42_ERR_B1_OWNERSHIP_UNVERIFIED, 1);

@@ -170,10 +170,6 @@ int b42_validate_b1_handoff(const struct b42_b1_handoff_snapshot *b1)
         if (b42_ranges_overlap(b1->kernel_phys_base, win_end, r->base, r_end)) {
             return B42_ERR_B1_WINDOW_RESERVED_COLLISION;
         }
-        if (r->dma_writable != 0u &&
-            b42_ranges_overlap(b1->kernel_phys_base, win_end, r->base, r_end)) {
-            return B42_ERR_DMA_SMMU_UNISOLATED;
-        }
     }
 
     if (b1->smmu_global_policy != B42_DMA_SMMU_FAULT_UNMAPPED) {
