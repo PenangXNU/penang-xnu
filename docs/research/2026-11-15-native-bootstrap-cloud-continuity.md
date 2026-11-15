@@ -1,0 +1,52 @@
+# Native XNU bootstrap: current research integration and cloud continuity
+
+**Research snapshot: 2026-11-15.** Public technical context for contributors; **not an operational device work order**, release, device test authorization, or security attestation. Read [AGENTS.md](../../AGENTS.md), [the research entrypoint](RESUME-HERE.md), [the device evidence ledger](2026-11-15-physical-evidence-ledger.md), [the Q5 result](2026-11-15-q5-el0.md), and [the memory-security boundary](qualcomm-memory-security.md) first.
+
+## Objective and unambiguous meaning of `penang-init`
+
+The integration objective is to bring up a real XNU 11417.140.69 **ARM64** kernel on the Motorola Moto G53 5G (`penang`, Qualcomm SM4350-AC/holi), then eventually observe execution of a **project-authored** `/sbin/penang-init` userland process. The research fixture `/sbin/penang-init` is a file in experimental ROMFS media; it is **not** a function named `penang_init` in the kernel. The historical Q5 dynamic EL0 proof ran a different purpose-built `/sbin/launchd` + `/usr/lib/dyld` research pair. Neither is Apple's launchd or dyld.
+
+A diagnostic physical kernel entry and a complete physical PMAP/Stage-2 memory-integrity guarantee have **different evidence requirements**. Work on the first may progress through source selection, compile, link and a proposed test design while the latter remains OPEN. Any physical experiment still requires a separately reviewed image, recovery and fresh explicit human permission. A diagnostic build may not claim protection it does not implement; the existing physical B4.2 fail-closed guards must not be silently bypassed.
+
+## Repository snapshot at publication preparation
+
+This record is based on **`main@65078ff24671d9b94ce3451e5dc9ac03abe73e43`** (2026-11-15). Check GitHub again before modifying code; PR merge status can change. The v0.1.0 `STATUS.md`, generated README status block and `manifests/current-status.json` are frozen release projections, not latest kernel research. Do not edit them manually.
+
+| Lineage / code | Evidence presently available | Boundary |
+| --- | --- | --- |
+| [PR #11](https://github.com/PenangXNU/penang-xnu/pull/11), merged to main | C11 `penang_scm_mp_candidate.{h,c}`, host negative tests, nonzero `HOST_DESCRIPTOR_ONLY` result, ARM64 object compilation; request encoding only | Not an authorized SCM call, stage-2 grant or PMAP lockdown |
+| [PR #12](https://github.com/PenangXNU/penang-xnu/pull/12), **open** at `3b34d2f9fce7c4c931c22d9e378594ad3ab36eff` | `p1_native_entry_frontier.py` statically verifies XNU `_start` → `start_first_cpu` → `arm_init` → `arm_vm_init` against original source and separately retained B4.2 guarded scratch, 6 public tests | Open PR: not in the referenced main snapshot; no complete native build |
+| M11-D3A1, [physical evidence ledger](2026-11-15-physical-evidence-ledger.md) | Owner-authored Stage-0 in RAM ran in EL1 on G53, TGran16 support, FDT metadata and controlled Android return (**DEVICE_VERIFIED for Stage-0**) | Not XNU on the phone |
+| T72-Q5, [QEMU EL0 record](2026-11-15-q5-el0.md) | XNU QEMU_VIRT entered dynamic dyld and application fixture in EL0; 138 events, 34/34 independent audit checks (**QEMU_VERIFIED**) | Not physical, not Apple's userland; `TRUST_ADMISSION=OPEN` |
+| B4.2 and T6 native diagnostics, [physical evidence ledger](2026-11-15-physical-evidence-ledger.md) | Security guards, source-selection matrices, 16-KiB Stage-1 model, 18 ARM64 Mach-O diagnostic objects | Physical `pmap.c` and `arm_vm_init.c` intentionally stop at `#error`; no native XNU full link |
+| B4.3A-R3 Qualcomm SCM/ABL, [physical evidence ledger](2026-11-15-physical-evidence-ledger.md) | Static post-ExitBootServices ABL transport before kernel handoff | Does not establish authorized post-handoff NS-EL1 XNU calls or protection enforcement |
+
+See [issue #4](https://github.com/PenangXNU/penang-xnu/issues/4) for the scoped physical integration backlog and [issue #5](https://github.com/PenangXNU/penang-xnu/issues/5) for source recovery. The earlier `rav` USB device was the **Moto G8**; later U2 ADB identification confirmed `penang`. U2 is a **checkpoint label**, not necessarily a different stock firmware revision.
+
+## Build dependency order: preserve prior work
+
+1. **Reproduce current public tests first.** In a clean Git checkout, read `AGENTS.md`, `docs/EVIDENCE-ADMISSION.md`, the current branch/PR diffs, and `python3 -B scripts/validate_public.py`. Do not alter historical worktrees, release projections or source hashes. A cloud checkout does **not** contain original private WSL research, KDK, vendor binaries or the owner's Obsidian vault.
+2. **Native source-selection boundary.** Reconcile the pre-existing `PENANG_PHYSICAL` configuration and B4.1/B4.2 diagnostics. Historical generated selection referenced **307 OSFMK and 82 IOKit** translation units, including essential `start.s`, `arm_init.c`, `arm_vm_init.c`, `pmap.c`. Four selected Apple AMCC `amcc_rorgn_*.c` sources are absent in the public XNU drop. The isolated B4.2 diagnostic source-selection experiment excluded them **without** deleting the option that selects necessary ARM64 bootstrap units. This is not a working physical PMAP backend.
+3. **Genuine XNU kernel entry.** The original public source chain starts at `osfmk/arm64/start.s` `LEXT(_start)`, branches to `start_first_cpu`, reaches `arm_init` in `osfmk/arm/arm_init.c`, then `arm_vm_init`. PR #12 adds a **static, two-source-tree** gate for this path; it is not compilation or device telemetry. Review it and do not invent a `penang_init` kernel symbol.
+4. **VM/PMAP and physical memory admission.** The guarded physical `arm_vm_init.c` and `pmap.c` contain explicit B4.2 compile refusals. An implementation proposal must distinguish Stage-1 functional memory management from Stage-2/XPU or monitor-backed protection, preserve memory ownership and reserved ranges, and specify aliases, TLBI/cache, DMA/SMMU and rollback. Do not turn any host SCM request serializer, synthetic model, or `NO_MONITOR` fallback into a production success. A **separate diagnostic security profile**, if proposed, requires an explicit architecture/security decision and its own negative tests; it is not implicitly approved.
+5. **Native link frontier.** T6 compiled 18 diagnostic ARM64 Mach-O objects; the **764 unresolved imports were from a partial object selection**, not proof of 764 missing functions. Reconstruct the actual selected providers before adding new definitions. Native `PENANG_PHYSICAL` complete compile/link, Mach-O entry/layout, GIC/timer, physical HLOS reservations and safe handoff remain unverified.
+6. **Userland after kernel readiness.** Reuse the project-owned T72/Q5 Mach-O/ROMFS infrastructure and T73 `getpid` fixture rather than reimplementing it. On QEMU, `/sbin/penang-init` requires real kernel loader, VM/UBC paging, trust policy and an observable EL0 PC/syscall. A ROMFS execute bit or a host Mach-O signature hash alone is not execution.
+7. **Device experimentation is a separate authorization.** Existing Stage-0 proof, device photo and Qualcomm FDT evidence permit planning, not blanket `adb`/`fastboot`/flash/reset/SMC. Any test proposal must document exact byte-pinned payload, effective bootloader/slot identity, rollback and controlled return, and obtain explicit permission for that operation.
+
+## Next code contribution: required evidence
+
+Prioritize **a source-level or build-level delta**, not another generalized survey or a new series of transient reports. A useful first cloud PR should:
+
+- Inspect the current physical source selector, pre-existing B4.2 guard/replay code and public XNU source baseline; reproduce the first **real** native compilation failure in an isolated, pinned build environment if all prerequisites are available. If a required source/toolchain is unavailable in cloud, provide an executable preflight and exact missing prerequisite rather than a fabricated build PASS.
+- Implement the **smallest safe increment** on the real kernel/bootstrap/VM/link path. Examples are verified source-selection completeness, native Mach-O object dependency resolution or a physical-only build contract that rejects missing monitor grants. Do not replace actual XNU source with a demo executable or suppress a security guard to improve progress.
+- Test positive and adversarial cases; identify which symbols/objects are actually linked. Distinguish `HOST_ONLY`, `QEMU_VERIFIED`, `DEVICE_VERIFIED`, `INFERRED` and `OPEN`. Tests must not pretend to qualify the inaccessible G53.
+- Use an isolated branch, DCO `git commit -s`, code review, a reproducible command log, exact SHA-256 of new source/test receipts, and `python3 -B scripts/validate_public.py`. Any new public file must be registered and SHA-pinned in `audit/public-files.json` and `audit/file-licenses.json`; do not modify generated status pages manually.
+- Open one reviewable PR with a concise description: **implemented code, source evidence, test result, FIRST UNRESOLVED BLOCKER and next actionable diff**. Never force-merge, rewrite Git history, publish protected vendor material or run device commands without explicit approval.
+
+A truly qualified `PENANG_INIT_EL0` requires an observed original execution path and instrumentation, not just a build, a local Mach-O fixture or a status label. A truly qualified physical XNU boot requires a physically observed XNU kernel entry; **Stage-0 and QEMU outcomes remain separate**.
+
+## External material: keep private
+
+The owner retains the original M11-D3A1 device receipts, B1.4-H1 FDT/DRAM reconciliation, B4.2 PMAP source diagnostic patch and test receipts, B4.3A-R3 SCM/ABL static research, T6 native-object audit, T72-Q5 runtime/audit, ROM/boot/DTBO inputs and Obsidian operating notes outside the repository. A cloud agent can read **public-safe summaries in this repo**. If an exact private report is needed, request that the owner attach a **sanitized excerpt** to the relevant task; do not assume a Windows, WSL, vault or ChatGPT Library path is mounted in Codex Cloud. Do not upload raw device images, vendor firmware or protected SDKs to the public Git repository.
+
+This is a continuously revisable source of **technical context**, not a machine-generated assertion that any remaining physical gate has passed.

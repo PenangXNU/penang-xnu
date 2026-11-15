@@ -86,6 +86,13 @@
       "provenance": "W4 project-authored packaging or public fact projection"
     },
     {
+      "path": "CHANGELOG.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored English public research changelog, distinct from the frozen generated release status",
+      "provenance": "2026-11-15 user-authorized GPT-6 public technical context based on verified GitHub PR states and previously admitted research; no private source bytes"
+    },
+    {
       "path": "CLAUDE.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -469,6 +476,13 @@
       "license_expression": "Apache-2.0",
       "basis": "Owner-adopted project documentation license",
       "provenance": "2026-11-11 scoped research reconciliation publication; no proprietary inputs"
+    },
+    {
+      "path": "docs/research/2026-11-15-native-bootstrap-cloud-continuity.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored public source/evidence continuity; no private operational handoff, protected binary or device action",
+      "provenance": "2026-11-15 user-authorized GPT-6 public technical context based on verified GitHub PR states and previously admitted research; no private source bytes"
     },
     {
       "path": "docs/research/2026-11-15-physical-evidence-ledger.md",
