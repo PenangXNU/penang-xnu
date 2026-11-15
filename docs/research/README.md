@@ -5,7 +5,7 @@ This directory contains curated, public-safe progress records. They are not a re
 - **[Start here — current research state, 2026-11-15](RESUME-HERE.md)**: latest provenance, supersessions, unresolved physical gates and compulsory continuation protocol.
 - [Physical evidence ledger, 2026-11-15](2026-11-15-physical-evidence-ledger.md): D3A1, R2C/R3, H1, B4.2, B4.3A and U2 — what has already been investigated.
 - [T72-Q5 EL0, 2026-11-15](2026-11-15-q5-el0.md): native ARM64 dyld/main fixture executing under QEMU/XNU and its trust-admission limits.
-- [CV1 convergence work order](../work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md): smallest remaining source/evidence delta before any physical boot proposal.
+- [Physical XNU integration issue](https://github.com/PenangXNU/penang-xnu/issues/4): unresolved native-provider prerequisites without repeating hardware discovery.
 - [Consolidation ledger, 2026-11-11](2026-11-11-reconciliation.md): source branches, what was imported, what remains private, and anti-rework rules.
 - [Windows/WSL source inventory](local-worktree-inventory.md): original worktrees, rom-work classification, reuse points, and exclusions.
 - [M9 AIR2IR3](m9-air2ir3.md): implementation and verified limits, with [source code](../../tools/air2ir3/README.md).

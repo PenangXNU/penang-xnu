@@ -13,7 +13,7 @@ O repositório da organização é a **fonte canônica de código e navegação*
 
 Há dez gates físicos abertos, com investigação extensa prévia: FDT dinâmica; ABI SCM XNU; Stage-2/XPU; DMA/SMMU; PMAP; compilação VM/PMAP; link XNU físico; GIC/timer; entropia e entrada do XNU no aparelho. O bloqueio imediato do target nativo é um **provider físico de memória/PMAP legítimo**, não falta de um levantamento inicial da ROM.
 
-O próximo passo é [WO-M12-CV1](../work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md), que reconcilia implementações existentes e encontra o menor delta integrável. Não refazer a sonda ou os testes QEMU encerrados.
+Próximo passo: [issue #4](https://github.com/PenangXNU/penang-xnu/issues/4) para integrar um provider físico legítimo; em paralelo, o fixture BSD `getpid` já compilado no host ainda precisa de execução real em QEMU. Não refazer as sondas ou os testes Q5 encerrados.
 
 **Leia sempre:** [entrada canônica](../research/RESUME-HERE.md), [inventário de evidência física](../research/2026-11-15-physical-evidence-ledger.md), [Q5](../research/2026-11-15-q5-el0.md), [reconciliação 11/11](../research/2026-11-11-reconciliation.md). As fontes privadas e seus hashes ficam nos handoffs originais, não nesta árvore pública.
 

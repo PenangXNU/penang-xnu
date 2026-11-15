@@ -26,16 +26,16 @@ Every result is classified, and never promoted beyond what was observed:
 
 ## Mandatory research continuity
 
-Before doing any new device, ABI, memory, kernel or QEMU investigation, read [the dated research entrypoint](docs/research/RESUME-HERE.md), [the physical evidence ledger](docs/research/2026-11-15-physical-evidence-ledger.md), [the Q5 result](docs/research/2026-11-15-q5-el0.md) and the [existing-source reconciliation](docs/research/2026-11-11-reconciliation.md). The v0.1.0 generated STATUS.md is a frozen release snapshot, **not** the latest research. Check Git branches/worktrees, original test receipts, source hashes, errata and previous imports before assigning new work. An OPEN physical gate does not mean the underlying firmware/ABI has not already been researched. Any new proposal must name the smallest missing implementation/evidence and cite prior results it will reuse. The current focused plan is [WO-M12-CV1](docs/work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md).
+Before doing any new device, ABI, memory, kernel or QEMU investigation, read [the dated research entrypoint](docs/research/RESUME-HERE.md), [the physical evidence ledger](docs/research/2026-11-15-physical-evidence-ledger.md), [the Q5 result](docs/research/2026-11-15-q5-el0.md) and the [existing-source reconciliation](docs/research/2026-11-11-reconciliation.md). The v0.1.0 generated STATUS.md is a frozen release snapshot, **not** the latest research. Check Git branches/worktrees, original test receipts, source hashes, errata and previous imports before assigning new work. An OPEN physical gate does not mean the underlying firmware/ABI has not already been researched. Any new proposal must name the smallest missing implementation/evidence and cite prior results it will reuse. The active technical tasks are tracked in [GitHub issue #4](https://github.com/PenangXNU/penang-xnu/issues/4) (physical integration) and [issue #5](https://github.com/PenangXNU/penang-xnu/issues/5) (source recovery).
 
 ## How to work
 
-1. Read the issue or work order. If it is ambiguous, ask the human before large or irreversible work.
+1. Read the scoped GitHub issue and current research entrypoint. If ambiguous, ask the human before large or irreversible work.
 2. Inspect only the files you need; the disk and Git are the source of truth, not earlier summaries.
 3. Make small, reviewable commits with `git commit -s` (DCO). State AI assistance in the pull request.
 4. Run `python3 -B scripts/validate_public.py`; include negative cases for every new check.
 5. Add every new file to `audit/public-files.json` (with its SHA-256 in `content_pins`) and `audit/file-licenses.json`.
-6. Finish with a handoff using [docs/work-orders/HANDOFF-TEMPLATE.md](docs/work-orders/HANDOFF-TEMPLATE.md): files changed, commands, results, evidence, open issues, next concrete step.
+6. Finish in the pull request or issue with exact commits, commands, test receipts, limitations and next action. Keep private operational handoffs in the authorized local vault, not the public source tree.
 
 ## Layout
 
@@ -44,5 +44,5 @@ Before doing any new device, ABI, memory, kernel or QEMU investigation, read [th
 - `drivers/penang/` — host-side BSP validation (not a kernel driver).
 - `tools/penang-validate/` — Rust/C validator and Python frontend.
 - `scripts/` — validation, status derivation, publication scan. `tests/` — public test suites.
-- `docs/` — decisions (`docs/adr/`), status notes, work-order templates, Portuguese summary.
+- `docs/` — ADRs, technical evidence, research indexes and Portuguese overview; no internal work-order packets.
 - `audit/`, `third-party/` — inventories, licenses and notices.

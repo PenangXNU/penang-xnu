@@ -1,24 +1,28 @@
-# Penang XNU — resumo em português
+# Penang XNU
 
-Pesquisa para executar o kernel XNU público da Apple e, futuramente, o userland do iPadOS **sem modificações**, fornecido pelo próprio usuário, em hardware ARM64 que não é da Apple. O primeiro aparelho é o Motorola Moto G53 5G (`penang`, Qualcomm SM4350/holi, Adreno 619); o QEMU `virt` é o ambiente de bring-up e regressão.
+Pesquisa e implementação experimental de componentes para executar o kernel XNU público em plataformas ARM64 não Apple. O alvo físico inicial é o Motorola Moto G53 5G (`penang`, Qualcomm SM4350-AC/holi); o QEMU `virt` é usado nos testes de integração.
 
-## Princípio (ADR-0007)
+O objetivo futuro é executar um userland do iPadOS fornecido pelo próprio usuário, mantendo os binários originais. **Ainda não existe uma imagem de iPadOS utilizável ou um kernel XNU qualificado para boot no G53.** Nenhum firmware proprietário ou IPSW é distribuído neste repositório.
 
-Inspirado no OpenCore: os binários da Apple ficam idênticos ao original e toda adaptação fica **abaixo** do sistema (loader, contratos de plataforma, drivers da camada de plataforma do XNU e patches documentados do XNU). **Nada da Apple está neste repositório**: cada usuário traz o próprio IPSW.
+## Estado da pesquisa — 15/11/2026
 
-## Estado (v0.1.0)
+| Frente | Evidência comprovada | Pendente |
+| --- | --- | --- |
+| QEMU/XNU | **QEMU_VERIFIED:** Q5 executou um dyld/main Mach-O experimental em EL0, realizou relocação e consumiu o ponteiro. | Não é o dyld da Apple, nem iPadOS completo; admissão de código ainda aberta. |
+| BSD | **HOST_ONLY:** fixture ARM64 `getpid` compilado/linkado e testado. | Syscall real ainda não executada no XNU/QEMU. |
+| Moto G53 | **DEVICE_VERIFIED:** Stage-0 próprio executado em RAM, EL1 e FDT observados. | **XNU não executado fisicamente**. |
+| PMAP/Stage-2 | Contratos B4.2, guards e negativos testados no host. | Provider físico SCM/Stage-2/DMA e link nativo não qualificados. |
 
-- Kernel XNU 11417.140.69 (build DEV) no QEMU com B3/B4 verificados e GICv3/SGI1 da P0.12 verificados em uma CPU; o kernel entrou em bsd_init, sem concluí-lo.
-- Próximos bloqueios independentes: **B6 IOPMGR** e **B7 provider pthread**. Não há userland funcional.
-- Moto G53: o bootloader aceita `fastboot boot` (imagem Android do próprio aparelho). O XNU ainda **não** rodou no aparelho.
-- Nada disso é compatibilidade de segurança Apple; os critérios D1–D4 (SpringBoard, Metal, toque) ainda não foram atingidos.
+Veja [estado técnico atual](../research/RESUME-HERE.md), [resultado Q5](../research/2026-11-15-q5-el0.md) e [evidências do G53](../research/2026-11-15-physical-evidence-ledger.md).
 
-Detalhes no [STATUS.md](../../STATUS.md) (gerado automaticamente) e no [ROADMAP.md](../../ROADMAP.md).
+A versão pública `v0.1.0` representa um **snapshot histórico** de 02/11/2026; seu [STATUS.md](../../STATUS.md) gerado não inclui os desenvolvimentos posteriores. Não confundir os dois estados.
 
-## Como contribuir
+## Validação e contribuições
 
-A maior parte do trabalho útil não exige telefone nem arquivos da Apple. Leia o [CONTRIBUTING.md](../../CONTRIBUTING.md); agentes de IA começam pelo [AGENTS.md](../../AGENTS.md). Commits exigem DCO (`git commit -s`). Vulnerabilidades: reporte de forma privada pela aba **Security** do GitHub ([SECURITY.md](../../SECURITY.md)).
+```bash
+python3 -B scripts/validate_public.py
+```
 
-## Licença
+Execute na raiz do repositório após instalar os requisitos do [README principal](../../README.md). A suíte pública valida contratos, código e testes host, não executa o telefone ou o XNU no QEMU.
 
-Código e documentação do projeto: Apache-2.0. Modificações do XNU: APSL-2.0. Dependências mantêm suas licenças.
+Contribuições: [CONTRIBUTING.md](../../CONTRIBUTING.md), [AGENTS.md](../../AGENTS.md) e [GitHub Issues](https://github.com/PenangXNU/penang-xnu/issues). Segurança: [SECURITY.md](../../SECURITY.md). Licença do código próprio: Apache-2.0; modificações de XNU seguem a APSL-2.0.

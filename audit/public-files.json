@@ -5,7 +5,6 @@
     ".github/ISSUE_TEMPLATE/bug_report.md",
     ".github/ISSUE_TEMPLATE/config.yml",
     ".github/ISSUE_TEMPLATE/evidence.md",
-    ".github/ISSUE_TEMPLATE/work_order.md",
     ".github/pull_request_template.md",
     ".github/workflows/validate.yml",
     ".gitignore",
@@ -20,15 +19,9 @@
     "PROJECT-CHARTER.md",
     "PUBLICATION-DECISIONS.md",
     "README.md",
-    "RELEASE-v0.1-GATES.json",
-    "RELEASE-v0.1-HANDOFF.md",
     "ROADMAP.md",
     "SECURITY.md",
     "STATUS.md",
-    "W4-HANDOFF.md",
-    "W4-PUBLICATION-GATES.json",
-    "W4-RC2-GATES.json",
-    "W4-RC2-HANDOFF.md",
     "audit/dependencies.json",
     "audit/exclusions.json",
     "audit/file-licenses.json",
@@ -62,7 +55,6 @@
     "docs/APP-COMPATIBILITY-PLAN.md",
     "docs/DEVICE-OBSERVABILITY.md",
     "docs/EVIDENCE-ADMISSION.md",
-    "docs/INITIAL-ISSUES.md",
     "docs/LICENSING.md",
     "docs/MONOCYPHER-REVIEW.md",
     "docs/P0.10-STATUS.md",
@@ -84,9 +76,6 @@
     "docs/research/m12-kernel-and-handoff.md",
     "docs/research/m9-air2ir3.md",
     "docs/research/qualcomm-memory-security.md",
-    "docs/work-orders/HANDOFF-TEMPLATE.md",
-    "docs/work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md",
-    "docs/work-orders/WORK-ORDER-TEMPLATE.md",
     "drivers/penang/include/penang_bsp_contract.h",
     "drivers/penang/src/penang_bsp_validate.c",
     "evidence/current-status-sources.json",
@@ -116,6 +105,7 @@
     "tests/public/test_current_status.py",
     "tests/public/test_public_build.py",
     "tests/public/test_publication_branch_history.py",
+    "tests/public/test_publication_retired_files.py",
     "tests/public/test_publication_scan.py",
     "tests/public/test_t73_bsd_getpid_fixture.py",
     "third-party/licenses/python/attrs-23.2.0/copyright",
@@ -238,31 +228,26 @@
     ".github/ISSUE_TEMPLATE/bug_report.md": "9642ce78fd3798186a4d68ec02b3be3ff5bb9d7e09c49973fe61e82f47432e49",
     ".github/ISSUE_TEMPLATE/config.yml": "6e41df11359b3c64436b3fa8d4a9bdec1bb81ca74910c631d31648b2cdaf1610",
     ".github/ISSUE_TEMPLATE/evidence.md": "2e96ce7cbdcea4c09065545b8be77a9f181f1ec510f35f42cc045b951a31e32c",
-    ".github/ISSUE_TEMPLATE/work_order.md": "05b1adfc1ccc870ae459fe988ab23987fa2ffb0edf00be9e5d86755fd2f435c1",
     ".github/pull_request_template.md": "eedc99f811d2ec10d142a2fbbeab673d098839c8f6942c8cc370e65d733c9067",
     ".github/workflows/validate.yml": "c31afff549297a4b0fab8bda9049b4a570c3be2508b7087bf3427062a10520f1",
-    ".gitignore": "92245e010aee1f6335a96f6c3c30d880f88f6f0adaba7662bd3240dac1c561f0",
+    ".gitignore": "5d4648326a33230e008d636aeae0b3d593aa582335cd00206c98dbf683595ad8",
     ".mailmap": "e2e7044313a9d2096aa17ea56a8130bc18d8c01edd84ade22314a252f8ebf65a",
-    "AGENTS.md": "aa7dd9045e97c7cee12139e48b88a3ae8a3683a7ab9f6a30382c4142f8a8bd86",
+    "AGENTS.md": "628fcddc105e4d856413d22b5691d5640c3937314fa09f99c99384f5ae620c40",
     "ARCHITECTURE.md": "272329302285d52eb597d7d95b1028331fdb9a83670e38eb055556363843b4a8",
     "AUTHORS.md": "bd608e6c899fe201ab5813764ddb3aea8616eb712eb8e8e8b71f991e214f8a47",
     "CLAUDE.md": "148efbef60eddbebdf02d29026d57ecaed10595c979ad93ef570c08dd065ca04",
-    "CONTRIBUTING.md": "8e6caf921076c8a258f2fef6835613c61b35553b36f67304026eb75e2b7dc1d2",
+    "CONTRIBUTING.md": "0ba5a6a813bf3e09b6e73ded32c7268016c2dafa1aefd180dadecf597a6bf961",
     "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "NOTICE": "180b95980fc314e820263559b85382adb522247ab98df843af2a47d67ab8768b",
     "PROJECT-CHARTER.md": "bd87138e26a5a05b0eeffc426687a6fcdd649b9f38b2440e1e0bf3d86538326a",
     "PUBLICATION-DECISIONS.md": "4a82bccae9a081a457f71575f16033144fb11dbfb4b84ef2f4eb1ef318619129",
-    "README.md": "3bbc94acc6b1ba00b2bfcf3fa63daad309e40d31205c404d3a9461bb14141805",
+    "README.md": "3fd34a7d935c6d006acc89443402b999027cd944df86cc499b95376c6049acd8",
     "ROADMAP.md": "16ea8d5562a18facdfbdd4b6346a5e149ecce980d6a110d0b6685b50c450ef16",
     "SECURITY.md": "d4e8a0b697f6fcad152082ef2cd226dbeb4893ae1360874aba596b4f111278b2",
     "STATUS.md": "40bc5c27d86a760d8abdd06d1f857ab867ac2fe03fdd803bd279e5096b462d98",
-    "W4-HANDOFF.md": "f942d41d97d978397c32a5709a13ae65bd21efecd055255e64cd99a1c8809dc0",
-    "W4-PUBLICATION-GATES.json": "49543ea3b8e0da5875197cf5cef1d0756c1ca231a218d527f78ed4eb56798e2d",
-    "W4-RC2-GATES.json": "adca9225ec9cf1f3e0d87b4b10c4e7796bae1ca121d7df33e26d3bd0456f2bcc",
-    "W4-RC2-HANDOFF.md": "41fe7b8742e127d0d445f02f382cbcedc3ee1a45e663b0df052696f7054ef8d6",
     "audit/dependencies.json": "7c232f110c715345241c999e0fa4ead1a9f909c5392a4536358f7e8fa1370d65",
     "audit/exclusions.json": "1cffe398272698495d247bdec5edace7a03cd700e76c7580af195835d8d862d8",
-    "audit/file-licenses.json": "09ef2b8081f9b099036227719c75e7649e4998185eac19e06f7e412ae0942b40",
+    "audit/file-licenses.json": "6f758526951b95474e1110b163797319ea207d65297366ea51c455aba514cea1",
     "audit/rc2-focused-review.json": "a26534f363c98d7b7fea570c229692e21d428cc518b8f1637fcd98c4463413fc",
     "audit/selected-sources.json": "a7fb665f72003d71ef032b9b12a85b40a9e854bf3b8994af4b1a6319cba1346b",
     "contracts/platform/CONTRACT.md": "3a1edd2d83a0ae06a4b4ae839e92e162f7f17af85757d0644d808d386e7e2a79",
@@ -292,31 +277,27 @@
     "docs/APP-COMPATIBILITY-PLAN.md": "506c4d0518b51705c6b6ba6916f009994c7cf3cd99540523e8e75dcdd2d975e9",
     "docs/DEVICE-OBSERVABILITY.md": "75e6a7cbf2d70f76bfeee98b16572871e5f346a7e96399564f2d244f44b6978f",
     "docs/EVIDENCE-ADMISSION.md": "b8833c9d7702b516240d33e8a8964b8839df4a78ca7bc94b80f35d570470bfba",
-    "docs/INITIAL-ISSUES.md": "59a8b8131fe627682fa2a7f5ef981ba0ebae47bf93989cf441ac0bf1050fc757",
     "docs/LICENSING.md": "36f239436c5522ef8a430f80d7043101eed99c3b86829b9206c2ddd9c875ab80",
     "docs/MONOCYPHER-REVIEW.md": "b5b64c230bbeab88463cbd27ea7d1268c191f65f0cbc311abdfece66348c1160",
     "docs/P0.10-STATUS.md": "5e020941b5a25343b583e24793ba751e6fa529c9d7730c2e7d234cc2a44bffe8",
     "docs/P0.11-STATUS.md": "5270f3a3c78d112a769e28881307e16f9a86fa75c1c9a06dfe00d511cc3a8275",
     "docs/P0.12-STATUS.md": "0c76d8025daa9e51b6e344433c5001018bd45caf3a493f42f6250d315f0463fe",
     "docs/PLATFORM-CONTRACTS.md": "5c58090f1314b948fd22e3a5ea46a5a86064ccee965ca664b868874d29d04f17",
-    "docs/VALIDATION.md": "6fa697c4cac939ac1ec3ae71256193d33dd9ab99c658544ca12a82a41084752f",
+    "docs/VALIDATION.md": "0b3286669866f9dd4bd62b13a94fa1eb438d8feee26f931cc7eec3a6efc7f24d",
     "docs/adr/ADR-0007-original-experience.md": "0f68b64c52c28c713480d43491fe84e35214d4b506127729b04cc9871ba2304c",
-    "docs/pt-BR/README.md": "d466427f5d854b351946e4d634a84edd292fd5cdbce0b511bd0d0ce1502c563b",
+    "docs/pt-BR/README.md": "e28e4f63ff4fcdf49ff7a48d1e08026bd285b4a66fa31a70d6ad3f54c8885184",
     "docs/pt-BR/RECONCILIACAO-2026-11-11.md": "9023d4798dc5e4d6923d2655133557725ff49f3fbb35b01302905837d9179e9e",
-    "docs/pt-BR/RETOMADA-PENANG-XNU.md": "14534df5d5f0acf7d8fadac99ab4e72a9dd7fdd69fb0aa6a5dadb53bbba17f54",
+    "docs/pt-BR/RETOMADA-PENANG-XNU.md": "e1cf78767e5a962aeb1a5fe831389dd7bda4675fefb63d824204cfd722a144b2",
     "docs/research/2026-11-11-reconciliation.md": "adadec496f9e06e5debd450ee1e60966e9a4afffc5d922fe629d05098ebd71d8",
-    "docs/research/2026-11-15-physical-evidence-ledger.md": "1e74a1abeee1e58c078e34da9635dd37c23790d138a876984fbb2c45d4239926",
+    "docs/research/2026-11-15-physical-evidence-ledger.md": "1c34b70d14251fc3e5d20729f0c3bc81bd447618ae54fcf8f61d4254ade36332",
     "docs/research/2026-11-15-q5-el0.md": "52695b9a429b2cfdde6918d2f9b0276a0f84bf99bb9c503bcf7f4198212ca578",
-    "docs/research/README.md": "c56110492917ae7b7c4398467692032849a487e6b520ed9d4c926532200f487e",
-    "docs/research/RESUME-HERE.md": "5b4994fa187415a25c688c80bcec6641cc9806d5dbd6847846e2e8c53434c7b4",
+    "docs/research/README.md": "55a3b2b3bf113e7d2c21078e9bb268151c7bbfaac7d99b9db252dc1a90ab85ec",
+    "docs/research/RESUME-HERE.md": "5c5cbc17af09b2cd1432bf1de84f0dabe3f6e609438e3cc21f5641792c7ed4b4",
     "docs/research/drivers-and-userland.md": "11e8dfe3dea05558fce3c1838290074db3926264a62a56eb2e11d47efb5fe44a",
     "docs/research/local-worktree-inventory.md": "38969ac135ddefa65962b280ac67b27d76f81ab20b39b2f1933218f3a99c01af",
     "docs/research/m12-kernel-and-handoff.md": "d889ed4312de17b21180d9613aaf4c48c302ba85949d55f59dd3a52fa559e8c8",
     "docs/research/m9-air2ir3.md": "a9bdaff26e6a95519ad0ab7989ab0d5c56009ad65fa1983e88e43ea41a7bbc13",
     "docs/research/qualcomm-memory-security.md": "51657c6271179a92ff787d572e3bddd2b0bdf48531c13d48d63e03237d22d92d",
-    "docs/work-orders/HANDOFF-TEMPLATE.md": "776bd36d1955bdda048f5d5c2d470adfbeb017a97610e81b842fe9962025fd9c",
-    "docs/work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md": "d9bcdcf766fdc4c04a0adc66463ae826f5433ccc6d66ca473390d01bde731df5",
-    "docs/work-orders/WORK-ORDER-TEMPLATE.md": "867b7329aca7890166627c9fcce2c60ec95725834800e2ce9df8d7f1e8e8bfe9",
     "drivers/penang/include/penang_bsp_contract.h": "08c0bdce4b37a216bba6bc81192d7172b66687ae05729d5752951f0fc7505541",
     "drivers/penang/src/penang_bsp_validate.c": "74edf0ba9936df08a3f4473a1aa4d02c3559c5a513f349620dcad4dd2c00f627",
     "evidence/current-status-sources.json": "499a963de023055fc10870a710608955ef9d5690fe97e4d1f7f5d878ab066de2",
@@ -338,7 +319,7 @@
     "requirements.txt": "4a8b9c24db25b9d0b60d67d2196ffe2d969ec81514cf4353058ce06596543bc1",
     "schemas/current-status.schema.json": "b4378131d18b9eabdf1baa92e9015aefbb38493e72bc3ad13e6df2fccd7a5076",
     "scripts/current_status.py": "27a5720612f505fc7508793b100c97a4c8fde370eab4b850b163512eab445639",
-    "scripts/publication_scan.py": "69f631f900ad62c9e29266ee9f070079a5bbbf110f390a46a7132da43755e0b1",
+    "scripts/publication_scan.py": "5653b0a7d5a247a4e60e12da67bdadd614e00753101b0f605d6d41ff6a9c14b8",
     "scripts/validate_public.py": "f21350d124774d2b3b23ada110ea5783f2ab827434733ae043ec703bba85e5e0",
     "tests/platform/abi_consumer.cpp": "29629eba32edd5f8d423daa466f47d1768cf01838b1c9cb96e27af8822a02775",
     "tests/platform/test_platform.py": "f6167cdd91cf025c24548a4bce82ecacc411ede0f1f74d67989222624a15199b",
@@ -346,6 +327,7 @@
     "tests/public/test_current_status.py": "d4a393c8332021f4fdebf59144355afb2cd76bc6d7943c39c39a27b77cf06c00",
     "tests/public/test_public_build.py": "9a6aa3aab78389755a63d6da6c259b25ea32e96329778486c5847688afe36bdf",
     "tests/public/test_publication_branch_history.py": "c8d3278ced39071c9c53dc8348a284a55106ec869528d0a094de8c2b87faa878",
+    "tests/public/test_publication_retired_files.py": "a050e613581acbadab781d006d3120e6a6f2b2eac73b11adf24de94c0a301f1a",
     "tests/public/test_publication_scan.py": "d602e5a5cd70a9501a0f11ea59c7c1b2f98c99d59e13a9507573749a5ed9e3ad",
     "tests/public/test_t73_bsd_getpid_fixture.py": "18fa850baeea8b340910b56f09bb636a0de1c1ff337458ba38c0bc34d3e041c4",
     "third-party/licenses/python/attrs-23.2.0/copyright": "e1f2c4df71c4deedd7c3ea2ab8a56db5113b2265ea5ae34e4ae7b0c92d70ce29",
@@ -462,5 +444,49 @@
     "tools/t73-bsd-userland/fixture_getpid.S": "c149936e4a41121a870e367669f6d1e882d174c02b6f1afad0316b8b1555b186",
     "tools/t73-bsd-userland/fixture_getpid.lds": "34b248d1bc817246fb0d0d054a6b931e2dd0776e78cd9485d9c1f75fb3e304d8"
   },
-  "hash_scope": "All public files including historical W4/RC2 records, except this manifest and the v0.1 release handoff/gates (written after validation, to avoid circular receipts)"
+  "hash_scope": "Current public tree pins and historical retired-file SHA-256 evidence; versioned originals remain in ordinary Git history.",
+  "retired_files": {
+    ".github/ISSUE_TEMPLATE/work_order.md": [
+      "05b1adfc1ccc870ae459fe988ab23987fa2ffb0edf00be9e5d86755fd2f435c1"
+    ],
+    "RELEASE-v0.1-GATES.json": [
+      "144ab92a873c4a2c392a220a1876b73e5eb0884f6c8bd68afecd1d7e36b0ff2b",
+      "3e7367801df03c9cf5f222b34902b7d6580f427cbb44429b655e47113ef0fb74"
+    ],
+    "RELEASE-v0.1-HANDOFF.md": [
+      "0fc0d9a99058d028970f5881b39a1b256b14c26b61a2ad07d613fb345c1bbbb9",
+      "2a8bcbffe475765589ad004d5c3e537f70b09583adeea919e6ace1345feb647d"
+    ],
+    "W4-HANDOFF.md": [
+      "25adcb95210c786164b39c91590a2a71ab51ef97d1d9957f47c5e13238e69ff6",
+      "f683a2b6ea50e6f889a551bc0fd2a26fb15a2dde81b1624ab0155c703f293b60",
+      "f942d41d97d978397c32a5709a13ae65bd21efecd055255e64cd99a1c8809dc0"
+    ],
+    "W4-PUBLICATION-GATES.json": [
+      "49543ea3b8e0da5875197cf5cef1d0756c1ca231a218d527f78ed4eb56798e2d",
+      "a56ee179e72bcad363a545adfd022f2b02b46aaec20eb54c4bdf9c9d717d5508"
+    ],
+    "W4-RC2-GATES.json": [
+      "926843a222281a8c4837e7acb68800cb36ea3efb56d21b8138d863b3f39b8e58",
+      "adca9225ec9cf1f3e0d87b4b10c4e7796bae1ca121d7df33e26d3bd0456f2bcc"
+    ],
+    "W4-RC2-HANDOFF.md": [
+      "41fe7b8742e127d0d445f02f382cbcedc3ee1a45e663b0df052696f7054ef8d6",
+      "bd8280d46ac72e0aabf3d406b52af6a7845da994d63289d99c5ffa9d672e42c2"
+    ],
+    "docs/INITIAL-ISSUES.md": [
+      "59a8b8131fe627682fa2a7f5ef981ba0ebae47bf93989cf441ac0bf1050fc757",
+      "cddc04a54b072c34b7707d31d37d8858d47ea716f574496bef98dd24e2c884fe",
+      "e624a379f5c194525d595eefdb1491d4238347096023d003eadb01525bb92789"
+    ],
+    "docs/work-orders/HANDOFF-TEMPLATE.md": [
+      "776bd36d1955bdda048f5d5c2d470adfbeb017a97610e81b842fe9962025fd9c"
+    ],
+    "docs/work-orders/WO-M12-CV1-EVIDENCE-CONVERGENCE.md": [
+      "d9bcdcf766fdc4c04a0adc66463ae826f5433ccc6d66ca473390d01bde731df5"
+    ],
+    "docs/work-orders/WORK-ORDER-TEMPLATE.md": [
+      "867b7329aca7890166627c9fcce2c60ec95725834800e2ce9df8d7f1e8e8bfe9"
+    ]
+  }
 }

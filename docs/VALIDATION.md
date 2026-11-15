@@ -14,4 +14,4 @@ The local scanner covers UTF-8/file-type policy, explicit file inventory, symlin
 
 RC2 status derivation: scripts/current_status.py checks the fixed source/schema/derivation lock and generated manifests/current-status.json, STATUS.md and the marked README block. Explicit --write regenerates only those outputs after reviewed inputs. It never reads live B4 refs or fetches upstream data.
 
-The RC2 suite adds fixed-snapshot/provenance/maturity negatives and private-key-file extension checks. W4 receipts and their counts remain historical; current results are in W4-RC2-GATES.json.
+The RC2 suite preserves fixed-snapshot/provenance/maturity negatives and private-key-file extension checks. Internal W4 receipts were retired from the current public tree and remain recoverable through the original Git history. Current runs report results under .build/w4/public-validation/ and GitHub Actions.
