@@ -499,6 +499,13 @@
       "provenance": "Cited original local handoffs/commits; no private material imported"
     },
     {
+      "path": "docs/research/2026-11-16-p1-physical-platform-services.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
       "path": "docs/research/README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -791,6 +798,13 @@
       "license_expression": "Apache-2.0",
       "basis": "Project-authored read-only memory admission, pinned generation/include tools and synthetic adversarial tests; upstream generated modifications retain their original license",
       "provenance": "2026-11-16 AI-assisted isolated P1/P2 continuation; original sources and private profile experiments kept externally"
+    },
+    {
+      "path": "tests/public/test_p1_penang_platform.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
     },
     {
       "path": "tests/public/test_p1_sha256_assembly.py",
@@ -1669,6 +1683,41 @@
       "license_expression": "MIT",
       "basis": "AST-extracted pure B4.2 source-selection assessor, no private inputs",
       "provenance": "research/m12-b42-pmap-lockdown-argon-20261107 @ 29e6aca (original test/board; pure assessor source node extraction) or 2026-11-15 public regression wrapper"
+    },
+    {
+      "path": "tools/p1-penang-platform/README.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/ppp_gicv3.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/ppp_platform.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/ppp_resources.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/ppp_timer_uart.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
     },
     {
       "path": "tools/penang-validate/Cargo.lock",
