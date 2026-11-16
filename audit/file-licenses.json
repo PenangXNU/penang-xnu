@@ -751,6 +751,13 @@
       "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
     },
     {
+      "path": "tests/public/test_p1_mig_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
       "path": "tests/public/test_p1_native_entry_frontier.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -763,6 +770,27 @@
       "license_expression": "Apache-2.0",
       "basis": "New project-authored native input inventory and synthetic host regressions; no vendor source or private evidence",
       "provenance": "2026-11-15 cloud AI-assisted implementation; retained MIT B4.2 assessor and P1 entry checker reused without source changes"
+    },
+    {
+      "path": "tests/public/test_p1_sha256_assembly.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
+      "path": "tests/public/test_p1_t1_entry.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
+      "path": "tests/public/test_p1_t1_header_dependency.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
     },
     {
       "path": "tests/public/test_public_build.py",
@@ -1475,6 +1503,13 @@
       "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
     },
     {
+      "path": "tools/m12-penang-physical/p1_mig_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
       "path": "tools/m12-penang-physical/p1_native_entry_frontier.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -1487,6 +1522,27 @@
       "license_expression": "Apache-2.0",
       "basis": "New project-authored native input inventory and synthetic host regressions; no vendor source or private evidence",
       "provenance": "2026-11-15 cloud AI-assisted implementation; retained MIT B4.2 assessor and P1 entry checker reused without source changes"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_sha256_assembly.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_t1_entry.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_t1_header_dependency.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
+      "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
     },
     {
       "path": "tools/m12-penang-physical/penang_physical_contract.c",

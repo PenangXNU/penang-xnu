@@ -43,13 +43,31 @@ COMPONENT_FLAGS = {
               "-DIOMATCHDEBUG=1", "-DIOALLOCDEBUG=1", "-DPRIVATE_WIFI_ONLY=1", "-DIOASSERT=0"],
 }
 CXX_FLAGS = ["-std=gnu++2b", "-fsized-deallocation", "-fapple-kext", "-fno-rtti", "-fno-exceptions"]
+# Original SHA kernel code conditionally preserves vector registers. Keep its
+# per-TU ABI selection explicit rather than admitting a global override.
+SOURCE_FLAGS = {"osfmk/arm64/corecrypto/sha256_compress_arm64.s": ["-DBUILDKERNEL=1"]}
+CORECRYPTO_LOCAL_INCLUDES = {"osfmk/corecrypto/" + name + ".c" for name in
+                             ("cccbc", "ccdrbg", "ccgcm", "ccmode_gcm_gf_mult", "ccmode_gcm_mult_h")}
+
+
+def source_flags(name):
+    flags = list(SOURCE_FLAGS.get(name, []))
+    # Upstream osfmk/conf/Makefile.template FORCE_UNSAFE_TYPES applies to every
+    # direct vm/*.c TU. This enables semantic wrappers and compile-time checks.
+    if re.fullmatch(r"osfmk/vm/[A-Za-z_][A-Za-z0-9_]*\.c", name):
+        flags += ["-DVM_UNSAFE_TYPES=1"]
+    return flags
+
+
 LINK_ADDRESS = "0xfffffe0007004000"
 # Pinned XNU MakeInc.def MacOSX ARM64 CFLAGS; still a fresh selected-TU probe.
 NATIVE_C_FLAGS = ["-Darm64", "-DARM64", "-D__ARM64__", "-DLP64", "-DPAGE_SIZE_FIXED",
                   "-DVM_KERNEL_LINK_ADDRESS=" + LINK_ADDRESS, "-DARM_LARGE_MEMORY=1",
+                  "-DXNU_TARGET_OS_OSX", "-DXNU_PLATFORM_MacOSX",
                   "-momit-leaf-frame-pointer", "-fno-strict-aliasing", "-D__API__=v4", "-mkernel"]
 PROFILE_MACROS = REQUIRED | {"PENANG_PHYSICAL", "ARM64_BOARD_CONFIG_PENANG_PHYSICAL",
-                             "__ARM_16K_PG__", "__arm64__", "__aarch64__"}
+                             "__ARM_16K_PG__", "__arm64__", "__aarch64__",
+                             "XNU_TARGET_OS_OSX", "XNU_PLATFORM_MacOSX"}
 
 
 def digest(path):
@@ -65,8 +83,10 @@ def config_flags(text):
     if len(lines) != 1:
         raise ValueError("exactly one CONFIG_DEFINES assignment required")
     flags = shlex.split(lines[0])
-    fixed = BASE + NATIVE_C_FLAGS + [x for values in COMPONENT_FLAGS.values() for x in values]
+    fixed = (BASE + NATIVE_C_FLAGS + [x for values in COMPONENT_FLAGS.values() for x in values]
+             + [x for values in SOURCE_FLAGS.values() for x in values])
     reserved = {x[2:].split("=", 1)[0] for x in fixed if x.startswith("-D")}
+    reserved.add("VM_UNSAFE_TYPES")
     reserved.update(re.findall(r"(?m)^#define\s+(\w+)", (HERE / "PENANG_PHYSICAL.h").read_text()))
     seen = set()
     for flag in flags:
@@ -76,6 +96,7 @@ def config_flags(text):
         name, value = match.groups()
         if (name in seen or name in FORBIDDEN or name in reserved
                 or name.startswith("ARM64_BOARD_CONFIG_")
+                or name.startswith("XNU_PLATFORM_") or name.startswith("XNU_TARGET_OS_")
                 or name.startswith("APPLE") or name.startswith("__arm")
                 or (name in REQUIRED and value is not None)):
             raise ValueError("duplicate, forbidden or overridden configuration macro")
@@ -184,7 +205,7 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
     for index, (name, component, path) in enumerate(chosen):
         obj = output / f"{index:03d}-{path.stem}.o"
         language = "assembler-with-cpp" if path.suffix in (".s", ".S") else "c++" if path.suffix == ".cpp" else "c"
-        generated = [p / component if (p / component / "meta_features.h").is_file() else p for p in includes]
+        generated = [p / component if (p / component).is_dir() else p for p in includes]
         include_args = []
         for directory in [*generated, *(root / d for d in
                 (".", "osfmk", "iokit", "pexpert", "bsd", "libkern", "osfmk/libsa", "EXTERNAL_HEADERS"))]:
@@ -199,9 +220,11 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
         language_flags = (NATIVE_C_FLAGS + CXX_FLAGS + ["-fblocks"] if language == "c++" else
                           NATIVE_C_FLAGS + ["-fblocks"] if language == "c" else
                           NATIVE_C_FLAGS + ["-D__ASSEMBLER__", "-DASSEMBLER"])
+        local_includes = (["-I", str(root / "EXTERNAL_HEADERS/corecrypto")]
+                          if name in CORECRYPTO_LOCAL_INCLUDES else [])
         argv = [cxx if language == "c++" else cc, *BASE, "-x", language,
                 "-include", str(board_snapshot), *configs[component],
-                *component_flags, *language_flags, *feature_args, *include_args,
+                *component_flags, *language_flags, *source_flags(name), *feature_args, *include_args, *local_includes,
                 "-c", str(path), "-o", str(obj)]
         row = {"source": name, "source_sha256": digest(path), "command": argv,
                "status": "BLOCKED", "log": f"{index:03d}-{path.stem}.log"}
@@ -222,6 +245,8 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
             row["macro_state_returncode"] = state.returncode
             invalid = sorted(macro for macro in PROFILE_MACROS if macros.get(macro) != "1")
             invalid += sorted(FORBIDDEN & macros.keys())
+            invalid += [flag[2:].split("=", 1)[0] for flag in source_flags(name)
+                        if macros.get(flag[2:].split("=", 1)[0]) != flag.split("=", 1)[1]]
             if state.returncode or invalid:
                 row["blocker"] = "PREINCLUDE_PROFILE_REJECTED"
                 row["invalid_macros"] = invalid

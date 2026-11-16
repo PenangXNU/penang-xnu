@@ -1,6 +1,6 @@
 # Research state — start here
 
-**As of 2026-11-15 · research snapshot, not a release or boot authorization.**
+**As of 2026-11-16 · research snapshot, not a release or boot authorization.**
 **Canonical repository:** PenangXNU/penang-xnu. **Target:** Motorola Moto G53 5G (`penang`, SM4350-AC/holi), XNU 11417.140.69, prospective iPadOS 18.7.8. **Last public release projection:** v0.1.0 / P0.12, deliberately frozen. Do not edit generated `STATUS.md`, the README status block or `manifests/current-status.json` by hand.
 
 ## Three independently scoped results
@@ -62,3 +62,23 @@ MIG headers, and SHA assembly has a compiler-dialect error. This is a fresh
 diagnostic subset, not the retained T6 replay, full kernel link or physical boot.
 The next source-recovery target is the omitted T1 dependency/toolchain recipe;
 do not invent tunables, MIG ABI, monitor or successful lockdown providers.
+
+
+**T1/MIG/SHA continuation (2026-11-16, HOST_ONLY):** PR #15 is merged in
+`main@a8c5983`; work continues on a separate branch from `db536ab`. The
+[reviewed source-delta/MIG tools](../../tools/m12-penang-physical/README.md#t1-entry-real-mig-and-sha256-continuation-host-only)
+recover the entry include/call pair, generate real interfaces with pinned Apple
+MIG, and correct SHA256 assembler register syntax. All 386 recipe TUs were
+compiled with the corrected native flags: 203 nonempty ARM64 Mach-O objects,
+23 empty/non-provider units and 160 compiler failures. Seventy-four genuine
+MIG headers were generated; selected C/C++ ABI consumers and all 80 static SHA
+crypto instruction encodings were checked. No security stub or guard removal
+was used. Original startup trust calls and VM/PMAP guard bytes are unchanged.
+
+The next dependency is genuine XNU compiler builtins for typed allocations;
+DriverKit/TrustCache APIs and the physical PMU/core assumptions also remain.
+PMAP cannot become a physical provider without the separately admitted backend.
+The delivered object set is usable as linker input only: `NATIVE_XNU_LINK`,
+`XNU_DEVICE_ENTRY` and `/sbin/penang-init` remain unobserved. Do not classify it
+as `P1_NATIVE_LINK_CANDIDATE_UNTESTED` or a bootable/qualified image. Private
+recipes, logs and objects stay outside the public repository.

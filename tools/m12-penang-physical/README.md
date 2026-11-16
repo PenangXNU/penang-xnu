@@ -116,3 +116,137 @@ unproduced MIG headers (`mach/vm_map.h`, `mach/clock.h`), and a SHA assembly
 dialect error. This is a fresh diagnostic subset, **not an exact T6 replay**:
 the supplied historical scripts refer to additional T1/T4 tools/recipes and
 toolchain inputs not present in the packet. No full-link candidate was produced.
+
+
+## T1 entry, real MIG and SHA256 continuation (host only)
+
+The continuation starts at PR #15 head `db536abddd9309305c42d8a883cd46b1137eb2d8`;
+`main` already contains that change via merge `a8c5983`. Original XNU remains
+11417.140.69, commit `43a90889846e00bfb5cf1d255cdc0a701a1e05a4`.
+Retained private packets are verified and unpacked outside the public checkout;
+the original and guarded source trees remain separate.
+
+Three pinned emitters produce small reviewable public-source deltas. They never
+apply them. Apply only to a fresh private copy after `git apply --check`:
+
+```bash
+python3 -B tools/m12-penang-physical/p1_t1_entry.py emit \
+  --source-root "$XNU_ORIGINAL" --out "$PRIVATE_OUTPUT/start-only.patch"
+python3 -B tools/m12-penang-physical/p1_t1_header_dependency.py \
+  --source-root "$XNU_ORIGINAL" --out "$PRIVATE_OUTPUT/pmap-header.patch"
+python3 -B tools/m12-penang-physical/p1_sha256_assembly.py patch \
+  --xnu-original-root "$XNU_ORIGINAL" --out "$PRIVATE_OUTPUT/sha256.patch"
+```
+
+The entry delta scopes the Apple tunables include and its call together, leaving
+the original common bootstrap instructions. It does not provide Cortex CPU
+errata qualification. The header delta moves only `TrustCache/API.h` into its
+existing PPL-monitor block: active PPL still requires the real API, and direct
+AMFI/trust-cache clients still fail without it. The retained startup include
+change is not applied. No trust initialization, signature policy or B4.2 guard
+is removed. The SHA delta changes seven register spellings in four legacy
+macros to their existing standard A64 equivalents; it changes no algorithm,
+register number or instruction ordering. The real kernel SHA TU uses its
+`BUILDKERNEL=1` vector-register preservation mode.
+
+Build `migcom` from Apple's public `bootstrap_cmds` tag `bootstrap_cmds-133.140.1`,
+commit `619db33806b11b58fa14078bc7a811958312e52d`. The Linux host build uses
+unchanged generator sources and public host Mach headers from `cctools-port`
+commit `ef969083aecf77dee1814d6961a06b88af23edef`. In a fresh private build directory:
+
+```bash
+bison -y -d -o y.tab.c "$MIG_SOURCE/migcom.tproj/parser.y"
+flex -o lex.yy.c "$MIG_SOURCE/migcom.tproj/lexxer.l"
+set --
+for unit in error global header mig routine server statement string type user utils; do
+  set -- "$@" "$MIG_SOURCE/migcom.tproj/$unit.c"
+done
+clang -D_GNU_SOURCE -DHAVE_BCMP -DHAVE_BZERO -DHAVE_BCOPY -DHAVE_INDEX -DHAVE_RINDEX \
+  -include sys/types.h '-D__unused=__attribute__((unused))' \
+  '-DMIG_VERSION="mig-133.140.1 (619db33806b11b58fa14078bc7a811958312e52d)"' \
+  -I "$MIG_SOURCE/migcom.tproj" -I . -I "$HOST_HEADERS/cctools/include" \
+  -I "$HOST_HEADERS/cctools/include/foreign" "$@" y.tab.c lex.yy.c -o migcom
+sha256sum migcom
+```
+
+These eleven C files match the generator's original Xcode source phase.
+`HAVE_*` describes real glibc facilities. Record source/tool hashes, the exact
+command and independent host-versus-ARM64 **user-wire** layout checks before
+admitting the binary. A version string alone is insufficient provenance.
+The host's 24-byte wire header must not be equated to the kernel's 32-byte
+native IPC header. No foreign host headers enter target compilation.
+
+```bash
+python3 -B tools/m12-penang-physical/p1_mig_headers.py \
+  --xnu-root "$XNU_ORIGINAL" --osfmk-make "$OSFMK_MAKEFILE" \
+  --migcom "$PRIVATE_MIG_BUILD/migcom" --migcom-sha256 "$MIGCOM_SHA256" \
+  --out "$PRIVATE_OUTPUT/mig-user"
+# Generate a kernel-server ABI explicitly in a separate root:
+python3 -B tools/m12-penang-physical/p1_mig_headers.py \
+  --xnu-root "$XNU_ORIGINAL" --osfmk-make "$OSFMK_MAKEFILE" \
+  --migcom "$PRIVATE_MIG_BUILD/migcom" --migcom-sha256 "$MIGCOM_SHA256" \
+  --kernel-server mach_host_server --out "$PRIVATE_OUTPUT/mig-server"
+```
+
+Default interfaces are `clock` and `vm_map`; repeat `--interface` for admitted
+Makefile selections. An explicit `--kernel-server` uses `KERNEL_SERVER=1` and
+`-mach_msg2`; ordinary exported server headers use their separate Make rule.
+Kernel-user headers use `KERNEL_USER=1` and `-maxonstack 1024`. The wrapper also
+supports the pinned `device/device_server` and UserNotification request/reply
+rules through `--subsystem`. Retained `CONFIG_DEFINES`, `PRIVATE`, native target
+and Mach flags are recorded. Every `.defs` preprocessing dependency must match
+the pinned Git tree. Routine IDs and skipped slots are independently checked;
+real `clock`/`vm_map` consumers compile in C and C++ with selected prototype and
+layout assertions. This does not qualify every interface or execute Mach IPC.
+
+The compile probe now restores upstream per-file corecrypto include paths and
+`VM_UNSAFE_TYPES=1` for direct `osfmk/vm/*.c` units. Despite its name, that flag
+**enables** semantic wrapper types and their assertions. Global overrides and
+forced headers that erase required per-TU selectors are rejected. Include roots
+may have component children even when only another root supplies meta-features.
+They keep kernel-server headers out of the IOKit exported-header selection.
+
+```bash
+python3 -B tools/m12-penang-physical/p1_t1_entry.py audit \
+  --object "$START_OBJECT" --reference-object "$RETAINED_START_OBJECT" \
+  --out "$PRIVATE_OUTPUT/entry-audit.json"
+python3 -B tools/m12-penang-physical/p1_sha256_assembly.py audit \
+  --object "$SHA256_OBJECT" --out "$PRIVATE_OUTPUT/sha256-audit.json"
+```
+
+The entry audit checks a nonempty ARM64 Mach-O object, its unconditional first
+CPU branch, real relocations to `arm_init` and native MMU/cache/TLB instructions.
+The historical and current 9,116-byte text sections differ only in 1,276 words
+of zero-versus-NOP padding in two 4-KiB alignment gaps; all remaining bytes and
+36 relocations match. Byte identity of complete historical objects is not claimed.
+The SHA audit independently matches all 80 statically emitted SHA256 crypto
+instructions against Arm encodings, ordering and operands. Runtime KATs, CPU
+errata, full link, physical entry and `/sbin/penang-init` remain untested.
+
+
+The final corrected MacOSX run selected all 386 literal recipe TUs and compiled
+203 nonempty ARM64 Mach-O objects (199 OSFMK, four IOKit). Another 23 compiled
+without external definitions and are excluded from provider counts; 160 failed
+compilation. This is selected-TU compilation, not a complete XNU build: other
+components, generated MIG implementation C files and required platform libraries
+have not closed. No full kernel link or boot image is produced.
+
+The generated dependency set is 50 user/exported Mach headers, 21 explicit
+kernel-server Mach headers and three device/UserNotification headers. C/C++ ABI
+consumers cover the two specified interfaces. Fresh `start.s`, `arm_init.c`,
+`clock.c`, `vm_init.c` and `vm_fault.c` objects are present. The real SHA object
+SHA-256 is `3f15f824d1bf4604d404b64a0e5c53c970e08cb01066bc1cad469b9ddd5f2727`;
+entry object SHA-256 is `b87057f7ef0eef12c10b5682faa045e9f1c5dd6f53dbb253a1ab4268fc6fd52a`.
+Objects, generated headers, logs and their manifests remain private.
+
+Remaining first diagnostics include the LLVM 19 compiler's missing genuine
+`__builtin_xnu_type_summary`, `__builtin_xnu_types_compatible` and
+`__builtin_xnu_type_signature` support; missing DriverKit/TrustCache APIs;
+Cortex PMU/Apple core-type assumptions; and build metadata headers. `vm_map.c`
+now passes its generated-header and semantic-wrapper frontiers and reaches the
+compiler builtins. The next compiler prerequisite is a source-admitted toolchain
+implementing these builtins, preserving typed-allocation checks and metadata.
+An empty macro, constant-success substitute, `XNU_NO_TYPE_BUILTINS`, disabling
+TrustCache, or invented PMU constants is not an acceptable continuation.
+Even after those dependencies close, a real admitted physical lockdown backend
+is still required: both original B4.2 guard files remain byte-identical.
