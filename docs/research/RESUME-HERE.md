@@ -77,8 +77,30 @@ was used. Original startup trust calls and VM/PMAP guard bytes are unchanged.
 
 The next dependency is genuine XNU compiler builtins for typed allocations;
 DriverKit/TrustCache APIs and the physical PMU/core assumptions also remain.
-PMAP cannot become a physical provider without the separately admitted backend.
+The protected P2 PMAP profile still requires its separately admitted backend.
+A separate P1 functional profile has independent Stage-1/handoff requirements;
+see the subsequent correction below.
 The delivered object set is usable as linker input only: `NATIVE_XNU_LINK`,
 `XNU_DEVICE_ENTRY` and `/sbin/penang-init` remain unobserved. Do not classify it
 as `P1_NATIVE_LINK_CANDIDATE_UNTESTED` or a bootable/qualified image. Private
 recipes, logs and objects stay outside the public repository.
+
+
+**P1/P2 correction and implementation (2026-11-16, HOST_ONLY):** PR #16 is now
+merged at `main@b877aa9`; the new isolated branch starts there. P1 diagnostic
+Stage-1 functionality is independent of P2 monitor/Stage-2/DMA qualification.
+The protected board and guards remain unchanged. New [memory admission and build
+dependency tools](../../tools/m12-penang-physical/README.md#p1-functional-memory-admission-and-build-dependencies)
+generate original version/syscall headers, fix optional/unused header dependencies,
+and reject unsafe FDT/window geometry before VM setup. The same protected
+386-TU replay now produces 209 nonempty ARM64 objects. An isolated private P1
+prototype compiles original `arm_vm_init`, `cpu_bootstrap` and `machine_startup`
+with the real admission call; its effective guard/profile patch awaits separate
+security review and is not integrated into the protected build.
+
+The exact remaining PMAP compile blocker is `TrustCache/API.h`, used also by
+non-monitor trust lookups. The real runtime FDT provider is still absent; eight
+size-only reservations in the offline evidence cannot be assigned guessed
+addresses. State remains `P1_STAGE1_BUILD_HOLD`; builtin compiler and DriverKit
+provider gaps persist. No full link, device entry, P2 qualification or execution
+of `/sbin/penang-init` follows from this source progress.

@@ -250,3 +250,100 @@ An empty macro, constant-success substitute, `XNU_NO_TYPE_BUILTINS`, disabling
 TrustCache, or invented PMU constants is not an acceptable continuation.
 Even after those dependencies close, a real admitted physical lockdown backend
 is still required: both original B4.2 guard files remain byte-identical.
+
+
+## P1 functional memory admission and build dependencies
+
+P1 diagnostic Stage-1 functionality and P2 qualified physical integrity are
+independent milestones. A monitor/Stage-2/DMA backend is not a universal P1
+build prerequisite. P1 still needs real Stage-1 memory management, correct
+handoff/reservations, permissions, exception/GIC/timer providers and error
+semantics. The protected `PENANG_PHYSICAL.h` and B4.2 refusals remain unchanged.
+The prior blanket PMAP-backend wording applies to that protected profile;
+it must not be used to redefine every diagnostic Stage-1 build as a P2 claim.
+
+`p1_generated_headers.py` generates `libkern/version.h` and `sys/syscall.h`
+through pinned XNU `newvers.pl`, `unifdef` and `makesyscalls.sh`. It never
+executes Makefiles or imports SDK declarations. Version metadata is explicit:
+`24.6.0d1` in the recorded diagnostic run is a custom development build value,
+not a recovered stock release identifier or ABI qualification. Inputs must
+match XNU commit `43a90889846e00bfb5cf1d255cdc0a701a1e05a4`; the caller admits
+the unifdef binary SHA and retains its external source/package provenance.
+`SEED_DEFINES` is explicitly empty in this supported generation profile.
+
+```bash
+python3 -B tools/m12-penang-physical/p1_generated_headers.py \
+  --xnu-root "$XNU_ORIGINAL" --unifdef "$UNIFDEF" \
+  --unifdef-sha256 "$UNIFDEF_SHA256" --darwin-version 24.6.0d1 \
+  --out "$PRIVATE_OUTPUT/upstream-generated"
+python3 -B tools/m12-penang-physical/p1_optional_headers.py \
+  --source-root "$XNU_ORIGINAL" --out "$PRIVATE_OUTPUT/optional-headers.patch"
+```
+
+The second tool emits only pinned include hygiene: `startup.c` and `cpu.c`
+include the KPC header only when the existing `CONFIG_CPU_COUNTERS` option is
+active; `sleh.c` and `machine_routines_common.c` drop an unused Apple-core helper
+header. No CPU identity/counter values, checks, function bodies, trust calls,
+source flags or security guards are replaced. Active profiling still requires
+the real KPC dependency. The isolated P1 experiment regenerates configuration
+with upstream SETUP/config after removing genuine optional profiling options,
+rather than inventing `CORE_NCTRS`. Its source selection and headers are
+recorded separately from the protected 386-TU replay.
+
+`p1_memory_admission.c/.h` implements a read-only FDT/window admission gate for
+the real `arm_vm_init` path. This is new validation code, not the historical T2
+page-table model and not a replacement PMAP. Its supported input domain is:
+
+- a readable immutable FDT v17 mapping, at most 2 MiB, with root/reserved-memory
+  address/size cell widths 2/2 and identity reserved-memory ranges;
+- a 16-KiB-aligned contiguous ARM64 managed window wholly inside one declared
+  RAM bank, without overlapping banks, holes or static reservations;
+- every enabled reserved-memory request materialized through a real `reg`;
+  size-only requests are refused, never assigned dry-run addresses;
+- a retained FDT physical extent inside the bootstrap prefix ending at
+  `topOfKernelData`, before the VM allocator's available memory.
+
+Reservations from both the FDT reserve map and reserved-memory nodes exclude
+whole outward-rounded 16-KiB pages. Duplicate/invalid reg/status/cell properties,
+overflow, malformed bounds and unsupported geometry are rejected. The input
+blob is never changed. A zero result means only `P1_MEMORY_GEOMETRY_OK` for
+those bytes and arguments. The 48-bit parser ceiling is not a measured CPU PA-width certificate.
+The boot bridge must still supply the actual runtime mapping/identity, CPU
+address-width/coherency checks and permission to use the window; a supplied offline
+snapshot cannot certify runtime ownership or replace that provider.
+
+The module compiles to ARM64 Mach-O and passes host adversarial tests, including
+600 bounded mutations. It refuses the protected board even if P1 macros are
+also supplied. **It is not selected automatically by a production target.**
+The private sandbox proposal adds an explicit P1 selector, original non-monitor
+Stage-1 source selection and a call to this gate before `arm_vm_init` mutates VM
+state. It requires a real `penang_p1_runtime_fdt` provider at link time; none is
+fabricated. The guard/profile integration patch remains outside GitHub pending
+separate security review. No protected target inherits the diagnostic selector.
+
+| Path or risk | Implementation/evidence | Remaining boundary |
+| --- | --- | --- |
+| `start.s` → `arm_init` → `arm_vm_init` | Original source compiled; entry audit and real gate/handoff relocations | Host compilation, not observed physical control flow |
+| Continuous physical aperture and reservations | Gate rejects holes, overlap, unresolved requests and lost FDT | Real runtime FDT/window provider is absent |
+| Mapping permissions, attributes, TLBI/cache and locks | Original `arm_vm_init`/PMAP implementation retained | PMAP still fails on its genuine TrustCache API dependency; full lifecycle is not qualified |
+| P1/P2 selection | Explicit sandbox selector; protected/partial/mixed selections reject | Effective guard changes require separate approval before integration |
+| Monitor/grants/DMA/TrustCache | No successful replacement or invented provider | P2 remains blocked; dependent operations cannot claim success |
+
+The final protected replay of the same 386 TUs produced **209** nonempty ARM64
+Mach-O objects, six more than 203. The P1 sandbox selected 371 genuine recipe
+TUs and produced 207 nonempty objects, including original `arm_vm_init.c`,
+`cpu.c` and `machine_routines.c` plus the admission module. It adds ten provider
+TUs relative to the historical set while six optional profiling provider TUs
+leave the configuration; these are different sets and must not be added together.
+The 74 existing MIG headers were reused only after all preprocessed definition
+inputs proved byte-identical under the diagnostic configuration.
+
+**`P1_STAGE1_BUILD_HOLD`:** `pmap.c` and `startup.c` still require the real
+`TrustCache/API.h`. PMAP has TrustCache lookups outside the monitor-only path,
+so an unconditional removal or empty API is not a legitimate fix. Genuine XNU
+compiler builtins and generated DriverKit interfaces also remain dependencies.
+The supplied offline FDT is refused for unresolved reservations; no physical
+placement is inferred. A public experimental compiler implementation was
+inspected, but neither its semantic compatibility nor an admitted binary was
+established: `BUILTIN_COMPILER_HOLD`. There is no full linked kernel or boot
+image. No device operation, SCM call, QEMU run or environment publication occurred.
