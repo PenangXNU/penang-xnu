@@ -81,3 +81,73 @@ class PenangPlatformQemu(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipUnless(os.environ.get("PENANG_ALLOW_QEMU") == "1", "QEMU runs are opt-in: set PENANG_ALLOW_QEMU=1")
+class RetainedFdtQemu(unittest.TestCase):
+    """The retained-FDT bind with the MMU on: 16-KiB granule, TTBR1 kernel
+    window at XNU's virtual base, translation proven with AT S1E1R."""
+    SLOT = 0x48000000 + 0x03100000 + 0x10000 + 0x4000
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cc, cls.ld = tool("clang-18", "clang"), tool("ld.lld-18", "ld.lld")
+        cls.objcopy, cls.qemu = tool("llvm-objcopy-18", "llvm-objcopy"), tool("qemu-system-aarch64")
+        if not all((cls.cc, cls.ld, cls.objcopy, cls.qemu)):
+            raise unittest.SkipTest("clang, ld.lld, llvm-objcopy and qemu-system-aarch64 required")
+        import sys
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import test_p1_fdt_retention as fixtures
+        cls.folder = tempfile.TemporaryDirectory(prefix="p1-fdt-qemu-")
+        out = Path(cls.folder.name)
+        objects = []
+        admission = ROOT / "tools/m12-penang-physical"
+        for source in (TOOLS / "qemu/head.S", TOOLS / "qemu/fdt_harness.c", TOOLS / "ppp_runtime_fdt.c",
+                       TOOLS / "ppp_resources.c", admission / "p1_memory_admission.c"):
+            obj = out / (source.stem + ".o")
+            subprocess.run([cls.cc, *CFLAGS, "-I", str(admission), "-I", str(TOOLS), "-c", str(source), "-o", str(obj)],
+                           check=True, capture_output=True)
+            objects.append(str(obj))
+        subprocess.run([cls.ld, "-T", str(TOOLS / "qemu/link.lds"), "-nostdlib", *objects, "-o", str(out / "fdt.elf")],
+                       check=True, capture_output=True)
+        cls.image = out / "fdt.img"
+        subprocess.run([cls.objcopy, "-O", "binary", str(out / "fdt.elf"), str(cls.image)], check=True, capture_output=True)
+        blob = fixtures.penang_tree(ram=(0x40000000, 0x40000000), extra_root=fixtures.Tree.node(
+            "filler", fixtures.Tree().prop("data", bytes(3 * 0x4000))))
+        cls.tree = out / "tree.dtb"
+        cls.tree.write_bytes(blob)
+        cls.length = len(blob)
+
+    @classmethod
+    def tearDownClass(cls): cls.folder.cleanup()
+
+    def run_guest(self, scenario):
+        result = subprocess.run(
+            [self.qemu, "-machine", "virt,gic-version=3", "-cpu", "cortex-a76", "-m", "1024", "-nic", "none",
+             "-display", "none", "-serial", "none", "-monitor", "none",
+             "-semihosting-config", "enable=on,target=native", "-kernel", str(self.image),
+             "-device", "loader,file=%s,addr=0x%x,force-raw=on" % (self.tree, self.SLOT),
+             "-device", "loader,addr=0x4fff0000,data=%d,data-len=8" % scenario,
+             "-device", "loader,addr=0x4fff0008,data=%d,data-len=8" % self.length],
+            capture_output=True, text=True, timeout=120)
+        values = dict(line.split()[1].split("=", 1) for line in (result.stdout + result.stderr).splitlines()
+                      if line.startswith("PPP_FDT "))
+        return result.returncode, {k: (int(v, 16) if v.startswith("0x") else v) for k, v in values.items()}
+
+    def test_bind_through_a_real_mmu(self):
+        code, v = self.run_guest(0)
+        self.assertEqual((code, v.get("result")), (0, "PASS"), v)
+        self.assertEqual((v["mmu"], v["bind_status"], v["descriptor_pa"]), (1, 0, self.SLOT))
+        self.assertEqual(v["descriptor_va"], 0xfffffe0004000000 + (self.SLOT - 0x48000000))
+        self.assertEqual((v["admit_status"], v["resolve_status"], v["virtual_timer_intid"], v["gicd"]),
+                         (0, 0, 19, 0x0f200000))
+
+    def test_unproven_mappings_are_refused_without_a_fault(self):
+        # 9 = UNMAPPED, 3 = WINDOW. A load from an unproven address would have
+        # taken a synchronous abort (exit 3 with unexpected_vector).
+        for scenario, expected in ((1, 9), (2, 9), (3, 9), (4, 3)):
+            with self.subTest(scenario=scenario):
+                code, v = self.run_guest(scenario)
+                self.assertNotIn("unexpected_vector", v, v)
+                self.assertEqual((code, v["bind_status"], v["descriptor_untouched"]), (0, expected, 1), v)
+                self.assertEqual((v["retry_status"], v["second_bind"]), (0, 2), "refusal did not consume the bind")

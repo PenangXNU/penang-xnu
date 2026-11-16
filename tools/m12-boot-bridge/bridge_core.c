@@ -264,6 +264,7 @@ struct m12_fdt_parse_state {
     uint32_t memory_only;
     uint8_t  chosen_seed[64];
     uint32_t has_chosen_seed;
+    uint32_t seed_kind;
     uint32_t chosen_seed_property_seen;
     uint64_t initrd_start;
     uint64_t initrd_end;
@@ -654,24 +655,23 @@ m12_parse_fdt(const uint8_t *fdt, const struct m12_cpu_context *ctx,
             /* /chosen */
             if (cur == 1 && m12_streq(node_names[1], "chosen")) {
                 if (!st->memory_only && m12_streq(pname, "rng-seed")) {
-                    /* Exactly one 64-byte field is required. Longer inputs
-                     * must not be silently truncated; duplicates are ambiguous. */
-                    if (st->chosen_seed_property_seen || plen != 64u) {
+                    /* Exactly one field of 64..512 bytes; duplicates are
+                     * ambiguous and other lengths are refused, never
+                     * truncated or expanded. A 64-byte field is forwarded
+                     * unchanged; a longer one is condensed with SHA-512 so
+                     * that no byte is dropped and XNU, which zeroes only the
+                     * 64 bytes it consumes, never sees the remainder. Its
+                     * actual unpredictability remains a trust-boundary
+                     * requirement for physical release (entropy gate). */
+                    if (st->chosen_seed_property_seen) {
                         return M12_ERR_ENTROPY_UNAVAILABLE;
                     }
                     st->chosen_seed_property_seen = 1u;
-                    /* Only forward 64 bytes supplied by a dedicated bootloader
-                     * entropy field, unchanged. Do not expand an 8-byte KASLR
-                     * value or invent entropy from public CPU registers.
-                     * Its actual unpredictability remains a trust-boundary
-                     * requirement for physical release. */
-                    uint32_t i;
-                    uint8_t any_nonzero = 0;
-                    for (i = 0; i < 64u; i++) {
-                        st->chosen_seed[i] = pval[i];
-                        any_nonzero |= pval[i];
+                    st->seed_kind = (uint32_t)m12_condition_seed(pval, plen, st->chosen_seed);
+                    if (st->seed_kind == M12_SEED_REFUSED) {
+                        return M12_ERR_ENTROPY_UNAVAILABLE;
                     }
-                    st->has_chosen_seed = any_nonzero != 0;
+                    st->has_chosen_seed = 1u;
                 } else if (m12_streq(pname, "bootargs")) {
                     /* Linux /chosen/bootargs can contain Android-only flags,
                      * device identifiers and a command line >1024 bytes.
@@ -1290,7 +1290,12 @@ m12_build_adt(uint8_t *buf, uint32_t cap, const struct m12_cpu_context *ctx,
     adt_prop(&w, "random-seed", seed, 64u);
     /* ADT owns its own copy; do not retain a second seed on the stack. */
     m12_bzero(seed, sizeof(seed));
-    adt_prop_str(&w, "penang,loader-entropy-source", "fdt-rng-seed-64");
+    adt_prop_str(&w, "penang,loader-entropy-source",
+                 st->seed_kind == M12_SEED_SHA512_CONDENSED ? "fdt-rng-seed-sha512" : "fdt-rng-seed-64");
+    /* Retained FDT: physical address and exact length. Deliberately not a
+     * memory-map entry, so no IODTFreeLoaderInfo path can free it. */
+    adt_prop_u64(&w, "penang,fdt-pa", plan->retained_fdt_pa);
+    adt_prop_u64(&w, "penang,fdt-length", plan->retained_fdt_length);
     adt_prop_u64(&w, "dram-base", plan->phys_base);
     adt_prop_u64(&w, "dram-size", plan->mem_size);
     adt_prop_u32(&w, "debug-enabled", 1u);
@@ -1736,7 +1741,14 @@ m12_bridge_execute(const struct m12_cpu_context *ctx, struct m12_handoff_plan *p
         }
         rd_size_aligned = ((st.initrd_end - st.initrd_start) + M12_PAGE_16K_MASK) & ~M12_PAGE_16K_MASK;
     }
-    uint64_t min_top_offset = kern_hi_rel + rd_size_aligned + M12_DT_MAX_SIZE + M12_PAGE_16K;
+    if (plan->fdt_totalsize > M12_RETAINED_FDT_MAX) {
+        plan->status = M12_ERR_FDT_INVALID;
+        m12_render_diagnostics(ctx, plan);
+        return (int)plan->status;
+    }
+    uint64_t retained_aligned = ((uint64_t)plan->fdt_totalsize + M12_PAGE_16K_MASK) & ~M12_PAGE_16K_MASK;
+    uint64_t min_top_offset = kern_hi_rel + rd_size_aligned + M12_DT_MAX_SIZE + M12_PAGE_16K +
+                              retained_aligned;
 
     /* 7. Select 32 MiB-aligned unreserved physical window for XNU */
     status = m12_select_window(plan, min_top_offset);
@@ -1759,10 +1771,17 @@ m12_bridge_execute(const struct m12_cpu_context *ctx, struct m12_handoff_plan *p
         plan->dt_pa        = plan->kernel_hi_pa;
     }
     plan->args_pa            = plan->dt_pa + M12_DT_MAX_SIZE;
-    plan->top_of_kernel_data = plan->args_pa + M12_PAGE_16K;
+    /* The retained FDT follows boot_args, still below topOfKernelData:
+     * XNU maps [end_kern, topOfKernelData) RWNX for its lifetime and no
+     * ml_static_mfree path covers it (arm_vm_physmap_init, !XNU_MONITOR). */
+    plan->retained_fdt_pa     = plan->args_pa + M12_PAGE_16K;
+    plan->retained_fdt_length = plan->fdt_totalsize;
+    plan->top_of_kernel_data  = plan->retained_fdt_pa + retained_aligned;
+    plan->seed_kind           = st.seed_kind;
 
     if ((plan->dt_pa & M12_PAGE_16K_MASK) != 0 ||
         (plan->args_pa & M12_PAGE_16K_MASK) != 0 ||
+        (plan->retained_fdt_pa & M12_PAGE_16K_MASK) != 0 ||
         plan->top_of_kernel_data > plan->phys_base + plan->mem_size) {
         plan->status = M12_ERR_BOOTARGS_INVALID;
         m12_render_diagnostics(ctx, plan);
@@ -1783,6 +1802,16 @@ m12_bridge_execute(const struct m12_cpu_context *ctx, struct m12_handoff_plan *p
             m12_bzero((void *)(uintptr_t)plan->ramdisk_pa, (size_t)rd_size_aligned);
             m12_memcpy((void *)(uintptr_t)plan->ramdisk_pa,
                        (const void *)(uintptr_t)st.initrd_start, (size_t)plan->ramdisk_size);
+        }
+        status = (enum m12_bridge_status)m12_retain_fdt(
+            (const uint8_t *)(uintptr_t)ctx->x0, plan->fdt_totalsize,
+            (uint8_t *)(uintptr_t)plan->retained_fdt_pa, (uint32_t)retained_aligned,
+            &plan->retained_seeds_scrubbed);
+        if (status != M12_BRIDGE_OK) {
+            m12_bzero(st.chosen_seed, sizeof(st.chosen_seed));
+            plan->status = status;
+            m12_render_diagnostics(ctx, plan);
+            return (int)plan->status;
         }
         m12_bzero((void *)(uintptr_t)plan->dt_pa, M12_DT_MAX_SIZE);
         status = m12_build_adt((uint8_t *)(uintptr_t)plan->dt_pa, (uint32_t)M12_DT_MAX_SIZE, ctx, &st, plan);

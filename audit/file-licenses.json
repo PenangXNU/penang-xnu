@@ -506,6 +506,13 @@
       "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
     },
     {
+      "path": "docs/research/2026-11-16-p1-fdt-p0-hardening.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned research record",
+      "provenance": "2026-11-16 AI-assisted WO-CLAUDE-P1-FDT-P0 on main@b063b7c"
+    },
+    {
       "path": "docs/research/2026-11-16-p1-kdk-private-build-input.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -784,6 +791,13 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "tests/public/test_p1_fdt_retention.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored host tests with self-authored trees",
+      "provenance": "2026-11-16 AI-assisted WO-CLAUDE-P1-FDT-P0 on main@b063b7c"
     },
     {
       "path": "tests/public/test_p1_firehose_headers.py",
@@ -1570,14 +1584,28 @@
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
       "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
-      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import; modified in place 2026-11-16 (WO-CLAUDE-P1-FDT-P0: retained FDT slot, seed transport), MIT declaration kept"
     },
     {
       "path": "tools/m12-boot-bridge/bridge_core.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
       "basis": "Preserved original MIT SPDX from pinned M12 first-party code; host/QEMU-only scope",
-      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import"
+      "provenance": "M12 canonical integration at T3 commit 59726684744df751496979ba72907eb69ceb0715; Git blob hash matched at source import; modified in place 2026-11-16 (WO-CLAUDE-P1-FDT-P0: retained FDT slot, seed transport), MIT declaration kept"
+    },
+    {
+      "path": "tools/m12-boot-bridge/m12_physical_entropy_gate.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "MIT",
+      "basis": "Unchanged import of a tracked M12 research header already referenced by bridge_core.c",
+      "provenance": "Research commit acb364dc1822f7bf2ae84f75b982b4f7d52ee2c3, SHA-256 ec31a561c351585222ed4a4737e73fac4e9f99a60ca7231b214a17a5a6003020; byte-identical"
+    },
+    {
+      "path": "tools/m12-boot-bridge/m12_retained_fdt.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored retained-FDT copy, seed scrub and SHA-512 (FIPS 180-4) for the boot bridge",
+      "provenance": "2026-11-16 AI-assisted WO-CLAUDE-P1-FDT-P0 on main@b063b7c"
     },
     {
       "path": "tools/m12-boot-bridge/test_t2_memory.c",
@@ -1928,6 +1956,13 @@
       "license_expression": "Apache-2.0",
       "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/qemu/fdt_harness.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored bare-metal QEMU test fixture",
+      "provenance": "2026-11-16 AI-assisted WO-CLAUDE-P1-FDT-P0 on main@b063b7c"
     },
     {
       "path": "tools/p1-penang-platform/qemu/harness.c",

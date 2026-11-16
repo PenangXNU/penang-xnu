@@ -167,6 +167,22 @@ struct m12_cpu_context {
 };
 
 #define M12_MAX_DYNAMIC_REQUESTS 16u
+
+/* Loader seed transport (m12_retained_fdt.c). XNU reads 64 bytes from
+ * /chosen/random-seed; the Moto G53 boot loader supplies 512. */
+#define M12_SEED_BYTES       64u
+#define M12_SEED_FIELD_MAX   512u
+enum m12_seed_kind {
+    M12_SEED_REFUSED          = 0,
+    M12_SEED_FORWARDED_64     = 1, /* field was exactly 64 bytes */
+    M12_SEED_SHA512_CONDENSED = 2  /* 65..512 bytes condensed with SHA-512 */
+};
+
+/* Retained copy of the firmware FDT, placed after boot_args inside
+ * [end of kernel, topOfKernelData) and announced in the Apple device tree as
+ * /chosen/penang,fdt-pa and /chosen/penang,fdt-length (never in
+ * /chosen/memory-map, whose named ranges XNU may free). */
+#define M12_RETAINED_FDT_MAX 0x00200000u
 #define M12_RESERVATION_FDT_REQUEST 1u
 
 struct m12_dynamic_placement {
@@ -218,6 +234,10 @@ struct m12_handoff_plan {
     uint8_t  c0_packet[M12_C0_PACKET_BYTES];
     uint32_t dynamic_count;
     struct m12_dynamic_placement dynamic[M12_MAX_DYNAMIC_REQUESTS];
+    uint64_t retained_fdt_pa;     /* 8-byte aligned, after boot_args */
+    uint64_t retained_fdt_length; /* == input FDT totalsize */
+    uint32_t seed_kind;           /* enum m12_seed_kind */
+    uint32_t retained_seeds_scrubbed;
 };
 
 #if !defined(__aarch64__) && !defined(__arm64__)
@@ -240,6 +260,10 @@ extern uint64_t g_m12_handoff_args_pa;
 extern uint64_t g_m12_handoff_entry_pa;
 
 const char *m12_status_name(uint32_t status);
+void m12_sha512(const uint8_t *data, size_t n, uint8_t out[64]);
+int m12_condition_seed(const uint8_t *field, uint32_t len, uint8_t out[M12_SEED_BYTES]);
+int m12_retain_fdt(const uint8_t *src, uint32_t src_len, uint8_t *dst, uint32_t cap,
+                   uint32_t *scrubbed);
 uint32_t m12_crc32c(const uint8_t *buf, size_t len);
 int m12_bridge_execute(const struct m12_cpu_context *ctx, struct m12_handoff_plan *plan, int commit_memory);
 void m12_bridge_record_exception(const struct m12_cpu_context *ctx, struct m12_handoff_plan *plan,
