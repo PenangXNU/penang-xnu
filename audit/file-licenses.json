@@ -499,11 +499,32 @@
       "provenance": "Cited original local handoffs/commits; no private material imported"
     },
     {
+      "path": "docs/research/2026-11-16-p1-abi-closure.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
+    },
+    {
+      "path": "docs/research/2026-11-16-p1-kdk-private-build-input.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
+    },
+    {
       "path": "docs/research/2026-11-16-p1-physical-platform-services.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "docs/research/2026-11-16-p1-pmap-link-audit.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
     },
     {
       "path": "docs/research/README.md",
@@ -779,6 +800,20 @@
       "provenance": "2026-11-16 AI-assisted isolated P1/P2 continuation; original sources and private profile experiments kept externally"
     },
     {
+      "path": "tests/public/test_p1_kdk_probe.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
+    },
+    {
+      "path": "tests/public/test_p1_link_inputs.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
+    },
+    {
       "path": "tests/public/test_p1_memory_admission.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -833,6 +868,27 @@
       "license_expression": "Apache-2.0",
       "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tests/public/test_p1_penang_platform_qemu.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
+    },
+    {
+      "path": "tests/public/test_p1_pmap_platform.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
+    },
+    {
+      "path": "tests/public/test_p1_runtime_fdt_abi.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
     },
     {
       "path": "tests/public/test_p1_sdk_headers.py",
@@ -1601,6 +1657,13 @@
       "provenance": "2026-11-16 AI-assisted isolated P1/P2 continuation; original sources and private profile experiments kept externally"
     },
     {
+      "path": "tools/m12-penang-physical/p1_link_inputs.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
+    },
+    {
       "path": "tools/m12-penang-physical/p1_memory_admission.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1655,6 +1718,34 @@
       "license_expression": "Apache-2.0",
       "basis": "project license adopted by the owner on 2026-11-02",
       "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_pmap_platform.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_pmap_platform.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_runtime_fdt_consumer.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_runtime_fdt_provider.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
     },
     {
       "path": "tools/m12-penang-physical/p1_sdk_headers.py",
@@ -1776,11 +1867,32 @@
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
     },
     {
+      "path": "tools/p1-penang-platform/kdk/kdk-15.6-24G84-header-pins.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
+    },
+    {
+      "path": "tools/p1-penang-platform/kdk/p1_kdk_probe.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
+    },
+    {
       "path": "tools/p1-penang-platform/ppp_gicv3.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/ppp_gicv3_regs.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
     },
     {
       "path": "tools/p1-penang-platform/ppp_platform.h",
@@ -1797,11 +1909,53 @@
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
     },
     {
+      "path": "tools/p1-penang-platform/ppp_runtime_fdt.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/ppp_runtime_fdt.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
+    },
+    {
       "path": "tools/p1-penang-platform/ppp_timer_uart.c",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/qemu/harness.c",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/qemu/head.S",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/qemu/link.lds",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/xnu-interfaces/CodeSignature/Entitlements.h",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored P1 ABI-closure work: architectural GICv3 register map, retained run-time FDT provider, bare-metal QEMU harness, candidate entitlement-key header and research record; identifier names follow public XNU consumers, register and key facts come from public specifications and public XNU test fixtures, no third-party source copied",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
     },
     {
       "path": "tools/penang-validate/Cargo.lock",

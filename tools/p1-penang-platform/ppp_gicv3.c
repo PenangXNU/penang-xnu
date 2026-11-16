@@ -21,36 +21,35 @@
  */
 #include "ppp_platform.h"
 
-#define GICD_CTLR        0x0000u
-#define GICD_TYPER       0x0004u
-#define GICD_IGROUPR     0x0080u
-#define GICD_ISENABLER   0x0100u
-#define GICD_ICENABLER   0x0180u
-#define GICD_ICPENDR     0x0280u
-#define GICD_ICACTIVER   0x0380u
-#define GICD_IPRIORITYR  0x0400u
-#define GICD_ICFGR       0x0c00u
-#define GICD_IROUTER     0x6000u
-#define GIC_PIDR2        0xffe8u
+#include "ppp_gicv3_regs.h"
 
-#define GICD_CTLR_ENABLE_G1NS (1u << 1) /* same bit in the DS==0 NS view and DS==1 */
-#define GICD_CTLR_ENABLE_BIT0 (1u << 0)
-#define GICD_CTLR_ARE_NS      (1u << 4)
-#define GICD_CTLR_DS          (1u << 6)
-#define GICD_CTLR_RWP         (1u << 31)
-
-#define GICR_CTLR        0x0000u
-#define GICR_TYPER       0x0008u
-#define GICR_WAKER       0x0014u
-#define GICR_SGI_BASE    0x10000u /* SGI_base frame; offsets below as GICD */
-#define GICR_CTLR_RWP    (1u << 3)
-#define GICR_TYPER_VLPIS (1u << 1)
-#define GICR_TYPER_LAST  (1u << 4)
-#define GICR_WAKER_PROCESSORSLEEP (1u << 1)
-#define GICR_WAKER_CHILDRENASLEEP (1u << 2)
-
-#define ICC_SRE_SRE      1u
-#define ICC_CTLR_EOIMODE (1u << 1) /* bit 0 is CBPR, not EOImode */
+#define GICD_CTLR        PPP_GICD_CTLR
+#define GICD_TYPER       PPP_GICD_TYPER
+#define GICD_IGROUPR     PPP_GICD_IGROUPR
+#define GICD_ISENABLER   PPP_GICD_ISENABLER
+#define GICD_ICENABLER   PPP_GICD_ICENABLER
+#define GICD_ICPENDR     PPP_GICD_ICPENDR
+#define GICD_ICACTIVER   PPP_GICD_ICACTIVER
+#define GICD_IPRIORITYR  PPP_GICD_IPRIORITYR
+#define GICD_ICFGR       PPP_GICD_ICFGR
+#define GICD_IROUTER     PPP_GICD_IROUTER
+#define GIC_PIDR2        PPP_GIC_PIDR2
+#define GICD_CTLR_ENABLE_G1NS PPP_GICD_CTLR_ENABLE_G1NS
+#define GICD_CTLR_ENABLE_BIT0 PPP_GICD_CTLR_ENABLE_BIT0
+#define GICD_CTLR_ARE_NS      PPP_GICD_CTLR_ARE_NS
+#define GICD_CTLR_DS          PPP_GICD_CTLR_DS
+#define GICD_CTLR_RWP         PPP_GICD_CTLR_RWP
+#define GICR_CTLR        PPP_GICR_CTLR
+#define GICR_TYPER       PPP_GICR_TYPER
+#define GICR_WAKER       PPP_GICR_WAKER
+#define GICR_SGI_BASE    PPP_GICR_SGI_BASE
+#define GICR_CTLR_RWP    PPP_GICR_CTLR_RWP
+#define GICR_TYPER_VLPIS PPP_GICR_TYPER_VLPIS
+#define GICR_TYPER_LAST  PPP_GICR_TYPER_LAST
+#define GICR_WAKER_PROCESSORSLEEP PPP_GICR_WAKER_PROCESSORSLEEP
+#define GICR_WAKER_CHILDRENASLEEP PPP_GICR_WAKER_CHILDRENASLEEP
+#define ICC_SRE_SRE      PPP_ICC_SRE_SRE
+#define ICC_CTLR_EOIMODE PPP_ICC_CTLR_EOIMODE
 
 static uint32_t
 rd32(struct ppp_gic *g, uint64_t a)
@@ -241,6 +240,7 @@ ppp_gic_init(struct ppp_gic *gic, const struct ppp_resources *res,
     const struct ppp_io *io, uint32_t poll_limit)
 {
     int status;
+    int sre_granted = 0;
     uint32_t ctlr;
     if (gic == NULL || res == NULL || io == NULL || io->read32 == NULL || io->write32 == NULL ||
         io->read64 == NULL || io->write64 == NULL || io->sysreg_read == NULL ||
@@ -259,20 +259,37 @@ ppp_gic_init(struct ppp_gic *gic, const struct ppp_resources *res,
     gic->boot_mpidr = sys_rd(gic, PPP_SR_MPIDR_EL1);
     gic->ack_count = gic->eoi_count = gic->spurious_count = 0;
 
-    if ((status = init_distributor(gic)) != PPP_GIC_OK ||
-        (status = init_redistributor(gic, res)) != PPP_GIC_OK ||
-        (status = init_cpu_interface(gic)) != PPP_GIC_OK) {
-        return status;
+    status = init_distributor(gic);
+    if (status == PPP_GIC_OK) {
+        status = init_redistributor(gic, res);
     }
-    ctlr = rd32(gic, gic->gicd + GICD_CTLR);
-    wr32(gic, gic->gicd + GICD_CTLR, ctlr | GICD_CTLR_ENABLE_G1NS);
-    if (wait_clear(gic, gic->gicd + GICD_CTLR, GICD_CTLR_RWP)) {
-        status = PPP_GIC_E_RWP_TIMEOUT;
-    } else if (!(rd32(gic, gic->gicd + GICD_CTLR) & GICD_CTLR_ENABLE_G1NS)) {
-        status = PPP_GIC_E_DIST_ENABLE;
+    if (status == PPP_GIC_OK) {
+        sre_granted = 1;
+        status = init_cpu_interface(gic);
+        if (status == PPP_GIC_E_SRE) {
+            sre_granted = 0; /* ICC_* access would trap: touch nothing more */
+        }
+    }
+    if (status == PPP_GIC_OK) {
+        ctlr = rd32(gic, gic->gicd + GICD_CTLR);
+        wr32(gic, gic->gicd + GICD_CTLR, ctlr | GICD_CTLR_ENABLE_G1NS);
+        if (wait_clear(gic, gic->gicd + GICD_CTLR, GICD_CTLR_RWP)) {
+            status = PPP_GIC_E_RWP_TIMEOUT;
+        } else if (!(rd32(gic, gic->gicd + GICD_CTLR) & GICD_CTLR_ENABLE_G1NS)) {
+            status = PPP_GIC_E_DIST_ENABLE;
+        }
     }
     if (status != PPP_GIC_OK) {
-        sys_wr(gic, PPP_SR_ICC_IGRPEN1_EL1, 0);
+        /* Fail closed: no group enable and a priority mask that admits
+         * nothing on this CPU, so a later unmask of PSTATE.I cannot deliver
+         * through a half-configured controller. Distributor forwarding that
+         * firmware had already enabled is left as found. */
+        if (sre_granted) {
+            sys_wr(gic, PPP_SR_ICC_IGRPEN1_EL1, 0);
+            sys_wr(gic, PPP_SR_ICC_PMR_EL1, 0);
+        }
+        gic->gicr = 0;
+        gic->intid_count = 0;
         return status;
     }
     gic->ready = 1;

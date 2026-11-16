@@ -15,6 +15,14 @@
 
 ## Native source-chain continuation (2026-11-16)
 
+The [subsequent native link audit](2026-11-16-p1-pmap-link-audit.md) repeats
+the 14 original errors with the exact compiler, closes the GIC profile unit,
+corrects the retained-FDT consumer type and removes a byte-identical repeated
+admission object. Actual ld64 over 1,027 distinct ARM64 objects still has 632
+undefined symbols. KDK consumers remain an owner-side licensed build step;
+cloud handoffs contain no authentic SART/UAT implementation. The explicit
+PMAP selection is a code-generation proposal, not physical DMA qualification.
+
 The [native tools](../../tools/m12-penang-physical/README.md#native-compiler-and-generated-providers)
 now distinguish doconf-selected generated sources from the larger MIG generation
 set. They cover BSD syscall/version generation, Skywalk/firehose exports, MIG

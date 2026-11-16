@@ -13,7 +13,10 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 TOOLS = ROOT / "tools/p1-penang-platform"
-SOURCES = ["ppp_resources.c", "ppp_gicv3.c", "ppp_timer_uart.c"]
+SOURCES = ["ppp_resources.c", "ppp_gicv3.c", "ppp_timer_uart.c", "ppp_runtime_fdt.c"]
+HEADERS = ["ppp_platform.h", "ppp_gicv3_regs.h", "ppp_runtime_fdt.h"]
+ADMISSION = ROOT / "tools/m12-penang-physical"  # owner of struct p1_runtime_fdt and p1_memory_admit
+RAM = 0x80000000
 
 GICD, GICR, STRIDE, UART = 0x0F200000, 0x0F240000, 0x20000, 0x04C8C000
 HZ = 19200000
@@ -88,6 +91,13 @@ def holi_shaped(**o):
         soc += n("serial@1", uart)
     soc += n("disabled-gic", p("compatible", b"arm,gic-v3\0") + p("status", b"disabled\0"))
     body = p("#address-cells", u32(2)) + p("#size-cells", u32(2)) + n("cpus", cpus) + n("soc", soc)
+    if o.get("memory"):
+        body += n("memory@80000000", p("device_type", b"memory\0") + p("reg", u64(RAM) + u64(0x8000000)))
+        res = p("#address-cells", u32(2)) + p("#size-cells", u32(2)) + p("ranges")
+        res += n("fw@87000000", p("reg", u64(RAM + 0x7000000) + u64(0x100000)) + p("no-map"))
+        if o.get("dynamic"):
+            res += n("pool", p("size", u64(0x400000)))
+        body += n("reserved-memory", res)
     return t.blob(body)
 
 
@@ -125,6 +135,15 @@ class Gic(ctypes.Structure):
                 ("single_security", ctypes.c_uint32), ("poll_limit", ctypes.c_uint32),
                 ("ready", ctypes.c_uint32), ("ack_count", ctypes.c_uint64),
                 ("eoi_count", ctypes.c_uint64), ("spurious_count", ctypes.c_uint64)]
+
+
+class RuntimeFdt(ctypes.Structure):
+    _fields_ = [("bytes", ctypes.c_void_p), ("length", ctypes.c_size_t), ("physical_address", ctypes.c_uint64)]
+
+
+class Handoff(ctypes.Structure):
+    _fields_ = [("fdt_pa", ctypes.c_uint64), ("fdt_length", ctypes.c_uint64), ("phys_base", ctypes.c_uint64),
+                ("virt_base", ctypes.c_uint64), ("top_of_kernel_data", ctypes.c_uint64)]
 
 
 class Timer(ctypes.Structure):
@@ -346,7 +365,9 @@ class PenangPlatform(unittest.TestCase):
         host_cc = os.environ.get("PPP_TEST_HOST_CC") or cls.cc  # e.g. gcc for sanitizer runs
         subprocess.run([host_cc, "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-fPIC", "-shared",
                         *os.environ.get("PPP_TEST_CFLAGS", "").split(),  # e.g. sanitizers
-                        *[str(TOOLS / s) for s in SOURCES], "-o", str(lib)], check=True, capture_output=True)
+                        "-I", str(ADMISSION), *[str(TOOLS / s) for s in SOURCES],
+                        str(ADMISSION / "p1_memory_admission.c"), "-o", str(lib)], check=True, capture_output=True)
+        cls.lib_path = lib
         cls.lib = lib = ctypes.CDLL(str(lib))
         lib.ppp_resolve.argtypes = [ctypes.c_void_p, ctypes.c_size_t, ctypes.POINTER(Resources)]
         lib.ppp_gic_init.argtypes = [ctypes.POINTER(Gic), ctypes.POINTER(Resources), ctypes.POINTER(Io), ctypes.c_uint32]
@@ -367,6 +388,26 @@ class PenangPlatform(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls): cls.folder.cleanup()
+
+    def fresh(self):
+        """A private copy of the library: the FDT provider is single-assignment."""
+        self.copies = getattr(self, "copies", 0) + 1
+        path = Path(self.folder.name) / ("%s-%d.so" % (self.id().rsplit(".", 1)[-1], self.copies))
+        shutil.copyfile(self.lib_path, path)
+        lib = ctypes.CDLL(str(path))
+        lib.ppp_runtime_fdt_bind.argtypes = [ctypes.POINTER(Handoff)]
+        lib.ppp_fdt_status_name.restype = ctypes.c_char_p
+        lib.ppp_resolve.argtypes = [ctypes.c_void_p, ctypes.c_size_t, ctypes.POINTER(Resources)]
+        lib.p1_memory_admit.argtypes = [ctypes.POINTER(RuntimeFdt)] + [ctypes.c_uint64] * 3
+        return lib, RuntimeFdt.in_dll(lib, "penang_p1_runtime_fdt")
+
+    def handoff(self, blob, pa=RAM + 0x8000, top=RAM + 0x400000, length=None, base=RAM, pad=0):
+        """Model the bridge: the tree sits at `pa` inside a window mapped at virt_base."""
+        buffer = ctypes.create_string_buffer(bytes(pad) + blob, pad + len(blob) + 64)
+        address = ctypes.addressof(buffer) + pad
+        self.assertEqual(address % 8, 0)
+        h = Handoff(pa, len(blob) if length is None else length, base, (address - (pa - base)) % 2**64, top)
+        return h, buffer, address
 
     def resolve(self, blob, length=None):
         buffer = ctypes.create_string_buffer(blob, len(blob))
@@ -406,6 +447,14 @@ class PenangPlatform(unittest.TestCase):
                            dict(gic_reg=u32(GICD) + u32(0x10000) + u32(GICD) + u32(0x100000)),
                            dict(gic_reg=u32(GICD + 0x1000) + u32(0x10000) + u32(GICR) + u32(0x100000))],
             "GIC_DUPLICATE": [dict(second_gic=True)],
+            "TRANSLATE ": [  # arithmetic at the top of the address space must not wrap
+                dict(soc_ranges=u32(0) + u64(2**64 - 0x1000) + u32(0xffffffff)),
+                dict(soc_ranges=u32(0) + u64(2**64 - GICR - 0x100000 + 1) + u32(0xffffffff)),
+                dict(soc_ranges=u32(0xf0000000) + u64(0) + u32(0x0fffffff)),
+                dict(soc_ranges=u32(0xfffff000) + u64(0) + u32(0xffffffff)),
+                dict(gic_reg=u32(0xffff0000) + u32(0x10000) + u32(GICR) + u32(0x100000)),
+                dict(gic_reg=u32(GICD) + u32(0x10000) + u32(0xfff00000) + u32(0x100000)),
+                dict(gic_reg=u32(GICD) + u32(0) + u32(GICR) + u32(0x100000))],
             "FDT": [dict(duplicate_reg=True)],
             "GIC_ABSENT": [dict(gic_compatible=b"arm,gic-v3"), dict(gic_compatible=b"arm,gic-v3x\0")],
             "TIMER_ABSENT": [dict(timer=False)],
@@ -417,7 +466,7 @@ class PenangPlatform(unittest.TestCase):
         for expected, variants in cases.items():
             for variant in variants:
                 with self.subTest(expected=expected, variant=variant):
-                    self.assertEqual(self.resolve(holi_shaped(**variant))[0], expected)
+                    self.assertEqual(self.resolve(holi_shaped(**variant))[0], expected.strip())
 
     def test_optional_console_is_never_guessed(self):
         for variant in (dict(extra_uarts=1), dict(uart_status=b"disabled\0")):
@@ -559,11 +608,23 @@ class PenangPlatform(unittest.TestCase):
                 m = Model(**quirk)
                 name, gic, _ = self.bring_up(m)
                 self.assertEqual((name, gic.ready, m.ctlr & 2 and m.igrpen1), (expected, 0, 0))
+                # Fail closed: nothing can be delivered on this CPU afterwards.
+                self.assertEqual((m.igrpen1, m.pmr, gic.gicr, gic.intid_count), (0, 0, 0, 0))
+                if expected == "SRE":  # interface not granted: no further ICC_* access at all
+                    self.assertLessEqual({reg for reg, _ in m.sys_writes}, {SR_SRE})
+                m.pending |= {19, 40}
+                m.enabled |= {19, 40}
+                self.assertIsNone(m.deliverable())
                 self.assertEqual(self.lib.ppp_gic_ack(ctypes.byref(gic)), 1023)
                 self.assertEqual(self.lib.ppp_gic_status_name(self.lib.ppp_gic_enable(ctypes.byref(gic), 19)), b"STATE")
-        for quirk in (dict(pmr_readback=0xa0), dict(eoimode_preset=True, eoimode_fixed=True), dict(igrpen_denied=True)):
+        for quirk in (dict(eoimode_preset=True, eoimode_fixed=True), dict(igrpen_denied=True)):
             m = Model(**quirk)
-            self.assertEqual(self.bring_up(m)[0], "CPUIF")
+            self.assertEqual((self.bring_up(m)[0], m.igrpen1, m.pmr, m.ctlr & 2), ("CPUIF", 0, 0, 0))
+        self.assertEqual(self.bring_up(Model(pmr_readback=0xa0))[0], "CPUIF")
+        # Forwarding that firmware had already enabled is left as found, but
+        # the CPU interface is still closed after a refusal.
+        m = Model(ctlr_pre=2, wake_stuck=True)
+        self.assertEqual((self.bring_up(m)[0], m.ctlr & 2, m.igrpen1, m.sre), ("WAKE_TIMEOUT", 2, 0, 0))
         # Legacy routing with a group already enabled must not be switched.
         self.assertEqual(self.bring_up(Model(are=False, ctlr_pre=2))[0], "ROUTING")
         m = Model(are=False)
@@ -598,6 +659,137 @@ class PenangPlatform(unittest.TestCase):
         self.assertEqual(self.lib.ppp_gic_init(ctypes.byref(fresh), ctypes.byref(bad), ctypes.byref(m.io), 8), 1)
         self.assertEqual(self.lib.ppp_gic_init(ctypes.byref(fresh), ctypes.byref(res), ctypes.byref(Io()), 8), 1)
         self.assertEqual(self.lib.ppp_gic_init(None, ctypes.byref(res), ctypes.byref(m.io), 8), 1)
+
+    # ---- retained run-time FDT provider ------------------------------------
+    def test_unbound_provider_is_refused_by_memory_admission(self):
+        lib, published = self.fresh()
+        self.assertEqual((published.bytes, published.length, published.physical_address), (None, 0, 0))
+        self.assertEqual(lib.p1_memory_admit(ctypes.byref(published), RAM, 0x2000000, RAM + 0x400000), 1)
+
+    def test_one_retained_tree_feeds_admission_and_resolution(self):
+        lib, published = self.fresh()
+        blob = holi_shaped(memory=True)
+        h, buffer, address = self.handoff(blob)
+        before = bytes(buffer)
+        self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))), b"OK")
+        self.assertEqual((published.bytes, published.length, published.physical_address),
+                         (address, len(blob), RAM + 0x8000))
+        # The memory owner's real admission and the platform resolver read the same bytes.
+        self.assertEqual(lib.p1_memory_admit(ctypes.byref(published), RAM, 0x2000000, RAM + 0x400000), 0)
+        res = Resources()
+        self.assertEqual(lib.ppp_resolve(published.bytes, published.length, ctypes.byref(res)), 0)
+        self.assertEqual((res.gicd_pa, res.timer[2].intid, res.cpu_count), (GICD, 19, 8))
+        self.assertEqual(bytes(buffer), before, "the retained tree is never written")
+        # Single assignment: a second hand-over cannot replace the admitted tree.
+        other, keep, _ = self.handoff(holi_shaped(memory=True, cpus=4))
+        self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(other))), b"ALREADY_BOUND")
+        self.assertEqual((published.bytes, published.length), (address, len(blob)))
+
+    def test_size_only_reservations_stay_a_memory_admission_decision(self):
+        lib, published = self.fresh()
+        h, buffer, _ = self.handoff(holi_shaped(memory=True, dynamic=True))
+        self.assertEqual(lib.ppp_runtime_fdt_bind(ctypes.byref(h)), 0)  # the provider does not judge memory
+        self.assertEqual(lib.p1_memory_admit(ctypes.byref(published), RAM, 0x2000000, RAM + 0x400000), 2)
+
+    def test_provider_refusals_publish_nothing(self):
+        blob = holi_shaped(memory=True)
+        top = RAM + 0x400000
+        cases = [
+            ("ALIGNMENT", dict(pa=0)), ("ALIGNMENT", dict(pa=RAM + 0x8004)),
+            ("NOT_RETAINED", dict(pa=RAM - 0x1000)), ("NOT_RETAINED", dict(pa=top)),
+            ("NOT_RETAINED", dict(pa=top - 0x100)), ("NOT_RETAINED", dict(pa=(top - len(blob) + 8) & ~7)),
+            ("NOT_RETAINED", dict(pa=2**64 - 0x1000)), ("NOT_RETAINED", dict(length=0)),
+            ("NOT_RETAINED", dict(length=39)), ("NOT_RETAINED", dict(length=2 * 1024 * 1024 + 1)),
+            ("NOT_RETAINED", dict(length=2**64 - 8)),
+            ("WINDOW", dict(top=RAM)), ("WINDOW", dict(top=RAM - 0x4000)),
+            ("LENGTH", dict(length=len(blob) - 4)), ("LENGTH", dict(length=len(blob) + 4)),
+        ]
+        for expected, kwargs in cases:
+            with self.subTest(expected=expected, kwargs=kwargs):
+                lib, published = self.fresh()
+                h, buffer, _ = self.handoff(blob, **kwargs)
+                self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))).decode(), expected)
+                self.assertEqual((published.bytes, published.length, published.physical_address), (None, 0, 0))
+        for offset, value in ((0, 0xd00dfeee), (20, 16), (20, 18), (24, 18), (4, len(blob) + 8)):
+            data = bytearray(blob)
+            struct.pack_into(">I", data, offset, value)
+            lib, published = self.fresh()
+            h, buffer, _ = self.handoff(bytes(data))
+            with self.subTest(offset=offset):
+                self.assertIn(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))), (b"HEADER", b"LENGTH"))
+                self.assertIsNone(published.bytes)
+        lib, published = self.fresh()
+        self.assertEqual(lib.ppp_runtime_fdt_bind(None), 1)
+        # virt_base so high that the mapping of the window would wrap.
+        h, buffer, _ = self.handoff(blob)
+        h.virt_base = 2**64 - 0x1000
+        self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))), b"WINDOW")
+        # A failed attempt does not consume the single assignment.
+        h, buffer, _ = self.handoff(blob)
+        self.assertEqual(lib.ppp_runtime_fdt_bind(ctypes.byref(h)), 0)
+
+    def test_provider_object_is_the_symbol_the_native_vm_bootstrap_links_against(self):
+        nm = shutil.which("llvm-nm-18") or shutil.which("llvm-nm")
+        if not nm: self.skipTest("llvm-nm required")
+        obj = Path(self.folder.name) / "provider.o"
+        consumer = Path(self.folder.name) / "consumer.o"
+        source = Path(self.folder.name) / "consumer.c"
+        # Exactly the declaration the native arm_vm_init carries.
+        source.write_text('#include "p1_memory_admission.h"\nextern const struct p1_runtime_fdt penang_p1_runtime_fdt;\n'
+                          'int probe(void) { return p1_memory_admit(&penang_p1_runtime_fdt, 0, 0, 0); }\n')
+        flags = [self.cc, "--target=arm64-apple-darwin", "-std=c11", "-ffreestanding", "-Wall", "-Wextra", "-Werror",
+                 "-I", str(ADMISSION), "-c"]
+        subprocess.run(flags + [str(TOOLS / "ppp_runtime_fdt.c"), "-o", str(obj)], check=True, capture_output=True)
+        subprocess.run(flags + [str(source), "-o", str(consumer)], check=True, capture_output=True)
+        symbols = lambda path, mode: subprocess.run([nm, mode, str(path)], check=True, capture_output=True, text=True).stdout
+        self.assertIn("_penang_p1_runtime_fdt", symbols(consumer, "--undefined-only"))
+        defined = [line.split() for line in symbols(obj, "--defined-only").splitlines() if line.endswith(" _penang_p1_runtime_fdt")]
+        self.assertEqual(len(defined), 1)
+        self.assertNotIn(defined[0][1], "TtRr", "single-assignment storage must not sit in text or constant data")
+        self.assertEqual(symbols(obj, "--undefined-only").split(), [])
+
+    # ---- interface headers --------------------------------------------------
+    def test_register_map_matches_the_architecture_values_xnu_uses(self):
+        text = (TOOLS / "ppp_gicv3_regs.h").read_text(encoding="utf-8")
+        import re
+        def value(name):
+            shift, literal = re.search(r"#define %s\s+(?:\(1u << (\d+)\)|(0x[0-9a-f]+)u?)" % name, text).groups()
+            return 1 << int(shift) if shift else int(literal, 16)
+        # Offsets pexpert/pexpert/arm64/VMAPPLE.h states for the same registers (XNU 43a90889).
+        expected = {"PPP_GICR_TYPER": 0x08, "PPP_GICR_WAKER": 0x14, "PPP_GICR_TYPER_LAST": 0x10,
+                    "PPP_GICR_WAKER_PROCESSORSLEEP": 0x2, "PPP_GICR_WAKER_CHILDRENASLEEP": 0x4,
+                    "PPP_GICD_ISENABLER": 0x100, "PPP_GICD_IGROUPR": 0x80, "PPP_GICR_SGI_BASE": 0x10000,
+                    "PPP_ICC_CTLR_EOIMODE": 0x2, "PPP_ICC_CTLR_CBPR": 0x1, "PPP_GICD_CTLR_RWP": 0x80000000,
+                    "PPP_GICD_IROUTER": 0x6000, "PPP_GICD_ICFGR": 0xc00, "PPP_GICD_IPRIORITYR": 0x400}
+        for name, number in expected.items():
+            with self.subTest(name=name): self.assertEqual(value(name), number)
+        # The header selects no board and no interrupt-group policy.
+        for forbidden in ("VMAPPLE", "HAS_GIC_V3", "NO_MONITOR", "APPLEVIRTUALPLATFORM", "ENABLEGRP0"):
+            self.assertNotIn("#define " + forbidden, text)
+        subprocess.run([self.cc, "-std=c11", "-Wall", "-Wextra", "-Werror", "-fsyntax-only", "-x", "c",
+                        str(TOOLS / "ppp_gicv3_regs.h")], check=True, capture_output=True)
+
+    def test_candidate_entitlement_names_stay_inside_the_publicly_evidenced_set(self):
+        import re
+        text = (TOOLS / "xnu-interfaces/CodeSignature/Entitlements.h").read_text(encoding="utf-8")
+        macros = dict(re.findall(r'(?m)^#define (kCS\w+)\s+"([^"]+)"$', text))
+        # Keys the public XNU 43a90889 tests grant under each mask
+        # (tests/entitlements/hardened-binary-entitlements-{1,2}.plist).
+        prefix = "com.apple.%s.web-browser-engine.%s"
+        evidenced = {
+            "kCSWebBrowserHostEntitlement": {prefix % (k, "host") for k in ("private", "developer")},
+            "kCSWebBrowserGPUEntitlement": {prefix % ("private", "gpu"), prefix % ("developer", "gpu"),
+                                            prefix % ("developer", "rendering"), prefix % ("developer", "renderer")},
+            "kCSWebBrowserNetworkEntitlement": {prefix % (k, n) for k in ("private", "developer") for n in ("network", "networking")},
+            "kCSWebBrowserWebContentEntitlement": {prefix % (k, "webcontent") for k in ("private", "developer")},
+        }
+        self.assertEqual(set(macros), set(evidenced), "exactly the identifiers the two public consumers use")
+        for name, key in macros.items():
+            self.assertIn(key, evidenced[name])
+        self.assertEqual(len(set(macros.values())), 4)
+        self.assertIn("#define PENANG_CODESIGNATURE_ENTITLEMENTS_CANDIDATE 1", text)
+        self.assertIn("CANDIDATE interface, not Apple's header", text)
+        self.assertNotIn("typedef", text)  # declares no type, function or policy result
 
     # ---- timer and console ------------------------------------------------
     def test_timer_frequency_is_adopted_never_invented(self):
@@ -644,16 +836,18 @@ class PenangPlatform(unittest.TestCase):
                     obj = Path(self.folder.name) / (source + target[-6:] + ".o")
                     subprocess.run([self.cc, target, "-std=c11", "-O2", "-ffreestanding", "-fno-builtin",
                                     "-mgeneral-regs-only", "-fno-stack-protector", "-Wall", "-Wextra", "-Werror",
-                                    "-c", str(TOOLS / source), "-o", str(obj)], check=True, capture_output=True)
+                                    "-I", str(ADMISSION), "-c", str(TOOLS / source), "-o", str(obj)],
+                                   check=True, capture_output=True)
                     if nm:
                         undefined = subprocess.run([nm, "-u", str(obj)], check=True, capture_output=True, text=True).stdout.split()
                         self.assertEqual([s for s in undefined if s != "U"], [], "no libc, kernel or MMIO symbol may be required")
 
     def test_no_physical_address_is_compiled_into_the_sources(self):
         import re
-        for source in SOURCES + ["ppp_platform.h"]:
+        for source in SOURCES + HEADERS:
             text = (TOOLS / source).read_text(encoding="utf-8")
             masks = {0xd00dfeed, 0xffffff, 0xffffffff, 0xff00ffffff}  # FDT magic and field masks
+            text = __import__("re").sub(r"(?s)/\*.*?\*/", "", text)  # comments may cite register offsets
             for literal in re.findall(r"0x[0-9a-fA-F]+", text):
                 value = int(literal, 16)
                 self.assertTrue(value < 0x00100000 or value in masks, "%s embeds %s" % (source, literal))

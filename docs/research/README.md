@@ -2,10 +2,14 @@
 
 This directory contains curated, public-safe progress records. They are not a replacement for original local evidence, and their status labels do not grant device or production readiness.
 
+- [P1 PMAP selection and real link audit, 2026-11-16](2026-11-16-p1-pmap-link-audit.md): pinned-compiler reproduction, retained-FDT type correction, exact source-alias selection and actual ld64 HOLD.
+
 - **[Start here — current research state, 2026-11-15](RESUME-HERE.md)**: latest provenance, supersessions, unresolved physical gates and compulsory continuation protocol.
 - [Physical evidence ledger, 2026-11-15](2026-11-15-physical-evidence-ledger.md): D3A1, R2C/R3, H1, B4.2, B4.3A and U2 — what has already been investigated.
 - [T72-Q5 EL0, 2026-11-15](2026-11-15-q5-el0.md): native ARM64 dyld/main fixture executing under QEMU/XNU and its trust-admission limits.
 - [P1 physical platform services, 2026-11-16](2026-11-16-p1-physical-platform-services.md): run-time resource resolution, non-secure GICv3/timer driver (HOST_ONLY), the FIQ-versus-IRQ timer finding, shared-ABI proposal, device test plan and driver backlog.
+- [P1 ABI closure, 2026-11-16](2026-11-16-p1-abi-closure.md): the 14 compile blockers (1 closed, 1 candidate, 12 blocked on a non-public interface), the GICv3 QEMU result, the retained-FDT provider and the adapter ABI proposal.
+- [KDK as a private build input, 2026-11-16](2026-11-16-p1-kdk-private-build-input.md): owner decision, the LOCAL_ONLY adapter, 13 of 14 units compiling with the pinned-source compiler, and `pmap.c` as the first real link blocker.
 - [Physical XNU integration issue](https://github.com/PenangXNU/penang-xnu/issues/4): unresolved native-provider prerequisites without repeating hardware discovery.
 - [Consolidation ledger, 2026-11-11](2026-11-11-reconciliation.md): source branches, what was imported, what remains private, and anti-rework rules.
 - [Windows/WSL source inventory](local-worktree-inventory.md): original worktrees, rom-work classification, reuse points, and exclusions.

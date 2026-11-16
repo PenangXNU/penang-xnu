@@ -47,10 +47,11 @@
 #define ARM_PARAMETERIZED_PMAP 1
 #define __ARM_MIXED_PAGE_SIZE__ 1
 #define ARM_ARCH_TIMER 1
-#define HAS_GIC_V3 1
-#define GIC_SPURIOUS_IRQ 1023
-#define GICR_PE_SIZE 0x20000
 
 /* Deliberately no PL011_UART, APPLEARMSMP, NO_MONITOR, weak PMAP,
- * PMIC, PSCI or KDK KernelSupport compatibility statements. */
+ * PMIC, PSCI or KDK KernelSupport compatibility statements.
+ * Deliberately no HAS_GIC_V3 either: in XNU 11417 that macro only enables
+ * the VMAPPLE body of pexpert/arm/pe_fiq.c (Group 0, PPI 27, FIQ), which
+ * non-secure EL1 on this SoC must not program. The GIC is driven as
+ * Group 1 non-secure through tools/p1-penang-platform. */
 #endif
