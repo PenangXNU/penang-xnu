@@ -13,6 +13,22 @@
 
 **G53 identification was restored in U2** (Android ADB, correct `penang` device). The earlier report in which USB enumeration found only `rav` is superseded. Never confuse the two devices.
 
+## Native source-chain continuation (2026-11-16)
+
+The [native tools](../../tools/m12-penang-physical/README.md#native-compiler-and-generated-providers)
+now distinguish doconf-selected generated sources from the larger MIG generation
+set. They cover BSD syscall/version generation, Skywalk/firehose exports, MIG
+138 daemon clients, explicit MacOSX 15.6 metadata and bounded real compiler
+type-trait checks. Preserve the original optional-profiling and VM semantic-type
+rules when reconstructing commands. This is compilation/link research; no
+physical XNU boot or `/sbin/penang-init` is established.
+
+Continue at the reproduced native interface/provider failures, including
+`TrustCache/API.h`, `CodeSignature/Entitlements.h` and the physical GIC provider.
+P1 sandbox compilation remains separate from P2 backend qualification and from
+approval of effective security-policy changes. Keep build objects, private
+packets, operational scripts and full logs in the private handoff, outside Git.
+
 ## What to read, in order
 
 1. [2026-11-15 evidence ledger](2026-11-15-physical-evidence-ledger.md): *which physical hardware work is already done*, original source branches, corrections to old reports, and scope.

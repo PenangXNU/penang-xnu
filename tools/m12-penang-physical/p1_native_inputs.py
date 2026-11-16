@@ -86,6 +86,53 @@ def references(text):
     return classify_references(text)["sources"]
 
 
+def generated_references(text):
+    """Literal generated compilation units selected by doconf's source lists.
+
+    A generator Makefile may produce more files than the kernel selects.
+    Do not glob its output directory or confuse generation with link selection.
+    """
+    flat = make_text(text)
+    for line in flat.splitlines():
+        if (re.match(r"^(?:export[ \t]+)?(?:CFILES|CXXFILES|SFILES)\b", line)
+                and not re.match(r"^(?:CFILES|CXXFILES|SFILES)[ \t]*=", line)):
+            raise ValueError("unsupported source-list assignment")
+    result, assignments = set(), 0
+    for variable, suffixes in (("CFILES", (".c",)), ("CXXFILES", (".cpp",)), ("SFILES", (".s", ".S"))):
+        values = re.findall(r"(?m)^" + variable + r"[ \t]*=[ \t]*(.*)$", flat)
+        if len(values) > 1:
+            raise ValueError("ambiguous source-list assignment")
+        assignments += len(values)
+        for value in values:
+            for token in value.split():
+                if token.startswith("$(SOURCE_DIR)/"):
+                    name = token[len("$(SOURCE_DIR)/"):]
+                    if not canonical_path(name) or not name.endswith(suffixes):
+                        raise ValueError("invalid source-list reference")
+                elif token.startswith("./"):
+                    name = token[2:]
+                    if not canonical_path(name) or not name.endswith(suffixes):
+                        raise ValueError("invalid generated-source reference")
+                    result.add(name)
+                else:
+                    raise ValueError("unsupported source-list expression")
+    if not assignments:
+        raise ValueError("source-list assignments missing")
+    return sorted(result)
+
+
+def generated_path(root, name):
+    """Admit a regular generated source; reject traversal and all symlinks."""
+    if not canonical_path(name) or not name.endswith((".c", ".cpp", ".s", ".S")):
+        raise ValueError("invalid generated-source path")
+    root = root.resolve(strict=True)
+    path = root / name
+    if (path.resolve(strict=True) != path or not path.is_file()
+            or not 0 < path.stat().st_size <= 16_000_000):
+        raise ValueError("generated source escaped, changed type or exceeded bounds")
+    return path
+
+
 def top_level_guard(source):
     """Require an unconditional top-level physical #if/#error/#endif block.
 

@@ -120,6 +120,25 @@ routine ks_api();
         for key in ("CCC_OVERRIDE_OPTIONS", "CPATH", "SDKROOT"):
             self.assertNotIn(key, env)
 
+    def test_implementations_follow_kernel_source_lists_not_exported_header_presence(self):
+        make = ("MIG_KUSRC = \\\n\tvm_map_user.c\n"
+                "MIG_KSSRC = \\\n\tclock_server.c\n")
+        self.assertEqual(MOD.implementation_name(make, "vm_map", "kernel-user", "mach"), "vm_map_user.c")
+        self.assertEqual(MOD.implementation_name(make, "clock_server", "kernel-server", "mach"), "clock_server.c")
+        self.assertIsNone(MOD.implementation_name(make, "host_security_server", "kernel-server", "mach"))
+        self.assertIsNone(MOD.implementation_name(make, "clock", "exported-user", "mach"))
+        self.assertIsNone(MOD.implementation_name(make, "exc_server", "exported-server", "mach"))
+        self.assertEqual(MOD.implementation_name("", "UNDRequest", "kernel-user", "UserNotification"), "UNDRequest.c")
+        self.assertEqual(MOD.implementation_name("", "UNDReplyServer", "kernel-server", "UserNotification"), "UNDReplyServer.c")
+        self.assertEqual(MOD.implementation_name("", "device_server", "kernel-server", "device"), "device_server.c")
+        for subsystem in ("gssd", "kextd", "lockd"):
+            self.assertEqual(MOD.selection("", subsystem + "_mach", subsystem=subsystem), (subsystem + "_mach", "kernel-user", True))
+            self.assertEqual(MOD.implementation_name("", subsystem+"_mach", "kernel-user", subsystem), subsystem+"_mach.c")
+            with self.assertRaises(ValueError): MOD.selection("", subsystem+"_mach", True, subsystem)
+        for name, mode, subsystem in (("other", "kernel-server", "device"), ("UNDRequest", "kernel-server", "UserNotification"), ("x", "kernel-user", "bsd")):
+            with self.assertRaises(ValueError): MOD.implementation_name(make, name, mode, subsystem)
+        with self.assertRaises(ValueError): MOD.implementation_name("MIG_KUSRC = $(INJECTED)\n", "x", "kernel-user", "mach")
+
     def test_unadmitted_generator_cannot_create_output(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

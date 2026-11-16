@@ -17,6 +17,27 @@ finally:
 
 
 class NativeInputs(unittest.TestCase):
+    def test_generated_selection_uses_source_lists_instead_of_generator_globs(self):
+        make = ("CFILES= $(SOURCE_DIR)/osfmk/vm/vm_user.c \\\n ./mach/vm_map_server.c ./gssd/gssd_mach.c\n"
+                "CXXFILES= ./DriverKit/IOService.iig.cpp\nSFILES=\n")
+        self.assertEqual(MOD.generated_references(make), ["DriverKit/IOService.iig.cpp", "gssd/gssd_mach.c", "mach/vm_map_server.c"])
+        self.assertNotIn("mach/vm_map_user.c", MOD.generated_references(make))
+        self.assertEqual(MOD.generated_references("CFILES=\n"), [])
+        for token in ("$(UNKNOWN)", "$(shell touch injected)", "./../escape.c", "/escape.c", "./mach//x.c", "./mach/${C_RULE_1B}", "./mach/x.cpp"):
+            with self.subTest(token=token), self.assertRaises(ValueError): MOD.generated_references("CFILES= " + token + "\n")
+        for bad in ("", "CFILES= ./a.c\nCFILES= ./b.c\n", "CFILES:= ./a.c\nSFILES=\n", "export CFILES= ./a.c\n"):
+            with self.assertRaises(ValueError): MOD.generated_references(bad)
+
+    def test_generated_paths_refuse_traversal_nonfiles_and_internal_or_external_symlinks(self):
+        root = self.root / "generated"
+        self.write(root / "mach/real.c", "int real;\n")
+        self.assertEqual(MOD.generated_path(root, "mach/real.c"), root / "mach/real.c")
+        (root / "mach/link.c").symlink_to(root / "mach/real.c")
+        (root / "mach/outside.c").symlink_to(ROOT / "AGENTS.md")
+        (root / "mach/directory.c").mkdir()
+        for name in ("../escape.c", "mach/../real.c", "/absolute.c", "mach/link.c", "mach/outside.c", "mach/directory.c"):
+            with self.subTest(name=name), self.assertRaises(ValueError): MOD.generated_path(root, name)
+
     def setUp(self):
         folder = tempfile.TemporaryDirectory(prefix="penang-inputs-")
         self.addCleanup(folder.cleanup)

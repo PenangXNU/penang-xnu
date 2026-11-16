@@ -751,6 +751,20 @@
       "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
     },
     {
+      "path": "tests/public/test_p1_compiler_contract.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "tests/public/test_p1_firehose_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
       "path": "tests/public/test_p1_generated_headers.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -770,6 +784,13 @@
       "license_expression": "Apache-2.0",
       "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
       "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
+      "path": "tests/public/test_p1_mig_layout.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
     },
     {
       "path": "tests/public/test_p1_native_entry_frontier.py",
@@ -793,11 +814,32 @@
       "provenance": "2026-11-16 AI-assisted isolated P1/P2 continuation; original sources and private profile experiments kept externally"
     },
     {
+      "path": "tests/public/test_p1_optional_profiling.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "tests/public/test_p1_sdk_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
       "path": "tests/public/test_p1_sha256_assembly.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
       "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
+      "path": "tests/public/test_p1_skywalk_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
     },
     {
       "path": "tests/public/test_p1_t1_entry.py",
@@ -1524,6 +1566,20 @@
       "provenance": "2026-11-15 AI-assisted fresh native diagnostic build; public XNU 11417.140.69 pin, private recipes/overlay used externally and never imported"
     },
     {
+      "path": "tools/m12-penang-physical/p1_compiler_contract.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_firehose_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
       "path": "tools/m12-penang-physical/p1_generated_headers.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -1552,6 +1608,13 @@
       "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
     },
     {
+      "path": "tools/m12-penang-physical/p1_mig_layout.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
       "path": "tools/m12-penang-physical/p1_native_entry_frontier.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "MIT",
@@ -1573,11 +1636,32 @@
       "provenance": "2026-11-16 AI-assisted isolated P1/P2 continuation; original sources and private profile experiments kept externally"
     },
     {
+      "path": "tools/m12-penang-physical/p1_optional_profiling.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_sdk_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
+    },
+    {
       "path": "tools/m12-penang-physical/p1_sha256_assembly.py",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
       "basis": "Project-authored pinned-source delta emitters, structural/ABI checks and adversarial synthetic tests; generated upstream deltas retain their original licenses",
       "provenance": "2026-11-16 AI-assisted T1/MIG/SHA native continuation; public source pins, private recipes/objects processed externally and never imported"
+    },
+    {
+      "path": "tools/m12-penang-physical/p1_skywalk_headers.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "project license adopted by the owner on 2026-11-02",
+      "provenance": "P1 native compiler/provider pipeline (owner-directed, AI-assisted)"
     },
     {
       "path": "tools/m12-penang-physical/p1_t1_entry.py",

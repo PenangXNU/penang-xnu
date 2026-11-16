@@ -18,7 +18,7 @@ REPO = Path(__file__).resolve().parents[2]
 INPUTS = ("config/newvers.pl", "libkern/libkern/version.h.template",
           "bsd/kern/makesyscalls.sh", "bsd/kern/syscalls.master",
           "makedefs/MakeInc.kernel", "makedefs/MakeInc.rule", "bsd/sys/Makefile",
-          "libkern/libkern/Makefile")
+          "libkern/libkern/Makefile", "bsd/conf/Makefile.template", "config/version.c.template")
 
 
 def sha(path):
@@ -35,7 +35,15 @@ def version_valid(value):
     return re.fullmatch(r"[1-9][0-9]{0,3}\.[0-9]{1,3}\.[0-9]{1,3}(?:[dabr][0-9]{1,3})?", value) is not None
 
 
-def generate(root, out, version, unifdef, admitted_sha):
+def portable_syscall_generator(data):
+    # These are printf literals, not regexps. POSIX leaves unknown awk escapes
+    # undefined: BSD awk drops them, while mawk preserves invalid C backslashes.
+    anchor = rb"\(sy_call_t *\)"
+    require(data.count(anchor) == 2, "pinned syscall printf anchors changed")
+    return data.replace(anchor, b"(sy_call_t *)")
+
+
+def generate(root, out, version, unifdef, admitted_sha, emit_sources=False):
     root = root.resolve(strict=True)
     target = out.resolve()
     require(version_valid(version), "explicit Darwin build version required")
@@ -87,11 +95,38 @@ def generate(root, out, version, unifdef, admitted_sha):
     require(result.returncode == 0, "upstream syscall generator failed")
     syscall = target / "sys/syscall.h"
     require(syscall.is_file() and "#define\tSYS_exit" in syscall.read_text(), "generated syscall interface missing")
+    sources = []
+    headers = [header, syscall]
+    if emit_sources:
+        version_source = target / "version.c"
+        version_source.write_bytes((root / "config/version.c.template").read_bytes())
+        result = run(["perl", str(root / "config/newvers.pl"), str(version_source)])
+        require(result.returncode == 0 and "###KERNEL_" not in version_source.read_text(),
+                "upstream kernel version source generation failed")
+        sources.append(version_source)
+        generator = target / "makesyscalls.portable.sh"
+        generator.write_bytes(portable_syscall_generator((root / "bsd/kern/makesyscalls.sh").read_bytes()))
+        result = run(["sh", str(generator), str(master), "proto"], target / "sys")
+        proto = target / "sys/sysproto.h"
+        require(result.returncode == 0 and proto.is_file() and proto.stat().st_size > 0,
+                "upstream syscall argument header generation failed")
+        headers.append(proto)
+        kernel = target / "bsd/kern"
+        kernel.mkdir(parents=True)
+        for mode, name in (("table", "init_sysent.c"), ("names", "syscalls.c"),
+                           ("audit", "audit_kevents.c"), ("systrace", "systrace_args.c")):
+            result = run(["sh", str(generator), str(master), mode], kernel)
+            path = kernel / name
+            require(result.returncode == 0 and path.is_file() and path.stat().st_size > 0,
+                    "upstream syscall implementation generation failed")
+            sources.append(path)
     require(sha(tool) == admitted_sha, "unifdef changed during generation")
     report = {"scope": "HOST_ONLY_REAL_UPSTREAM_GENERATION", "xnu_commit": revision,
               "darwin_build_version": version, "version_authority": "EXPLICIT_CALLER_BUILD_METADATA",
               "seed_defines": [], "inputs": inputs, "unifdef_sha256": admitted_sha,
-              "commands": commands, "headers": {p.relative_to(target).as_posix(): sha(p) for p in (header, syscall)},
+              "commands": commands, "headers": {p.relative_to(target).as_posix(): sha(p) for p in headers},
+              "sources": {p.relative_to(target).as_posix(): sha(p) for p in sources},
+              "portable_syscall_generator_sha256": sha(generator) if emit_sources else None,
               "native_xnu_full_link": "NOT_RUN", "device_entry": "NOT_RUN"}
     (target / "results.json").write_text(json.dumps(report, indent=2) + "\n")
     return report
@@ -103,9 +138,10 @@ def main():
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--darwin-version", required=True)
     parser.add_argument("--unifdef-sha256", required=True)
+    parser.add_argument("--emit-sources", action="store_true", help="also emit kernel version and BSD table/names/audit/systrace sources")
     args = parser.parse_args()
     try:
-        report = generate(args.xnu_root, args.out, args.darwin_version, args.unifdef, args.unifdef_sha256)
+        report = generate(args.xnu_root, args.out, args.darwin_version, args.unifdef, args.unifdef_sha256, args.emit_sources)
     except (OSError, ValueError, subprocess.SubprocessError) as error:
         parser.exit(1, type(error).__name__ + ": header generation refused; inspect private diagnostics\n")
     print(report["scope"], "headers=" + str(len(report["headers"])))
