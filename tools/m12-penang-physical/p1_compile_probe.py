@@ -43,7 +43,8 @@ COMPONENT_FLAGS = {
     "iokit": ["-DDRIVER_PRIVATE", "-DIOKIT_KERNEL_PRIVATE", "-DDRIVERKIT_PRIVATE=1",
               "-DIOMATCHDEBUG=1", "-DIOALLOCDEBUG=1", "-DPRIVATE_WIFI_ONLY=1", "-DIOASSERT=0"],
 }
-CXX_FLAGS = ["-std=gnu++2b", "-fsized-deallocation", "-fapple-kext", "-fno-rtti", "-fno-exceptions"]
+CXX_FLAGS = ["-std=gnu++2b", "-fsized-deallocation", "-fapple-kext", "-fno-rtti", "-fno-exceptions",
+             "-fno-register-global-dtors-with-atexit", "-mllvm", "-disable-atexit-based-global-dtor-lowering"]
 COMMON_C_FLAGS = ["-fno-common", "-ftrivial-auto-var-init=zero", "-fsigned-bitfields",
                   "-fmerge-all-constants", "-fno-c++-static-destructors"]
 # Original SHA kernel code conditionally preserves vector registers. Keep its

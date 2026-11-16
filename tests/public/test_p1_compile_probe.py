@@ -124,7 +124,8 @@ class CompileProbe(unittest.TestCase):
 
     def test_native_cpp_does_not_require_userspace_static_destructor_registration(self):
         self.require_llvm()
-        self.write(self.tree / self.cpp, 'extern "C" void consume();\nstruct D { ~D() { consume(); } };\nD object;\n')
+        self.write(self.tree / self.cpp, 'extern "C" void consume();\nstruct D { ~D() { consume(); } };\nD object;\n'
+                   '__attribute__((destructor)) static void finish() { consume(); }\n')
         r = self.probe([self.cpp])
         self.assertEqual(r["compiled_objects"], 1)
         command = r["units"][0]["command"]
@@ -132,6 +133,15 @@ class CompileProbe(unittest.TestCase):
         obj = command[-1]
         undefined = subprocess.check_output([self.nm, "--undefined-only", obj], text=True)
         self.assertNotIn("atexit", undefined)
+        dump = shutil.which("llvm-objdump-18") or shutil.which("llvm-objdump")
+        sections = subprocess.check_output([dump, "--macho", "--section-headers", obj], text=True)
+        self.assertIn("__mod_term_func", sections)
+        bad = list(command)
+        index = bad.index("-disable-atexit-based-global-dtor-lowering")
+        del bad[index-1:index+1]
+        bad[-1] = str(self.temp / "userspace-dtors.o")
+        subprocess.run(bad, check=True, capture_output=True)
+        self.assertIn("atexit", subprocess.check_output([self.nm, "--undefined-only", bad[-1]], text=True))
 
     def test_kernel_sha_abi_mode_is_effective_and_cannot_be_erased(self):
         self.require_llvm()

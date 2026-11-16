@@ -352,6 +352,9 @@ otherwise selects 10.4, hiding interfaces such as `MAP_32BIT`. This is explicit
 build metadata; it does not claim an Apple SDK or an Apple hardware platform.
 BSD's original semantic-type rules cover `bsd/vm/*.c` and `kern_mman.c` as well
 as OSFMK's `vm/*.c`.
+The native C++ flags retain kernel destructor tables and explicitly reject
+userspace `__cxa_atexit` registration, including destructor attributes under
+newer Darwin deployment targets.
 
 | Tool | Scope |
 | --- | --- |
