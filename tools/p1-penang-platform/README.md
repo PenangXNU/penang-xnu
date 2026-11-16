@@ -44,6 +44,7 @@ driver reads the bit and records it instead of assuming.
 | `ppp_timer_uart.c` | `CNTFRQ_EL0` admission against the tree; GENI serial-engine polled transmit |
 | `ppp_gicv3_regs.h` | Architectural GICv3 register map (Arm IHI 0069); selects no board, so nothing needs XNU's `VMAPPLE.h` for an offset |
 | `ppp_runtime_fdt.{h,c}` | Defines the `penang_p1_runtime_fdt` object the native VM bootstrap links against; zeroed until a single validated bind |
+| `kdk/` | LOCAL_ONLY adapter for the owner-held Apple KDK private headers (`verify`, `find`, `compile`) and their hash-only pins; contains no Apple content |
 | `qemu/` | Bare-metal EL1 harness that runs the unmodified driver on QEMU `virt`; a test fixture, not a boot path |
 | `xnu-interfaces/CodeSignature/Entitlements.h` | **Candidate**, not on any include path: the four entitlement-key macros two XNU files need, bound to publicly evidenced keys pending an owner decision |
 

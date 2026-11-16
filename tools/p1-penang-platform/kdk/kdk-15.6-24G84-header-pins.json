@@ -1,0 +1,91 @@
+{
+  "schema": "penang-kdk-header-pins-1",
+  "kdk": "KDK_15.6_24G84",
+  "note": "Paths, sizes and SHA-256 only. No Apple header content. The headers themselves are a private, owner-held build input and must never be committed.",
+  "headers": {
+    "CodeSignature/API.h": {
+      "bytes": 19254,
+      "sha256": "ccf825a0bf9393e26e1fa656b4adff74732e3972a39dbe5d5f93ce65932db4c5"
+    },
+    "CodeSignature/Configuration.h": {
+      "bytes": 14561,
+      "sha256": "3b589ab3c780daf8baf962e8f7b4597275ec0a14808dbc59ea79ed49ba005a54"
+    },
+    "CodeSignature/CoreTrust.h": {
+      "bytes": 9672,
+      "sha256": "85e3292ea82fd65dae25e4c1806a6359ab5d7ea056e9bca8bc9911bc60f91044"
+    },
+    "CodeSignature/Entitlements.h": {
+      "bytes": 6870,
+      "sha256": "550aa5b2def745e6b376108e1646945efb1968a92d87d6e8ea5c1de5173e48e3"
+    },
+    "CodeSignature/Profiles.h": {
+      "bytes": 13958,
+      "sha256": "41a9868e50a9b64fe0bc1c767c9d019c4b43ecf2ad8ccd2a3113f8e8b3b922ff"
+    },
+    "CodeSignature/RawTypes.h": {
+      "bytes": 12360,
+      "sha256": "97bc8ecc8d374368ff1835f388ca598b01c45993a0d07e8c1a5fe1f88f25ff8b"
+    },
+    "CodeSignature/RestrictedExecutionMode.h": {
+      "bytes": 4567,
+      "sha256": "20894f23aec1d1fddb6c22ef6513fcb66ab98283b00b5648f8f94bdc969c9d72"
+    },
+    "CodeSignature/Return.h": {
+      "bytes": 8242,
+      "sha256": "fcb63767c57a18df524b0d990720f3402e4fcbba0e03dae1a6288442859d4c33"
+    },
+    "CodeSignature/Types.h": {
+      "bytes": 5496,
+      "sha256": "7a94baac2668b87f9ad97eedc13b2f29ee52237f2fbb2757a77b264ff3e314f3"
+    },
+    "CoreEntitlements/V2/API.h": {
+      "bytes": 19166,
+      "sha256": "f18d0e789054e4e728eaded83d05b7e8271a65c840e8577974dd338886ca61f1"
+    },
+    "CoreEntitlements/V2/Acceleration.h": {
+      "bytes": 2622,
+      "sha256": "222fc3ac8921c4250fb433789ef335fde7fb8147787a68623f66089789809708"
+    },
+    "CoreEntitlements/V2/Closure.h": {
+      "bytes": 3542,
+      "sha256": "50edac7229381d0a4a19f9af7b73b55d0d405a63d78c293abc70bc48d7718087"
+    },
+    "CoreEntitlements/V2/Context.h": {
+      "bytes": 2166,
+      "sha256": "fbe84dba3f5b407357d9410e0b211b6d747864b561158a4be08ee6de97b46818"
+    },
+    "CoreEntitlements/V2/Return.h": {
+      "bytes": 2155,
+      "sha256": "239502fa7488b61c59ffe149796097bc2665d0c2bf466cd5eab6dad59edbe0a8"
+    },
+    "CoreEntitlements/V2/StackProtector.h": {
+      "bytes": 1227,
+      "sha256": "59c8c412b4e5f8095face48c44e5942f3446c6bd3277473eecc069b09e9b6f91"
+    },
+    "TrustCache/API.h": {
+      "bytes": 9333,
+      "sha256": "e5a210dcdcf8737ca1d102af97c38cec53631bf5612e7c28ea0b238b0b017da7"
+    },
+    "TrustCache/Image4.h": {
+      "bytes": 7313,
+      "sha256": "6afe44c8785de410af6b0babd507d3fd414ee09da8aef6932a77f7b6e3cdc0cd"
+    },
+    "TrustCache/RawTypes.h": {
+      "bytes": 3281,
+      "sha256": "c46cdb227114b25f25fe7566451d4ce08f0031c6d089742e2ade30c4f688c588"
+    },
+    "TrustCache/Return.h": {
+      "bytes": 3661,
+      "sha256": "7bd22be5bb2e1c28e0e5479ff8c2d126853c8be81980c6aa8ad11111f2f79751"
+    },
+    "TrustCache/Types.h": {
+      "bytes": 13702,
+      "sha256": "47dbab06f23ad41224c1f00e4f8671370ae1e7afffdd970acf699ce47f375280"
+    },
+    "TrustCache/TypesConfig.h": {
+      "bytes": 8893,
+      "sha256": "add81c35c6d289e319c9739396d461dc927ebf14b3bbe597d6296a77ddc1fd10"
+    }
+  }
+}

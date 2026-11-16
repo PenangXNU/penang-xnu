@@ -506,6 +506,13 @@
       "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; HOST_ONLY plus owner-authorized QEMU virt run; private delivery packages consulted but not imported"
     },
     {
+      "path": "docs/research/2026-11-16-p1-kdk-private-build-input.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
+    },
+    {
       "path": "docs/research/2026-11-16-p1-physical-platform-services.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
@@ -784,6 +791,13 @@
       "license_expression": "Apache-2.0",
       "basis": "Project-authored read-only memory admission, pinned generation/include tools and synthetic adversarial tests; upstream generated modifications retain their original license",
       "provenance": "2026-11-16 AI-assisted isolated P1/P2 continuation; original sources and private profile experiments kept externally"
+    },
+    {
+      "path": "tests/public/test_p1_kdk_probe.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
     },
     {
       "path": "tests/public/test_p1_memory_admission.py",
@@ -1788,6 +1802,20 @@
       "license_expression": "Apache-2.0",
       "basis": "Project-authored P1 physical platform services (run-time FDT resource resolution, non-secure GICv3, timer admission, GENI debug UART candidate), host register-model tests and research record; register interfaces taken from public specifications, no third-party source copied",
       "provenance": "2026-11-16 AI-assisted cloud continuation from main b2afe89; HOST_ONLY; private device-tree snapshot and untracked research sources consulted but not imported"
+    },
+    {
+      "path": "tools/p1-penang-platform/kdk/kdk-15.6-24G84-header-pins.json",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
+    },
+    {
+      "path": "tools/p1-penang-platform/kdk/p1_kdk_probe.py",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-authored LOCAL_ONLY adapter for an owner-held proprietary build input, its tests with self-authored stand-in headers, hash-only pins and research record; contains file names, sizes and SHA-256 values of Apple KDK headers but none of their content",
+      "provenance": "2026-11-16 AI-assisted cloud continuation stacked on feat/p1-native-build-codex-20261116@763674e; owner decision to use KDK 15.6 24G84 privately; pins taken from the owner's cloud-safe index"
     },
     {
       "path": "tools/p1-penang-platform/ppp_gicv3.c",

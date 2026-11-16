@@ -19,6 +19,13 @@
  * binaries differently from Apple's wherever Apple's header names another
  * candidate. It grants nothing by itself: entitlement validation and trust
  * admission are separate and remain OPEN.
+ *
+ * Update 2026-11-16: the owner compared this binding with the authentic
+ * header of KDK 15.6 (24G84), SHA-256 550aa5b2...3e48e3, on their own
+ * machine; the four values are equal, and bsd/net/necp_client.c compiles to
+ * a byte-identical object with either header. The authentic header also
+ * carries declarations this file does not. With the KDK adopted as a private
+ * build input, that header is the one to use; this file stays a reference.
  */
 #ifndef PENANG_CANDIDATE_CODESIGNATURE_ENTITLEMENTS_H
 #define PENANG_CANDIDATE_CODESIGNATURE_ENTITLEMENTS_H

@@ -6,6 +6,12 @@ result. Base: `feat/p1-native-build-codex-20261116@763674e` (native build
 branch, not yet merged). The native build chain, PMAP, the B4.2 guards and the
 full link stay with their owner; nothing in this change edits them. AI-assisted.
 
+> **Superseded in part on the same day.** The owner then adopted the KDK as a
+> private build input and the board profile was corrected in the repository.
+> With the pinned-source compiler, 13 of the 14 units compile. See
+> [KDK as a private build input](2026-11-16-p1-kdk-private-build-input.md).
+> The text below is kept as written.
+
 ## Outcome in one paragraph
 
 Of the 14 failing translation units, **one is closed** by a three-line change
