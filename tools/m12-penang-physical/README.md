@@ -1,5 +1,17 @@
 # M12 isolated Stage-1 and B4.2 security contract
 
+## PMAP platform selection and link-input audit
+
+`p1_pmap_platform.py` emits a pinned, unapplied four-site SART/UAT selection
+proposal. The default keeps Apple's original providers; an explicit P1
+code-generation experiment supplies no DMA isolation or fake bootstrap.
+`p1_runtime_fdt_consumer.py` emits the mutable-storage/const-borrow correction
+for the existing private P1 VM consumer. Neither tool changes B4.2 guards.
+`p1_link_inputs.py` validates ARM64 Mach-O inputs, records empty units, and
+rejects conflicting or multiply defined strong providers. Exact source aliases
+require matching source and object hashes. See the [actual ld64 result and
+runtime ABI requirements](../../docs/research/2026-11-16-p1-pmap-link-audit.md).
+
 The six MIT-licensed C source/header/test files here preserve an isolated 16-KiB Stage-1 model and a fail-closed PMAP physical security contract.
 
 - t2_stage1.c / .h and test_t2_stage1.c: one-vCPU managed L3 descriptor model, page permission transitions, TLBI, I-cache/D-cache sequencing and negative tests. A compile-time guard rejects the physical Penang profile.
