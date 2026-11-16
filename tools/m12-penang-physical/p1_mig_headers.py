@@ -16,11 +16,12 @@ import shutil
 import struct
 import subprocess
 
-from p1_compile_probe import config_flags
+from p1_compile_probe import config_flags, NATIVE_DEPLOYMENT_TARGET
 
 XNU_COMMIT = "43a90889846e00bfb5cf1d255cdc0a701a1e05a4"
 MIG_COMMIT = "619db33806b11b58fa14078bc7a811958312e52d"
 MIG_VERSION = "mig-133.140.1 (" + MIG_COMMIT + ")"
+MIG_SOURCES = {"133.140.1": MIG_COMMIT, "138": "c71d2d72f48995baaea76148f61002e5299841de"}
 DEF_PINS = {"clock": "7c97eebd4acbf12ad982b60a0f9b383feddf917f305c765f5d609a74a0dcf22e",
             "vm_map": "26c00af574aa05dfa5d1b42332305a260f8e3b4e8d255646b0e6edecfd610d39"}
 REPO = Path(__file__).resolve().parents[2]
@@ -130,6 +131,9 @@ def selection(makefile, name, kernel_server=False, subsystem="mach"):
         "device": {"device_server": ("device", "kernel-server", False)},
         "UserNotification": {"UNDRequest": ("UNDRequest", "kernel-user", True),
                              "UNDReplyServer": ("UNDReply", "kernel-server", False)},
+        "gssd": {"gssd_mach": ("gssd_mach", "kernel-user", True)},
+        "kextd": {"kextd_mach": ("kextd_mach", "kernel-user", True)},
+        "lockd": {"lockd_mach": ("lockd_mach", "kernel-user", True)},
     }
     if subsystem != "mach":
         selected = extra.get(subsystem, {}).get(name)
@@ -145,6 +149,32 @@ def selection(makefile, name, kernel_server=False, subsystem="mach"):
     ku = name in kernel_user_names(makefile)
     require(ku or name in header_names(makefile, "MIG_UUHDRS"), "unadmitted user header")
     return name, "kernel-user" if ku else "exported-user", ku
+
+
+def implementation_name(makefile, name, mode, subsystem):
+    """Only emit implementations selected by the pinned kernel Makefile.
+
+    Exported headers do not imply a kernel implementation. In particular,
+    host_security_server.h is selected without host_security_server.c in 11417.
+    """
+    if mode not in ("kernel-user", "kernel-server"):
+        return None
+    if subsystem == "device":
+        require(name == "device_server" and mode == "kernel-server", "wrong device implementation")
+        return "device_server.c"
+    if subsystem == "UserNotification":
+        expected = {"UNDRequest": "kernel-user", "UNDReplyServer": "kernel-server"}
+        require(expected.get(name) == mode, "wrong notification implementation")
+        return name + ".c"
+    if subsystem in ("gssd", "kextd", "lockd"):
+        require(name == subsystem + "_mach" and mode == "kernel-user", "wrong daemon kernel client")
+        return name + ".c"
+    require(subsystem == "mach", "wrong implementation subsystem")
+    if mode == "kernel-user" and name in header_names(makefile, "MIG_KUSRC", "_user.c"):
+        return name + "_user.c"
+    if mode == "kernel-server" and name in header_names(makefile, "MIG_KSSRC", ".c"):
+        return name + ".c"
+    return None
 
 
 def environment():
@@ -183,6 +213,7 @@ def compile_consumers(root, headers, output, compiler):
     for language in ("c", "c++"):
         obj = output / ("abi-consumer-" + language + ".o")
         command = [str(compiler), "--target=arm64-apple-darwin", "-ffreestanding",
+                   "-mmacosx-version-min=" + NATIVE_DEPLOYMENT_TARGET,
                    "-nostdlibinc", "-fblocks", "-DKERNEL", "-DKERNEL_PRIVATE", "-DPRIVATE",
                    "-I", str(headers)]
         for name in ("osfmk", "bsd", "libkern", "osfmk/libsa", "EXTERNAL_HEADERS"):
@@ -202,6 +233,7 @@ def compile_consumers(root, headers, output, compiler):
 
 def preprocessor_command(compiler, root, defines, source, mode):
     cpp = [str(compiler), "--target=arm64-apple-darwin", "-E", "-x", "c", "-nostdinc",
+           "-mmacosx-version-min=" + NATIVE_DEPLOYMENT_TARGET,
            "-D__MACH30__", "-DAPPLE", "-DKERNEL", "-DKERNEL_PRIVATE", "-DXNU_KERNEL_PRIVATE",
            "-DPRIVATE", "-D__MACHO__=1", "-Dvolatile=__volatile", "-DXNU_KERN_EVENT_DATA_IS_VLA",
            "-DMACH_KERNEL_PRIVATE", "-DXNU_TARGET_OS_OSX", "-DXNU_PLATFORM_MacOSX", *defines]
@@ -214,7 +246,7 @@ def preprocessor_command(compiler, root, defines, source, mode):
     return cpp + [str(source)]
 
 
-def generate(root, migcom, admitted_sha, interfaces, out, clang="clang", osfmk_make=None, kernel_servers=(), subsystem="mach"):
+def generate(root, migcom, admitted_sha, interfaces, out, clang="clang", osfmk_make=None, kernel_servers=(), subsystem="mach", emit_sources=False, source_version="133.140.1"):
     root, generator = root.resolve(strict=True), migcom.resolve(strict=True)
     require(re.fullmatch(r"[0-9a-f]{64}", admitted_sha) is not None, "explicit generator SHA-256 required")
     require(generator.is_file() and file_sha(generator) == admitted_sha, "generator SHA mismatch")
@@ -225,11 +257,14 @@ def generate(root, migcom, admitted_sha, interfaces, out, clang="clang", osfmk_m
     require(not output.exists() and not output.is_relative_to(root)
             and not output.is_relative_to(REPO), "fresh private output outside source/repository required")
     env = environment()
+    require(source_version in MIG_SOURCES, "unreviewed MIG source version")
+    source_commit = MIG_SOURCES[source_version]
+    expected_version = "mig-" + source_version + " (" + source_commit + ")"
     version = subprocess.run([str(generator), "-version"], capture_output=True, text=True, env=env, timeout=30)
-    require(version.returncode == 0 and version.stdout.strip() == MIG_VERSION, "unreviewed MIG version")
+    require(version.returncode == 0 and version.stdout.strip() == expected_version, "unreviewed MIG version")
     compiler = Path(shutil.which(str(clang)) or "").resolve(strict=True)
     require(compiler.is_file(), "Clang unavailable")
-    require(subsystem in ("mach", "device", "UserNotification"), "unadmitted MIG directory")
+    require(subsystem in ("mach", "device", "UserNotification", "gssd", "kextd", "lockd"), "unadmitted MIG directory")
     makepath = "osfmk/" + subsystem + "/Makefile"
     makefile = read(root / makepath)
     require(makefile == git(root, "show", "HEAD:" + makepath), "MIG Makefile drift")
@@ -242,7 +277,8 @@ def generate(root, migcom, admitted_sha, interfaces, out, clang="clang", osfmk_m
     output.mkdir(parents=True, exist_ok=False)
     (output / subsystem).mkdir()
     report = {"scope": "HOST_ONLY_REAL_MIG_GENERATION", "status": "BLOCKED",
-              "xnu_commit": XNU_COMMIT, "generator_source_commit": MIG_COMMIT,
+              "xnu_commit": XNU_COMMIT, "generator_source_commit": source_commit,
+              "native_deployment_target": NATIVE_DEPLOYMENT_TARGET,
               "generator_version": version.stdout.strip(), "generator_sha256": admitted_sha,
               "generator_provenance": "CALLER_ADMITTED_BINARY_WITH_SEPARATE_BUILD_RECEIPT",
               "osfmk_make_sha256": sha(config), "config_defines": defines,
@@ -273,6 +309,10 @@ def generate(root, migcom, admitted_sha, interfaces, out, clang="clang", osfmk_m
             command += ["-maxonstack", "1024"]
         if mode == "kernel-server":
             command += ["-mach_msg2"]
+        implementation = implementation_name(makefile.decode(), name, mode, subsystem) if emit_sources else None
+        if implementation:
+            key = "-user" if ku else "-server"
+            command[command.index(key) + 1] = str(output / subsystem / implementation)
         run = subprocess.run(command, input=pre.stdout, env=env, cwd=output,
                              capture_output=True, text=True, timeout=60)
         (output / (name + ".mig.log")).write_text(run.stdout + run.stderr)
@@ -280,13 +320,20 @@ def generate(root, migcom, admitted_sha, interfaces, out, clang="clang", osfmk_m
         data = read(header)
         wire = audit_header(pre.stdout, data.decode())
         require(file_sha(generator) == admitted_sha, "generator changed during execution")
+        compiled_source = None
+        if implementation:
+            path = output / subsystem / implementation
+            raw_impl = read(path)
+            require(raw_impl.strip() and b"mig_internal" in raw_impl, "generated MIG implementation missing")
+            compiled_source = {"path": subsystem + "/" + implementation, "sha256": sha(raw_impl), "size": len(raw_impl)}
         report["interfaces"].append({"interface": name, "mode": mode, "kernel_user": ku,
+            "implementation": compiled_source,
             "source_sha256": sha(raw), "preprocessed_sha256": sha(pre.stdout.encode()),
             "header_sha256": sha(data), "dependencies": deps, "protocol": wire,
             "preprocessor_command": cpp, "generator_command": command})
     if subsystem == "mach" and {"clock", "vm_map"} <= set(interfaces):
         report["abi_consumers"] = compile_consumers(root, output, output, compiler)
-    report["status"] = "GENERATED_HEADERS_ONLY_NOT_IPC_RUNTIME"
+    report["status"] = "GENERATED_INTERFACES_NOT_IPC_RUNTIME" if emit_sources else "GENERATED_HEADERS_ONLY_NOT_IPC_RUNTIME"
     (output / "results.json").write_text(json.dumps(report, indent=2) + "\n")
     return report
 
@@ -297,14 +344,16 @@ def main():
         p.add_argument("--" + name, type=Path, required=True)
     p.add_argument("--migcom-sha256", required=True)
     p.add_argument("--interface", action="append")
-    p.add_argument("--subsystem", choices=("mach", "device", "UserNotification"), default="mach")
+    p.add_argument("--subsystem", choices=("mach", "device", "UserNotification", "gssd", "kextd", "lockd"), default="mach")
     p.add_argument("--clang", default="clang")
+    p.add_argument("--emit-sources", action="store_true", help="also generate genuine Makefile-selected kernel IPC implementations")
+    p.add_argument("--mig-source-version", choices=tuple(MIG_SOURCES), default="133.140.1")
     p.add_argument("--kernel-server", action="append", default=[],
                    help="explicit KSHDRS output basename including _server; use a separate output root")
     a = p.parse_args()
     try:
         names = (a.interface or ([] if a.kernel_server else ["clock", "vm_map"])) + a.kernel_server
-        r = generate(a.xnu_root, a.migcom, a.migcom_sha256, names, a.out, a.clang, a.osfmk_make, a.kernel_server, a.subsystem)
+        r = generate(a.xnu_root, a.migcom, a.migcom_sha256, names, a.out, a.clang, a.osfmk_make, a.kernel_server, a.subsystem, a.emit_sources, a.mig_source_version)
     except (OSError, ValueError, StopIteration, subprocess.SubprocessError) as error:
         p.exit(1, type(error).__name__ + ": MIG generation refused; retain private diagnostics\n")
     print(r["status"], "interfaces=" + str(len(r["interfaces"])))

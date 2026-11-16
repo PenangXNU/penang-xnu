@@ -20,6 +20,7 @@ import subprocess
 import os
 
 from p1_native_inputs import canonical_path, make_text, read_text, references, top_level_guard
+from p1_mig_layout import load_layout, component_paths, NATIVE_DEPLOYMENT_TARGET
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
@@ -42,7 +43,10 @@ COMPONENT_FLAGS = {
     "iokit": ["-DDRIVER_PRIVATE", "-DIOKIT_KERNEL_PRIVATE", "-DDRIVERKIT_PRIVATE=1",
               "-DIOMATCHDEBUG=1", "-DIOALLOCDEBUG=1", "-DPRIVATE_WIFI_ONLY=1", "-DIOASSERT=0"],
 }
-CXX_FLAGS = ["-std=gnu++2b", "-fsized-deallocation", "-fapple-kext", "-fno-rtti", "-fno-exceptions"]
+CXX_FLAGS = ["-std=gnu++2b", "-fsized-deallocation", "-fapple-kext", "-fno-rtti", "-fno-exceptions",
+             "-fno-register-global-dtors-with-atexit", "-mllvm", "-disable-atexit-based-global-dtor-lowering"]
+COMMON_C_FLAGS = ["-fno-common", "-ftrivial-auto-var-init=zero", "-fsigned-bitfields",
+                  "-fmerge-all-constants", "-fno-c++-static-destructors"]
 # Original SHA kernel code conditionally preserves vector registers. Keep its
 # per-TU ABI selection explicit rather than admitting a global override.
 SOURCE_FLAGS = {"osfmk/arm64/corecrypto/sha256_compress_arm64.s": ["-DBUILDKERNEL=1"]}
@@ -52,9 +56,10 @@ CORECRYPTO_LOCAL_INCLUDES = {"osfmk/corecrypto/" + name + ".c" for name in
 
 def source_flags(name):
     flags = list(SOURCE_FLAGS.get(name, []))
-    # Upstream osfmk/conf/Makefile.template FORCE_UNSAFE_TYPES applies to every
-    # direct vm/*.c TU. This enables semantic wrappers and compile-time checks.
-    if re.fullmatch(r"osfmk/vm/[A-Za-z_][A-Za-z0-9_]*\.c", name):
+    # Upstream osfmk/bsd conf/Makefile.template FORCE_UNSAFE_TYPES enables
+    # semantic wrappers on direct vm/*.c, plus BSD's explicit kern_mman rule.
+    if (re.fullmatch(r"(?:osfmk|bsd)/vm/[A-Za-z_][A-Za-z0-9_]*\.c", name)
+            or name == "bsd/kern/kern_mman.c"):
         flags += ["-DVM_UNSAFE_TYPES=1"]
     return flags
 
@@ -64,6 +69,7 @@ LINK_ADDRESS = "0xfffffe0007004000"
 NATIVE_C_FLAGS = ["-Darm64", "-DARM64", "-D__ARM64__", "-DLP64", "-DPAGE_SIZE_FIXED",
                   "-DVM_KERNEL_LINK_ADDRESS=" + LINK_ADDRESS, "-DARM_LARGE_MEMORY=1",
                   "-DXNU_TARGET_OS_OSX", "-DXNU_PLATFORM_MacOSX",
+                  "-mmacosx-version-min=" + NATIVE_DEPLOYMENT_TARGET,
                   "-momit-leaf-frame-pointer", "-fno-strict-aliasing", "-D__API__=v4", "-mkernel"]
 PROFILE_MACROS = REQUIRED | {"PENANG_PHYSICAL", "ARM64_BOARD_CONFIG_PENANG_PHYSICAL",
                              "__ARM_16K_PG__", "__arm64__", "__aarch64__",
@@ -146,7 +152,7 @@ def inspect_object(path, nm, env=None):
 
 
 def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
-          include_dirs=(), clang="clang", clangxx="clang++", llvm_nm="llvm-nm"):
+          include_dirs=(), clang="clang", clangxx="clang++", llvm_nm="llvm-nm", mig_roots=None):
     root = source_root.resolve(strict=True)
     output = out.resolve()
     if output.is_relative_to(root) or output.is_relative_to(REPO):
@@ -178,6 +184,9 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
     includes = [Path(p).resolve(strict=True) for p in include_dirs]
     if any(not p.is_dir() for p in includes):
         raise ValueError("generated include path must be a directory")
+    mig, mig_receipts = load_layout(mig_roots) if mig_roots is not None else ({}, {})
+    if mig and any(p in mig.values() for p in includes):
+        raise ValueError("named MIG roots cannot also be shared generated includes")
     env = os.environ.copy()
     removed = []
     for key in ("CPATH", "C_INCLUDE_PATH", "CPLUS_INCLUDE_PATH", "OBJC_INCLUDE_PATH",
@@ -198,16 +207,19 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
               "userland_penang_init": "NOT_RUN", "pmap_physical": "B42_BLOCKED_BACKEND_UNVERIFIED",
               "source_root": str(root), "board_header": board_info, "recipes": recipes,
               "board_header_snapshot": str(board_snapshot),
-              "native_c_flags": NATIVE_C_FLAGS, "macosx_arm64_link_address": LINK_ADDRESS,
+              "native_c_flags": NATIVE_C_FLAGS, "common_c_flags": COMMON_C_FLAGS,
+              "macosx_arm64_link_address": LINK_ADDRESS,
               "config_defines": configs, "generated_include_dirs": list(map(str, includes)),
+              "mig_receipt_sha256": mig_receipts,
               "tools": {"clang": cc_info, "clangxx": cxx_info, "llvm_nm": nm_info},
               "ignored_environment_variables": removed, "units": [], "compiled_objects": 0}
     for index, (name, component, path) in enumerate(chosen):
         obj = output / f"{index:03d}-{path.stem}.o"
         language = "assembler-with-cpp" if path.suffix in (".s", ".S") else "c++" if path.suffix == ".cpp" else "c"
         generated = [p / component if (p / component).is_dir() else p for p in includes]
+        mig_paths = component_paths(component, mig) if mig else []
         include_args = []
-        for directory in [*generated, *(root / d for d in
+        for directory in [*generated, *mig_paths, *(root / d for d in
                 (".", "osfmk", "iokit", "pexpert", "bsd", "libkern", "osfmk/libsa", "EXTERNAL_HEADERS"))]:
             include_args.extend(("-I", str(directory)))
         feature = next((p / "meta_features.h" for p in generated if (p / "meta_features.h").is_file()), None)
@@ -217,8 +229,8 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
         component_flags = COMPONENT_FLAGS[component] if language != "assembler-with-cpp" else []
         # MakeInc.def SFLAGS_ARM64 inherits CFLAGS_ARM64 as well; assym and
         # assembly must use the same native address-space/layout definitions.
-        language_flags = (NATIVE_C_FLAGS + CXX_FLAGS + ["-fblocks"] if language == "c++" else
-                          NATIVE_C_FLAGS + ["-fblocks"] if language == "c" else
+        language_flags = (NATIVE_C_FLAGS + COMMON_C_FLAGS + CXX_FLAGS + ["-fblocks"] if language == "c++" else
+                          NATIVE_C_FLAGS + COMMON_C_FLAGS + ["-fblocks"] if language == "c" else
                           NATIVE_C_FLAGS + ["-D__ASSEMBLER__", "-DASSEMBLER"])
         local_includes = (["-I", str(root / "EXTERNAL_HEADERS/corecrypto")]
                           if name in CORECRYPTO_LOCAL_INCLUDES else [])
@@ -227,6 +239,7 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
                 *component_flags, *language_flags, *source_flags(name), *feature_args, *include_args, *local_includes,
                 "-c", str(path), "-o", str(obj)]
         row = {"source": name, "source_sha256": digest(path), "command": argv,
+               "mig_include_dirs": list(map(str, mig_paths)),
                "status": "BLOCKED", "log": f"{index:03d}-{path.stem}.log"}
         if feature:
             row["feature_header"] = {"path": str(feature.resolve()), "sha256": digest(feature)}
@@ -244,6 +257,8 @@ def probe(source_root, osfmk_make, iokit_make, board_header, sources, out,
             row["macro_state_sha256"] = hashlib.sha256(state.stdout.encode()).hexdigest()
             row["macro_state_returncode"] = state.returncode
             invalid = sorted(macro for macro in PROFILE_MACROS if macros.get(macro) != "1")
+            if macros.get("__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__") != "150600":
+                invalid.append("__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__")
             invalid += sorted(FORBIDDEN & macros.keys())
             invalid += [flag[2:].split("=", 1)[0] for flag in source_flags(name)
                         if macros.get(flag[2:].split("=", 1)[0]) != flag.split("=", 1)[1]]
@@ -298,10 +313,15 @@ def main():
     p.add_argument("--clang", default="clang")
     p.add_argument("--clangxx", default="clang++")
     p.add_argument("--llvm-nm", default="llvm-nm")
+    for role in ("exported", "kernel", "device", "notification", "gssd", "kextd", "lockd"):
+        p.add_argument("--mig-" + role, type=Path)
     a = p.parse_args()
     try:
+        mig = {role: getattr(a, "mig_" + role) for role in ("exported", "kernel", "device", "notification")}
+        mig.update({role: getattr(a, "mig_" + role) for role in ("gssd", "kextd", "lockd") if getattr(a, "mig_" + role)})
         report = probe(a.source_root, a.osfmk_make, a.iokit_make, a.board_header,
-                       a.source, a.out, a.generated_include, a.clang, a.clangxx, a.llvm_nm)
+                       a.source, a.out, a.generated_include, a.clang, a.clangxx, a.llvm_nm,
+                       mig if any(mig.values()) else None)
     except (OSError, ValueError) as exc:
         p.exit(1, f"compile probe refused: {exc}\n")
     print(json.dumps({k: report[k] for k in ("status", "scope", "compiled_objects", "blocked_units",

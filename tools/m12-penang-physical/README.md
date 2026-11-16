@@ -340,10 +340,48 @@ inputs proved byte-identical under the diagnostic configuration.
 
 **`P1_STAGE1_BUILD_HOLD`:** `pmap.c` and `startup.c` still require the real
 `TrustCache/API.h`. PMAP has TrustCache lookups outside the monitor-only path,
-so an unconditional removal or empty API is not a legitimate fix. Genuine XNU
-compiler builtins and generated DriverKit interfaces also remain dependencies.
+so an unconditional removal or empty API is not a legitimate fix.
 The supplied offline FDT is refused for unresolved reservations; no physical
-placement is inferred. A public experimental compiler implementation was
-inspected, but neither its semantic compatibility nor an admitted binary was
-established: `BUILTIN_COMPILER_HOLD`. There is no full linked kernel or boot
-image. No device operation, SCM call, QEMU run or environment publication occurred.
+placement is inferred. There is no full linked kernel or physical boot image.
+
+## Native compiler and generated providers
+
+The native MacOSX compile profile now explicitly uses deployment target **15.6**
+in C, C++, assembly and MIG preprocessing. A bare `arm64-apple-darwin` triple
+otherwise selects 10.4, hiding interfaces such as `MAP_32BIT`. This is explicit
+build metadata; it does not claim an Apple SDK or an Apple hardware platform.
+BSD's original semantic-type rules cover `bsd/vm/*.c` and `kern_mman.c` as well
+as OSFMK's `vm/*.c`.
+The native C++ flags retain kernel destructor tables and explicitly reject
+userspace `__cxa_atexit` registration, including destructor attributes under
+newer Darwin deployment targets.
+
+| Tool | Scope |
+| --- | --- |
+| `p1_compiler_contract.py` | Hash-admitted compiler; real C/C++ IR signatures, summaries and dependent traits; incomplete/VLA/annotation rejection. Limited fixtures, no general Apple compiler equivalence. |
+| `p1_sdk_headers.py` | Original XNU early BSD generators and AvailabilityVersions-151; optional pinned Swift CoreFoundation portable target detection. No complete SDK/KDK. |
+| `p1_skywalk_headers.py` | Pinned literal Makefile export lists; unchanged source headers at their real include paths. No Make execution or unknown-macro expansion. |
+| `p1_firehose_headers.py` | Real unifdef with the exact libdispatch-1521.140.2 kernel export flags. |
+| `p1_optional_profiling.py` | Pinned declarations/call sites follow existing `CONFIG_CPU_COUNTERS` and `KPERF` options. Enabled paths still require real dependencies. No security-policy edits. |
+| `p1_mig_headers.py --emit-sources` | Real Apple MIG 133.140.1 or explicitly selected 138; genuine implementations from generator Makefiles, including GSSD/kextd/lockd clients. Compile only the subset selected by doconf. |
+| `p1_mig_layout.py` | Same generator/configuration/deployment identity across roots; verified header inventory and bytes. IOKit and other consumers do not inherit OSFMK-private server headers. |
+
+For the compile probe, pass `--mig-exported`, `--mig-kernel`, `--mig-device` and
+`--mig-notification` together; `--mig-gssd` and `--mig-kextd` are optional named
+roots; `--mig-lockd` admits the lock manager client. Do not also put these directories in the shared `--generated-include`
+list. Regenerate older MIG receipts without the deployment-target field before
+using them with this profile. Keep all generated material outside this repository.
+
+`p1_native_inputs.generated_references()` reads doconf's literal C/C++/assembly
+source-list assignments. It rejects unsupported expressions and traversal;
+`generated_path()` rejects symlinks and non-files. Generating an interface does
+not select its object for the kernel. Require a matching admitted source for
+every generated reference, including BSD's `ioconf.c` from SETUP/config.
+`p1_generated_headers.py --emit-sources` emits the kernel version and BSD
+table/names/audit/systrace sources plus `sysproto.h`. Its pinned generator copy removes two undefined awk
+escapes in printf literals; source syscall entries and dispatch logic are intact.
+
+Compiler/source generation and nonempty Mach-O objects remain distinct from a
+complete kernel link. An authorized QEMU run of the isolated `t2_stage1` model
+tests its 16-KiB translation/permission transitions; it is neither XNU execution
+nor Penang hardware qualification. Protected B4.2 refusal remains in force.

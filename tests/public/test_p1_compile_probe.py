@@ -67,6 +67,10 @@ class CompileProbe(unittest.TestCase):
 
     def test_vm_semantic_types_are_enforced_only_for_upstream_vm_units(self):
         self.require_llvm()
+        for name in ("bsd/vm/vm_unix.c", "bsd/kern/kern_mman.c"):
+            self.assertEqual(MOD.source_flags(name), ["-DVM_UNSAFE_TYPES=1"])
+        for name in ("bsd/vm/nested/file.c", "bsd/kern/kern_mman_other.c", "bsd/kern/other.c"):
+            self.assertEqual(MOD.source_flags(name), [])
         source = "osfmk/vm/vm_sanitize.c"
         self.write(self.tree / source, "#if VM_UNSAFE_TYPES != 1\n#error semantic wrappers required\n#endif\nint vm_semantic_fixture;\n")
         self.write(self.osfmk, self.osfmk.read_text() + self.refs([source]))
@@ -82,7 +86,7 @@ class CompileProbe(unittest.TestCase):
     def test_actual_c_cpp_and_assembly_objects_remain_host_only(self):
         self.require_llvm()
         asm = self.tree / self.asm
-        self.write(asm, "#if !ARM_LARGE_MEMORY || VM_KERNEL_LINK_ADDRESS != 0xfffffe0007004000 || !XNU_TARGET_OS_OSX || !XNU_PLATFORM_MacOSX\n"
+        self.write(asm, "#if !ARM_LARGE_MEMORY || VM_KERNEL_LINK_ADDRESS != 0xfffffe0007004000 || !XNU_TARGET_OS_OSX || !XNU_PLATFORM_MacOSX || __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ != 150600\n"
                    '#error "assembly does not match the native helper address-space layout"\n#endif\n'
                    + asm.read_text())
         before = {p: MOD.digest(p) for p in self.tree.rglob("*") if p.is_file()}
@@ -117,6 +121,27 @@ class CompileProbe(unittest.TestCase):
                    '#error "wrong IOKit component flags"\n#endif\nextern "C" { int fixture_cpp; }\n')
         r = self.probe([self.source, self.cpp])
         self.assertEqual(r["compiled_objects"], 2, r)
+
+    def test_native_cpp_does_not_require_userspace_static_destructor_registration(self):
+        self.require_llvm()
+        self.write(self.tree / self.cpp, 'extern "C" void consume();\nstruct D { ~D() { consume(); } };\nD object;\n'
+                   '__attribute__((destructor)) static void finish() { consume(); }\n')
+        r = self.probe([self.cpp])
+        self.assertEqual(r["compiled_objects"], 1)
+        command = r["units"][0]["command"]
+        self.assertIn("-fno-c++-static-destructors", command)
+        obj = command[-1]
+        undefined = subprocess.check_output([self.nm, "--undefined-only", obj], text=True)
+        self.assertNotIn("atexit", undefined)
+        dump = shutil.which("llvm-objdump-18") or shutil.which("llvm-objdump")
+        sections = subprocess.check_output([dump, "--macho", "--section-headers", obj], text=True)
+        self.assertIn("__mod_term_func", sections)
+        bad = list(command)
+        index = bad.index("-disable-atexit-based-global-dtor-lowering")
+        del bad[index-1:index+1]
+        bad[-1] = str(self.temp / "userspace-dtors.o")
+        subprocess.run(bad, check=True, capture_output=True)
+        self.assertIn("atexit", subprocess.check_output([self.nm, "--undefined-only", bad[-1]], text=True))
 
     def test_kernel_sha_abi_mode_is_effective_and_cannot_be_erased(self):
         self.require_llvm()
@@ -157,7 +182,7 @@ class CompileProbe(unittest.TestCase):
         self.require_llvm()
         generated = self.temp / "generated"
         for macro in ("PENANG_PHYSICAL", "ARM64_BOARD_CONFIG_PENANG_PHYSICAL", "CONFIG_PMAP_PPL",
-                      "CONFIG_KERNEL_INTEGRITY", "__ARM_16K_PG__"):
+                      "CONFIG_KERNEL_INTEGRITY", "__ARM_16K_PG__", "__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__"):
             with self.subTest(macro=macro):
                 self.write(generated / "osfmk/meta_features.h", "#undef " + macro + "\n")
                 r = self.probe([MOD.GUARDS[0]], out=self.temp / macro,

@@ -4,6 +4,7 @@ import importlib.util
 import os
 from pathlib import Path
 import subprocess
+import shutil
 import tempfile
 import unittest
 from unittest import mock
@@ -47,7 +48,42 @@ open(my $f,">",$ARGV[0]) or die; print $f "#define VERSION $version\\n";
         with mock.patch.object(MOD, "XNU_COMMIT", self.commit):
             return MOD.generate(self.root, kwargs.get("out", self.base / "output"),
                                 kwargs.get("version", "24.6.0d1"), self.tool,
-                                kwargs.get("pin", MOD.sha(self.tool)))
+                                kwargs.get("pin", MOD.sha(self.tool)), kwargs.get("emit_sources", False))
+
+    def test_actual_shell_modes_emit_selected_bsd_sources_and_argument_header(self):
+        script = self.root / MOD.INPUTS[2]
+        script.write_text('''# Owned fixtures include the two pinned printf anchors: \\(sy_call_t *\\) \\(sy_call_t *\\)
+case "$2" in
+header) printf '#define\\tSYS_exit 1\\n' > syscall.h ;;
+proto) printf 'struct argument { int value; };\\n' > sysproto.h ;;
+table) printf 'int table_provider;\\n' > init_sysent.c ;;
+names) printf 'int names_provider;\\n' > syscalls.c ;;
+audit) printf 'int audit_provider;\\n' > audit_kevents.c ;;
+systrace) printf 'int trace_provider;\\n' > systrace_args.c ;;
+*) exit 2 ;;
+esac
+''')
+        subprocess.run(["git", "-C", str(self.root), "add", "."], check=True)
+        subprocess.run(["git", "-C", str(self.root), "commit", "-qm", "owned syscall modes"], check=True)
+        self.commit = subprocess.check_output(["git", "-C", str(self.root), "rev-parse", "HEAD"], text=True).strip()
+        r = self.generate(emit_sources=True)
+        self.assertEqual(set(r["sources"]), {"version.c", "bsd/kern/init_sysent.c", "bsd/kern/syscalls.c", "bsd/kern/audit_kevents.c", "bsd/kern/systrace_args.c"})
+        self.assertIn("sys/sysproto.h", r["headers"])
+
+    def test_portable_awk_printf_casts_compile_as_c_without_undefined_escapes(self):
+        original = rb'BEGIN { printf("\\(sy_call_t *\\)(void (*)(void))nosys"); }' + b"\n" + rb'# second anchor: \(sy_call_t *\)'
+        # Exercise the exact original script anchor shape and real host awk.
+        original = original.replace(b"\\\\(", b"\\(").replace(b"\\\\)", b"\\)")
+        changed = MOD.portable_syscall_generator(original)
+        run = subprocess.run(["awk", changed.decode()], capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stderr)
+        self.assertEqual(run.stdout, "(sy_call_t *)(void (*)(void))nosys")
+        consumer = "typedef int sy_call_t(void); int nosys(void); sy_call_t *entry = " + run.stdout + ";\n"
+        compiled = subprocess.run([shutil.which("clang"), "--target=arm64-apple-darwin", "-nostdinc", "-x", "c",
+                                   "-fsyntax-only", "-"], input=consumer, capture_output=True, text=True)
+        self.assertEqual(compiled.returncode, 0, compiled.stderr)
+        self.assertNotIn(rb"\(sy_call_t", changed)
+        with self.assertRaises(ValueError): MOD.portable_syscall_generator(b"anchor drift")
 
     def test_real_processes_preserve_explicit_metadata_and_do_not_execute_make(self):
         with mock.patch.dict(os.environ, {"PERL5OPT": "-e injected"}):
