@@ -1,14 +1,17 @@
 # P1 physical platform services (Penang, SM4350)
 
-**Scope: HOST_ONLY.** Freestanding C11 for the first native kernel entry on the
-Moto G53 (`penang`): run-time resource resolution, a GICv3 driver for the
-non-secure world, architectural-timer admission and a polled debug-UART
-candidate. It has been compiled for ARM64 and exercised against self-authored
-device trees and a register model on a host. It has **not** been linked into a
-kernel, run in QEMU or run on the phone. `GIC_TIMER_PHYSICAL` stays OPEN.
+**Scope: HOST_ONLY, plus QEMU_VERIFIED for the GICv3/timer files on QEMU
+`virt`.** Freestanding C11 for the first native kernel entry on the Moto G53
+(`penang`): run-time resource resolution, a GICv3 driver for the non-secure
+world, architectural-timer admission, the retained run-time FDT provider and a
+polled debug-UART candidate. It has been compiled for ARM64, exercised against
+self-authored device trees and a register model on a host, and the interrupt
+path has run bare-metal at EL1 under QEMU. It has **not** been linked into a
+kernel or run on the phone. `GIC_TIMER_PHYSICAL` stays OPEN.
 
 Background and the cross-agent contract proposal:
-[P1 physical platform services record](../../docs/research/2026-11-16-p1-physical-platform-services.md).
+[P1 physical platform services record](../../docs/research/2026-11-16-p1-physical-platform-services.md)
+and [P1 ABI closure record](../../docs/research/2026-11-16-p1-abi-closure.md).
 
 ## Why this is not the QEMU provider with new addresses
 
@@ -39,6 +42,10 @@ driver reads the bit and records it instead of assuming.
 | `ppp_resources.c` | Bounded FDT v17 walker: GIC, timer PPIs, CPU count, PSCI conduit, console candidate |
 | `ppp_gicv3.c` | Distributor/redistributor/CPU-interface bring-up, configure/enable, ack/EOI/dispatch, self-SGI |
 | `ppp_timer_uart.c` | `CNTFRQ_EL0` admission against the tree; GENI serial-engine polled transmit |
+| `ppp_gicv3_regs.h` | Architectural GICv3 register map (Arm IHI 0069); selects no board, so nothing needs XNU's `VMAPPLE.h` for an offset |
+| `ppp_runtime_fdt.{h,c}` | Defines the `penang_p1_runtime_fdt` object the native VM bootstrap links against; zeroed until a single validated bind |
+| `qemu/` | Bare-metal EL1 harness that runs the unmodified driver on QEMU `virt`; a test fixture, not a boot path |
+| `xnu-interfaces/CodeSignature/Entitlements.h` | **Candidate**, not on any include path: the four entitlement-key macros two XNU files need, bound to publicly evidenced keys pending an owner decision |
 
 No file contains a physical address, libc dependency, allocation or global
 MMIO access. The kernel adapter supplies `struct ppp_io` (mapping, barriers,
@@ -56,6 +63,11 @@ first missing provider.
   fails and the controller stays not ready.
 - An enable bit or SPI route that does not read back is reported as
   `NOT_OWNED`; delivery is never assumed.
+- A failed bring-up leaves `ICC_IGRPEN1_EL1 = 0` and `ICC_PMR_EL1 = 0`, so the
+  CPU cannot take an interrupt through a half-configured controller.
+- The FDT provider publishes nothing unless the copy is 8-byte aligned, lies
+  wholly in the retained prefix, is a version-17 tree and its `totalsize`
+  equals the handed-over length; it binds once and never rebinds.
 - `CNTFRQ_EL0 == 0` or a mismatch with the tree's `clock-frequency` is refused;
   no frequency is invented or written.
 - Zero or several console candidates select none. The UART probe is read-only
@@ -71,13 +83,25 @@ first missing provider.
   can raise an external abort. It must not be probed on hardware before a
   synchronous-abort recovery path exists. The framebuffer marker remains the
   only DEVICE_VERIFIED diagnostic channel.
-- The register model in the tests encodes my reading of Arm IHI 0069. It is
-  not a substitute for the silicon or for QEMU.
+- The register model in the host tests encodes one reading of Arm IHI 0069.
+  The QEMU run checks that reading against an independent GICv3 model in both
+  security configurations; neither is the SM4350.
+- Nothing calls `ppp_runtime_fdt_bind()` yet: the bridge does not retain the
+  firmware tree or convey its address, and the provider checks structure and
+  placement, not content integrity.
 
 ## Reproduce
 
 ```bash
 python3 -B -m unittest tests/public/test_p1_penang_platform.py -v
+```
+
+Opt-in emulator run (needs `qemu-system-aarch64`, `ld.lld`, `llvm-objcopy`;
+skipped unless explicitly allowed, because starting an emulator requires the
+owner's permission in this project):
+
+```bash
+PENANG_ALLOW_QEMU=1 python3 -B -m unittest tests/public/test_p1_penang_platform_qemu.py -v
 ```
 
 Optional sanitizer run (the host needs GCC's libasan):
