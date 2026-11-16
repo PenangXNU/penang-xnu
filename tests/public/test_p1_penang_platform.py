@@ -70,7 +70,7 @@ def holi_shaped(**o):
         gic += p("redistributor-stride", u64(o.get("stride", STRIDE)))
     gic += p("reg", gic_reg) * (2 if o.get("duplicate_reg") else 1)
     ppis = o.get("ppis", [(1, 1), (1, 2), (1, 3), (1, 0)])
-    timer = p(o.get("timer_prop", "interrupts"), b"".join(u32(a) + u32(b) + u32(0xff08) for a, b in ppis))
+    timer = p(o.get("timer_prop", "interrupts"), b"".join(u32(a) + u32(b) + u32(o.get("flags", {}).get(b, 0xff08)) for a, b in ppis))
     timer += p("compatible", b"arm,armv8-timer\0")  # compatible after interrupts on purpose
     if o.get("hz", HZ) is not None:
         timer += p("clock-frequency", u32(o.get("hz", HZ)))
@@ -148,7 +148,8 @@ class Handoff(ctypes.Structure):
 
 class Timer(ctypes.Structure):
     _fields_ = [("frequency_hz", ctypes.c_uint64), ("virtual_intid", ctypes.c_uint32),
-                ("edge", ctypes.c_uint32)]
+                ("edge", ctypes.c_uint32), ("polarity_low", ctypes.c_uint32),
+                ("trigger_defaulted", ctypes.c_uint32), ("cpu_mask", ctypes.c_uint32)]
 
 
 class Uart(ctypes.Structure):
@@ -530,6 +531,8 @@ class PenangPlatform(unittest.TestCase):
         timer = Timer()
         self.assertEqual(self.lib.ppp_timer_admit(ctypes.byref(res), ctypes.byref(m.io), ctypes.byref(timer)), 0)
         self.assertEqual((timer.frequency_hz, timer.virtual_intid, timer.edge), (HZ, 19, 0))
+        # holi-shaped trees say 0xff08: level-low with a GICv2 mask of 0xff.
+        self.assertEqual((timer.polarity_low, timer.trigger_defaulted, timer.cpu_mask), (1, 0, 0xff))
         g = ctypes.byref(gic)
         self.assertEqual(self.lib.ppp_gic_configure(g, 19, 0), 0)
         self.assertEqual(self.lib.ppp_gic_enable(g, 19), 0)
@@ -791,6 +794,30 @@ class PenangPlatform(unittest.TestCase):
         self.assertIn("CANDIDATE interface, not Apple's header", text)
         self.assertNotIn("typedef", text)  # declares no type, function or policy result
 
+    # ---- timer trigger flags ------------------------------------------------
+    def test_timer_trigger_flags_policy(self):
+        timer = Timer()
+        m = Model()
+        def admit(flags_for_ppi):
+            name, res = self.resolve(holi_shaped(flags=flags_for_ppi))
+            self.assertEqual(name, "OK")
+            return self.lib.ppp_timer_admit(ctypes.byref(res), ctypes.byref(m.io), ctypes.byref(timer))
+        accepted = {0x4: (0, 0, 0), 0x8: (1, 0, 0), 0x0: (0, 1, 0), 0xff04: (0, 0, 0xff), 0x0108: (1, 0, 1),
+                    0xff00: (0, 1, 0xff)}
+        for flags, (low, defaulted, mask) in accepted.items():
+            with self.subTest(flags=hex(flags)):
+                self.assertEqual(admit({3: flags}), 0)  # PPI 3 is the virtual timer
+                self.assertEqual((timer.edge, timer.polarity_low, timer.trigger_defaulted, timer.cpu_mask),
+                                 (0, low, defaulted, mask))
+        # Edge, mixed trigger bits and reserved bits are refused, never coerced.
+        for flags in (0x1, 0x2, 0x3, 0x5, 0x6, 0x9, 0xc, 0xf, 0x10, 0x80, 0x10004, 0x80000008):
+            with self.subTest(flags=hex(flags)):
+                self.assertEqual(admit({3: flags}), 5)
+                self.assertEqual((timer.frequency_hz, timer.virtual_intid), (0, 0), "nothing admitted")
+        # Every timer specifier is checked, not only the one in use.
+        for ppi in (0, 1, 2):
+            self.assertEqual(admit({ppi: 0x5}), 5)
+
     # ---- timer and console ------------------------------------------------
     def test_timer_frequency_is_adopted_never_invented(self):
         _, res = self.resolve(holi_shaped())
@@ -846,7 +873,7 @@ class PenangPlatform(unittest.TestCase):
         import re
         for source in SOURCES + HEADERS:
             text = (TOOLS / source).read_text(encoding="utf-8")
-            masks = {0xd00dfeed, 0xffffff, 0xffffffff, 0xff00ffffff}  # FDT magic and field masks
+            masks = {0xd00dfeed, 0xffffff, 0xffffffff, 0xff00ffffff, 0xffff00f0}  # FDT magic and field masks
             text = __import__("re").sub(r"(?s)/\*.*?\*/", "", text)  # comments may cite register offsets
             for literal in re.findall(r"0x[0-9a-fA-F]+", text):
                 value = int(literal, 16)

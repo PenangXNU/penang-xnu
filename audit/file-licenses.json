@@ -527,6 +527,13 @@
       "provenance": "Codex-authored native compilation selection and ABI audit; public source hash references only"
     },
     {
+      "path": "docs/research/2026-11-16-p1-timer-trigger-policy.md",
+      "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
+      "license_expression": "Apache-2.0",
+      "basis": "Project-owned research record",
+      "provenance": "2026-11-16 AI-assisted follow-up to WO-CLAUDE-P1-FDT-P0 on main@b063b7c"
+    },
+    {
       "path": "docs/research/README.md",
       "classification": "PROJECT_SOURCE_OR_DOCUMENTATION",
       "license_expression": "Apache-2.0",
