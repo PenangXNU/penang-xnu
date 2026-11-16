@@ -65,10 +65,24 @@ class CompileProbe(unittest.TestCase):
         if not all((self.clang, self.clangxx, self.nm)):
             self.skipTest("Clang C/C++ and llvm-nm required for actual ARM64 object checks")
 
+    def test_vm_semantic_types_are_enforced_only_for_upstream_vm_units(self):
+        self.require_llvm()
+        source = "osfmk/vm/vm_sanitize.c"
+        self.write(self.tree / source, "#if VM_UNSAFE_TYPES != 1\n#error semantic wrappers required\n#endif\nint vm_semantic_fixture;\n")
+        self.write(self.osfmk, self.osfmk.read_text() + self.refs([source]))
+        self.assertEqual(self.probe([source])["compiled_objects"], 1)
+        generated = self.temp / "headers"
+        self.write(generated / "meta_features.h", "#undef VM_UNSAFE_TYPES\n")
+        result = self.probe([source], out=self.temp / "erased-vm", include_dirs=[generated])
+        self.assertEqual(result["compiled_objects"], 0)
+        self.assertIn("VM_UNSAFE_TYPES", result["units"][0]["invalid_macros"])
+        with self.assertRaises(ValueError):
+            MOD.config_flags(self.flags.rstrip() + " -DVM_UNSAFE_TYPES=0")
+
     def test_actual_c_cpp_and_assembly_objects_remain_host_only(self):
         self.require_llvm()
         asm = self.tree / self.asm
-        self.write(asm, "#if !ARM_LARGE_MEMORY || VM_KERNEL_LINK_ADDRESS != 0xfffffe0007004000\n"
+        self.write(asm, "#if !ARM_LARGE_MEMORY || VM_KERNEL_LINK_ADDRESS != 0xfffffe0007004000 || !XNU_TARGET_OS_OSX || !XNU_PLATFORM_MacOSX\n"
                    '#error "assembly does not match the native helper address-space layout"\n#endif\n'
                    + asm.read_text())
         before = {p: MOD.digest(p) for p in self.tree.rglob("*") if p.is_file()}
@@ -103,6 +117,21 @@ class CompileProbe(unittest.TestCase):
                    '#error "wrong IOKit component flags"\n#endif\nextern "C" { int fixture_cpp; }\n')
         r = self.probe([self.source, self.cpp])
         self.assertEqual(r["compiled_objects"], 2, r)
+
+    def test_kernel_sha_abi_mode_is_effective_and_cannot_be_erased(self):
+        self.require_llvm()
+        source = "osfmk/arm64/corecrypto/sha256_compress_arm64.s"
+        self.write(self.tree / source, "#if BUILDKERNEL != 1\n#error kernel vector-preservation mode required\n#endif\n"
+                   ".text\n.globl _crypto_fixture\n_crypto_fixture:\n ret\n")
+        self.write(self.osfmk, self.osfmk.read_text() + self.refs([source]))
+        first = self.probe([source], out=self.temp / "kernel-mode")
+        self.assertEqual(first["compiled_objects"], 1, first)
+        generated = self.temp / "generated"
+        generated.mkdir()
+        self.write(generated / "meta_features.h", "#undef BUILDKERNEL\n")
+        second = self.probe([source], out=self.temp / "erased-mode", include_dirs=[generated])
+        self.assertEqual(second["compiled_objects"], 0)
+        self.assertIn("BUILDKERNEL", second["units"][0]["invalid_macros"])
 
     def test_generated_feature_header_is_consumed_by_component(self):
         self.require_llvm()
@@ -211,7 +240,7 @@ class CompileProbe(unittest.TestCase):
         for flag in ("-UCONFIG_PMAP_PPL", "-include secret.h", "@response",
                      "-DNO_MONITOR", "-DQEMU_VIRT", "-DCONFIG_SPTM", "-D__arm64e__",
                      "-DCONFIG_PMAP_PPL=0", "-DCONFIG_KERNEL_INTEGRITY=1",
-                     "-DPENANG_PHYSICAL=0", "-DMAX_CPUS=8", "-DCONFIG_PMAP_PPL"):
+                     "-DXNU_PLATFORM_MACOSX", "-DXNU_TARGET_OS_IPHONE", "-DPENANG_PHYSICAL=0", "-DMAX_CPUS=8", "-DCONFIG_PMAP_PPL", "-DBUILDKERNEL=0"):
             with self.subTest(flag=flag), self.assertRaises(ValueError):
                 MOD.config_flags(good.rstrip() + " " + flag + "\n")
         with self.assertRaises(ValueError):
