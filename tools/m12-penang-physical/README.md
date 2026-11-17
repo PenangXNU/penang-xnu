@@ -1,5 +1,33 @@
 # M12 isolated Stage-1 and B4.2 security contract
 
+## R2 diagnostic/protected profile compatibility
+
+The diagnostic selector requires all five P1 opt-ins to equal `1`. It refuses
+the protected `PENANG_PHYSICAL` marker, monitor/PAC/WT claims, active PMAP-CS
+or guarded-I/O selection, and partial sandbox selection. Presence-based XNU
+markers (`MONITOR`, WT and protected-board markers) are refused even at zero;
+value-based feature macros may be explicitly zero. Outside P1, Apple's
+original SART/UAT path is retained, including Apple `NO_MONITOR` profiles.
+Memory admission likewise refuses the protected alias and non-boolean or
+incomplete P1 opt-ins; its geometry algorithm and host-only mode are unchanged.
+
+The private R1 draft's `PENANG_PHYSICAL` alias is incompatible with this
+contract. Its removal also needs an explicit entry selection, rather than
+reactivating Apple's tunables include/call in `start.s`. Emit the paired,
+pinned P1 proposal with `p1_t1_entry.py emit --p1-diagnostic --source-root
+<original-XNU> --out <private-patch>`. All five opt-ins must be exactly `1`
+to select it; incomplete inputs retain the original Apple path. The default
+protected entry delta and its result hash are unchanged. No tool applies the
+proposal or changes the original B4.2 VM/PMAP refusal guards.
+
+With the pinned compiler, the separate P1 entry and memory-admission objects
+are byte-identical to R1. The retained 14-unit cloud replay remains one
+compiled unit and 13 authentic-header failures. Actual ld64 still reports the
+same 632 undefined symbols over 1,027 distinct objects, with no strong
+duplicates. The private continuation carries the profile migration and the
+owner-side replay inputs; KDK execution remains on the licensed host. These
+are HOST_ONLY/COMPILE_ONLY results, not DMA, AMFI or physical boot evidence.
+
 ## PMAP platform selection and link-input audit
 
 `p1_pmap_platform.py` emits a pinned, unapplied four-site SART/UAT selection
