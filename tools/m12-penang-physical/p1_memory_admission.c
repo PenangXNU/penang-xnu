@@ -1,14 +1,14 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 #include "p1_memory_admission.h"
 
-#if defined(ARM64_BOARD_CONFIG_PENANG_PHYSICAL) || defined(PENANG_P2_PROTECTED)
+#if defined(PENANG_PHYSICAL) || defined(ARM64_BOARD_CONFIG_PENANG_PHYSICAL) || defined(PENANG_P2_PROTECTED)
 #error P1 memory admission is not selected by the protected board
 #endif
-#if defined(PENANG_PHYSICAL) && !defined(PENANG_P1_DIAGNOSTIC)
-#error P1 memory admission must not enter the protected P2 profile
-#endif
-#if defined(PENANG_P1_DIAGNOSTIC) && !defined(PENANG_P1_SANDBOX_COMPILE)
+#if defined(PENANG_P1_DIAGNOSTIC) || defined(PENANG_P1_SANDBOX_COMPILE)
+#if !defined(PENANG_P1_DIAGNOSTIC) || PENANG_P1_DIAGNOSTIC != 1 || \
+    !defined(PENANG_P1_SANDBOX_COMPILE) || PENANG_P1_SANDBOX_COMPILE != 1
 #error P1 integration remains a sandbox proposal pending separate review
+#endif
 #endif
 
 #define PAGE UINT64_C(16384)

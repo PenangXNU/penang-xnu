@@ -131,3 +131,15 @@ class MemoryAdmission(unittest.TestCase):
                       ["-DPENANG_P1_DIAGNOSTIC=1", "-DPENANG_P1_SANDBOX_COMPILE=1",
                        "-DPENANG_P2_PROTECTED=1"]):
             self.assertNotEqual(subprocess.run(base+flags,capture_output=True).returncode,0)
+        for marker in ("PENANG_PHYSICAL", "ARM64_BOARD_CONFIG_PENANG_PHYSICAL", "PENANG_P2_PROTECTED"):
+            for value in ("0","1"):
+                flags=["-DPENANG_P1_DIAGNOSTIC=1","-DPENANG_P1_SANDBOX_COMPILE=1","-D"+marker+"="+value]
+                with self.subTest(protected=marker,value=value):
+                    self.assertNotEqual(subprocess.run(base+flags,capture_output=True).returncode,0)
+        for name in ("PENANG_P1_DIAGNOSTIC","PENANG_P1_SANDBOX_COMPILE"):
+            for value in ("0","2","-1"):
+                flags=["-DPENANG_P1_DIAGNOSTIC=1","-DPENANG_P1_SANDBOX_COMPILE=1"]
+                flags=[s for s in flags if not s.startswith("-D"+name+"=")]+["-D"+name+"="+value]
+                with self.subTest(optin=name,value=value):
+                    self.assertNotEqual(subprocess.run(base+flags,capture_output=True).returncode,0)
+        self.assertNotEqual(subprocess.run(base+["-DPENANG_P1_SANDBOX_COMPILE=1"],capture_output=True).returncode,0)

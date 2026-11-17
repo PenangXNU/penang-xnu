@@ -47,12 +47,14 @@ class T1Entry(unittest.TestCase):
         self.original = "/* synthetic assembly source, no platform implementation */\n" + "\n".join(MOD.EDITS)
         self.source.write_text(self.original)
 
-    def pinned_fixture(self, text=None):
+    def pinned_fixture(self, text=None, p1_diagnostic=False):
         text = self.original if text is None else text
         updated = text
         for anchor in MOD.EDITS:
-            updated = updated.replace(anchor, "#if !defined(PENANG_PHYSICAL)\n" + anchor + "#endif\n", 1)
-        return mock.patch.multiple(MOD, SOURCE_SHA=MOD.sha(text.encode()), RESULT_SHA=MOD.sha(updated.encode()))
+            guard = MOD.P1_TUNABLES_GUARD if p1_diagnostic else "#if !defined(PENANG_PHYSICAL)\n"
+            updated = updated.replace(anchor, guard + anchor + "#endif\n", 1)
+        pin = "P1_RESULT_SHA" if p1_diagnostic else "RESULT_SHA"
+        return mock.patch.multiple(MOD, SOURCE_SHA=MOD.sha(text.encode()), **{pin:MOD.sha(updated.encode())})
 
     def assemble(self, text=ASM):
         cc = shutil.which("clang-18") or shutil.which("clang")
@@ -91,6 +93,34 @@ class T1Entry(unittest.TestCase):
                 self.source.write_text(text)
                 with self.assertRaisesRegex(ValueError, "anchor"):
                     MOD.source_delta(self.root)
+
+    def test_diagnostic_entry_pairs_tunables_selection_without_protected_alias(self):
+        cc=shutil.which("clang")
+        patch_tool=shutil.which("patch")
+        if not cc or not patch_tool:self.skipTest("Clang preprocessor and patch required")
+        with self.pinned_fixture(p1_diagnostic=True):
+            patch,report=MOD.source_delta(self.root,p1_diagnostic=True)
+        self.assertEqual(report["profile"],"P1_DIAGNOSTIC_CODEGEN_ONLY")
+        self.assertEqual(patch.count(b"--- a/"),1)
+        diff=self.temp/"p1.patch";diff.write_bytes(patch)
+        subprocess.run([patch_tool,"-p1","-i",str(diff)],cwd=self.root,check=True,capture_output=True)
+        header=self.root/"arm64/tunables/tunables.s";header.parent.mkdir(parents=True)
+        header.write_text("APPLE_TUNABLES_HEADER_SELECTED\n")
+        required=("PENANG_P1_DIAGNOSTIC","ARM64_BOARD_CONFIG_PENANG_P1_DIAGNOSTIC",
+                  "PENANG_P1_SANDBOX_COMPILE","PENANG_P1_IOMMU_CODEGEN_ONLY","NO_MONITOR")
+        p1=[name+"=1" for name in required]
+        cases=[(p1,False),(["PENANG_PHYSICAL=1"],False),([],True),(["NO_MONITOR=1"],True)]
+        for name in required:
+            cases.append(([flag for flag in p1 if not flag.startswith(name+"=")],True))
+            for value in ("0","2","-1"):
+                cases.append(([flag for flag in p1 if not flag.startswith(name+"=")]+[name+"="+value],True))
+        for flags,apple_path in cases:
+            with self.subTest(flags=flags):
+                run=subprocess.run([cc,"--target=arm64-apple-darwin","-x","assembler-with-cpp","-E","-P",
+                    "-I",str(self.root),*["-D"+flag for flag in flags],str(self.source)],capture_output=True,text=True)
+                self.assertEqual(run.returncode,0,run.stderr)
+                self.assertEqual("APPLE_TUNABLES_HEADER_SELECTED" in run.stdout,apple_path)
+                self.assertEqual("APPLY_TUNABLES x12" in run.stdout,apple_path)
 
     def test_source_symlink_escape_and_output_boundaries_are_rejected(self):
         self.source.unlink()

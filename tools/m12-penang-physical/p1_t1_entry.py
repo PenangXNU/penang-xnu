@@ -18,6 +18,14 @@ import struct
 SOURCE = "osfmk/arm64/start.s"
 SOURCE_SHA = "c822541b8c76a2759352960b5f6b3eda26e354ea4b9df5a0823fb6b37f37be72"
 RESULT_SHA = "81bf313523423cebba9856258387542e65af71cdf4749cb16f84ddf888ab9550"
+P1_RESULT_SHA = "6425f16b2054be8e38227c40ae2923ab3dc169876e0770c2bc6bbaca9148d41f"
+# The diagnostic profile must not borrow the protected PENANG_PHYSICAL marker.
+# Both original tunables sites are suppressed only for a complete explicit P1
+# code-generation selection; other inputs retain the original Apple path.
+P1_OPTINS = ("PENANG_P1_DIAGNOSTIC", "ARM64_BOARD_CONFIG_PENANG_P1_DIAGNOSTIC",
+             "PENANG_P1_SANDBOX_COMPILE", "PENANG_P1_IOMMU_CODEGEN_ONLY", "NO_MONITOR")
+P1_TUNABLES_GUARD = ("#if !defined(PENANG_PHYSICAL) && !(" +
+                     " && ".join("defined(" + name + ") && (" + name + " == 1)" for name in P1_OPTINS) + ")\n")
 REPO = Path(__file__).resolve().parents[2]
 EDITS = (
     "#include <arm64/tunables/tunables.s>\n",
@@ -49,7 +57,7 @@ def read(path):
     return data
 
 
-def source_delta(root):
+def source_delta(root, p1_diagnostic=False):
     root = root.resolve(strict=True)
     path = (root / SOURCE).resolve(strict=True)
     require(path.is_relative_to(root), "source escapes original root")
@@ -57,14 +65,17 @@ def source_delta(root):
     require(sha(original) == SOURCE_SHA, "original XNU start.s SHA mismatch")
     text = original.decode("utf-8")
     updated = text
+    guard = P1_TUNABLES_GUARD if p1_diagnostic else "#if !defined(PENANG_PHYSICAL)\n"
+    result_sha = P1_RESULT_SHA if p1_diagnostic else RESULT_SHA
     for anchor in EDITS:
         require(updated.count(anchor) == 1, "missing or ambiguous source anchor")
-        updated = updated.replace(anchor, "#if !defined(PENANG_PHYSICAL)\n" + anchor + "#endif\n", 1)
-    require(sha(updated.encode()) == RESULT_SHA, "reviewed T1 source result mismatch")
+        updated = updated.replace(anchor, guard + anchor + "#endif\n", 1)
+    require(sha(updated.encode()) == result_sha, "reviewed T1 source result mismatch")
     patch = "".join(difflib.unified_diff(text.splitlines(True), updated.splitlines(True),
                                        fromfile="a/" + SOURCE, tofile="b/" + SOURCE)).encode()
     return patch, {"scope": "HOST_ONLY", "source": SOURCE, "original_sha256": SOURCE_SHA,
-                   "result_sha256": RESULT_SHA, "patch_sha256": sha(patch),
+                   "result_sha256": result_sha, "patch_sha256": sha(patch),
+                   "profile": "P1_DIAGNOSTIC_CODEGEN_ONLY" if p1_diagnostic else "PENANG_PHYSICAL",
                    "changed_files": [SOURCE], "physical_cpu_errata": "NOT_VERIFIED",
                    "native_xnu_full_link": "NOT_RUN", "xnu_device_entry": "NOT_RUN"}
 
@@ -183,6 +194,8 @@ def main():
     emit = sub.add_parser("emit")
     emit.add_argument("--source-root", type=Path, required=True)
     emit.add_argument("--out", type=Path, required=True)
+    emit.add_argument("--p1-diagnostic", action="store_true",
+                      help="emit the separate P1 selection without a protected-board alias")
     check = sub.add_parser("audit")
     check.add_argument("--object", type=Path, required=True)
     check.add_argument("--reference-object", type=Path)
@@ -190,7 +203,7 @@ def main():
     a = p.parse_args()
     try:
         if a.mode == "emit":
-            patch, report = source_delta(a.source_root)
+            patch, report = source_delta(a.source_root, a.p1_diagnostic)
             write_exclusive(a.out, patch, (a.source_root,))
         else:
             report = audit(read(a.object))
