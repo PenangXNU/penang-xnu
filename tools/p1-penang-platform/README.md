@@ -43,9 +43,9 @@ driver reads the bit and records it instead of assuming.
 | `ppp_gicv3.c` | Distributor/redistributor/CPU-interface bring-up, configure/enable, ack/EOI/dispatch, self-SGI |
 | `ppp_timer_uart.c` | `CNTFRQ_EL0` admission against the tree; GENI serial-engine polled transmit |
 | `ppp_gicv3_regs.h` | Architectural GICv3 register map (Arm IHI 0069); selects no board, so nothing needs XNU's `VMAPPLE.h` for an offset |
-| `ppp_runtime_fdt.{h,c}` | Defines the `penang_p1_runtime_fdt` object the native VM bootstrap links against; zeroed until a single validated bind |
+| `ppp_runtime_fdt.{h,c}` | Defines the `penang_p1_runtime_fdt` object the native VM bootstrap links against. ABI 2 bind: mapping proven by a non-faulting translation hook before any read, placement in `[end_kern, topOfKernelData)`, full structural validation, atomic single assignment that a refusal never consumes |
 | `kdk/` | LOCAL_ONLY adapter for the owner-held Apple KDK private headers (`verify`, `find`, `compile`) and their hash-only pins; contains no Apple content |
-| `qemu/` | Bare-metal EL1 harness that runs the unmodified driver on QEMU `virt`; a test fixture, not a boot path |
+| `qemu/` | Bare-metal EL1 harnesses on QEMU `virt`: `harness.c` runs the unmodified GIC/timer driver; `fdt_harness.c` binds a retained tree with the MMU on (16-KiB granule, TTBR1, `AT S1E1R`). Test fixtures, not boot paths |
 | `xnu-interfaces/CodeSignature/Entitlements.h` | **Candidate**, not on any include path: the four entitlement-key macros two XNU files need, bound to publicly evidenced keys pending an owner decision |
 
 No file contains a physical address, libc dependency, allocation or global
@@ -87,9 +87,10 @@ first missing provider.
 - The register model in the host tests encodes one reading of Arm IHI 0069.
   The QEMU run checks that reading against an independent GICv3 model in both
   security configurations; neither is the SM4350.
-- Nothing calls `ppp_runtime_fdt_bind()` yet: the bridge does not retain the
-  firmware tree or convey its address, and the provider checks structure and
-  placement, not content integrity.
+- Nothing in the kernel calls `ppp_runtime_fdt_bind()` yet. The bridge now
+  retains the firmware tree and announces it in the Apple device tree; the
+  native call site that reads those properties is a joint-review proposal.
+  The provider checks mapping, placement and structure, not content integrity.
 
 ## Reproduce
 

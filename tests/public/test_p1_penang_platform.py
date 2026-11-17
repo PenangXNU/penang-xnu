@@ -141,11 +141,6 @@ class RuntimeFdt(ctypes.Structure):
     _fields_ = [("bytes", ctypes.c_void_p), ("length", ctypes.c_size_t), ("physical_address", ctypes.c_uint64)]
 
 
-class Handoff(ctypes.Structure):
-    _fields_ = [("fdt_pa", ctypes.c_uint64), ("fdt_length", ctypes.c_uint64), ("phys_base", ctypes.c_uint64),
-                ("virt_base", ctypes.c_uint64), ("top_of_kernel_data", ctypes.c_uint64)]
-
-
 class Timer(ctypes.Structure):
     _fields_ = [("frequency_hz", ctypes.c_uint64), ("virtual_intid", ctypes.c_uint32),
                 ("edge", ctypes.c_uint32)]
@@ -388,26 +383,6 @@ class PenangPlatform(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls): cls.folder.cleanup()
-
-    def fresh(self):
-        """A private copy of the library: the FDT provider is single-assignment."""
-        self.copies = getattr(self, "copies", 0) + 1
-        path = Path(self.folder.name) / ("%s-%d.so" % (self.id().rsplit(".", 1)[-1], self.copies))
-        shutil.copyfile(self.lib_path, path)
-        lib = ctypes.CDLL(str(path))
-        lib.ppp_runtime_fdt_bind.argtypes = [ctypes.POINTER(Handoff)]
-        lib.ppp_fdt_status_name.restype = ctypes.c_char_p
-        lib.ppp_resolve.argtypes = [ctypes.c_void_p, ctypes.c_size_t, ctypes.POINTER(Resources)]
-        lib.p1_memory_admit.argtypes = [ctypes.POINTER(RuntimeFdt)] + [ctypes.c_uint64] * 3
-        return lib, RuntimeFdt.in_dll(lib, "penang_p1_runtime_fdt")
-
-    def handoff(self, blob, pa=RAM + 0x8000, top=RAM + 0x400000, length=None, base=RAM, pad=0):
-        """Model the bridge: the tree sits at `pa` inside a window mapped at virt_base."""
-        buffer = ctypes.create_string_buffer(bytes(pad) + blob, pad + len(blob) + 64)
-        address = ctypes.addressof(buffer) + pad
-        self.assertEqual(address % 8, 0)
-        h = Handoff(pa, len(blob) if length is None else length, base, (address - (pa - base)) % 2**64, top)
-        return h, buffer, address
 
     def resolve(self, blob, length=None):
         buffer = ctypes.create_string_buffer(blob, len(blob))
@@ -661,73 +636,8 @@ class PenangPlatform(unittest.TestCase):
         self.assertEqual(self.lib.ppp_gic_init(None, ctypes.byref(res), ctypes.byref(m.io), 8), 1)
 
     # ---- retained run-time FDT provider ------------------------------------
-    def test_unbound_provider_is_refused_by_memory_admission(self):
-        lib, published = self.fresh()
-        self.assertEqual((published.bytes, published.length, published.physical_address), (None, 0, 0))
-        self.assertEqual(lib.p1_memory_admit(ctypes.byref(published), RAM, 0x2000000, RAM + 0x400000), 1)
-
-    def test_one_retained_tree_feeds_admission_and_resolution(self):
-        lib, published = self.fresh()
-        blob = holi_shaped(memory=True)
-        h, buffer, address = self.handoff(blob)
-        before = bytes(buffer)
-        self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))), b"OK")
-        self.assertEqual((published.bytes, published.length, published.physical_address),
-                         (address, len(blob), RAM + 0x8000))
-        # The memory owner's real admission and the platform resolver read the same bytes.
-        self.assertEqual(lib.p1_memory_admit(ctypes.byref(published), RAM, 0x2000000, RAM + 0x400000), 0)
-        res = Resources()
-        self.assertEqual(lib.ppp_resolve(published.bytes, published.length, ctypes.byref(res)), 0)
-        self.assertEqual((res.gicd_pa, res.timer[2].intid, res.cpu_count), (GICD, 19, 8))
-        self.assertEqual(bytes(buffer), before, "the retained tree is never written")
-        # Single assignment: a second hand-over cannot replace the admitted tree.
-        other, keep, _ = self.handoff(holi_shaped(memory=True, cpus=4))
-        self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(other))), b"ALREADY_BOUND")
-        self.assertEqual((published.bytes, published.length), (address, len(blob)))
-
-    def test_size_only_reservations_stay_a_memory_admission_decision(self):
-        lib, published = self.fresh()
-        h, buffer, _ = self.handoff(holi_shaped(memory=True, dynamic=True))
-        self.assertEqual(lib.ppp_runtime_fdt_bind(ctypes.byref(h)), 0)  # the provider does not judge memory
-        self.assertEqual(lib.p1_memory_admit(ctypes.byref(published), RAM, 0x2000000, RAM + 0x400000), 2)
-
-    def test_provider_refusals_publish_nothing(self):
-        blob = holi_shaped(memory=True)
-        top = RAM + 0x400000
-        cases = [
-            ("ALIGNMENT", dict(pa=0)), ("ALIGNMENT", dict(pa=RAM + 0x8004)),
-            ("NOT_RETAINED", dict(pa=RAM - 0x1000)), ("NOT_RETAINED", dict(pa=top)),
-            ("NOT_RETAINED", dict(pa=top - 0x100)), ("NOT_RETAINED", dict(pa=(top - len(blob) + 8) & ~7)),
-            ("NOT_RETAINED", dict(pa=2**64 - 0x1000)), ("NOT_RETAINED", dict(length=0)),
-            ("NOT_RETAINED", dict(length=39)), ("NOT_RETAINED", dict(length=2 * 1024 * 1024 + 1)),
-            ("NOT_RETAINED", dict(length=2**64 - 8)),
-            ("WINDOW", dict(top=RAM)), ("WINDOW", dict(top=RAM - 0x4000)),
-            ("LENGTH", dict(length=len(blob) - 4)), ("LENGTH", dict(length=len(blob) + 4)),
-        ]
-        for expected, kwargs in cases:
-            with self.subTest(expected=expected, kwargs=kwargs):
-                lib, published = self.fresh()
-                h, buffer, _ = self.handoff(blob, **kwargs)
-                self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))).decode(), expected)
-                self.assertEqual((published.bytes, published.length, published.physical_address), (None, 0, 0))
-        for offset, value in ((0, 0xd00dfeee), (20, 16), (20, 18), (24, 18), (4, len(blob) + 8)):
-            data = bytearray(blob)
-            struct.pack_into(">I", data, offset, value)
-            lib, published = self.fresh()
-            h, buffer, _ = self.handoff(bytes(data))
-            with self.subTest(offset=offset):
-                self.assertIn(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))), (b"HEADER", b"LENGTH"))
-                self.assertIsNone(published.bytes)
-        lib, published = self.fresh()
-        self.assertEqual(lib.ppp_runtime_fdt_bind(None), 1)
-        # virt_base so high that the mapping of the window would wrap.
-        h, buffer, _ = self.handoff(blob)
-        h.virt_base = 2**64 - 0x1000
-        self.assertEqual(lib.ppp_fdt_status_name(lib.ppp_runtime_fdt_bind(ctypes.byref(h))), b"WINDOW")
-        # A failed attempt does not consume the single assignment.
-        h, buffer, _ = self.handoff(blob)
-        self.assertEqual(lib.ppp_runtime_fdt_bind(ctypes.byref(h)), 0)
-
+    # Bind behaviour (ABI 2: mapping proof, structure, placement, single
+    # assignment) is covered in test_p1_fdt_retention.py.
     def test_provider_object_is_the_symbol_the_native_vm_bootstrap_links_against(self):
         nm = shutil.which("llvm-nm-18") or shutil.which("llvm-nm")
         if not nm: self.skipTest("llvm-nm required")

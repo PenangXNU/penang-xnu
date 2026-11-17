@@ -78,18 +78,29 @@ class RuntimeFdtAbi(unittest.TestCase):
         source.write_text('''#include "p1_runtime_fdt_provider.h"
 #include "ppp_runtime_fdt.h"
 #include <stdint.h>
-_Alignas(8) static unsigned char fdt[] = {'''+payload+'''};
+_Alignas(16384) static unsigned char fdt[] = {'''+payload+'''};
+static uint64_t virt;
+/* ABI 2: mapping evidence. Only the fixture's own pages are vouched for. */
+static int translate(void *ctx, uint64_t va, uint64_t *out) {
+    (void)ctx;
+    if (va < (uintptr_t)fdt || va >= (uintptr_t)fdt + sizeof(fdt)) return 1;
+    *out = 0x80000000 + (va - virt);
+    return 0;
+}
 int main(void) {
     const uint64_t base=0x80000000, top=0x80008000, pa=base+0x4000;
     if (p1_memory_admit(p1_runtime_fdt_view(),base,0x4000000,top)!=P1_MEMORY_BAD_FDT) return 1;
-    struct ppp_fdt_handoff h={pa,sizeof(fdt),base,(uintptr_t)fdt-0x4000,top};
+    virt=(uintptr_t)fdt-0x4000;
+    struct ppp_fdt_handoff h={PPP_FDT_ABI_VERSION,0,pa,sizeof(fdt),base,virt,0x4000000,
+                              pa /* kernel end */,top,base /* ADT */,0x1000,base+0x2000 /* boot_args */};
+    struct ppp_fdt_mapping m={0,translate,virt,virt+0x4000000};
     h.fdt_length--;
-    if (ppp_runtime_fdt_bind(&h)!=PPP_FDT_E_LENGTH || p1_runtime_fdt_view()->bytes) return 2;
+    if (ppp_runtime_fdt_bind(&h,&m)!=PPP_FDT_E_LENGTH || p1_runtime_fdt_view()->bytes) return 2;
     h.fdt_length++;
-    if (ppp_runtime_fdt_bind(&h)!=PPP_FDT_OK) return 3;
+    if (ppp_runtime_fdt_bind(&h,&m)!=PPP_FDT_OK) return 3;
     if (p1_runtime_fdt_view()->bytes!=fdt || p1_runtime_fdt_view()->physical_address!=pa) return 4;
     if (p1_memory_admit(p1_runtime_fdt_view(),base,0x4000000,top)!=P1_MEMORY_GEOMETRY_OK) return 5;
-    if (ppp_runtime_fdt_bind(&h)!=PPP_FDT_E_ALREADY_BOUND) return 6;
+    if (ppp_runtime_fdt_bind(&h,&m)!=PPP_FDT_E_ALREADY_BOUND) return 6;
     return 0;
 }
 ''')
