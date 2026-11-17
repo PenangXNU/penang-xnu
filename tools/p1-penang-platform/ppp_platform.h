@@ -184,13 +184,36 @@ enum ppp_timer_status {
     PPP_TIMER_E_ARGS = 1,
     PPP_TIMER_E_NO_VIRTUAL = 2,
     PPP_TIMER_E_FREQUENCY_ZERO = 3,   /* CNTFRQ_EL0 unprogrammed */
-    PPP_TIMER_E_FREQUENCY_MISMATCH = 4
+    PPP_TIMER_E_FREQUENCY_MISMATCH = 4,
+    PPP_TIMER_E_TRIGGER = 5           /* a timer's DT flags are not a level trigger */
 };
+
+/*
+ * Timer interrupt flags (third cell of each arm,armv8-timer specifier):
+ *   bits [3:0]  trigger: 0x4 level-high and 0x8 level-low are accepted as
+ *               level; 0x0 (none) takes the architectural default, level,
+ *               and is reported in `trigger_defaulted`; edge (0x1, 0x2) and
+ *               any combination of trigger bits (0x3, 0x5, 0xc, ...) are
+ *               refused. The generic timer output is level-sensitive
+ *               (Arm ARM D11), and a GICv3 has no polarity control, so
+ *               level-low is recorded in `polarity_low` but programs the
+ *               same as level-high.
+ *   bits [15:8] GICv2 CPU-interface mask, meaningless to a GICv3: recorded
+ *               in `cpu_mask`, never used for routing.
+ *   bits [7:4], [31:16] reserved: must be zero.
+ * Every timer specifier in the node is checked, not only the virtual one.
+ */
+#define PPP_DT_IRQ_TRIGGER   0x0000000fu
+#define PPP_DT_IRQ_CPU_MASK  0x0000ff00u
+#define PPP_DT_IRQ_RESERVED  0xffff00f0u
 
 struct ppp_timer {
     uint64_t frequency_hz;   /* CNTFRQ_EL0 as read on the CPU */
     uint32_t virtual_intid;
-    uint32_t edge;           /* 1 if the tree declares an edge trigger */
+    uint32_t edge;              /* always 0: the timer is admitted only as level */
+    uint32_t polarity_low;      /* tree said level-low (0x8); no GICv3 effect */
+    uint32_t trigger_defaulted; /* tree said 0x0; architectural level used */
+    uint32_t cpu_mask;          /* GICv2 mask bits [15:8], informational */
 };
 
 /* The frequency is whatever firmware programmed; it is compared with the

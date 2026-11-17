@@ -11,6 +11,7 @@ This directory contains curated, public-safe progress records. They are not a re
 - [P1 ABI closure, 2026-11-16](2026-11-16-p1-abi-closure.md): the 14 compile blockers (1 closed, 1 candidate, 12 blocked on a non-public interface), the GICv3 QEMU result, the retained-FDT provider and the adapter ABI proposal.
 - [KDK as a private build input, 2026-11-16](2026-11-16-p1-kdk-private-build-input.md): owner decision, the LOCAL_ONLY adapter, 13 of 14 units compiling with the pinned-source compiler, and `pmap.c` as the first real link blocker.
 - [P1 FDT P0 hardening, 2026-11-16](2026-11-16-p1-fdt-p0-hardening.md): mapping-proven bind, full structural validation, retention outside every `ml_static_mfree` path, 512-byte seed transport, and the fixed/open/physical matrix.
+- [P1 timer flags and IRQ contract, 2026-11-16](2026-11-16-p1-timer-trigger-policy.md): enforced device-tree trigger policy for the generic timer (level only, `0x0` explicit default, `0x5` and edge refused) and the Group 1 NS adapter contract.
 - [Physical XNU integration issue](https://github.com/PenangXNU/penang-xnu/issues/4): unresolved native-provider prerequisites without repeating hardware discovery.
 - [Consolidation ledger, 2026-11-11](2026-11-11-reconciliation.md): source branches, what was imported, what remains private, and anti-rework rules.
 - [Windows/WSL source inventory](local-worktree-inventory.md): original worktrees, rom-work classification, reuse points, and exclusions.

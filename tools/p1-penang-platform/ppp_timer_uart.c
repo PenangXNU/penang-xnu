@@ -33,7 +33,21 @@
 #define GENI_M_TX_WATERMARK (1u << 30)
 #define GENI_UART_START_TX  (1u << 27)
 
-#define DT_IRQ_EDGE_MASK    0x3u /* IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING */
+#define DT_IRQ_LEVEL_HIGH   0x4u
+#define DT_IRQ_LEVEL_LOW    0x8u
+
+/* Policy in ppp_platform.h. Returns 0 and fills the record, or -1. */
+static int
+timer_trigger(uint32_t flags, uint32_t *polarity_low, uint32_t *defaulted)
+{
+    uint32_t trigger = flags & PPP_DT_IRQ_TRIGGER;
+    if (flags & PPP_DT_IRQ_RESERVED) {
+        return -1;
+    }
+    *polarity_low = trigger == DT_IRQ_LEVEL_LOW;
+    *defaulted = trigger == 0;
+    return (trigger == 0 || trigger == DT_IRQ_LEVEL_HIGH || trigger == DT_IRQ_LEVEL_LOW) ? 0 : -1;
+}
 
 int
 ppp_timer_admit(const struct ppp_resources *res, const struct ppp_io *io, struct ppp_timer *out)
@@ -46,9 +60,18 @@ ppp_timer_admit(const struct ppp_resources *res, const struct ppp_io *io, struct
     out->frequency_hz = 0;
     out->virtual_intid = 0;
     out->edge = 0;
+    out->polarity_low = 0;
+    out->trigger_defaulted = 0;
+    out->cpu_mask = 0;
     if (res->timer_count <= PPP_TIMER_VIRTUAL || res->timer[PPP_TIMER_VIRTUAL].intid < 16 ||
         res->timer[PPP_TIMER_VIRTUAL].intid > 31) {
         return PPP_TIMER_E_NO_VIRTUAL;
+    }
+    for (uint32_t i = 0; i < res->timer_count && i < PPP_TIMER_MAX; ++i) {
+        uint32_t low, defaulted;
+        if (timer_trigger(res->timer[i].dt_flags, &low, &defaulted) != 0) {
+            return PPP_TIMER_E_TRIGGER;
+        }
     }
     /* CNTFRQ_EL0 is writable only at the highest exception level. If
      * firmware left it zero there is no trustworthy timebase to adopt. */
@@ -59,9 +82,11 @@ ppp_timer_admit(const struct ppp_resources *res, const struct ppp_io *io, struct
     if (res->timer_dt_hz != 0 && res->timer_dt_hz != hz) {
         return PPP_TIMER_E_FREQUENCY_MISMATCH;
     }
+    (void)timer_trigger(res->timer[PPP_TIMER_VIRTUAL].dt_flags, &out->polarity_low,
+        &out->trigger_defaulted);
     out->frequency_hz = hz;
     out->virtual_intid = res->timer[PPP_TIMER_VIRTUAL].intid;
-    out->edge = (res->timer[PPP_TIMER_VIRTUAL].dt_flags & DT_IRQ_EDGE_MASK) != 0;
+    out->cpu_mask = (res->timer[PPP_TIMER_VIRTUAL].dt_flags & PPP_DT_IRQ_CPU_MASK) >> 8;
     return PPP_TIMER_OK;
 }
 
