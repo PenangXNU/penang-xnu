@@ -15,6 +15,13 @@
 
 ## Native source-chain continuation (2026-11-16)
 
+R2 starts from consolidated `main@b063b7c`. The [profile compatibility
+correction](../../tools/m12-penang-physical/README.md#r2-diagnosticprotected-profile-compatibility)
+rejects diagnostic/protected aliases and monitor contamination, and gives
+the P1 entry a separate explicit tunables selector. Entry/admission object
+bytes and the actual 632-symbol ld64 HOLD reproduce R1. Authentic KDK replay
+is still pending on the licensed host; Claude-owned FDT/IRQ files are unchanged.
+
 The [subsequent native link audit](2026-11-16-p1-pmap-link-audit.md) repeats
 the 14 original errors with the exact compiler, closes the GIC profile unit,
 corrects the retained-FDT consumer type and removes a byte-identical repeated

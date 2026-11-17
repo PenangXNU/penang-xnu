@@ -35,6 +35,7 @@ class PmapPlatform(unittest.TestCase):
             self.temp.cleanup()
 
     def compile(self, macros):
+        (self.root/"consumer.o").unlink(missing_ok=True)
         return subprocess.run([self.cc,"-Werror=implicit-function-declaration","-I",str(self.root),
             *["-D"+m for m in macros],"-c",str(self.source),"-o",str(self.root/"consumer.o")],
             capture_output=True,text=True)
@@ -44,10 +45,13 @@ class PmapPlatform(unittest.TestCase):
         (self.root/"arm64/ppl").mkdir(parents=True)
         (self.root/"arm64/ppl/sart.h").write_text("void sart_bootstrap(void);\n")
         (self.root/"arm64/ppl/uat.h").write_text("void uat_bootstrap(void);\n")
-        self.assertEqual(self.compile([]).returncode,0)
-        nm = subprocess.check_output([self.nm,"-u",str(self.root/"consumer.o")],text=True)
-        self.assertIn("sart_bootstrap",nm)
-        self.assertIn("uat_bootstrap",nm)
+        for flags in [[],["NO_MONITOR=1"],["VMAPPLE=1","NO_MONITOR=1"],
+                      ["PMAP_CS=1","PMAP_CS_ENABLE=1","XNU_MONITOR=1"]]:
+            with self.subTest(default_flags=flags):
+                self.assertEqual(self.compile(flags).returncode,0)
+                nm = subprocess.check_output([self.nm,"-u",str(self.root/"consumer.o")],text=True)
+                self.assertIn("sart_bootstrap",nm)
+                self.assertIn("uat_bootstrap",nm)
 
     def test_complete_codegen_selection_has_no_fake_provider_definition(self):
         result = self.compile(P1)
@@ -56,25 +60,49 @@ class PmapPlatform(unittest.TestCase):
         self.assertIn("entry",nm)
         self.assertNotIn("sart_bootstrap",nm)
         self.assertNotIn("uat_bootstrap",nm)
-        self.assertEqual(self.compile(P1+["CONFIG_PMAP_PPL=0","CONFIG_SPTM=0","XNU_MONITOR=0"]).returncode,0)
+        self.assertEqual(self.compile(P1+["CONFIG_PMAP_PPL=0","CONFIG_SPTM=0","XNU_MONITOR=0",
+                                         "PMAP_CS=0","PMAP_CS_ENABLE=0","HAS_GUARDED_IO_FILTER=0"]).returncode,0)
 
     def test_partial_or_disabled_optins_are_refused(self):
         for macro in P1:
             with self.subTest(missing=macro):
                 self.assertNotEqual(self.compile([m for m in P1 if m!=macro]).returncode,0)
         for name in [m.split("=")[0] for m in P1]:
-            with self.subTest(disabled=name):
-                flags=[m for m in P1 if not m.startswith(name+"=")]+[name+"=0"]
-                self.assertNotEqual(self.compile(flags).returncode,0)
-        self.assertNotEqual(self.compile(["PENANG_P1_IOMMU_CODEGEN_ONLY=1"]).returncode,0)
+            for value in ["0","2","-1", "", "invalid"]:
+                with self.subTest(optin=name,value=value):
+                    flags=[m for m in P1 if not m.startswith(name+"=")]+[name+"="+value]
+                    self.assertNotEqual(self.compile(flags).returncode,0)
+        for macro in P1[:-1]:
+            self.assertNotEqual(self.compile([macro]).returncode,0)
 
     def test_protected_or_other_platform_cannot_select_p1(self):
         for macro in ["ARM64_BOARD_CONFIG_PENANG_PHYSICAL", "PENANG_P2_PROTECTED", "QEMU_VIRT",
                       "VMAPPLE", "APPLEVIRTUALPLATFORM", "__arm64e__", "HAS_APPLE_PAC",
                       "CONFIG_PMAP_PPL", "CONFIG_SPTM", "XNU_MONITOR",
-                      "KERNEL_INTEGRITY_KTRR", "KERNEL_INTEGRITY_CTRR", "P1_PMAP_APPLE_IO_BOOTSTRAP=0"]:
+                      "KERNEL_INTEGRITY_KTRR", "KERNEL_INTEGRITY_CTRR", "P1_PMAP_APPLE_IO_BOOTSTRAP=0",
+                      "PENANG_PHYSICAL", "MONITOR", "PMAP_CS", "PMAP_CS_ENABLE", "KERNEL_INTEGRITY_WT",
+                      "HAS_GUARDED_IO_FILTER", "ARM64_BOARD_CONFIG_QEMU_VIRT", "__ARM_FEATURE_PAUTH",
+                      "CPU_HAS_APPLE_PAC", "HAS_PARAVIRTUALIZED_PAC", "APPLE_ARM64_ARCH_FAMILY",
+                      "PENANG_B43_VERIFIED_PHYSICAL_LOCKDOWN"]:
             with self.subTest(macro=macro):
                 self.assertNotEqual(self.compile(P1+[macro if "=" in macro else macro+"=1"]).returncode,0)
+
+    def test_presence_based_markers_remain_forbidden_when_zero(self):
+        for name in ["PENANG_PHYSICAL","ARM64_BOARD_CONFIG_PENANG_PHYSICAL","PENANG_P2_PROTECTED",
+                     "MONITOR","KERNEL_INTEGRITY_WT"]:
+            with self.subTest(marker=name):
+                self.assertNotEqual(self.compile(P1+[name+"=0"]).returncode,0)
+
+    def test_actual_protected_header_still_refuses_no_monitor_in_both_orders(self):
+        shutil.copy(TOOLS/"PENANG_PHYSICAL.h",self.root/"PENANG_PHYSICAL.h")
+        for first,second in [("PENANG_PHYSICAL.h","penang_p1/p1_pmap_platform.h"),
+                             ("penang_p1/p1_pmap_platform.h","PENANG_PHYSICAL.h")]:
+            self.source.write_text('#include "'+first+'"\n#include "'+second+'"\nint selection=P1_PMAP_APPLE_IO_BOOTSTRAP;\n')
+            self.assertEqual(self.compile([]).returncode,0)
+            for flags in [P1,["NO_MONITOR=0"],["NO_MONITOR=1"]]:
+                result=self.compile(flags)
+                self.assertNotEqual(result.returncode,0)
+                self.assertIn("PENANG_PHYSICAL forbids silent NO_MONITOR",result.stderr)
 
     def test_guard_text_is_preserved_and_source_drift_rejected(self):
         guard='#if defined(PENANG_PHYSICAL)\n#error B42_PROTECTED\n#endif\n'
